@@ -6,7 +6,7 @@ from django.db import models
 
 # Create your models here.
 
-class Configs(models.Model):
+class Config(models.Model):
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
 
