@@ -1,0 +1,279 @@
+﻿{% load i18n admin_static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<!--<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />-->
+<link rel="stylesheet" href="{% static "app/" %}css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="{% static "app/" %}css/animate.css" type="text/css" />
+<link rel="stylesheet" href="{% static "app/" %}css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="{% static "app/" %}css/simple-line-icons.css" type="text/css" />
+<link rel="stylesheet" href="{% static "app/" %}css/font.css" type="text/css" />
+<link rel="stylesheet" href="{% static "app/" %}css/app.css" type="text/css" />
+{% block extrastyle %}{% endblock %}
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% static "admin/css/ie.css" %}{% endblock %}" /><![endif]-->
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "app/" %}{% endfilter %}";</script>
+<script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+    <!-- Header -->
+    <!-- navbar header -->
+    <div class="app-header navbar">
+    
+        <div class="navbar-header {{app.settings.navbarHeaderColor}}">
+        <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+            <i class="glyphicon glyphicon-cog"></i>
+        </button>
+        <button class="pull-right visible-xs" ui-toggle-class="show" data-target=".app-aside" ui-scroll="app">
+            <i class="glyphicon glyphicon-align-justify"></i>
+        </button>
+        <!-- brand -->
+        <a href="/" class="navbar-brand text-lt">
+            <img src="/static/app/img/usp_logo.gif" alt="." class="hide">
+            <span class="hidden-folded m-l-xs">{{ site_header|default:_('Django') }}</span>
+        </a>
+        <!-- / brand -->
+        </div>
+        <!-- / navbar header -->
+
+        <!-- navbar collapse -->
+        <div class="collapse navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+        <!-- buttons -->
+        <div class="nav navbar-nav m-l-sm hidden-xs">
+            <a href class="btn no-shadow navbar-btn" ui-toggle-class="app-aside-folded" target=".app">
+            <i class="fa fa-dedent fa-fw text"></i>
+            <i class="fa fa-indent fa-fw text-active"></i>
+            </a>
+        </div>
+        <!-- / buttons -->
+
+        <!-- link and dropdown -->
+        <ul class="nav navbar-nav hidden-sm">
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
+                <span translate="header.navbar.new.NEW">New</span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#" translate="header.navbar.new.PROJECT">Projects</a></li>
+                <li>
+                <a href="#">
+                    <span translate="header.navbar.new.TASK">Task</span>
+                </a>
+                </li>
+                <li><a href="#" translate="header.navbar.new.USER">User</a></li>
+                <li class="divider"></li>
+                <li>
+                <a href="#">
+                    <span translate="header.navbar.new.EMAIL">Email</span>
+                </a>
+                </li>
+            </ul>
+            </li>
+        </ul>
+        <!-- / link and dropdown -->
+
+        <!-- search form -->
+        <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" target=".navbar-collapse" role="search" ng-controller="TypeaheadDemoCtrl">
+            <div class="form-group">
+            <div class="input-group">
+                <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="Search projects...">
+                <span class="input-group-btn">
+                <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            </div>
+        </form>
+        <!-- / search form -->
+
+        <!-- nabar right -->
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown hidden-sm">
+                <a href class="dropdown-toggle" data-toggle="dropdown">
+                    {{selectLang}} <b class="caret"></b>
+                </a>
+                <!-- dropdown -->
+                <ul class="dropdown-menu animated fadeInRight w">
+                    <li ng-repeat="(langKey, label) in langs">
+                    <a ng-click="setLang(langKey)">{{label}}</a>
+                    </li>
+                </ul>
+                <!-- / dropdown -->
+            </li>
+            <li class="hidden-xs">
+                <a ui-fullscreen></a>
+            </li>            
+            <li class="dropdown">
+                <a href class="dropdown-toggle clear" data-toggle="dropdown">
+                    <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                    <img src="/static/app/img/a0.jpg" alt="...">
+                    <i class="on md b-white bottom"></i>
+                    </span>
+                    <span class="hidden-sm hidden-md">{% firstof user.get_short_name user.get_username %}</span> <b class="caret"></b>
+                </a>            
+            </li>
+        </ul>
+        <!-- / navbar right -->
+
+        </div>
+        <!-- / navbar collapse -->
+    </div>
+    <!--
+    <div id="header">
+        <div id="branding">
+        {% block branding %}{% endblock %}
+        </div>
+        {% block usertools %}
+        {% if has_permission %}
+        <div id="user-tools">
+            {% block welcome-msg %}
+                {% trans 'Welcome,' %}
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+            {% endblock %}
+            {% block userlinks %}
+                {% if site_url %}
+                    <a href="{{ site_url }}">{% trans 'View site' %}</a> /
+                {% endif %}
+                {% if user.is_active and user.is_staff %}
+                    {% url 'django-admindocs-docroot' as docsroot %}
+                    {% if docsroot %}
+                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+                    {% endif %}
+                {% endif %}
+                {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                {% endif %}
+                <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+            {% endblock %}
+        </div>
+        {% endif %}
+        {% endblock %}
+        {% block nav-global %}{% endblock %}
+    </div>
+    -->
+    <!-- END Header -->
+    <!--
+    {% block breadcrumbs %}
+    <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    {% if title %} &rsaquo; {{ title }}{% endif %}
+    </div>-->
+    {% endblock %}
+    {% endif %}
+    <!--
+    {% block messages %}
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+        {% endfor %}</ul>
+        {% endif %}
+    {% endblock messages %}
+    -->
+
+    <!-- menu -->
+    <div class="app-aside hidden-xs {{app.settings.asideColor}}">
+        <div class="aside-wrap">
+          <div class="navi-wrap">
+            <!-- user -->
+            <div class="clearfix hidden-xs text-center hide" id="aside-user">
+              <div class="dropdown wrapper">
+                <a ui-sref="app.page.profile">
+                  <span class="thumb-lg w-auto-folded avatar m-t-sm">
+                    <img src="img/a0.jpg" class="img-full" alt="...">
+                  </span>
+                </a>
+                <a href class="dropdown-toggle hidden-folded">
+                  <span class="clear">
+                    <span class="block m-t-sm">
+                      <strong class="font-bold text-lt">John.Smith</strong> 
+                      <b class="caret"></b>
+                    </span>
+                    <span class="text-muted text-xs block">Art Director</span>
+                  </span>
+                </a>
+                <!-- dropdown -->
+                <ul class="dropdown-menu animated fadeInRight w hidden-folded">
+                  <li class="wrapper b-b m-b-sm bg-info m-t-n-xs">
+                    <span class="arrow top hidden-folded arrow-info"></span>
+                    <div>
+                      <p>300mb of 500mb used</p>
+                    </div>
+                    <progressbar value="60" type="white" class="progress-xs m-b-none dker"></progressbar>
+                  </li>
+                  <li>
+                    <a href>Settings</a>
+                  </li>
+                  <li>
+                    <a ui-sref="app.page.profile">Profile</a>
+                  </li>
+                  <li>
+                    <a href>
+                      <span class="badge bg-danger pull-right">3</span>
+                      Notifications
+                    </a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a ui-sref="access.signin">Logout</a>
+                  </li>
+                </ul>
+                <!-- / dropdown -->
+              </div>
+              <div class="line dk hidden-folded"></div>
+            </div>
+            <!-- / user -->
+
+            <!-- nav -->
+            <nav ui-nav class="navi" ng-include="'tpl/blocks/nav.html'"></nav>
+            <!-- nav -->
+
+            <!-- aside footer -->
+            <div class="wrapper m-t">
+              <div class="text-center-folded">
+                <span class="pull-right pull-none-folded">60%</span>
+                <span class="hidden-folded" translate="aside.MILESTONE">Milestone</span>
+              </div>
+              <progressbar value="60" class="progress-xxs m-t-sm dk" type="info"></progressbar>
+              <div class="text-center-folded">
+                <span class="pull-right pull-none-folded">35%</span>
+                <span class="hidden-folded" translate="aside.RELEASE">Release</span>
+              </div>
+              <progressbar value="35" class="progress-xxs m-t-sm dk" type="primary"></progressbar>
+            </div>
+            <!-- / aside footer -->
+          </div>
+        </div>
+    </div>
+    <!-- / menu -->
+
+    <!-- Content -->
+
+    <!-- 
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block pretitle %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
+        {% endblock %}
+        {% block sidebar %}{% endblock %}
+        <br class="clear" />
+    </div>
+    -->
+    <!-- END Content -->
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>
