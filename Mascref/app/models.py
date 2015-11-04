@@ -18,16 +18,34 @@ class Researcher(models.Model):
 class Country(models.Model):
     name = models.CharField(max_length=100)
 
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
+
 
 class Province(models.Model):
     name = models.CharField(max_length=150)
     country = models.ForeignKey(Country)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Town(models.Model):
     name = models.CharField(max_length=150)
     province = models.ForeignKey(Province, blank=True, null=True)
     country = models.ForeignKey(Country)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Site(models.Model):
