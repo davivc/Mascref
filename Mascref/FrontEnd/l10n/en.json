@@ -1,0 +1,43 @@
+{
+
+  "header": {
+    "navbar": {
+      "UPLOAD": "Upload",
+      "new": {
+        "NEW": "New",
+        "PROJECT": "Projects",
+        "TASK": "Task",
+        "USER": "User",
+        "EMAIL": "Email"
+      },
+      "NOTIFICATIONS": "Notifications"
+    }
+  },
+  "aside": {
+    "nav": {
+      "HEADER": "Navigation",
+      "DASHBOARD": "Dashboard",
+      "PROJECTS": "Projects",
+      "MAPS": "Maps",
+      "STATS": "Stats",
+      "SETTINGS": "Settings"
+    }
+  },
+  "app": {
+    "dashboard": {
+      "TITLE": "Dashboard",
+      "WELCOME": "Welcome to Mapping Coral Reefs application",
+      "PROJECTS": "Projects",
+      "SURVEYS": "Surveys",
+      "SITES": "Sites",
+      "TRANSECTS": "Transects",
+      "COUNTRIES": "Countries",
+      "TOWNS": "Towns",
+      "RESEARCHERS": "Researchers",
+      "ADDRESEARCHER": "Add Researcher",
+      "ADMIN": "Admin",
+      "RECENT": "Recent Activity"
+    }
+  }
+
+}

@@ -1,0 +1,106 @@
+
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black" translate="app.dashboard.TITLE">Dashboard</h1>
+          <small class="text-muted" translate="app.dashboard.WELCOME">Welcome text</small>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+
+    <div class="wrapper-md" ng-controller="DashboardStatsCtrl">
+      <!-- stats -->
+      <div class="row">
+        <div class="col-md-5">
+          <div class="row row-sm text-center">
+            <div class="col-xs-6">
+              <div class="panel padder-v item">
+                <div class="h1 text-info font-thin h1">0</div>
+                <span class="text-muted text-xs" translate="app.dashboard.PROJECTS">Projects</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v bg-primary item">
+                <span class="text-white font-thin h1 block">0</span>
+                <span class="text-muted text-xs" translate="app.dashboard.SURVEYS">Surveys</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v bg-info item">
+                <span class="text-white font-thin h1 block">0</span>
+                <span class="text-muted text-xs" translate="app.dashboard.SITES">Sites</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v item">
+                <div class="font-thin h1">0</div>
+                <span class="text-muted text-xs" translate="app.dashboard.SITES">Transects</span>
+              </div>
+            </div>
+              <div class="col-xs-6">
+              <a href class="block panel padder-v bg-info item">
+                <span class="text-white font-thin h1 block">0</span>
+                <span class="text-muted text-xs" translate="app.dashboard.COUNTRIES">Countries</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v item">
+                <div class="font-thin h1">0</div>
+                <span class="text-muted text-xs" translate="app.dashboard.TOWNS">Towns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+            <div class="panel no-border">
+                <div class="panel-heading wrapper b-b b-light">
+                  <span class="text-xs text-muted pull-right">
+                    <i class="fa fa-circle text-primary m-r-xs"></i> 0
+                    <i class="fa fa-circle text-info m-r-xs m-l-sm"></i> 0
+                    <i class="fa fa-circle text-warning m-r-xs m-l-sm"></i> 0
+                  </span>
+                  <h4 class="font-thin m-t-none m-b-none text-muted" translate="app.dashboard.RESEARCHERS">Researchers</h4>              
+                </div>
+                <ul class="list-group list-group-lg m-b-none">
+                  <li class="list-group-item">
+                    <a href class="thumb-sm m-r">
+                      <img src="img/a1.jpg" class="r r-2x">
+                    </a>
+                    <span class="pull-right label bg-primary inline m-t-sm" translate="app.dashboard.ADMIN">Admin</span>
+                    <a href>Damon Parker</a>
+                  </li>
+                </ul>
+                <div class="panel-footer">
+                  <span class="pull-right badge badge-bg m-t-xs">0</span>
+                  <button class="btn btn-primary btn-addon btn-sm"><i class="fa fa-plus"></i><span translate="app.dashboard.ADDRESEARCHER">Add Researcher</span></button>
+                </div>
+              </div>
+        </div>
+      </div>
+      <!-- / stats -->
+    </div>
+  </div>
+  <!-- / main -->
+  <!-- right col -->
+  <div class="col w-md bg-white-only b-l bg-auto bg-auto-right no-border-xs" ng-controller="DashboardRecentCtrl">   
+    <div class="padder-md">      
+      <!-- streamline -->
+      <div class="m-b text-md" translate="app.dashboard.RECENT">Recent Activity</div>
+      <div class="streamline b-l">
+        <div class="sl-item">
+          <div class="m-l">
+            <div class="text-muted">2 minutes ago</div>
+            <p><a href class="text-info">God</a> is now following you.</p>
+          </div>
+        </div>        
+      </div>
+      <!-- / streamline -->
+    </div>
+  </div>
+  <!-- / right col -->
+</div>
