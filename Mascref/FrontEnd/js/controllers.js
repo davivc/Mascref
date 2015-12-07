@@ -26,8 +26,8 @@ angular.module('app.controllers', ['pascalprecht.translate'])
               black: '#1c2b36'
           },
           settings: {
-              navbarHeaderColor: 'bg-success',
-              navbarCollapseColor: 'bg-success',
+              navbarHeaderColor: 'bg-black',
+              navbarCollapseColor: 'bg-black',
               asideColor: 'bg-black',
               headerFixed: true,
               asideFixed: false,
@@ -53,6 +53,34 @@ angular.module('app.controllers', ['pascalprecht.translate'])
   .controller('DashboardRecentCtrl', ['$scope', '$translate', function ($scope, $translate) {
 
   }])
+  // Projects Controllers
+  .controller('ProjectsCtrl', ['$scope', '$translate', function ($scope, $translate) {
+    $scope.breadcrumbs = [ 'Projects' ];
+    console.log($scope.breadcrumbs)
+  }])
+  .controller('ProjectViewCtrl', ['$scope', '$translate', '$stateParams', 'uiGmapGoogleMapApi', function ($scope, $translate, $stateParams, uiGmapGoogleMapApi) {
+    $scope.$parent.breadcrumbs.push('Teste');
+    console.log($stateParams);
+    $scope.map = { center: { latitude: -18.20, longitude: 179 }, zoom: 7, options: { scrollwheel: false, panControl: false, streetViewControl: false } };
+
+    // uiGmapGoogleMapApi is a promise.
+    // The "then" callback function provides the google.maps object.
+    uiGmapGoogleMapApi.then(function (maps) {
+      
+      $('.angular-google-map-container').css('height', '300px');
+    });
+  }])
+  .controller('ProjectViewSurveyCtrl', ['$scope', '$translate', '$stateParams', 'uiGmapGoogleMapApi', function ($scope, $translate, $stateParams, uiGmapGoogleMapApi) {
+    console.log($stateParams);
+    $scope.map = { center: { latitude: -18.20, longitude: 179 }, zoom: 7, options: { scrollwheel: false, panControl: false, streetViewControl: false } };
+
+    // uiGmapGoogleMapApi is a promise.
+    // The "then" callback function provides the google.maps object.
+    uiGmapGoogleMapApi.then(function (maps) {
+
+      $('.angular-google-map-container').css('height', '300px');
+    });
+  }])
   // Maps Controllers
   .controller("MapsCtrl", function($scope, uiGmapGoogleMapApi) {
     // Do stuff with your $scope.
@@ -65,7 +93,10 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
     });
   })
-    // Dashboard Controllers
+  // Settings Controllers
   .controller('SettingsCtrl', ['$scope', '$translate', function ($scope, $translate) {
+
+  }])
+  .controller('SettingsCountriesCtrl', ['$scope', '$translate', function ($scope, $translate) {
 
   }])

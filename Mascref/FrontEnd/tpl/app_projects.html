@@ -1,1 +1,69 @@
-﻿
+﻿<div class="bg-light lter b-b wrapper-md" ng-controller="ProjectsCtrl">
+  <h1 class="m-n font-thin h3">
+    <ul class="breadcrumb">
+      <li ng-repeat="(key, bread) in breadcrumbs">
+        <span ng-if="key == 0"><a href><i class="fa fa-home"></i> {{bread}}</a></span>
+        <span ng-if="key != 0 && key != breadcrumbs.length-1"><a href>{{bread}}</a></span>
+        <span ng-if="key != 0 && key == breadcrumbs.length-1" class="active">{{bread}}</span>
+      </li>
+    </ul>
+  </h1>
+</div>
+<div class="wrapper-md" ng-controller="ProjectsCtrl" ui-view>
+  <div class="row">
+    <div class="col-sm-12 connected">
+      <div>
+        <div class="panel-body b-b b-light">
+          Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+        </div>
+        <div>
+          <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+            <thead>
+              <tr>
+                  <th>
+                      Name
+                  </th>
+                  <th>
+                      Date Start
+                  </th>
+                  <th>
+                      Date End
+                  </th>
+                  <th>
+                      Owner
+                  </th>
+                  <th>
+                      Surveys
+                  </th>
+                  <th>
+                      Transects
+                  </th>
+                  <th>
+  
+                  </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>Teste</td>
+                  <td>01/12/2015</td>
+                  <td>01/01/2016</td>
+                  <td>Davi Candido</td>
+                  <td>4</td>
+                  <td>80</td>
+                  <td><a ui-sref="app.projects.view({projectId:1})">Ver</a></td>
+              </tr>        
+            </tbody>
+            <tfoot class="hide-if-no-paging">
+              <tr>
+                  <td colspan="8" class="text-center">
+                      <ul class="pagination"></ul>
+                  </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

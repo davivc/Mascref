@@ -38,7 +38,7 @@ var app = angular.module('app', [
         app.constant = $provide.constant;
 
         $urlRouterProvider
-            .otherwise('/app/dashboard');
+            .otherwise('/access/404');
         $stateProvider
             .state('app', {
                 abstract: true,
@@ -53,6 +53,26 @@ var app = angular.module('app', [
                 url: '/projects',
                 templateUrl: 'tpl/app_projects.html'
             })
+            .state('app.projects.view', {
+              url: '/view/{projectId}',
+              templateUrl: 'tpl/app_project_view.html'
+            })
+            .state('app.projects.view.survey', {
+              url: '/survey/{surveyId}',
+              templateUrl: 'tpl/app_survey.html'
+            })
+            .state('app.projects.transect', {
+              url: '/transect',
+              templateUrl: 'tpl/app_transects.html'
+            })
+            .state('app.projects.transect.count', {
+              url: '/transect/count',
+              templateUrl: 'tpl/app_transect_count.html'
+            })
+            .state('app.projects.transect.cover', {
+              url: '/transect/cover',
+              templateUrl: 'tpl/app_transect_cover.html'
+            })
             .state('app.maps', {
                 url: '/maps',
                 templateUrl: 'tpl/app_maps.html'
@@ -64,6 +84,27 @@ var app = angular.module('app', [
             .state('app.settings', {
                 url: '/settings',
                 templateUrl: 'tpl/app_settings.html'
+            })
+            .state('app.settings.countries', {
+              url: '/countries',
+              templateUrl: 'tpl/app_settings_countries.html'
+            })
+            // others
+            .state('access', {
+              url: '/access',
+              template: '<div ui-view class="fade-in-right-big smooth"></div>'
+            })
+            .state('access.signin', {
+              url: '/signin',
+              templateUrl: 'tpl/signin.html'
+            })
+            .state('access.forgotpwd', {
+              url: '/forgotpwd',
+              templateUrl: 'tpl/forgotpwd.html'
+            })
+            .state('access.404', {
+              url: '/404',
+              templateUrl: 'tpl/404.html'
             })
     }
   ]
@@ -101,7 +142,8 @@ var app = angular.module('app', [
  */
 
 .constant('JQ_CONFIG', {
-    
+  footable: ['js/jquery/footable/footable.all.min.js',
+             'js/jquery/footable/footable.core.css']
 }
 )
 ;

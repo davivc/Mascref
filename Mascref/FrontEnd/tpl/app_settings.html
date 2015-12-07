@@ -1,1 +1,114 @@
-﻿
+﻿<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Settings</h1>
+</div>
+<div class="wrapper-md" ui-view>
+  <div class="row">
+    <div class="col-sm-12 connected">
+      <div  ng-controller="SettingsCtrl">
+        <accordion close-others="oneAtATime">          
+          <accordion-group is-open="status.maps.open" class="b-info">
+              <accordion-heading>
+                 <i class="glyphicon glyphicon-globe icon text-info-lter"></i> <span class="font-bold">Maps</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.maps.open, 'fa-angle-right': !status.maps.open}"></i>
+              </accordion-heading>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Center Lat</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Latitude">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Center Long</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Longitude">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Zoom</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Zoom">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-sm btn-info">Save</button>
+                  </div>
+                </div>
+              </form>
+          </accordion-group>
+          <accordion-group is-open="status.transects.open" class="b-primary">
+              <accordion-heading>
+                 <i class="glyphicon glyphicon-align-justify icon text-primary"></i> <span class="font-bold">Transects</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.transects.open, 'fa-angle-right': !status.transects.open}"></i>
+              </accordion-heading>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Length (m)</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Length">
+                    <span class="help-block m-b-none">Length of each transect.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Distance (m)</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Distane">
+                    <span class="help-block m-b-none">Distance between transects.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-2 control-label">Number of points inside a transect</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Total Points">
+                    <span class="help-block m-b-none">Length of each point inside a transect: </span> 0.5m
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                  </div>
+                </div>
+              </form>
+          </accordion-group>
+          <accordion-group is-open="status.researchers.open" class="b-success">
+              <accordion-heading>
+                 <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Researchers</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.researchers.open, 'fa-angle-right': !status.researchers.open}"></i>
+              </accordion-heading>
+              <form class="form-horizontal">
+                
+              </form>
+          </accordion-group>
+          <accordion-group is-open="status.entries.open" class="b-black">
+              <accordion-heading>
+                 <i class="glyphicon glyphicon-floppy-open icon text-black"></i> <span class="font-bold">Entries list</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.entries.open, 'fa-angle-right': !status.entries.open}"></i>
+              </accordion-heading>
+              <form class="form-horizontal">
+                <div class="list-group bg-white"> 
+                  Click on the desired item to manage its entries and properties.
+                </div>
+                <div class="list-group bg-white">                  
+                  <a ui-sref="app.settings.countries" class="list-group-item">
+                    Countries
+                  </a>
+                  <a ui-sref="app.settings.provinces" class="list-group-item">
+                    Provinces
+                  </a>
+                  <a ui-sref="app.settings.towns" class="list-group-item">
+                    Towns
+                  </a>
+                  <a ui-sref="app.settings.sites" class="list-group-item">
+                    Sites
+                  </a>
+                  <a ui-sref="app.settings.categories.count" class="list-group-item">
+                    Categories for the count transect
+                  </a>
+                  <a ui-sref="app.settings.categories.cover" class="list-group-item">
+                    Categories for the percentage cover transect
+                  </a>
+                </div>
+              </form>
+          </accordion-group>
+        </accordion>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,9 @@
 ﻿.angular-google-map-container { height: 500px; }
+
+h1 .breadcrumb {
+  margin-bottom: 0px;
+}
+
+h1 .breadcrumb .active {
+    color: #aaa;
+}
