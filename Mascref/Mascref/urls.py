@@ -21,6 +21,7 @@ from Mascref.serializers import SurveyViewSet
 from Mascref.serializers import TownViewSet
 from Mascref.serializers import TransectViewSet
 from Mascref.serializers import UserViewSet
+from Mascref.serializers import DashboardStatsViewSet
 
 admin.autodiscover()
 
@@ -36,11 +37,13 @@ router.register(r'api/surveys', SurveyViewSet)
 router.register(r'api/towns', TownViewSet)
 router.register(r'api/transects', TransectViewSet)
 router.register(r'api/users', UserViewSet)
+router.register(r'api/dashboard/stats', DashboardStatsViewSet, 'dashboard-list')
 
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'app.views.home', name='home'),
     url(r'^', include(router.urls)),
+    #url(r'api/dashboard/stats', 'Mascref.serializers.dashboard_totals', name='dashboard_totals'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-docs/', include('rest_framework_swagger.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),

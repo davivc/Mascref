@@ -68,6 +68,16 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         .then(handleSuccess, handleError);
       }
 
+      $scope.profile = function () {
+        djangoAuth.profile()
+        .then(function (data) {
+          $scope.username = data.username;
+          $scope.email = data.email;
+          $scope.first_name = data.first_name;
+          $scope.last_name = data.last_name;
+        }, handleError);
+      }
+
       var handleSuccess = function (data) {
         $scope.response = data;
       }
@@ -75,6 +85,8 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       var handleError = function (data) {
         $scope.response = data;
       }
+
+      $scope.profile();
 
   })
   // Dashboard Controllers

@@ -1,4 +1,11 @@
-﻿from rest_framework import serializers, viewsets, permissions
+﻿from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import generics, serializers, viewsets, permissions
 from app.models import Config
 from app.models import Country
 from app.models import Project
@@ -9,6 +16,17 @@ from app.models import Survey
 from app.models import Town
 from app.models import Transect
 from django.contrib.auth.models import User
+
+# Objects for non-Models api
+class DashboardStats(object):
+    def __init__(self):
+        self.countries = Country.objects.count()
+        self.projects = Project.objects.count()
+        self.surveys = Survey.objects.count()
+        self.sites = Site.objects.count()
+        self.towns = Town.objects.count()
+        self.transects = Transect.objects.count()
+
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -71,6 +89,16 @@ class TransectSerializer (serializers.HyperlinkedModelSerializer):
         fields = ('name','depth','date','time_start','team_leader','site','survey')
 
 
+# Non-Models Serializers
+class DashboardStatsSerializer (serializers.Serializer):
+    countries = serializers.IntegerField()
+    projects = serializers.IntegerField()
+    surveys = serializers.IntegerField()
+    towns = serializers.IntegerField()
+    transects = serializers.IntegerField()
+    sites = serializers.IntegerField()
+
+
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -126,3 +154,47 @@ class SurveyViewSet(viewsets.ModelViewSet):
 class TransectViewSet(viewsets.ModelViewSet):
     queryset = Transect.objects.all()
     serializer_class = TransectSerializer
+
+
+# Non-Models
+class DashboardStatsViewSet(viewsets.ViewSet):
+    def list(self, request):
+        serializer = DashboardStatsSerializer(DashboardStats())
+        return Response(serializer.data)
+
+
+#class JSONResponse(HttpResponse):
+#    """
+#    An HttpResponse that renders its content into JSON.
+#    """
+#    def __init__(self, data, **kwargs):
+#        content = JSONRenderer().render(data)
+#        kwargs['content_type'] = 'application/json'
+#        super(JSONResponse, self).__init__(content, **kwargs)
+
+
+#class DashboardStatsViewSet(viewsets.GenericViewSet):
+#    #queryset = Country.objects.count()
+#    #serializer_class = DashboardStatsSerializer
+#    @csrf_exempt
+#    def get(request):
+#        """
+#        List all code snippets, or create a new snippet.
+#        """
+#        if request.method == 'GET':
+#            countries = Country.objects.count()
+#            serializer = DashboardStatsSerializer(countries, many=True)
+#            return JSONResponse(serializer.data)
+
+
+#@api_view(['GET'])
+#@csrf_exempt
+#def dashboard_totals(request):
+#    #countries = Country.objects.count()
+#    dash = { 
+#      'countries': Country.objects.count() 
+#    }
+#    serializer = DashboardStatsSerializer(dash)
+#    return Response(serializer.data)
+
+
