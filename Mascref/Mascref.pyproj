@@ -4,6 +4,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>Mascref</Name>
     <RootNamespace>Mascref</RootNamespace>
+    <WebBrowserUrl>http://mascref</WebBrowserUrl>
+    <WebBrowserPort>53190</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -68,6 +70,8 @@
     <Folder Include="FrontEnd\js\jquery\footable\" />
     <Folder Include="FrontEnd\js\jquery\footable\fonts\" />
     <Folder Include="FrontEnd\js\libs\" />
+    <Folder Include="FrontEnd\js\services\" />
+    <Folder Include="FrontEnd\js\services\auth\" />
     <Folder Include="FrontEnd\l10n\" />
     <Folder Include="FrontEnd\tpl\" />
     <Folder Include="FrontEnd\tpl\blocks\" />
@@ -395,6 +399,8 @@
     <Content Include="FrontEnd\js\jquery\jquery.ui.touch-punch.min.js" />
     <Content Include="FrontEnd\js\libs\lodash.js" />
     <Content Include="FrontEnd\js\services.js" />
+    <Content Include="FrontEnd\js\services\auth\djangoAuth.js" />
+    <Content Include="FrontEnd\js\services\auth\validate.js" />
     <Content Include="FrontEnd\l10n\en.json" />
     <Content Include="FrontEnd\tpl\404.html" />
     <Content Include="FrontEnd\tpl\app.html" />

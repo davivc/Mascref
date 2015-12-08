@@ -10,10 +10,11 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = (
     'localhost',
+    'mascref',
 )
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Davi Candido', 'davivc@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -102,6 +103,9 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
+    # CORS
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,6 +113,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 )
 
 ROOT_URLCONF = 'Mascref.urls'
@@ -133,11 +138,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
+    #'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    'django.contrib.admindocs',
+    #'django.contrib.admindocs',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_swagger',
+    'rest_auth',
+    'corsheaders',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -171,3 +179,16 @@ LOGGING = {
 
 # Specify the default test runner.
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = (
+        'http://mascref',
+        'http://mascref:53190',
+        'mascref',
+    )
+
+AUTHENTICATION_METHOD = 'EMAIL'

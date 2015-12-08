@@ -15,13 +15,14 @@ var app = angular.module('app', [
     'app.filters',
     'app.services',
     'app.directives',
-    'app.controllers'
+    'app.controllers',
 ])
 .run(
-  ['$rootScope', '$state', '$stateParams',
-    function ($rootScope, $state, $stateParams) {
+  ['$rootScope', '$state', '$stateParams', 'djangoAuth',
+    function ($rootScope, $state, $stateParams, djangoAuth) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        djangoAuth.initialize('http://mascref:53190/rest-auth', true);
     }
   ]
 )
@@ -43,11 +44,22 @@ var app = angular.module('app', [
             .state('app', {
                 abstract: true,
                 url: '/app',
-                templateUrl: 'tpl/app.html'
+                templateUrl: 'tpl/app.html',                
+                resolve: {
+                  authenticated: ['djangoAuth', function (djangoAuth) {
+                    return djangoAuth.authenticationStatus();
+                  }],
+                }
             })
             .state('app.dashboard', {
                 url: '/dashboard',
-                templateUrl: 'tpl/app_dashboard.html'
+                templateUrl: 'tpl/app_dashboard.html',
+                controller: 'DashboardCtrl',
+                resolve: {
+                  authenticated: ['djangoAuth', function (djangoAuth) {
+                    return djangoAuth.authenticationStatus();
+                  }],
+                }
             })
             .state('app.projects', {
                 url: '/projects',
@@ -96,7 +108,8 @@ var app = angular.module('app', [
             })
             .state('access.signin', {
               url: '/signin',
-              templateUrl: 'tpl/signin.html'
+              templateUrl: 'tpl/signin.html',
+              controller: 'AccessSigninCtrl'
             })
             .state('access.forgotpwd', {
               url: '/forgotpwd',
@@ -144,6 +157,4 @@ var app = angular.module('app', [
 .constant('JQ_CONFIG', {
   footable: ['js/jquery/footable/footable.all.min.js',
              'js/jquery/footable/footable.core.css']
-}
-)
-;
+});

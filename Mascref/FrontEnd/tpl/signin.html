@@ -4,15 +4,18 @@
     <div class="wrapper text-center">
       <strong>Sign in to get in touch</strong>
     </div>
-    <form name="signin" action="#/">
+    <form role="form" ng-submit="login(signinForm)" name="signinForm" novalidate>
       <div class="list-group list-group-sm">
         <div class="list-group-item">
-          <input type="email" placeholder="Email" class="form-control no-border">
+          <input type="text" name="username" id="id_username" ng-model="model.username" placeholder="Username" class="form-control no-border" required />
         </div>
         <div class="list-group-item">
-           <input type="password" placeholder="Password" class="form-control no-border">
+           <input type="password" name="password" id="id_password" ng-model="model.password" placeholder="Password" class="form-control no-border" required />
         </div>
       </div>
+      <div class="alert alert-danger" ng-repeat="error in errors.password">{{error}}</div>
+      <div class="alert alert-danger" ng-repeat="error in errors.non_field_errors">{{error}}</div>
+      <div class="alert alert-danger" ng-if="error">{{error}}</div>
       <button type="submit" class="btn btn-lg btn-primary btn-block">Log in</button>
       <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">Forgot password?</a></div>
       <div class="line line-dashed"></div>
