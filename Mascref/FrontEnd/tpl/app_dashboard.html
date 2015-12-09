@@ -19,40 +19,40 @@
         <div class="col-md-5">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
-              <div class="panel padder-v item">
-                <div class="h1 text-info font-thin h1">0</div>
+              <a href class="block panel padder-v bg-info item">
+                <div class="h1 text-white font-thin h1 block">{{stats.projects}}</div>
                 <span class="text-muted text-xs" translate="app.dashboard.PROJECTS">Projects</span>
-              </div>
+              </a>
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v bg-primary item">
-                <span class="text-white font-thin h1 block">0</span>
+                <span class="text-white font-thin h1 block">{{stats.surveys}}</span>
                 <span class="text-muted text-xs" translate="app.dashboard.SURVEYS">Surveys</span>
               </a>
             </div>
             <div class="col-xs-6">
-              <a href class="block panel padder-v bg-info item">
-                <span class="text-white font-thin h1 block">0</span>
+              <a href class="block panel padder-v bg-primary item">
+                <span class="text-white font-thin h1 block">{{stats.sites}}</span>
                 <span class="text-muted text-xs" translate="app.dashboard.SITES">Sites</span>
               </a>
             </div>
             <div class="col-xs-6">
-              <div class="panel padder-v item">
-                <div class="font-thin h1">0</div>
-                <span class="text-muted text-xs" translate="app.dashboard.SITES">Transects</span>
-              </div>
-            </div>
-              <div class="col-xs-6">
               <a href class="block panel padder-v bg-info item">
-                <span class="text-white font-thin h1 block">0</span>
+                <div class="font-thin h1">{{stats.transects}}</div>
+                <span class="text-muted text-xs" translate="app.dashboard.TRANSECTS">Transects</span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v bg-info item">
+                <span class="text-white font-thin h1 block">{{stats.countries}}</span>
                 <span class="text-muted text-xs" translate="app.dashboard.COUNTRIES">Countries</span>
               </a>
             </div>
             <div class="col-xs-6">
-              <div class="panel padder-v item">
-                <div class="font-thin h1">0</div>
+              <a href class="block panel padder-v bg-primary item">
+                <div class="font-thin h1">{{stats.towns}}</div>
                 <span class="text-muted text-xs" translate="app.dashboard.TOWNS">Towns</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -60,24 +60,28 @@
             <div class="panel no-border">
                 <div class="panel-heading wrapper b-b b-light">
                   <span class="text-xs text-muted pull-right">
-                    <i class="fa fa-circle text-primary m-r-xs"></i> 0
-                    <i class="fa fa-circle text-info m-r-xs m-l-sm"></i> 0
-                    <i class="fa fa-circle text-warning m-r-xs m-l-sm"></i> 0
+                    <i popover="Admins" class="fa fa-circle text-danger m-r-xs"></i> {{totalAdmin}}
+                    <i popover="Members" class="fa fa-circle text-dark m-r-xs m-l-sm"></i> {{totalMembers}}
+                    <i popover="Researchers" class="fa fa-circle text-warning m-r-xs m-l-sm"></i> {{totalResearchers}}
                   </span>
                   <h4 class="font-thin m-t-none m-b-none text-muted" translate="app.dashboard.RESEARCHERS">Researchers</h4>              
                 </div>
                 <ul class="list-group list-group-lg m-b-none">
-                  <li class="list-group-item">
+                  <li class="list-group-item" ng-repeat="researcher in researchers">
                     <a href class="thumb-sm m-r">
                       <img src="img/a1.jpg" class="r r-2x">
                     </a>
-                    <span class="pull-right label bg-primary inline m-t-sm" translate="app.dashboard.ADMIN">Admin</span>
-                    <a href>Damon Parker</a>
+                    <span ng-switch="researcher.role">
+                      <span ng-switch-when="1" class="pull-right label bg-danger inline m-t-sm" translate="app.dashboard.ADMIN">Admin</span>
+                      <span ng-switch-when="2" class="pull-right label bg-dark inline m-t-sm" translate="app.dashboard.MEMBER">Member</span>
+                      <span ng-switch-default class="pull-right label bg-warning inline m-t-sm" translate="app.dashboard.RESEARCHER">Researcher</span>
+                    </span>
+                    <a href>{{researcher.name}}</a>
                   </li>
                 </ul>
                 <div class="panel-footer">
-                  <span class="pull-right badge badge-bg m-t-xs">0</span>
-                  <button class="btn btn-primary btn-addon btn-sm"><i class="fa fa-plus"></i><span translate="app.dashboard.ADDRESEARCHER">Add Researcher</span></button>
+                  <span class="pull-right badge badge-bg m-t-xs">{{researchers.length}}</span>
+                  <button class="btn btn-success btn-addon btn-sm"><i class="fa fa-plus"></i><span translate="app.dashboard.ADDRESEARCHER">Add Researcher</span></button>
                 </div>
               </div>
         </div>

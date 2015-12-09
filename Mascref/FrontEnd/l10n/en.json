@@ -36,6 +36,8 @@
       "RESEARCHERS": "Researchers",
       "ADDRESEARCHER": "Add Researcher",
       "ADMIN": "Admin",
+      "MEMBER": "Member",
+      "RESEARCHER": "Researcher",
       "RECENT": "Recent Activity"
     }
   }

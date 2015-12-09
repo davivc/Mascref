@@ -72,7 +72,13 @@ angular.module('app.services', [])
           'method': "GET",
           'url': "/dashboard/stats/"
         });
-      }
+      },
+      'researchers': function () {
+        return this.request({
+          'method': "GET",
+          'url': "/researchers/"
+        });
+      },
     }
 
     return service;
