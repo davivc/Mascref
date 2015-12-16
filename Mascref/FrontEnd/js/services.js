@@ -90,10 +90,37 @@ angular.module('app.services', [])
     return service;
   }).service('Projects', function Projects(Rest) {
     var service = {      
-      'list': function () {
+      'list': function (parent) {
+        var search = '?';
+        if(parent) search = search  + 'parent=' + parent
         return Rest.request({
           'method': "GET",
-          'url': "/projects/"
+          'url': "/projects/" + search
+        });
+      },
+      'get': function (projectId) {
+        return Rest.request({
+          'method': "GET",
+          'url': "/projects/" + projectId + "/"
+        });
+      }
+    }
+
+    return service;
+  }).service('Surveys', function Surveys(Rest) {
+    var service = {
+      'list': function (project) {
+        var search = '?';
+        if (project) search = search + 'project=' + project
+        return Rest.request({
+          'method': "GET",
+          'url': "/surveys/" + search
+        });
+      },
+      'get': function (surveyId) {
+        return Rest.request({
+          'method': "GET",
+          'url': "/surveys/" + surveyId + "/"
         });
       }
     }

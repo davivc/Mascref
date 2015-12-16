@@ -2,7 +2,7 @@
   <h1 class="m-n font-thin h3">
     <ul class="breadcrumb">
       <li ng-repeat="(key, bread) in breadcrumbs">
-        <span ng-if="key == 0"><a href><i class="fa fa-home"></i> {{bread}}</a></span>
+        <span ng-if="key == 0"><a href><i class="fa fa-home"></i> {{bread}}</a> </span>
         <span ng-if="key != 0 && key != breadcrumbs.length-1"><a href>{{bread}}</a></span>
         <span ng-if="key != 0 && key == breadcrumbs.length-1" class="active">{{bread}}</span>
       </li>
@@ -15,36 +15,25 @@
       List of projects
     </div>
     <div class="panel-body b-b b-light ">
-      Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
-    </div>
+      <div class="text-muted text-left">
+        Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+      </div>
+      <div class="text-muted text-right">
+        <button type="submit" class="btn btn-sm btn-success">+ New project</button>
+      </div>
+    </div>    
     <div>
       <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
         <thead>
           <tr>
-              <th>
-                  Name
-              </th>
-              <th>
-                  Date Start
-              </th>
-              <th>
-                  Date End
-              </th>
-              <th>
-                  Owner
-              </th>
-              <th>
-                  Surveys
-              </th>
-              <th>
-                  Transects
-              </th>
-              <th>
-                  Date Created
-              </th>
-              <th>
-                  Public
-              </th>             
+              <th>Name</th>
+              <th>Date Start</th>
+              <th>Date End</th>
+              <th>Owner</th>
+              <th>Surveys</th>
+              <th>Transects</th>
+              <th>Date Created</th>
+              <th>Public</th>             
           </tr>
         </thead>
         <tbody>

@@ -156,33 +156,84 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     // Projects List
       $scope.projects = {}
 
-      $scope.getProjects = function () {
-        Projects.list()
+      $scope.getProjects = function (parent) {
+        Projects.list('null')
         .then(function (data) {
           $scope.projects = data;
           console.log($scope.projects)
         }, function (error) {
-          console.error('Projects list: ' + error);
-          $scope.stats.error = error;
+          //console.error('Projects list: ' + error);
+          //$scope.stats.error = error;
         });
       }
 
       $scope.getProjects();
 
-      $scope.breadcrumbs = ['Projects'];
-      console.log($scope.breadcrumbs)
+      $scope.breadcrumbs = [];
+      $scope.breadcrumbs[0] = 'Projects';
   }])
-  .controller('ProjectViewCtrl', ['$scope', '$translate', '$stateParams', 'uiGmapGoogleMapApi', function ($scope, $translate, $stateParams, uiGmapGoogleMapApi) {
-    $scope.$parent.breadcrumbs.push('Teste');
-    console.log($stateParams);
-    $scope.map = { center: { latitude: -18.20, longitude: 179 }, zoom: 7, options: { scrollwheel: false, panControl: false, streetViewControl: false } };
+  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, Projects, Surveys, uiGmapGoogleMapApi) {
+    $scope.project = {}
+    $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }
+    $scope.subProjects = []
+    $scope.surveys = []
+    $scope.map = {
+      center: {
+        latitude: -18.20, longitude: 179
+      },
+      zoom: 7,
+      options: {
+        scrollwheel: false,
+        panControl: false,
+        streetViewControl: false
+      }
+    };
+
+    $scope.getProject = function (projectId) {
+      Projects.get(projectId)
+      .then(function (data) {
+        $scope.project = data;
+        $scope.$parent.breadcrumbs[1] = $scope.project.name;
+        //console.log($scope.project)
+      }, function (error) {
+        $state.go('app.projects');
+        //console.error('Project get: ' + error);
+        //$scope.stats.error = error;        
+      });
+    }    
+
+    $scope.getSubProjects = function (parent) {
+      Projects.list(parent)
+      .then(function (data) {
+        $scope.subProjects = data;
+        //console.log($scope.subProjects)
+      }, function (error) {
+        console.error('SubProjects list: ' + error);
+        //$scope.stats.error = error;
+      });
+    }
+
+    $scope.getSurveys = function (projectId) {
+      Surveys.list(projectId)
+      .then(function (data) {
+        $scope.surveys = data;
+        //console.log($scope.subProjects)
+      }, function (error) {
+        console.error('Surveys list: ' + error);
+        //$scope.stats.error = error;
+      });
+    }
 
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
-    uiGmapGoogleMapApi.then(function (maps) {
-      
+    uiGmapGoogleMapApi.then(function (maps) {      
       $('.angular-google-map-container').css('height', '300px');
     });
+
+    $scope.getProject($stateParams.projectId);
+    $scope.getSubProjects($stateParams.projectId);
+    $scope.getSurveys($stateParams.projectId);
+
   }])
   .controller('ProjectViewSurveyCtrl', ['$scope', '$translate', '$stateParams', 'uiGmapGoogleMapApi', function ($scope, $translate, $stateParams, uiGmapGoogleMapApi) {
     console.log($stateParams);

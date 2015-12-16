@@ -1,11 +1,12 @@
-﻿from django.http import HttpResponse
+﻿import django_filters
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import generics, serializers, viewsets, permissions
+from rest_framework import generics, serializers, viewsets, permissions, filters
 from rest_framework_tracking.mixins import LoggingMixin
 from app.models import Config
 from app.models import Country
@@ -74,6 +75,8 @@ class SiteSerializer (serializers.HyperlinkedModelSerializer):
 
 
 class ProjectSerializer (serializers.HyperlinkedModelSerializer):
+    created_by = serializers.ReadOnlyField(source='created_by.username')
+
     class Meta:
         model = Project
         fields = ('id', 'name','description','parent','public','created_at','created_by','owner','updated_at')
@@ -143,15 +146,33 @@ class ResearcherViewSet(viewsets.ModelViewSet):
     ordering = ('name',)
 
 
-class ProjectViewSet(viewsets.ModelViewSet):
+class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     ordering = ('name',)
+    #filter_backends = (filters.DjangoFilterBackend,)
+    #filter_fields = ('parent',)
+
+    def get_queryset(self):
+      queryset = Project.objects.all()
+      parent = self.request.query_params.get('parent', None)
+      if parent == 'null':
+          queryset = queryset.filter(parent__isnull=True)
+      elif parent is not None and parent.isdigit():
+          queryset = queryset.filter(parent=parent)
+      
+      return queryset
+
+    #@list_route(url_path='sub-projects')
+    #def set_password(self, request, pk=None):
+    #  queryset = Project.objects.filter()
 
 
-class SurveyViewSet(viewsets.ModelViewSet):
+class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Survey.objects.all()
     serializer_class = SurveySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('project',)
 
 
 class TransectViewSet(viewsets.ModelViewSet):
