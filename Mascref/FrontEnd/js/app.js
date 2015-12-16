@@ -63,7 +63,13 @@ var app = angular.module('app', [
             })
             .state('app.projects', {
                 url: '/projects',
-                templateUrl: 'tpl/app_projects.html'
+                templateUrl: 'tpl/app_projects.html',
+                controller: 'ProjectsCtrl',
+                resolve: {
+                    authenticated: ['djangoAuth', function (djangoAuth) {
+                      return djangoAuth.authenticationStatus();
+                    }],
+                    }
             })
             .state('app.projects.view', {
               url: '/view/{projectId}',

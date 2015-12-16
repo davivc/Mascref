@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     'rest_framework_swagger',
     'rest_auth',
     'corsheaders',
+    'rest_framework_tracking',
 )
 
 # A sample logging configuration. The only tangible logging

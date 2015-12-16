@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 angular.module('app.services', [])
-  .service('Dashboard', function Dashboard($q, $http, $cookies) {
+  .service('Rest', function rest($q, $http, $cookies) {
     var service = {
       /* START CUSTOMIZATION HERE */
       // Change this to point to your Django REST Auth API
@@ -66,19 +66,36 @@ angular.module('app.services', [])
           deferred.reject(data, status, headers, config);
         }));
         return deferred.promise;
-      },
+      }
+    }
+
+    return service;
+  })
+  .service('Dashboard', function Dashboard(Rest) {
+    var service = {      
       'stats': function () {
-        return this.request({
+        return Rest.request({
           'method': "GET",
           'url': "/dashboard/stats/"
         });
       },
       'researchers': function () {
-        return this.request({
+        return Rest.request({
           'method': "GET",
           'url': "/researchers/"
         });
       },
+    }
+
+    return service;
+  }).service('Projects', function Projects(Rest) {
+    var service = {      
+      'list': function () {
+        return Rest.request({
+          'method': "GET",
+          'url': "/projects/"
+        });
+      }
     }
 
     return service;

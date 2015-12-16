@@ -1,4 +1,4 @@
-﻿<div class="bg-light lter b-b wrapper-md" ng-controller="ProjectsCtrl">
+﻿<div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n font-thin h3">
     <ul class="breadcrumb">
       <li ng-repeat="(key, bread) in breadcrumbs">
@@ -9,61 +9,67 @@
     </ul>
   </h1>
 </div>
-<div class="wrapper-md" ng-controller="ProjectsCtrl" ui-view>
-  <div class="row">
-    <div class="col-sm-12 connected">
-      <div>
-        <div class="panel-body b-b b-light">
-          Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
-        </div>
-        <div>
-          <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
-            <thead>
-              <tr>
-                  <th>
-                      Name
-                  </th>
-                  <th>
-                      Date Start
-                  </th>
-                  <th>
-                      Date End
-                  </th>
-                  <th>
-                      Owner
-                  </th>
-                  <th>
-                      Surveys
-                  </th>
-                  <th>
-                      Transects
-                  </th>
-                  <th>
-  
-                  </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                  <td>Teste</td>
-                  <td>01/12/2015</td>
-                  <td>01/01/2016</td>
-                  <td>Davi Candido</td>
-                  <td>4</td>
-                  <td>80</td>
-                  <td><a ui-sref="app.projects.view({projectId:1})">Ver</a></td>
-              </tr>        
-            </tbody>
-            <tfoot class="hide-if-no-paging">
-              <tr>
-                  <td colspan="8" class="text-center">
-                      <ul class="pagination"></ul>
-                  </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div>
+<div class="wrapper-md" ui-view>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      List of projects
+    </div>
+    <div class="panel-body b-b b-light ">
+      Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+    </div>
+    <div>
+      <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+        <thead>
+          <tr>
+              <th>
+                  Name
+              </th>
+              <th>
+                  Date Start
+              </th>
+              <th>
+                  Date End
+              </th>
+              <th>
+                  Owner
+              </th>
+              <th>
+                  Surveys
+              </th>
+              <th>
+                  Transects
+              </th>
+              <th>
+                  Date Created
+              </th>
+              <th>
+                  Public
+              </th>             
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-if="projects.length == 0">
+              <td colspan="4">No projects found in the system</td>
+          </tr>        
+          <tr ng-repeat="project in projects">
+              <td><a ui-sref="app.projects.view({projectId:project.id})">{{project.name}}</a></td>
+              <td>{{project.date_start | date:'shortDate'}}</td>
+              <td>{{project.date_end | date:'shortDate'}}</td>
+              <td>{{project.owner}}</td>
+              <td>{{project.surveys ? project.surveys : '0'}}</td>
+              <td>{{project.transects ? project.transects : '0'}}</td>
+              <td>{{project.created_at | date:'short'}}</td>
+              <td><i ng-if="project.public" class="fa fa-check text-success text-active"></i><i  ng-if="!project.public" class="fa fa-times text-danger text"></i></td>
+          </tr> 
+        </tbody>
+        <tfoot class="hide-if-no-paging">
+          <tr>
+              <td colspan="8" class="text-center">
+                  <ul class="pagination"></ul>
+              </td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
   </div>
 </div>

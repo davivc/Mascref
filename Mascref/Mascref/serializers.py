@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics, serializers, viewsets, permissions
+from rest_framework_tracking.mixins import LoggingMixin
 from app.models import Config
 from app.models import Country
 from app.models import Project
@@ -16,6 +17,7 @@ from app.models import Survey
 from app.models import Town
 from app.models import Transect
 from django.contrib.auth.models import User
+
 
 # Objects for non-Models api
 class DashboardStats(object):
@@ -74,7 +76,7 @@ class SiteSerializer (serializers.HyperlinkedModelSerializer):
 class ProjectSerializer (serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields = ('name','description','parent')
+        fields = ('id', 'name','description','parent','public','created_at','created_by','owner','updated_at')
 
 
 class SurveySerializer (serializers.HyperlinkedModelSerializer):
@@ -144,6 +146,7 @@ class ResearcherViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    ordering = ('name',)
 
 
 class SurveyViewSet(viewsets.ModelViewSet):
@@ -157,7 +160,7 @@ class TransectViewSet(viewsets.ModelViewSet):
 
 
 # Non-Models
-class DashboardStatsViewSet(viewsets.ViewSet):
+class DashboardStatsViewSet(LoggingMixin, viewsets.ViewSet):
     def list(self, request):
         serializer = DashboardStatsSerializer(DashboardStats())
         return Response(serializer.data)

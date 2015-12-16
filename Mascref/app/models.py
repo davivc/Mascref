@@ -3,6 +3,7 @@ Definition of models.
 """
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -13,6 +14,11 @@ class Config(models.Model):
 
 class Researcher(models.Model):
     name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Country(models.Model):
@@ -53,18 +59,34 @@ class Site(models.Model):
     lat = models.IntegerField()
     long = models.IntegerField()
     town = models.ForeignKey(Town, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Project(models.Model):
     name = models.CharField(max_length=150)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)    
     parent = models.ForeignKey('self', blank=True, null=True)
+    public = models.BooleanField(default=False)
+    owner = models.ForeignKey(Researcher, blank=True, null=True)
+    created_by = models.ForeignKey(User, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Survey(models.Model):
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)
     project = models.ForeignKey(Project)
+    created_by = models.ForeignKey(User, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Transect(models.Model):
@@ -75,6 +97,8 @@ class Transect(models.Model):
     team_leader = models.ForeignKey(Researcher, blank=True, null=True)
     site = models.ForeignKey(Site)
     survey = models.ForeignKey(Survey)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Transect_Researchers(models.Model):
@@ -105,3 +129,5 @@ class Segment(models.Model):
     group = models.ForeignKey(Group, blank=True, null=True)
     transect = models.ForeignKey(Transect)
     type = models.ForeignKey(Transect_Type)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
