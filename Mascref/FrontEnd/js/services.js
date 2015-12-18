@@ -126,4 +126,23 @@ angular.module('app.services', [])
     }
 
     return service;
+  }).service('Researchers', function Projects(Rest) {
+    var service = {
+      'list': function (name) {
+        var search = '?';
+        if (name) search = search + 'name=' + name
+        return Rest.request({
+          'method': "GET",
+          'url': "/researchers/" + search
+        });
+      },
+      'get': function (pk) {
+        return Rest.request({
+          'method': "GET",
+          'url': "/researchers/" + pk + "/"
+        });
+      }
+    }
+
+    return service;
   });

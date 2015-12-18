@@ -161,6 +161,12 @@ var app = angular.module('app', [
  */
 
 .constant('JQ_CONFIG', {
-  footable: ['js/jquery/footable/footable.all.min.js',
-             'js/jquery/footable/footable.core.css']
+  footable: [
+    'js/jquery/footable/footable.all.min.js',
+    'js/jquery/footable/footable.core.css'
+  ],
+  wysiwyg: [
+    'js/jquery/wysiwyg/bootstrap-wysiwyg.js',
+    'js/jquery/wysiwyg/jquery.hotkeys.js'
+  ],
 });

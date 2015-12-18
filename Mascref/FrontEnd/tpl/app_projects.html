@@ -19,7 +19,7 @@
         Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
       </div>
       <div class="text-muted text-right">
-        <button type="submit" class="btn btn-sm btn-success">+ New project</button>
+        <button type="submit" class="btn btn-sm btn-info" ng-click="newProject = true">+ New Project</button>
       </div>
     </div>    
     <div>
@@ -61,4 +61,57 @@
       </table>
     </div>
   </div>
+
+  <div class="panel panel-default" ng-show="newProject">
+    <div class="panel-heading">
+      New project
+    </div>
+    <div class="panel-body b-b b-light">
+      <form name="formNewProject" class="form-horizontal" ng-submit="formNewProjectSubmit()" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : formProject.errors.name }">
+          <label class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control w-xxl" ng-model="formProject.name" name="name" required>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Description</label>
+          <div class="col-sm-10">
+            <wysiwyg ng-model="formProject.description"></wysiwyg>            
+          </div>
+          <br />
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Owner / Leader</label>
+          <div class="col-sm-4">
+            <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
+            <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" typeahead="researcher for researchers in getResearchers($viewValue)" typeahead-loading="loadingResearchers">
+          </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-sm btn-info" ng-click="newProject = true">+ New Researcher</button>
+            Model: {{formProject.owner | json}}
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Public</label>
+          <input type="hidden" ng-model="formProject.public">
+          <div class="col-sm-10">
+            <label class="i-switch m-t-xs m-r">
+              <input type="checkbox" ng-click="formProject.restricted = !formProject.restricted">
+              <i></i>              
+            </label>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-sm btn-success">Save Project</button>
+          </div>
+        </div>
+      </form>
+    </div>    
 </div>

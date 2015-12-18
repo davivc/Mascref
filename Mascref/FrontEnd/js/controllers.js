@@ -147,7 +147,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
   }])
   // Projects Controllers
-  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', 'Projects', function ($scope, $translate, $state, Projects) {
+  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', 'Projects', 'Researchers', function ($scope, $translate, $state, Projects, Researchers) {
     // Logged status
       if (!$scope.authenticated) {
         $state.go('access.signin');
@@ -155,22 +155,52 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
     // Projects List
       $scope.projects = {}
+      $scope.newProject = true;
+      $scope.formProject = {
+        name: '',
+        description: 'Davi Legal',
+        restricted: false,
+        owner: '',
+        errors: {}
+      }
+
+      $scope.formNewProjectSubmit = function () {
+        if(!$scope.formProject.name) {
+          $scope.formProject.errors.name = true;
+          return false;
+        }
+        $scope.formProject.errors = {}
+        console.log($scope.formProject)
+      }
 
       $scope.getProjects = function (parent) {
         Projects.list('null')
         .then(function (data) {
           $scope.projects = data;
-          console.log($scope.projects)
+          //console.log($scope.projects)
         }, function (error) {
           //console.error('Projects list: ' + error);
           //$scope.stats.error = error;
         });
       }
 
+      $scope.getResearchers = function (val) {
+        Researchers.list(val)
+        .then(function (data) {
+          var researchers = [];
+          angular.forEach(data, function (item) {
+            researchers.push(item.name);
+          });
+          console.log(researchers)
+          return researchers;
+        });
+      };
+
       $scope.getProjects();
 
       $scope.breadcrumbs = [];
       $scope.breadcrumbs[0] = 'Projects';
+      console.log($scope.breadcrumbs)
   }])
   .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, Projects, Surveys, uiGmapGoogleMapApi) {
     $scope.project = {}
