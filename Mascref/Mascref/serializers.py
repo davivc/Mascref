@@ -65,7 +65,7 @@ class TownSerializer (serializers.HyperlinkedModelSerializer):
 class ResearcherSerializer (serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Researcher
-        fields = ('name',)
+        fields = ('id', 'name',)
 
 
 class SiteSerializer (serializers.HyperlinkedModelSerializer):
@@ -74,18 +74,21 @@ class SiteSerializer (serializers.HyperlinkedModelSerializer):
         fields = ('name','lat','long','town')
 
 
-class ProjectSerializer (serializers.HyperlinkedModelSerializer):
+class ProjectSerializer (serializers.ModelSerializer):
     created_by = serializers.ReadOnlyField(source='created_by.username')
+    owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
 
     class Meta:
         model = Project
-        fields = ('id', 'name','description','parent','public','created_at','created_by','owner','updated_at')
+        fields = ('id','name','description','parent','public','created_at','created_by','owner','updated_at','owner_name')
 
 
-class SurveySerializer (serializers.HyperlinkedModelSerializer):
+class SurveySerializer (serializers.ModelSerializer):
+    owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
+
     class Meta:
         model = Survey
-        fields = ('date_start','date_end','project')
+        fields = ('id','name','date_start','date_end','project','created_at','owner_name')
 
 
 class TransectSerializer (serializers.HyperlinkedModelSerializer):
@@ -140,10 +143,12 @@ class SiteViewSet(viewsets.ModelViewSet):
     serializer_class = SiteSerializer
 
 
-class ResearcherViewSet(viewsets.ModelViewSet):
+class ResearcherViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Researcher.objects.all()
     serializer_class = ResearcherSerializer
     ordering = ('name',)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name',)
 
 
 class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -152,6 +157,9 @@ class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     #filter_backends = (filters.DjangoFilterBackend,)
     #filter_fields = ('parent',)
+
+    def perform_create(self, serializer):
+      serializer.save(created_by=self.request.user)
 
     def get_queryset(self):
       queryset = Project.objects.all()
@@ -173,6 +181,9 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = SurveySerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('project',)
+
+    def perform_create(self, serializer):
+      serializer.save(created_by=self.request.user)
 
 
 class TransectViewSet(viewsets.ModelViewSet):

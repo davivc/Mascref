@@ -147,30 +147,49 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
   }])
   // Projects Controllers
-  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', 'Projects', 'Researchers', function ($scope, $translate, $state, Projects, Researchers) {
+  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', '$timeout', 'Projects', 'Researchers', function ($scope, $translate, $state, $timeout, Projects, Researchers) {
     // Logged status
       if (!$scope.authenticated) {
         $state.go('access.signin');
       }
 
-    // Projects List
+    // Projects List Init
+      $scope.breadcrumbs = [];
       $scope.projects = {}
-      $scope.newProject = true;
-      $scope.formProject = {
-        name: '',
-        description: 'Davi Legal',
-        restricted: false,
-        owner: '',
-        errors: {}
+      $scope.showNewProject = false;
+      $scope.formProject = {}
+
+    // Functions
+      $scope.resetFormProject = function () {
+        $scope.formProject = {
+          name: '',
+          description: '',
+          restricted: false,
+          owner: '',
+          errors: {}
+        }
       }
 
       $scope.formNewProjectSubmit = function () {
-        if(!$scope.formProject.name) {
+        if (!$scope.formProject.name) {
           $scope.formProject.errors.name = true;
           return false;
         }
+        $scope.loadingNewProject = true;
         $scope.formProject.errors = {}
-        console.log($scope.formProject)
+        Projects.create($scope.formProject)
+        .then(function (data) {
+          console.log(data)
+          $scope.resetFormProject();
+          $scope.getProjects();
+          $scope.showNewProject = false;
+          $scope.loadingNewProject = false;          
+          //$timeout(function () {
+            $state.go('app.projects.view', { projectId: data.id })
+          //}, 2000);
+        }, function (error) {
+          console.error('Project create: ' + error);
+        });
       }
 
       $scope.getProjects = function (parent) {
@@ -185,24 +204,24 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       }
 
       $scope.getResearchers = function (val) {
-        Researchers.list(val)
+        return Researchers.list(val)
         .then(function (data) {
           var researchers = [];
           angular.forEach(data, function (item) {
-            researchers.push(item.name);
+            researchers.push(item);
           });
           console.log(researchers)
           return researchers;
         });
       };
 
+    // Run
+      $scope.resetFormProject();
       $scope.getProjects();
-
-      $scope.breadcrumbs = [];
       $scope.breadcrumbs[0] = 'Projects';
-      console.log($scope.breadcrumbs)
   }])
-  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, Projects, Surveys, uiGmapGoogleMapApi) {
+  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Projects, Surveys, uiGmapGoogleMapApi) {
+    // Projects List Init
     $scope.project = {}
     $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }
     $scope.subProjects = []
@@ -218,11 +237,26 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         streetViewControl: false
       }
     };
+    $scope.showNewSurvey = false;
+    $scope.formSurvey = {}
+
+    // Functions
+    $scope.resetFormSurvey = function () {
+      $scope.formSurvey = {
+        name: '',
+        date_start: '',
+        date_end: '',
+        restricted: false,
+        owner: '',
+        errors: {}
+      }
+    }
 
     $scope.getProject = function (projectId) {
       Projects.get(projectId)
       .then(function (data) {
         $scope.project = data;
+        $scope.project.description = $sce.trustAsHtml($scope.project.description);
         $scope.$parent.breadcrumbs[1] = $scope.project.name;
         //console.log($scope.project)
       }, function (error) {
@@ -251,6 +285,25 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       }, function (error) {
         console.error('Surveys list: ' + error);
         //$scope.stats.error = error;
+      });
+    }
+
+    $scope.setSurvey = function () {
+      if (!$scope.formSurvey.name) {
+        $scope.formSurvey.errors.name = true;
+        return false;
+      }
+      $scope.loadingNewProject = true;
+      $scope.formSurvey.errors = {}
+      Projects.create($scope.formSurvey)
+      .then(function (data) {
+        $scope.resetFormSurvey();
+        $scope.getSurveys();
+        $scope.showNewSurvey = false;
+        $scope.loadingNewSurvey = false;
+        //$state.go('app.projects.view', { projectId: data.id })
+      }, function (error) {
+        console.error('Survey create: ' + error);
       });
     }
 

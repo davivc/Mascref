@@ -81,12 +81,21 @@ class Project(models.Model):
 
 
 class Survey(models.Model):
+    name = models.CharField(max_length=150)
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)
     project = models.ForeignKey(Project)
+    public = models.BooleanField(default=False)
+    owner = models.ForeignKey(Researcher, blank=True, null=True)
     created_by = models.ForeignKey(User, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Transect(models.Model):

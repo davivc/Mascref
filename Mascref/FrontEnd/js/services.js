@@ -71,7 +71,7 @@ angular.module('app.services', [])
 
     return service;
   })
-  .service('Dashboard', function Dashboard(Rest) {
+  .service('Dashboard', function Dashboard(Rest, Researchers) {
     var service = {      
       'stats': function () {
         return Rest.request({
@@ -80,10 +80,7 @@ angular.module('app.services', [])
         });
       },
       'researchers': function () {
-        return Rest.request({
-          'method': "GET",
-          'url': "/researchers/"
-        });
+        return Researchers.list();
       },
     }
 
@@ -102,6 +99,20 @@ angular.module('app.services', [])
         return Rest.request({
           'method': "GET",
           'url': "/projects/" + projectId + "/"
+        });
+      },
+      'create': function (projectData) {
+        var data = {
+          'name': projectData.name,
+          'description': projectData.description,
+          'parent': projectData.parent,
+          'public': projectData.restricted,
+          'owner': projectData.owner.id
+        }
+        return Rest.request({
+          'method': "POST",
+          'url': "/projects/",
+          'data': data
         });
       }
     }
@@ -128,12 +139,12 @@ angular.module('app.services', [])
     return service;
   }).service('Researchers', function Projects(Rest) {
     var service = {
-      'list': function (name) {
-        var search = '?';
-        if (name) search = search + 'name=' + name
+      'list': function (search) {
+        var qStr = '?';
+        if (search) qStr = qStr + 'search=' + search
         return Rest.request({
           'method': "GET",
-          'url': "/researchers/" + search
+          'url': "/researchers/" + qStr
         });
       },
       'get': function (pk) {
