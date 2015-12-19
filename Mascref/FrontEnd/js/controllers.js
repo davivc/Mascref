@@ -221,11 +221,16 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       $scope.breadcrumbs[0] = 'Projects';
   }])
   .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Projects, Surveys, uiGmapGoogleMapApi) {
-    // Projects List Init
+    //******** Projects List Init ********//
+
+    // project object
     $scope.project = {}
-    $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }
-    $scope.subProjects = []
+    // Surveys and subprojects list
     $scope.surveys = []
+    $scope.subProjects = []
+    // Info about totals
+    $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }    
+    // Init Google Maps
     $scope.map = {
       center: {
         latitude: -18.20, longitude: 179
@@ -237,10 +242,28 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         streetViewControl: false
       }
     };
-    $scope.showNewSurvey = false;
-    $scope.formSurvey = {}
+    // Hide New Survey Form and set initial form object
+    $scope.showNewSurvey = true;
+    $scope.formSurvey = {
+      date_start: new Date()
+    }
+    // Date options for datepickers
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1,
+      class: 'datepicker'
+    };
 
-    // Functions
+    //******** Begin Functions ********//
+
+    // Open Datepickers
+    $scope.toggleOpenDatePicker = function ($event, scopeId) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope[scopeId] = !$scope[scopeId];
+    };
+    // Reset New Survey Form
     $scope.resetFormSurvey = function () {
       $scope.formSurvey = {
         name: '',
@@ -251,7 +274,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         errors: {}
       }
     }
-
+    // Retrieve info about the project
     $scope.getProject = function (projectId) {
       Projects.get(projectId)
       .then(function (data) {
@@ -265,7 +288,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         //$scope.stats.error = error;        
       });
     }    
-
+    // Retrieve the list of sub-projects children of this project
     $scope.getSubProjects = function (parent) {
       Projects.list(parent)
       .then(function (data) {
@@ -276,7 +299,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         //$scope.stats.error = error;
       });
     }
-
+    // Retrieve the list of Surveys children of this project
     $scope.getSurveys = function (projectId) {
       Surveys.list(projectId)
       .then(function (data) {
@@ -287,7 +310,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         //$scope.stats.error = error;
       });
     }
-
+    // Create new Survey
     $scope.setSurvey = function () {
       if (!$scope.formSurvey.name) {
         $scope.formSurvey.errors.name = true;
@@ -306,13 +329,14 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         console.error('Survey create: ' + error);
       });
     }
-
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
     uiGmapGoogleMapApi.then(function (maps) {      
       $('.angular-google-map-container').css('height', '300px');
     });
 
+
+    //******** Run ********//
     $scope.getProject($stateParams.projectId);
     $scope.getSubProjects($stateParams.projectId);
     $scope.getSurveys($stateParams.projectId);

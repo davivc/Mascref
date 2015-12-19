@@ -1,0 +1,288 @@
+﻿<div class="wrapper-md" ng-controller="ProjectViewCtrl" ui-view>
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="blog-post">                   
+        <div class="panel">
+          <div>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'></ui-gmap-google-map>
+          </div>
+          <div class="wrapper-lg">
+            <h2 class="m-t-none"><a href>{{project.name}}</a></h2>
+            <div>
+              <p ng-bind-html="project.description"></p>
+            </div>
+            <div class="line line-lg b-b b-light"></div>
+            <div class="text-muted">
+              <span ng-show="project.owner_name"><i class="fa fa-group text-muted"></i> project leader <a href class="m-r-sm">{{project.owner_name | ucFirst }}</a></span>
+              <i class="fa fa-user text-muted"></i> created by <a href class="m-r-sm">{{project.created_by | ucFirst }}</a>
+              <i class="fa fa-clock-o text-muted"></i> {{project.created_at | date:'medium'}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Begin SubProjects Panel-->
+        <!--
+        <div class="panel">
+          <div class="wrapper-lg">
+            <h2 class="m-t-none"><a href>Sub-projects</a></h2>
+            <div>
+              <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+                <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Date Start</th>
+                      <th>Date End</th>
+                      <th>Owner</th>
+                      <th>Surveys</th>
+                      <th>Transects</th>
+                      <th>Date Created</th>
+                      <th>Public</th>             
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="subProjects.length == 0">
+                      <td colspan="4">No sub-projects found for this project.</td>
+                  </tr>        
+                  <tr ng-repeat="sub in subProjects">
+                      <td><a ui-sref="app.projects.view({projectId:sub.id})">{{sub.name}}</a></td>
+                      <td>{{sub.date_start | date:'shortDate'}}</td>
+                      <td>{{sub.date_end | date:'shortDate'}}</td>
+                      <td>{{sub.owner}}</td>
+                      <td>{{sub.surveys ? project.surveys : '0'}}</td>
+                      <td>{{sub.transects ? project.transects : '0'}}</td>
+                      <td>{{sub.created_at | date:'short'}}</td>
+                      <td><i ng-if="sub.public" class="fa fa-check text-success text-active"></i><i  ng-if="!sub.public" class="fa fa-times text-danger text"></i></td>
+                  </tr> 
+                </tbody>
+                <tfoot class="hide-if-no-paging">
+                  <tr>
+                      <td colspan="8" class="text-center">
+                          <ul class="pagination"></ul>
+                      </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="line line-lg b-b b-light"></div>
+            <div class="text-muted text-right">
+              <button type="submit" class="btn btn-sm btn-info">+ New Sub-Project</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- New SubProject -->
+        <!--
+        <div class="panel panel-default" ng-show="showNewSubProject">
+          <div class="panel-heading">
+            New Sub project
+          </div>
+          <div class="panel-body b-b b-light">
+            <form name="formNewProject" class="form-horizontal" ng-submit="formNewProjectSubmit()" novalidate>
+              <div class="form-group" ng-class="{ 'has-error' : formProject.errors.name }">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control w-xxl" ng-model="formProject.name" name="name" required>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                  <wysiwyg ng-model="formProject.description"></wysiwyg>            
+                </div>
+                <br />
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Owner / Leader</label>
+                <div class="col-sm-4">
+                  <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
+                  <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" typeahead-loading="loadingResearchers">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Public</label>
+                <input type="hidden" ng-model="formProject.public">
+                <div class="col-sm-10">
+                  <label class="i-switch m-t-xs m-r">
+                    <input type="checkbox" ng-click="formProject.restricted = !formProject.restricted">
+                    <i></i>              
+                  </label>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-2">
+                  <button type="submit" class="btn btn-sm btn-success">Save Project</button>
+                  <i ng-show="loadingNewProject" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- End SubProjects Panel-->
+
+        <!-- Begin Surveys Panel-->
+        <div class="panel">
+          <div class="wrapper-lg">
+            <h2 class="m-t-none"><a href>Surveys</a></h2>
+            <div>
+              <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+                <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Date Start</th>
+                      <th>Date End</th>
+                      <th>Owner</th>
+                      <th>Transects Count</th>
+                      <th>Transects Cover</th>
+                      <th>Public</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="surveys.length == 0">
+                      <td colspan="4">No surveys found for this project.</td>
+                  </tr>        
+                  <tr ng-repeat="survey in surveys">
+                      <td><a ui-sref="app.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
+                      <td>{{survey.date_start | date:'shortDate'}}</td>
+                      <td>{{survey.date_end | date:'shortDate'}}</td>
+                      <td>{{survey.owner}}</td>
+                      <td>{{survey.transect_a ? project.transect_a : '0'}}</td>
+                      <td>{{survey.transect_b ? survey.transect_b : '0'}}</td>
+                      <td>{{survey.created_at | date:'short'}}</td>
+                      <td><i ng-if="survey.public" class="fa fa-check text-success text-active"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
+                  </tr>       
+                </tbody>
+                <tfoot class="hide-if-no-paging">
+                  <tr>
+                      <td colspan="8" class="text-center">
+                          <ul class="pagination"></ul>
+                      </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="line line-lg b-b b-light"></div>
+            <div class="text-muted text-right">
+              <button type="submit" class="btn btn-sm btn-info" ng-click="showNewSurvey = true">+ New Survey</button>
+            </div>
+          </div>
+        </div> 
+        
+        <div class="panel panel-default" ng-show="showNewSurvey">
+          <div class="panel-heading">
+            New Survey
+          </div>
+          <div class="panel-body b-b b-light">
+            <form name="formNewSurvey" class="form-horizontal" ng-submit="formNewSurveySubmit()" novalidate>
+              <div class="form-group" ng-class="{ 'has-error' : formSurvey.errors.name }">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control w-xxl" ng-model="formSurvey.name" name="name" required>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group" ng-class="{ 'has-error' : formSurvey.errors.date_start }">
+                <label class="col-sm-2 control-label">Date Start</label>
+                <div class="col-sm-3">
+                  <p class="input-group">
+                    <input type="text" class="form-control w-xl" datepicker-popup="dd/MM/yyyy" ng-model="formSurvey.date_start" is-open="$parent.openedDateStart" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="toggleOpenDatePicker($event,'openedDateStart')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group" ng-class="{ 'has-error' : formSurvey.errors.date_end }">
+                <label class="col-sm-2 control-label">Date End</label>
+                <div class="col-sm-3">
+                  <p class="input-group">
+                    <input type="text" class="form-control w-xl" datepicker-popup="dd/MM/yyyy" ng-model="formSurvey.date_end" is-open="$parent.openedDateEnd" datepicker-options="dateOptions" close-text="X" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="toggleOpenDatePicker($event,'openedDateEnd')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Owner / Leader</label>
+                <div class="col-sm-4">
+                  <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
+                  <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" typeahead-loading="loadingResearchers">
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Public</label>
+                <input type="hidden" ng-model="formProject.public">
+                <div class="col-sm-10">
+                  <label class="i-switch m-t-xs m-r">
+                    <input type="checkbox" ng-click="formProject.restricted = !formProject.restricted">
+                    <i></i>              
+                  </label>
+                </div>
+              </div>
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-2">
+                  <button type="submit" class="btn btn-sm btn-success">Save Project</button>
+                  <i ng-show="loadingNewProject" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>  
+        <!-- End Surveys Panel-->
+             
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <h5 class="font-bold">Info</h5>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">{{info.surveys}}</span>
+            Surveys
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">{{info.members}}</span>
+            Members
+          </a>
+        </li>        
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">{{info.transects_count}}</span>
+            Transects Count
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">{{info.transects_cover}}</span>
+            Transects Cover
+          </a>
+        </li>
+      </ul>
+      <h5 class="font-bold">Members</h5>
+      <div>
+        <div class="media">
+          <a class="pull-left thumb thumb-wrapper m-t-xs">
+            <img src="img/b0.jpg">
+          </a>
+          <div class="media-body">                        
+            <a href class="font-semibold">Davi Candido</a>
+            <div class="text-xs block m-t-xs"><a href>Admin</a></div>
+          </div>
+        </div>
+        <div class="line"></div>        
+      </div>
+    </div>
+  </div>
+</div>

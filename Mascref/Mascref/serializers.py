@@ -88,7 +88,7 @@ class SurveySerializer (serializers.ModelSerializer):
 
     class Meta:
         model = Survey
-        fields = ('id','name','date_start','date_end','project','created_at','owner_name')
+        fields = ('id','project','name','date_start','date_end','owner','created_at','owner_name')
 
 
 class TransectSerializer (serializers.HyperlinkedModelSerializer):
