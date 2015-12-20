@@ -219,7 +219,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       $scope.getProjects();
       $scope.breadcrumbs[0] = 'Projects';
   }])
-  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Projects, Surveys, uiGmapGoogleMapApi) {
+  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', '$filter', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, $filter, Projects, Surveys, uiGmapGoogleMapApi) {
     //******** Projects List Init ********//
 
     // project object
@@ -321,6 +321,11 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.formSurvey.errors.date_start = true;
         return false;
       }
+
+      // Format Dates
+      if ($scope.formSurvey.date_start) $scope.formSurvey.date_start = $filter('date')($scope.formSurvey.date_start, 'yyyy-MM-dd');
+      if ($scope.formSurvey.date_end) $scope.formSurvey.date_end = $filter('date')($scope.formSurvey.date_end, 'yyyy-MM-dd');
+
       $scope.loadingNewSurvey = true;
       $scope.formSurvey.errors = {}
       console.log($scope.formSurvey);
@@ -330,7 +335,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.getSurveys();
         $scope.showNewSurvey = false;
         $scope.loadingNewSurvey = false;
-        //$state.go('app.projects.view', { projectId: data.id })
+        $state.go('app.projects.view.survey', { surveyId: data.id })
       }, function (error) {
         $scope.formSurvey.errors.others = error;
         //console.log($scope.formSurvey.errors.others)
