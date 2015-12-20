@@ -177,7 +177,7 @@
             New Survey
           </div>
           <div class="panel-body b-b b-light">
-            <form name="formNewSurvey" class="form-horizontal" ng-submit="formNewSurveySubmit()" novalidate>
+            <form name="formNewSurvey" class="form-horizontal" ng-submit="setSurvey()" novalidate>
               <div class="form-group" ng-class="{ 'has-error' : formSurvey.errors.name }">
                 <label class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
@@ -189,7 +189,7 @@
                 <label class="col-sm-2 control-label">Date Start</label>
                 <div class="col-sm-3">
                   <p class="input-group">
-                    <input type="text" class="form-control w-xl" datepicker-popup="dd/MM/yyyy" ng-model="formSurvey.date_start" is-open="$parent.openedDateStart" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <input type="text" class="form-control w-xl" uib-datepicker-popup="dd/MM/yyyy" ng-model="formSurvey.date_start" is-open="$parent.openedDateStart" uib-datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-default" ng-click="toggleOpenDatePicker($event,'openedDateStart')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -201,7 +201,7 @@
                 <label class="col-sm-2 control-label">Date End</label>
                 <div class="col-sm-3">
                   <p class="input-group">
-                    <input type="text" class="form-control w-xl" datepicker-popup="dd/MM/yyyy" ng-model="formSurvey.date_end" is-open="$parent.openedDateEnd" datepicker-options="dateOptions" close-text="X" />
+                    <input type="text" class="form-control w-xl" uib-datepicker-popup="yyyy-MM-dd" ng-model="formSurvey.date_end" is-open="$parent.openedDateEnd" uib-datepicker-options="dateOptions" close-text="X" />
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-default" ng-click="toggleOpenDatePicker($event,'openedDateEnd')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -213,16 +213,16 @@
                 <label class="col-sm-2 control-label">Owner / Leader</label>
                 <div class="col-sm-4">
                   <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
-                  <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" typeahead-loading="loadingResearchers">
+                  <input type="text" class="form-control w-xl" ng-model="formSurvey.owner" placeholder="Researchers found in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg pull-in"></div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Public</label>
-                <input type="hidden" ng-model="formProject.public">
+                <input type="hidden" ng-model="formSurvey.public">
                 <div class="col-sm-10">
                   <label class="i-switch m-t-xs m-r">
-                    <input type="checkbox" ng-click="formProject.restricted = !formProject.restricted">
+                    <input type="checkbox" ng-click="formSurvey.restricted = !formSurvey.restricted">
                     <i></i>              
                   </label>
                 </div>
@@ -231,8 +231,19 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-2">
-                  <button type="submit" class="btn btn-sm btn-success">Save Project</button>
-                  <i ng-show="loadingNewProject" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
+                  <button type="submit" class="btn btn-sm btn-success">Save Survey</button>
+                  <i ng-show="loadingNewSurvey" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-1 control-label"></label>
+                <div class="input-group m-b col-sm-10" ng-show="formSurvey.errors.others">
+                  <uib-alert type="danger">
+                    <b>Errors:</b>
+                    <ul>
+                      <li ng-repeat="(key, value) in formSurvey.errors.others" ng-show="value.join(';')"><i>{{key}}</i>: {{value.join(';')}}</li>
+                    </ul>
+                  </uib-alert>
                 </div>
               </div>
             </form>

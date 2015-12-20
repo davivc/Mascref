@@ -179,7 +179,6 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.formProject.errors = {}
         Projects.create($scope.formProject)
         .then(function (data) {
-          console.log(data)
           $scope.resetFormProject();
           $scope.getProjects();
           $scope.showNewProject = false;
@@ -245,7 +244,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     // Hide New Survey Form and set initial form object
     $scope.showNewSurvey = true;
     $scope.formSurvey = {
-      date_start: new Date()
+      //date_start: new Date()
     }
     // Date options for datepickers
     $scope.dateOptions = {
@@ -266,9 +265,10 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     // Reset New Survey Form
     $scope.resetFormSurvey = function () {
       $scope.formSurvey = {
+        project: $stateParams.projectId,
         name: '',
-        date_start: '',
-        date_end: '',
+        date_start: null,
+        date_end: null,
         restricted: false,
         owner: '',
         errors: {}
@@ -312,13 +312,19 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     }
     // Create new Survey
     $scope.setSurvey = function () {
+      $scope.formSurvey.errors = {}
       if (!$scope.formSurvey.name) {
         $scope.formSurvey.errors.name = true;
         return false;
       }
-      $scope.loadingNewProject = true;
+      if (!$scope.formSurvey.date_start) {
+        $scope.formSurvey.errors.date_start = true;
+        return false;
+      }
+      $scope.loadingNewSurvey = true;
       $scope.formSurvey.errors = {}
-      Projects.create($scope.formSurvey)
+      console.log($scope.formSurvey);
+      Surveys.create($scope.formSurvey)
       .then(function (data) {
         $scope.resetFormSurvey();
         $scope.getSurveys();
@@ -326,7 +332,9 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.loadingNewSurvey = false;
         //$state.go('app.projects.view', { projectId: data.id })
       }, function (error) {
-        console.error('Survey create: ' + error);
+        $scope.formSurvey.errors.others = error;
+        //console.log($scope.formSurvey.errors.others)
+        //console.error('Survey create: ' + error);
       });
     }
     // uiGmapGoogleMapApi is a promise.
@@ -337,6 +345,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
 
     //******** Run ********//
+    $scope.resetFormSurvey();
     $scope.getProject($stateParams.projectId);
     $scope.getSubProjects($stateParams.projectId);
     $scope.getSurveys($stateParams.projectId);

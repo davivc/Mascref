@@ -146,7 +146,11 @@ var app = angular.module('app', [
 
 }])
 // Google MAPS
-.config(function (uiGmapGoogleMapApiProvider) {
+.config(function ($httpProvider, uiGmapGoogleMapApiProvider) {
+  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  //$httpProvider.defaults.headers.post['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();
+
   uiGmapGoogleMapApiProvider.configure({
     //    key: 'your api key',
     v: '3.20', //defaults to latest 3.X anyhow

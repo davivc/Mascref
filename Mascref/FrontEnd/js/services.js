@@ -19,8 +19,8 @@ angular.module('app.services', [])
       'authPromise': null,
       'request': function (args) {
         // Let's retrieve the token from the cookie, if available
-        if ($cookies.token) {
-          $http.defaults.headers.common.Authorization = 'Token ' + $cookies.token;
+        if ($cookies.get('token')) {
+          $http.defaults.headers.common.Authorization = 'Token ' + $cookies.get('token');
         }
         // Continue
         params = args.params || {}
@@ -35,7 +35,7 @@ angular.module('app.services', [])
           url: url,
           withCredentials: this.use_session,
           method: method.toUpperCase(),
-          headers: { 'X-CSRFToken': $cookies['csrftoken'] },
+          headers: { 'X-CSRFToken': $cookies.get('csrftoken') },
           params: params,
           data: data
         })
@@ -95,19 +95,19 @@ angular.module('app.services', [])
           'url': "/projects/" + search
         });
       },
-      'get': function (projectId) {
+      'get': function (pk) {
         return Rest.request({
           'method': "GET",
-          'url': "/projects/" + projectId + "/"
+          'url': "/projects/" + pk + "/"
         });
       },
-      'create': function (projectData) {
+      'create': function (pData) {
         var data = {
-          'name': projectData.name,
-          'description': projectData.description,
-          'parent': projectData.parent,
-          'public': projectData.restricted,
-          'owner': projectData.owner.id
+          'name': pData.name,
+          'description': pData.description,
+          'parent': pData.parent,
+          'public': pData.restricted,
+          'owner': pData.owner.id
         }
         return Rest.request({
           'method': "POST",
@@ -128,10 +128,25 @@ angular.module('app.services', [])
           'url': "/surveys/" + search
         });
       },
-      'get': function (surveyId) {
+      'get': function (pk) {
         return Rest.request({
           'method': "GET",
-          'url': "/surveys/" + surveyId + "/"
+          'url': "/surveys/" + pk + "/"
+        });
+      },
+      'create': function (pData) {
+        var data = {
+          'name': pData.name,
+          'project': pData.project,
+          'date_start': pData.date_start,
+          'date_end': pData.date_end,
+          'public': pData.restricted,
+          'owner': pData.owner.id
+        }
+        return Rest.request({
+          'method': "POST",
+          'url': "/surveys/",
+          'data': data
         });
       }
     }

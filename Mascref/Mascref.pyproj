@@ -376,14 +376,14 @@
     <Content Include="FrontEnd\img\logo.png" />
     <Content Include="FrontEnd\img\p0.jpg" />
     <Content Include="FrontEnd\index.html" />
-    <Content Include="FrontEnd\js\angular\angular-animate.min.js" />
-    <Content Include="FrontEnd\js\angular\angular-cookies.min.js" />
+    <Content Include="FrontEnd\js\angular\angular-animate-1.2.20.min.js" />
+    <Content Include="FrontEnd\js\angular\angular-cookies-1.2.18.min.js" />
     <Content Include="FrontEnd\js\angular\angular-google-maps.min.js" />
     <Content Include="FrontEnd\js\angular\angular-translate.js" />
     <Content Include="FrontEnd\js\angular\angular-ui-router.min.js" />
-    <Content Include="FrontEnd\js\angular\angular.min.js" />
+    <Content Include="FrontEnd\js\angular\angular.min-1.2.20.js" />
     <Content Include="FrontEnd\js\angular\angular-simple-logger.js" />
-    <Content Include="FrontEnd\js\angular\ui-bootstrap-tpls.min.js" />
+    <Content Include="FrontEnd\js\angular\ui-bootstrap-tpls.min-0.11.0.js" />
     <Content Include="FrontEnd\js\angular\ui-jq.js" />
     <Content Include="FrontEnd\js\angular\ui-load.js" />
     <Content Include="FrontEnd\js\angular\ui-validate.js" />
@@ -401,6 +401,7 @@
     <Content Include="FrontEnd\js\jquery\jquery.min.js" />
     <Content Include="FrontEnd\js\jquery\jquery.ui.touch-punch.min.js" />
     <Content Include="FrontEnd\js\jquery\wysiwyg\bootstrap-wysiwyg.js" />
+    <Content Include="FrontEnd\js\jquery\wysiwyg\JavaScript.js" />
     <Content Include="FrontEnd\js\jquery\wysiwyg\jquery.hotkeys.js" />
     <Content Include="FrontEnd\js\libs\lodash.js" />
     <Content Include="FrontEnd\js\services.js" />

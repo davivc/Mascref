@@ -16,7 +16,7 @@
           <!-- langs -->
           <!--
           <li class="dropdown hidden-sm">
-            <a href class="dropdown-toggle" data-toggle="dropdown">
+            <a href class="uib-dropdown-toggle" data-toggle="dropdown">
               {{selectLang}} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight w">
@@ -26,8 +26,8 @@
             </ul>
           </li>
           -->
-          <li class="dropdown">
-            <a href class="dropdown-toggle clear" data-toggle="dropdown">
+          <li  uib-dropdown>
+            <a href class="uib-dropdown-toggle clear" uib-dropdown-toggle>
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
                 <img src="img/a0.jpg" alt="...">
                 <i class="on md b-white bottom"></i>
@@ -35,7 +35,7 @@
               <span class="hidden-sm hidden-md">{{first_name}} {{last_name}}</span> <b class="caret"></b>
             </a>
             <!-- dropdown -->
-            <ul class="dropdown-menu animated fadeInRight w">              
+            <ul class="uib-dropdown-menu animated fadeInRight w">              
               <li>
                 <a ui-sref="app.page.profile">Profile</a>
               </li>

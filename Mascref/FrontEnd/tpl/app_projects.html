@@ -87,7 +87,7 @@
           <label class="col-sm-2 control-label">Owner / Leader</label>
           <div class="col-sm-4">
             <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
-            <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" typeahead-loading="loadingResearchers">
+            <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
           </div>
           <!--
           <div class="col-sm-3">
