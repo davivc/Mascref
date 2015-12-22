@@ -82,7 +82,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.response = data;
       }
 
-      var handleError = function (data) {
+      var handleError = function (data, status, headers) {
         $scope.response = data;
       }
 
@@ -393,7 +393,6 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     $scope.login = function (formData) {
       $scope.errors = [];
       Validate.form_validation(formData, $scope.errors);
-      console.log(formData.$error)
       if (!formData.$invalid) {
         djangoAuth.login($scope.model.username, $scope.model.password)
         .then(function (data) {

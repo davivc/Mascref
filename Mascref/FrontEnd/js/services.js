@@ -63,6 +63,13 @@ angular.module('app.services', [])
               data['non_field_errors'] = ["Server timed out. Please try again."];
             }
           }
+          if (status == -1) {
+            if (data == "") {
+              data = {};
+              data['status'] = -1;
+              data['non_field_errors'] = ["Could not connect. Connection refused."];
+            }
+          }
           deferred.reject(data, status, headers, config);
         }));
         return deferred.promise;

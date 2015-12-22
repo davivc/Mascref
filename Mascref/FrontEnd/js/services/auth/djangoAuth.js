@@ -48,7 +48,7 @@ angular.module('app.services')
             deferred.resolve(data, status);
         }))
         .error(angular.bind(this,function(data, status, headers, config) {
-          console.log("error syncing with: " + url);
+          //console.log("error syncing with: " + url);
           // Set request status
           if(data){
             data.status = status;
@@ -66,6 +66,13 @@ angular.module('app.services')
               data = {};
               data['status'] = 0;
               data['non_field_errors'] = ["Server timed out. Please try again."];
+            }
+          }
+          if (status === -1) {
+            if (!data) {
+              data = {};
+              data['status'] = -1;
+              data['non_field_errors'] = ["Could not connect. Connection refused."];
             }
           }
           deferred.reject(data, status, headers, config);
@@ -98,8 +105,6 @@ angular.module('app.services')
             }
           }).then(function(data){
             if (!djangoAuth.use_session) {
-              console.log('data')
-              console.log(data.key)
               $http.defaults.headers.common.Authorization = 'Token ' + data.key;
               // Fix $cookies 1.4
               $cookies.set('token', data.key)
