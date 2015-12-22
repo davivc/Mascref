@@ -154,7 +154,7 @@
                       <td>{{survey.transect_a ? project.transect_a : '0'}}</td>
                       <td>{{survey.transect_b ? survey.transect_b : '0'}}</td>
                       <td>{{survey.created_at | date:'short'}}</td>
-                      <td><i ng-if="survey.public" class="fa fa-check text-success text-active"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
+                      <td><i ng-if="survey.public" class="fa fa-check text-success text"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
                   </tr>       
                 </tbody>
                 <tfoot class="hide-if-no-paging">
@@ -168,17 +168,17 @@
             </div>
             <div class="line line-lg b-b b-light"></div>
             <div class="text-muted text-right">
-              <button type="submit" class="btn btn-sm btn-info" ng-click="showNewSurvey = true">+ New Survey</button>
+              <button type="submit" class="btn btn-sm btn-info" ng-click="setShowNewSurvey(true)">+ New Survey</button>
             </div>
           </div>
         </div> 
         
         <div class="panel panel-default" ng-show="showNewSurvey">
+          
           <div class="panel-heading">
             New Survey
           </div>
           <div class="panel-body b-b b-light">
-            {{formSurvey}}
             <form name="formNewSurvey" class="form-horizontal" ng-submit="setSurvey()" novalidate>
               <div class="form-group" ng-class="{ 'has-error' : formSurvey.errors.name }">
                 <label class="col-sm-2 control-label">Name</label>
@@ -203,7 +203,7 @@
                 <label class="col-sm-2 control-label">Date End</label>
                 <div class="col-sm-3">
                   <p class="input-group">
-                    <input type="text" class="form-control w-xl" uib-datepicker-popup="yyyy-MM-dd" ng-model="formSurvey.date_end" is-open="$parent.openedDateEnd" uib-datepicker-options="dateOptions" close-text="X" />
+                    <input type="text" class="form-control w-xl" uib-datepicker-popup="dd/MM/yyyy" ng-model="formSurvey.date_end" is-open="$parent.openedDateEnd" uib-datepicker-options="dateOptions" close-text="X" />
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-default" ng-click="toggleOpenDatePicker($event,'openedDateEnd')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -234,7 +234,7 @@
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-2">
                   <button type="submit" class="btn btn-sm btn-success">Save Survey</button>
-                  <i ng-show="loadingNewSurvey" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
+                  <i ng-show="formSurvey.loadingNewSurvey" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
                 </div>
               </div>
               <div class="form-group">
@@ -246,6 +246,9 @@
                       <li ng-repeat="(key, value) in formSurvey.errors.others" ng-show="value.join(';')"><i>{{key}}</i>: {{value.join(';')}}</li>
                     </ul>
                   </uib-alert>
+                </div>
+                <div class="input-group m-b col-sm-10" ng-show="formSurvey.message">
+                  <uib-alert type="success">{{formSurvey.message}}</uib-alert>
                 </div>
               </div>
             </form>

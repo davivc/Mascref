@@ -12,6 +12,7 @@ var app = angular.module('app', [
     'ui.validate',
     'uiGmapgoogle-maps',
     'pascalprecht.translate',
+    'tmh.dynamicLocale',
     'app.filters',
     'app.services',
     'app.directives',
@@ -149,7 +150,7 @@ var app = angular.module('app', [
 .config(function ($httpProvider, uiGmapGoogleMapApiProvider) {
   //$httpProvider.defaults.xsrfCookieName = 'csrftoken';
   //$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-  //$httpProvider.defaults.headers.post['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();
+  //$httpProvider.defaults.headers.post['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();  
 
   uiGmapGoogleMapApiProvider.configure({
     //    key: 'your api key',
