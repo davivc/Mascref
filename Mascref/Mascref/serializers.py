@@ -38,40 +38,44 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'username', 'email', 'is_staff','date_joined')
 
         
-class ConfigSerializer (serializers.HyperlinkedModelSerializer):
+class ConfigSerializer (serializers.ModelSerializer):
     class Meta:
         model = Config
         fields = ('name','value')
 
 
-class CountrySerializer (serializers.HyperlinkedModelSerializer):
+class CountrySerializer (serializers.ModelSerializer):
     class Meta:
         model = Country
-        fields = ('name',)
+        fields = ('id','name',)
 
 
-class ProvinceSerializer (serializers.HyperlinkedModelSerializer):
+class ProvinceSerializer (serializers.ModelSerializer):
     class Meta:
         model = Province
         fields = ('name','country')
 
 
-class TownSerializer (serializers.HyperlinkedModelSerializer):
+class TownSerializer (serializers.ModelSerializer):
     class Meta:
         model = Town
-        fields = ('name','country','province')
+        fields = ('id','name','country','province')
 
 
-class ResearcherSerializer (serializers.HyperlinkedModelSerializer):
+class ResearcherSerializer (serializers.ModelSerializer):
     class Meta:
         model = Researcher
         fields = ('id', 'name',)
 
 
-class SiteSerializer (serializers.HyperlinkedModelSerializer):
+class SiteSerializer (serializers.ModelSerializer):
+    town_name = serializers.ReadOnlyField(source='town.name', read_only=True)
+    province_name = serializers.ReadOnlyField(source='town.province.name', read_only=True)
+    country_name = serializers.ReadOnlyField(source='town.country.name', read_only=True)
+    
     class Meta:
         model = Site
-        fields = ('name','lat','long','town')
+        fields = ('name','lat','long','town','town_name','province_name','country_name')
 
 
 class ProjectSerializer (serializers.ModelSerializer):
@@ -91,7 +95,7 @@ class SurveySerializer (serializers.ModelSerializer):
         fields = ('id','project','name','date_start','date_end','owner','public','created_at','owner_name')
 
 
-class TransectSerializer (serializers.HyperlinkedModelSerializer):
+class TransectSerializer (serializers.ModelSerializer):
     class Meta:
         model = Transect
         fields = ('name','depth','date','time_start','team_leader','site','survey')
@@ -138,9 +142,12 @@ class TownViewSet(viewsets.ModelViewSet):
     serializer_class = TownSerializer
 
 
-class SiteViewSet(viewsets.ModelViewSet):
+class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
+    ordering = ('name',)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name',)
 
 
 class ResearcherViewSet(LoggingMixin, viewsets.ModelViewSet):

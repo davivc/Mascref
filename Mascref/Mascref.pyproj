@@ -434,7 +434,7 @@
     <Content Include="FrontEnd\tpl\blocks\settings.html" />
     <Content Include="FrontEnd\tpl\app_settings.html" />
     <Content Include="FrontEnd\tpl\app_settings_countries.html" />
-    <Content Include="FrontEnd\tpl\app_transect_count.html" />
+    <Content Include="FrontEnd\tpl\app_transect.html" />
     <Content Include="FrontEnd\tpl\app_survey.html" />
     <Content Include="FrontEnd\tpl\app_project_view.html" />
     <Content Include="FrontEnd\tpl\directives\wysiwyg.html" />

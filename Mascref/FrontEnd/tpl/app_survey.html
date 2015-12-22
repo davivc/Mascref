@@ -1,4 +1,4 @@
-﻿<div class="wrapper-md" ng-controller="ProjectViewSurveyCtrl">
+﻿<div class="wrapper-md" ng-controller="SurveyCtrl" ui-view>
   <div class="row">
     <div class="col-sm-9">
       <div class="blog-post">                   
@@ -7,16 +7,15 @@
             <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'></ui-gmap-google-map>
           </div>
           <div class="wrapper-lg">
-            <h2 class="m-t-none"><a href>Teste</a></h2>
+            <h2 class="m-t-none"><a href>{{survey.name}}</a></h2>
             <div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat. 
-              <br><br>
-              Phasellus at ultricies neque, quis malesuada augue. Donec eleifend condimentum nisl eu consectetur. Integer eleifend, nisl venenatis consequat iaculis, lectus arcu malesuada sem, dapibus porta quam lacus eu neque.</p>
+              <p ng-bind-html="survey.description"></p>
             </div>
             <div class="line line-lg b-b b-light"></div>
             <div class="text-muted">
-              <i class="fa fa-user text-muted"></i> by <a href class="m-r-sm">Admin</a>
-              <i class="fa fa-clock-o text-muted"></i> Feb 20, 2013
+              <span ng-show="project.owner_name"><i class="fa fa-group text-muted"></i> survey leader <a href class="m-r-sm">{{survey.owner_name | ucFirst }}</a></span>
+              <i class="fa fa-user text-muted"></i> created by <a href class="m-r-sm">{{survey.created_by | ucFirst }}</a>
+              <i class="fa fa-clock-o text-muted"></i> {{survey.created_at | date:'medium'}}
             </div>
           </div>
         </div>
@@ -24,18 +23,50 @@
           <div class="wrapper-lg">
             <h2 class="m-t-none"><a href>Transects</a></h2>
             <div>
-              
+              <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+                <thead>
+                  <tr>
+                    <th>Identifier</th>
+                    <th>Site</th>
+                    <th>Depth</th>
+                    <th>Date</th>
+                    <th>Leader</th>
+                    <th>Created</th>
+                    <th>Public</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="transects.length == 0">
+                      <td colspan="4">No transects found for this project.</td>
+                  </tr>        
+                  <tr ng-repeat="transect in transects">
+                      <td><a ui-sref="app.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
+                      <td>{{transect.date_start | date:'shortDate'}}</td>
+                      <td>{{transect.date_end | date:'shortDate'}}</td>
+                      <td>{{transect.owner}}</td>
+                      <td>{{transect.type}}</td>
+                      <td>{{transect.created_at | date:'short'}}</td>
+                      <td><i ng-if="transect.public" class="fa fa-check text-success text"></i><i  ng-if="!transect.public" class="fa fa-times text-danger text"></i></td>
+                  </tr>       
+                </tbody>
+                <tfoot class="hide-if-no-paging">
+                  <tr>
+                      <td colspan="8" class="text-center">
+                          <ul class="pagination"></ul>
+                      </td>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
             <div class="line line-lg b-b b-light"></div>
             <div class="text-muted text-right">
-              <button type="submit" class="btn btn-sm btn-primary">+ New Cover</button>
-              <button type="submit" class="btn btn-sm btn-primary">+ New Count</button>
+              <button type="submit" class="btn btn-sm btn-info" ng-click="goToTransect('')">+ New Transect</button>
             </div>
           </div>
         </div>
         <div class="panel">
           <div class="wrapper-lg">
-            <h2 class="m-t-none"><a href>Stats</a></h2>
+            <h2 class="m-t-none"><a href>Stats summary</a></h2>
             <div>
               
             </div>
@@ -49,19 +80,25 @@
       <ul class="list-group">
         <li class="list-group-item">
           <a href>
-            <span class="badge pull-right">15</span>
-            Members
+            <span class="badge pull-right">{{info.surveys}}</span>
+            Surveys
           </a>
         </li>
         <li class="list-group-item">
           <a href>
-            <span class="badge pull-right">9</span>
+            <span class="badge pull-right">{{info.members}}</span>
+            Members
+          </a>
+        </li>        
+        <li class="list-group-item">
+          <a href>
+            <span class="badge pull-right">{{info.transects_count}}</span>
             Transects Count
           </a>
         </li>
         <li class="list-group-item">
           <a href>
-            <span class="badge pull-right">4</span>
+            <span class="badge pull-right">{{info.transects_cover}}</span>
             Transects Cover
           </a>
         </li>

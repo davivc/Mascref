@@ -56,8 +56,8 @@ class Town(models.Model):
 
 class Site(models.Model):
     name = models.CharField(max_length=150)
-    lat = models.IntegerField()
-    long = models.IntegerField()
+    lat = models.FloatField()
+    long = models.FloatField()
     town = models.ForeignKey(Town, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -125,7 +125,8 @@ angular.module('app.services', [])
     }
 
     return service;
-  }).service('Surveys', function Surveys(Rest) {
+  })
+  .service('Surveys', function Surveys(Rest) {
     var service = {
       'list': function (project) {
         var search = '?';
@@ -159,7 +160,8 @@ angular.module('app.services', [])
     }
 
     return service;
-  }).service('Researchers', function Projects(Rest) {
+  })
+  .service('Researchers', function Projects(Rest) {
     var service = {
       'list': function (search) {
         var qStr = '?';
@@ -173,6 +175,41 @@ angular.module('app.services', [])
         return Rest.request({
           'method': "GET",
           'url': "/researchers/" + pk + "/"
+        });
+      }
+    }
+
+    return service;
+  })
+  .service('Sites', function Surveys(Rest) {
+    var service = {
+      'list': function (search) {
+        var qStr = '?';
+        if (search) qStr = qStr + 'search=' + search
+        return Rest.request({
+          'method': "GET",
+          'url': "/sites/" + qStr
+        });
+      },
+      'get': function (pk) {
+        return Rest.request({
+          'method': "GET",
+          'url': "/sites/" + pk + "/"
+        });
+      },
+      'create': function (pData) {
+        var data = {
+          'name': pData.name,
+          'project': pData.project,
+          'date_start': pData.date_start,
+          'date_end': pData.date_end,
+          'public': pData.restricted,
+          'owner': pData.owner.id
+        }
+        return Rest.request({
+          'method': "POST",
+          'url': "/sites/",
+          'data': data
         });
       }
     }

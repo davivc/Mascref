@@ -80,9 +80,9 @@ var app = angular.module('app', [
               url: '/survey/{surveyId}',
               templateUrl: 'tpl/app_survey.html'
             })
-            .state('app.projects.transect', {
-              url: '/transect',
-              templateUrl: 'tpl/app_transects.html'
+            .state('app.projects.view.survey.transect', {
+              url: '/transect/{transectId}',
+              templateUrl: 'tpl/app_transect.html'
             })
             .state('app.projects.transect.count', {
               url: '/transect/count',
