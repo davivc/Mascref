@@ -396,6 +396,8 @@
     <Content Include="FrontEnd\js\angular\ui-validate.js" />
     <Content Include="FrontEnd\js\app.js" />
     <Content Include="FrontEnd\js\controllers.js" />
+    <Content Include="FrontEnd\js\controllers\survey.js" />
+    <Content Include="FrontEnd\js\controllers\dashboard.js" />
     <Content Include="FrontEnd\js\controllers\projects.js" />
     <Content Include="FrontEnd\js\directives.js" />
     <Content Include="FrontEnd\js\filters.js" />
