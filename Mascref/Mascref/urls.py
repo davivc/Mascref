@@ -13,6 +13,8 @@ from django.contrib.auth.models import User
 from rest_framework import routers
 from Mascref.serializers import ConfigViewSet
 from Mascref.serializers import CountryViewSet
+from Mascref.serializers import GroupViewSet
+from Mascref.serializers import GroupCategoryViewSet
 from Mascref.serializers import ProjectViewSet
 from Mascref.serializers import ProvinceViewSet
 from Mascref.serializers import ResearcherViewSet
@@ -20,6 +22,7 @@ from Mascref.serializers import SiteViewSet
 from Mascref.serializers import SurveyViewSet
 from Mascref.serializers import TownViewSet
 from Mascref.serializers import TransectViewSet
+from Mascref.serializers import TransectTypeViewSet
 from Mascref.serializers import UserViewSet
 from Mascref.serializers import DashboardStatsViewSet
 
@@ -29,6 +32,8 @@ admin.autodiscover()
 router = routers.DefaultRouter()
 router.register(r'api/config', ConfigViewSet)
 router.register(r'api/countries', CountryViewSet)
+router.register(r'api/groups', GroupViewSet)
+router.register(r'api/groups_categories', GroupCategoryViewSet)
 router.register(r'api/projects', ProjectViewSet)
 router.register(r'api/provinces', ProvinceViewSet)
 router.register(r'api/researchers', ResearcherViewSet)
@@ -36,6 +41,7 @@ router.register(r'api/sites', SiteViewSet)
 router.register(r'api/surveys', SurveyViewSet)
 router.register(r'api/towns', TownViewSet)
 router.register(r'api/transects', TransectViewSet)
+router.register(r'api/transects_types', TransectTypeViewSet)
 router.register(r'api/users', UserViewSet)
 router.register(r'api/dashboard/stats', DashboardStatsViewSet, 'dashboard-list')
 

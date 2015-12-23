@@ -10,6 +10,8 @@ from rest_framework import generics, serializers, viewsets, permissions, filters
 from rest_framework_tracking.mixins import LoggingMixin
 from app.models import Config
 from app.models import Country
+from app.models import Group
+from app.models import Group_Category
 from app.models import Project
 from app.models import Province
 from app.models import Researcher
@@ -17,6 +19,7 @@ from app.models import Site
 from app.models import Survey
 from app.models import Town
 from app.models import Transect
+from app.models import Transect_Type
 from django.contrib.auth.models import User
 
 
@@ -48,6 +51,18 @@ class CountrySerializer (serializers.ModelSerializer):
     class Meta:
         model = Country
         fields = ('id','name',)
+
+
+class GroupSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('id','name','description','parent','category','type',)
+
+
+class GroupCategorySerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Group_Category
+        fields = ('id','name','description',)
 
 
 class ProvinceSerializer (serializers.ModelSerializer):
@@ -100,6 +115,11 @@ class TransectSerializer (serializers.ModelSerializer):
         model = Transect
         fields = ('name','depth','date','time_start','team_leader','site','survey')
 
+class TransectTypeSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Transect_Type
+        fields = ('name',)
+
 
 # Non-Models Serializers
 class DashboardStatsSerializer (serializers.Serializer):
@@ -129,6 +149,18 @@ class CountryViewSet(viewsets.ModelViewSet):
     #permission_classes = [
     #    permissions.AllowAny
     #]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    ordering = ('name',)
+
+
+class GroupCategoryViewSet(viewsets.ModelViewSet):
+    queryset = Group_Category.objects.all()
+    serializer_class = GroupCategorySerializer
+    ordering = ('name',)
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
@@ -196,6 +228,12 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
 class TransectViewSet(viewsets.ModelViewSet):
     queryset = Transect.objects.all()
     serializer_class = TransectSerializer
+
+
+class TransectTypeViewSet(viewsets.ModelViewSet):
+    queryset = Transect_Type.objects.all()
+    serializer_class = TransectTypeSerializer
+    ordering = ('name',)
 
 
 # Non-Models

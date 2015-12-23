@@ -87,7 +87,7 @@
     <Content Include="app\templates\admin\index.html" />
     <Content Include="FrontEnd\css\animate.css" />
     <Content Include="FrontEnd\css\app.css" />
-    <Content Include="FrontEnd\css\bootstrap.css" />
+    <Content Include="FrontEnd\css\bootstrap-3.2.0.css" />
     <Content Include="FrontEnd\css\font-awesome.min.css" />
     <Content Include="FrontEnd\css\font.css" />
     <Content Include="FrontEnd\css\less\app.arrow.less" />
@@ -396,6 +396,7 @@
     <Content Include="FrontEnd\js\angular\ui-validate.js" />
     <Content Include="FrontEnd\js\app.js" />
     <Content Include="FrontEnd\js\controllers.js" />
+    <Content Include="FrontEnd\js\controllers\transect.js" />
     <Content Include="FrontEnd\js\controllers\survey.js" />
     <Content Include="FrontEnd\js\controllers\dashboard.js" />
     <Content Include="FrontEnd\js\controllers\projects.js" />
@@ -420,6 +421,8 @@
     <Content Include="FrontEnd\js\services\auth\djangoAuth-1.2.20.js" />
     <Content Include="FrontEnd\js\services\auth\djangoAuth.js" />
     <Content Include="FrontEnd\js\services\auth\validate.js" />
+    <Content Include="FrontEnd\js\services\group.js" />
+    <Content Include="FrontEnd\js\services\rest.js" />
     <Content Include="FrontEnd\l10n\en.json" />
     <Content Include="FrontEnd\tpl\404.html" />
     <Content Include="FrontEnd\tpl\app.html" />
