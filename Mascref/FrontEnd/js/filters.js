@@ -38,14 +38,18 @@ angular.module('app.filters', [])
     if (angular.isUndefined(data))
       return 0;
     var sum = 0;
+    var totalObjects = 0;
     angular.forEach(data, function (v, k) {
       var val = 0;
       if (key) val = parseFloat(v[key]);
       else val = parseFloat(v);
 
-      if (isFinite(val)) sum += val;
+      if (isFinite(val)) {
+        sum += val;
+        totalObjects++;
+      }
     });
-    return sum/Object.keys(data).length;
+    return sum / totalObjects;
   }
 }).filter('sd', function () {
   return function (data, key) {
@@ -56,15 +60,19 @@ angular.module('app.filters', [])
     var sumDeviation = 0;
     var mean = 0;
     var mean = 0;
+    var totalObjects = 0;
     angular.forEach(data, function (v, k) {
       var val = 0;
       if (key) val = parseFloat(v[key]);
       else val = parseFloat(v);
 
-      if (isFinite(val)) sum += val;
+      if (isFinite(val)) {
+        sum += val;
+        totalObjects++;
+      }
     });
 
-    mean = sum / Object.keys(data).length;
+    mean = sum / totalObjects;
     angular.forEach(data, function (v, k) {
       var val = 0;
       if (key) val = parseFloat(v[key]);
@@ -73,7 +81,7 @@ angular.module('app.filters', [])
       if (isFinite(val)) sumDeviation += Math.pow(val - mean,2);
     });
     
-    var dof = (Object.keys(data).length - 1) == 0 ? Object.keys(data).length : (Object.keys(data).length - 1);
+    var dof = (totalObjects - 1) == 0 ? totalObjects : (totalObjects - 1);
     return Math.sqrt(sumDeviation/dof);
   }
 });

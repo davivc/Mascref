@@ -127,9 +127,12 @@ class Group_Category(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    parent = models.ForeignKey('self', blank=True, null=True)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='sub_groups')
     category = models.ForeignKey(Group_Category, blank=True, null=True)
     type = models.ForeignKey(Transect_Type)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Segment(models.Model):

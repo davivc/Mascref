@@ -34,6 +34,11 @@ class DashboardStats(object):
         self.transects = Transect.objects.count()
 
 
+class RecursiveField(serializers.Serializer):
+    def to_representation(self, value):
+        serializer = self.parent.parent.__class__(value, context=self.context)
+        return serializer.data
+
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -54,9 +59,12 @@ class CountrySerializer (serializers.ModelSerializer):
 
 
 class GroupSerializer (serializers.ModelSerializer):
+    #tracks = GroupSerializer(many=True, read_only=True)
+    sub_groups = RecursiveField(many=True, read_only=True)
+
     class Meta:
         model = Group
-        fields = ('id','name','description','parent','category','type',)
+        fields = ('id','name','description','parent','category','type','sub_groups',)
 
 
 class GroupCategorySerializer (serializers.ModelSerializer):
@@ -155,6 +163,18 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     ordering = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('category','type',)
+
+    def get_queryset(self):
+        queryset = Group.objects.all()
+        parent = self.request.query_params.get('parent', None)
+        if parent == 'null':
+            queryset = queryset.filter(parent__isnull=True)
+        elif parent is not None and parent.isdigit():
+            queryset = queryset.filter(parent=parent)
+      
+        return queryset
 
 
 class GroupCategoryViewSet(viewsets.ModelViewSet):

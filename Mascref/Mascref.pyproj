@@ -440,6 +440,9 @@
     <Content Include="FrontEnd\tpl\app_transect.html" />
     <Content Include="FrontEnd\tpl\app_survey.html" />
     <Content Include="FrontEnd\tpl\app_project_view.html" />
+    <Content Include="FrontEnd\tpl\blocks\transect_belt_form.html" />
+    <Content Include="FrontEnd\tpl\blocks\transect_site_info.html" />
+    <Content Include="FrontEnd\tpl\blocks\transect_line_form.html" />
     <Content Include="FrontEnd\tpl\directives\wysiwyg.html" />
     <Content Include="FrontEnd\tpl\forgotpwd.html" />
     <Content Include="FrontEnd\tpl\signin.html" />
