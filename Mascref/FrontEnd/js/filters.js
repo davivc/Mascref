@@ -18,6 +18,11 @@ angular.module('app.filters', [])
     return (!!input) ? input.split(' ').map(function (wrd) { return wrd.charAt(0).toUpperCase() + wrd.substr(1).toLowerCase(); }).join(' ') : '';
   }
 })
+.filter('toPrecision', function () {
+  return function (input, digits) {
+    return (!!input && isFinite(input)) ? parseFloat(input).toPrecision(digits) : '';
+  }
+})
 .filter('sum', function () {
   return function (data, key) {
     if (angular.isUndefined(data))

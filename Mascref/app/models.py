@@ -136,10 +136,11 @@ class Group(models.Model):
 
 
 class Segment(models.Model):
+    token = models.CharField(primary_key=True, max_length=100)
+    transect = models.ForeignKey(Transect)
+    type = models.ForeignKey(Transect_Type)
     segment = models.IntegerField()
     value = models.IntegerField()
     group = models.ForeignKey(Group, blank=True, null=True)
-    transect = models.ForeignKey(Transect)
-    type = models.ForeignKey(Transect_Type)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

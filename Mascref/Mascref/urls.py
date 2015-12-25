@@ -18,6 +18,7 @@ from Mascref.serializers import GroupCategoryViewSet
 from Mascref.serializers import ProjectViewSet
 from Mascref.serializers import ProvinceViewSet
 from Mascref.serializers import ResearcherViewSet
+from Mascref.serializers import SegmentViewSet
 from Mascref.serializers import SiteViewSet
 from Mascref.serializers import SurveyViewSet
 from Mascref.serializers import TownViewSet
@@ -37,6 +38,7 @@ router.register(r'api/groups_categories', GroupCategoryViewSet)
 router.register(r'api/projects', ProjectViewSet)
 router.register(r'api/provinces', ProvinceViewSet)
 router.register(r'api/researchers', ResearcherViewSet)
+router.register(r'api/segments', SegmentViewSet)
 router.register(r'api/sites', SiteViewSet)
 router.register(r'api/surveys', SurveyViewSet)
 router.register(r'api/towns', TownViewSet)

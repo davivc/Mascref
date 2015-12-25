@@ -15,6 +15,7 @@ from app.models import Group_Category
 from app.models import Project
 from app.models import Province
 from app.models import Researcher
+from app.models import Segment
 from app.models import Site
 from app.models import Survey
 from app.models import Town
@@ -89,6 +90,12 @@ class ResearcherSerializer (serializers.ModelSerializer):
     class Meta:
         model = Researcher
         fields = ('id', 'name',)
+
+
+class SegmentSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Segment
+        fields = ('token', 'type','transect','segment','group','value','created_at','updated_at',)
 
 
 class SiteSerializer (serializers.ModelSerializer):
@@ -192,6 +199,14 @@ class ProvinceViewSet(viewsets.ModelViewSet):
 class TownViewSet(viewsets.ModelViewSet):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
+
+
+class SegmentViewSet(LoggingMixin, viewsets.ModelViewSet):
+    queryset = Segment.objects.all()
+    serializer_class = SegmentSerializer
+    ordering = ('token',)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('segment','group','token','type',)
 
 
 class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):
