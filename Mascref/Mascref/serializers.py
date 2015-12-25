@@ -92,10 +92,17 @@ class ResearcherSerializer (serializers.ModelSerializer):
         fields = ('id', 'name',)
 
 
+#class SegmentListSerializer(serializers.ListSerializer):
+    # Maps for id->instance and id->data item.
+
+
 class SegmentSerializer (serializers.ModelSerializer):
+    group_name = serializers.ReadOnlyField(source='group.name', read_only=True)
+
     class Meta:
         model = Segment
-        fields = ('token', 'type','transect','segment','group','value','created_at','updated_at',)
+        #list_serializer_class = SegmentListSerializer
+        fields = ('token', 'transect','type','segment','group','group_name','value','created_at','updated_at',)
 
 
 class SiteSerializer (serializers.ModelSerializer):
@@ -105,7 +112,7 @@ class SiteSerializer (serializers.ModelSerializer):
     
     class Meta:
         model = Site
-        fields = ('name','lat','long','town','town_name','province_name','country_name')
+        fields = ('id','name','lat','long','town','town_name','province_name','country_name')
 
 
 class ProjectSerializer (serializers.ModelSerializer):
@@ -128,7 +135,7 @@ class SurveySerializer (serializers.ModelSerializer):
 class TransectSerializer (serializers.ModelSerializer):
     class Meta:
         model = Transect
-        fields = ('name','depth','date','time_start','team_leader','site','survey')
+        fields = ('id','survey','site','name','depth','date','time_start','team_leader')
 
 class TransectTypeSerializer (serializers.ModelSerializer):
     class Meta:

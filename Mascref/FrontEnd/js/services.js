@@ -154,16 +154,18 @@ angular.module('app.services', [])
       'get': function (pk) {
         return Rest.get(this.url + pk + "/");
       },
-      'create': function (pData) {
+      'save': function (pData) {
         var data = {
           'name': pData.name,
-          'project': pData.project,
-          'date_start': pData.date_start,
-          'date_end': pData.date_end,
-          'public': pData.restricted,
-          'owner': pData.owner.id
+          'survey': pData.survey,
+          'site': pData.site.id,
+          'date': pData.date,
+          'time_start': pData.time_start,          
+          //'team_leader': pData.team_leader.id ? pData.team_leader.id : '',
+          'depth': pData.depth
         }
-        return Rest.post(this.url, data);
+        if (pData.id) return Rest.patch(this.url + pData.id + "/", data);
+        else return Rest.post(this.url, data);
       }
     }
 

@@ -122,6 +122,10 @@ class Transect_Type(models.Model):
 class Group_Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
+    #type = models.ForeignKey(Transect_Type, default=1)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Group(models.Model):
@@ -129,7 +133,7 @@ class Group(models.Model):
     description = models.TextField(blank=True, null=True)
     parent = models.ForeignKey('self', blank=True, null=True, related_name='sub_groups')
     category = models.ForeignKey(Group_Category, blank=True, null=True)
-    type = models.ForeignKey(Transect_Type)
+    type = models.ForeignKey(Transect_Type, default=1)
 
     def __unicode__(self):
         return '%s' % (self.name)
@@ -140,7 +144,7 @@ class Segment(models.Model):
     transect = models.ForeignKey(Transect)
     type = models.ForeignKey(Transect_Type)
     segment = models.IntegerField()
-    value = models.IntegerField()
+    value = models.IntegerField(blank=True, null=True)
     group = models.ForeignKey(Group, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

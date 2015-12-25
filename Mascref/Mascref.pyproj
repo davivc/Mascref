@@ -422,6 +422,7 @@
     <Content Include="FrontEnd\js\services\auth\djangoAuth.js" />
     <Content Include="FrontEnd\js\services\auth\validate.js" />
     <Content Include="FrontEnd\js\services\group.js" />
+    <Content Include="FrontEnd\js\services\segment.js" />
     <Content Include="FrontEnd\js\services\rest.js" />
     <Content Include="FrontEnd\l10n\en.json" />
     <Content Include="FrontEnd\tpl\404.html" />
