@@ -27,7 +27,10 @@
             <td>{{group.name}}</td>
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
               <div ng-if="group.sub_groups.length != 0">{{ belt_transect[group.id]['sub_groups'] | sum:seg }}</div>
-              <div ng-if="group.sub_groups.length == 0"><input ng-model="belt_transect[group.id][seg]" type="text" class="form-control input-sm text-center" value="0" /></div>
+              <div ng-if="group.sub_groups.length == 0" class="input-group m-b">
+                <input ng-model="belt_transect[group.id][seg]" type="text" class="form-control input-sm text-center" value="0" />
+                <span class="input-group-addon">%</span>
+              </div>
             </td>
             <td class="text-center">{{ belt_transect[group.id] | sum }}</td>
             <td class="text-center">{{ belt_transect[group.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
@@ -36,7 +39,10 @@
           <tr ng-if="group.sub_groups.length != 0" ng-repeat="sub in group.sub_groups">
             <td>{{group.name}}</td>
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
-              <input ng-model="belt_transect[group.id]['sub_groups'][sub.id][seg]" type="text" class="form-control input-sm text-center" value="0" ng-keyup="belt_transect[group.id][seg] = sum(belt_transect[group.id]['sub_groups'],seg)"/>
+              <div class="input-group m-b">
+                <input ng-model="belt_transect[group.id]['sub_groups'][sub.id][seg]" type="text" class="form-control input-sm text-center" value="0" ng-keyup="belt_transect[group.id][seg] = sum(belt_transect[group.id]['sub_groups'],seg)"/>
+                <span class="input-group-addon">%</span>
+              </div>
             </td>
             <td class="text-center">{{ belt_transect[group.id]['sub_groups'][sub.id] | sum }}</td>
             <td class="text-center">{{ belt_transect[group.id]['sub_groups'][sub.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>

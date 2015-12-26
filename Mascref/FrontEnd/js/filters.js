@@ -23,11 +23,18 @@ angular.module('app.filters', [])
     return (!!input && isFinite(input)) ? parseFloat(input).toPrecision(digits) : '';
   }
 })
+.filter('percentage', ['$filter', function ($filter) {
+  return function (input, decimals) {
+    return $filter('number')(input * 100, decimals) + '%';
+  };
+}])
 .filter('sum', function () {
   return function (data, key) {
+    console.log(data)
     if (angular.isUndefined(data))
       return 0;
     var sum = 0;
+
     angular.forEach(data, function (v, k) {
       var val = 0;
       if (key !== "" && key !== null && key !== undefined) val = parseFloat(v[key]);
