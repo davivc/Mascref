@@ -29,24 +29,24 @@
               <div ng-if="group.sub_groups.length != 0">{{ belt_transect[group.id]['sub_groups'] | sum:seg }}</div>
               <div ng-if="group.sub_groups.length == 0" class="input-group m-b">
                 <input ng-model="belt_transect[group.id][seg]" type="text" class="form-control input-sm text-center" value="0" />
-                <span class="input-group-addon">%</span>
+                <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
-            <td class="text-center">{{ belt_transect[group.id] | sum }}</td>
+            <td class="text-center"><span ng-show="group.format != 2">{{ belt_transect[group.id] | sum }}</span></td>
             <td class="text-center">{{ belt_transect[group.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
             <td class="text-center">{{ belt_transect[group.id] | sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
           </tr>
           <tr ng-if="group.sub_groups.length != 0" ng-repeat="sub in group.sub_groups">
-            <td>{{group.name}}</td>
+            <td>{{sub.name}}</td>
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
               <div class="input-group m-b">
                 <input ng-model="belt_transect[group.id]['sub_groups'][sub.id][seg]" type="text" class="form-control input-sm text-center" value="0" ng-keyup="belt_transect[group.id][seg] = sum(belt_transect[group.id]['sub_groups'],seg)"/>
-                <span class="input-group-addon">%</span>
+                <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
-            <td class="text-center">{{ belt_transect[group.id]['sub_groups'][sub.id] | sum }}</td>
-            <td class="text-center">{{ belt_transect[group.id]['sub_groups'][sub.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
-            <td class="text-center">{{ belt_transect[group.id]['sub_groups'][sub.id] | sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center"><span ng-show="group.format != 2">{{ (belt_transect[group.id]['sub_groups'][sub.id] | sum)/(group.format == 2 ? 100 : 1) }}</span></td>
+            <td class="text-center">{{ (belt_transect[group.id]['sub_groups'][sub.id] | mean)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center">{{ (belt_transect[group.id]['sub_groups'][sub.id] | sd)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
           </tr>
         </tbody>
       </table>
