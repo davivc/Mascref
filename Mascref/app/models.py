@@ -14,6 +14,7 @@ class Config(models.Model):
 
 class Researcher(models.Model):
     name = models.CharField(max_length=100)
+    eco_diver = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -122,7 +123,7 @@ class Transect_Type(models.Model):
 class Group_Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    #type = models.ForeignKey(Transect_Type, default=1)
+    type = models.ForeignKey(Transect_Type, default=1)
 
     def __unicode__(self):
         return '%s' % (self.name)
@@ -134,6 +135,7 @@ class Group(models.Model):
     parent = models.ForeignKey('self', blank=True, null=True, related_name='sub_groups')
     category = models.ForeignKey(Group_Category, blank=True, null=True)
     type = models.ForeignKey(Transect_Type, default=1)
+    format = models.IntegerField(default=1)
 
     def __unicode__(self):
         return '%s' % (self.name)

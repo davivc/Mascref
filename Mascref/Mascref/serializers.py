@@ -65,13 +65,13 @@ class GroupSerializer (serializers.ModelSerializer):
 
     class Meta:
         model = Group
-        fields = ('id','name','description','parent','category','type','sub_groups',)
+        fields = ('id','name','description','parent','category','type','format','sub_groups',)
 
 
 class GroupCategorySerializer (serializers.ModelSerializer):
     class Meta:
         model = Group_Category
-        fields = ('id','name','description',)
+        fields = ('id','name','description','type',)
 
 
 class ProvinceSerializer (serializers.ModelSerializer):
