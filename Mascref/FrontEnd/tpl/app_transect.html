@@ -15,11 +15,32 @@
               <div class="col-sm-6">
                 <label>Site name</label>
                 <i ng-show="loadingSite" class="fa fa-spinner fa-spin form-control-spin"></i>
-                <input type="text" class="form-control" ng-model="transect.site" placeholder="Site name" uib-typeahead="site as (site.name + ' (' + site.lat + ', ' + site.long + ')') for site in getSites($viewValue)" uib-typeahead-loading="loadingSite" ng-click="updateMap()">
+                <input type="text" class="form-control" ng-model="transect.info.site" placeholder="Site name" uib-typeahead="site as (site.name + ' (' + site.lat + ', ' + site.long + ')') for site in getSites($viewValue)" uib-typeahead-loading="loadingSite" ng-click="updateMap()">
               </div>
               <div class="col-sm-6">
-                <label>Location</label>
-                <div>{{transect.site.town_name}}{{transect.site.province_name ? (', '+transect.site.province_name) : ''}}{{transect.site.country_name ? (', '+transect.site.country_name) : ''}}</div>
+                <label>Country</label>
+                <i ng-show="loadingCountry" class="fa fa-spinner fa-spin form-control-spin"></i>
+                <input type="text" class="form-control" ng-disabled="transect.info.site.country_name" ng-model="transect.info.country" placeholder="{{transect.info.site.country_name ? transect.info.site.country_name : 'Country name'}}" uib-typeahead="country as country.name for country in getCountries($viewValue)" uib-typeahead-loading="loadingCountry">
+              </div>
+            </div>
+            <div class="form-group pull-in clearfix">
+              <div class="col-sm-6">
+                <label>Province / State</label>
+                <i ng-show="loadingProvince" class="fa fa-spinner fa-spin form-control-spin"></i>
+                <input type="text" class="form-control" ng-disabled="transect.info.site.province_name" ng-model="transect.info.province" placeholder="{{transect.info.site.province_name ? transect.info.site.province_name : 'Province / State name'}}" uib-typeahead="province as province.name for province in getProvinces($viewValue,transect.info.country.id)" uib-typeahead-loading="loadingProvince">
+              </div>
+              <div class="col-sm-6">
+                <label>Town / Island</label>
+                <i ng-show="loadingTown" class="fa fa-spinner fa-spin form-control-spin"></i>
+                <input type="text" class="form-control" ng-disabled="transect.info.site.town_name" ng-model="transect.info.town" placeholder="{{transect.info.site.town_name ? transect.info.site.town_name : 'Town / Island name'}}" uib-typeahead="town as town.name for town in getTowns($viewValue,transect.info.country.id,transect.info.province.id)" uib-typeahead-loading="loadingTown">
+              </div>
+            </div>
+            <div class="form-group pull-in clearfix">
+              <div class="col-sm-6">
+                
+              </div>
+              <div class="col-sm-6">
+                
               </div>
             </div>
             <div class="form-group pull-in clearfix">

@@ -19,7 +19,23 @@ angular.module('app.services', [])
     }
 
     return service;
-  }).service('Projects', function Projects(Rest) {
+  })
+  .service('Country', function Country(Rest) {
+    var service = {
+      'url': "/countries/",
+      'list': function (search) {
+        var qStr = '?';
+        if (search) qStr = qStr + 'search=' + search
+        return Rest.get(this.url + qStr);
+      },
+      'get': function (pk) {
+        return Rest.get(this.url + pk + "/");
+      }
+    }
+
+    return service;
+  })
+  .service('Projects', function Projects(Rest) {
     var service = {      
       'list': function (parent) {
         var search = '?';

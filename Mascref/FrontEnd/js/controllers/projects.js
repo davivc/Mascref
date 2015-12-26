@@ -65,7 +65,6 @@ angular.module('app.controllers')
         angular.forEach(data, function (item) {
           researchers.push(item);
         });
-        console.log(researchers)
         return researchers;
       });
     };

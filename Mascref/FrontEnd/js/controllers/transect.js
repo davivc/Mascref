@@ -3,7 +3,7 @@
 /* Transect Controllers */
 
 angular.module('app.controllers')
-  .controller('TransectCtrl', ['$scope', '$translate', '$state', '$stateParams', '$filter', 'Sites', 'Transect', 'Group', 'Segment', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $filter, Sites, Transect, Group, Segment, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF) {
+  .controller('TransectCtrl', ['$scope', '$translate', '$state', '$stateParams', '$filter', 'Sites', 'Transect', 'Group', 'Segment', 'Country', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $filter, Sites, Transect, Group, Segment, Country, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -21,7 +21,7 @@ angular.module('app.controllers')
       { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
     ];
     $scope.transect = { 
-      info: null,      
+      info: {},      
       conditions: {},
       team: {},
       belt: { data: [] },
@@ -83,6 +83,18 @@ angular.module('app.controllers')
       });
     }
 
+    $scope.getCountries = function (val) {
+      return Country.list(val)
+      .then(function (data) {
+        var countries = [];
+        angular.forEach(data, function (item) {
+          countries.push(item);
+        });
+        console.log(countries)
+        return countries;
+      });
+    };
+
     $scope.getSites = function (val) {
       return Sites.list(val)
       .then(function (data) {
@@ -133,12 +145,6 @@ angular.module('app.controllers')
     $scope.sum = function (data,prop) {
       return $filter('sum')(data,prop);
     }
-
-    // $scope.initLineTransect = function () {
-    //   for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i) {
-    //     $scope.line_transect[i] = [];
-    //   }
-    // }
 
     $scope.save = function () {
       // First I need to check if I have the site ID
@@ -201,6 +207,7 @@ angular.module('app.controllers')
     });
 
     uiGmapIsReady.promise().then((function (maps) {
+      $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.$watch('transect.info.site.lat', function (newVal, oldVal) {
         if ($scope.transect.info.site && $scope.transect.info.site.lat && $scope.transect.info.site.long) {
           $scope.updateMarkers();

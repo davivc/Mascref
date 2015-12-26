@@ -168,6 +168,8 @@ class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
     ordering = ('name',)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name',)
     #permission_classes = [
     #    permissions.AllowAny
     #]
