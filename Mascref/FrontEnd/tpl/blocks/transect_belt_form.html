@@ -1,4 +1,15 @@
-﻿<div class="panel panel-default" ng-repeat="category in belt_categories">
+﻿<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-sm-2">Data recorded by</label>
+      <div class="col-sm-4">
+        <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
+        <input type="text" class="form-control w-xxl" ng-model="transect.belt.recorded_by" placeholder="Search researchers in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default" ng-repeat="category in belt_categories">
   <div class="panel-heading">
     <strong>{{category.name}}</strong>
   </div>
@@ -26,30 +37,40 @@
           <tr>
             <td>{{group.name}}</td>
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
-              <div ng-if="group.sub_groups.length != 0">{{ belt_transect[group.id]['sub_groups'] | sum:seg }}</div>
-              <div ng-if="group.sub_groups.length == 0" class="input-group m-b">
-                <input ng-model="belt_transect[group.id][seg]" type="text" class="form-control input-sm text-center" value="0" />
+              <div ng-if="group.sub_groups.length != 0">{{ transect.belt.data[group.id]['sub_groups'] | sum:seg }}</div>
+              <div ng-if="group.sub_groups.length == 0" class="input-group">
+                <input ng-model="transect.belt.data[group.id][seg]" type="text" class="form-control input-sm text-center" value="0" />
                 <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
-            <td class="text-center"><span ng-show="group.format != 2">{{ belt_transect[group.id] | sum }}</span></td>
-            <td class="text-center">{{ belt_transect[group.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
-            <td class="text-center">{{ belt_transect[group.id] | sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center"><span ng-show="group.format != 2">{{ transect.belt.data[group.id] | sum }}</span></td>
+            <td class="text-center">{{ transect.belt.data[group.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center">{{ transect.belt.data[group.id] | sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
           </tr>
           <tr ng-if="group.sub_groups.length != 0" ng-repeat="sub in group.sub_groups">
             <td>{{sub.name}}</td>
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
-              <div class="input-group m-b">
-                <input ng-model="belt_transect[group.id]['sub_groups'][sub.id][seg]" type="text" class="form-control input-sm text-center" value="0" ng-keyup="belt_transect[group.id][seg] = sum(belt_transect[group.id]['sub_groups'],seg)"/>
+              <div class="input-group">
+                <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg]" type="text" class="form-control input-sm text-center" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
                 <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
-            <td class="text-center"><span ng-show="group.format != 2">{{ (belt_transect[group.id]['sub_groups'][sub.id] | sum)/(group.format == 2 ? 100 : 1) }}</span></td>
-            <td class="text-center">{{ (belt_transect[group.id]['sub_groups'][sub.id] | mean)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
-            <td class="text-center">{{ (belt_transect[group.id]['sub_groups'][sub.id] | sd)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center"><span ng-show="group.format != 2">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | sum)/(group.format == 2 ? 100 : 1) }}</span></td>
+            <td class="text-center">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | mean)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | sd)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Comments</label>
+      <div class="col-sm-8">
+        <textarea class="form-control" rows="6" ng-model="transect.belt.comments" placeholder="Type your commenys"></textarea>
+      </div>
     </div>
   </div>
 </div>

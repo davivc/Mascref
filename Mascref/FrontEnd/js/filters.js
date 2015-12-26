@@ -29,12 +29,10 @@ angular.module('app.filters', [])
   };
 }])
 .filter('sum', function () {
-  return function (data, key) {
-    console.log(data)
-    if (angular.isUndefined(data))
+  return function (data, key) {    
+    if (angular.isUndefined(data) || data.length == 0)
       return 0;
     var sum = 0;
-
     angular.forEach(data, function (v, k) {
       var val = 0;
       if (key !== "" && key !== null && key !== undefined) val = parseFloat(v[key]);

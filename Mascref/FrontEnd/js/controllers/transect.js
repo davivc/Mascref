@@ -12,6 +12,7 @@ angular.module('app.controllers')
     // Init
     $scope.MASCREF_CONF = MASCREF_CONF;
     $scope.tabs = [
+      { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
       { heading: "Site Info", template: 'tpl/blocks/transect_site_info.html' },
       { heading: "Line Transect", template: 'tpl/blocks/transect_line_form.html' },
       { heading: "Line Graphs", template: 'tpl/blocks/transect_line_graphs.html' },
@@ -19,12 +20,22 @@ angular.module('app.controllers')
       { heading: "Belt Graphs", template: 'tpl/blocks/transect_belt_graphs.html' },
       { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
     ];
-    $scope.transect = { id: null }
+    $scope.transect = { 
+      info: null,      
+      conditions: {},
+      team: {},
+      belt: { data: [] },
+      line: { data: [] }
+    }
+
+    for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
+      $scope.transect.belt.data[i] = [];
+      $scope.transect.line.data[i] = [];
+    }
+
     $scope.line_groups = []
-    $scope.line_transect = []
     $scope.belt_categories = {}
     $scope.belt_groups = {}
-    $scope.belt_transect = []
     $scope.response = {}
     $scope.map = {
       center: {
@@ -58,8 +69,14 @@ angular.module('app.controllers')
         //if (data.project != $stateParams.projectId) {
          // $state.go('app.projects.view.survey', { projectId: $stateParams.surveyId })
         //}
-        $scope.transect = data;
-        if ($scope.transect.site) Sites.get($scope.transect.site).then(function (data) { $scope.transect.site = data }, function (error) { });
+        $scope.transect.info = data;        
+
+        $scope.getDataLine($scope.transect.info.id);
+        //$scope.getDataBelt($stateParams.transect.id);
+        //$scope.getInfo($stateParams.transect.id);
+        //$scope.getTeam($stateParams.transect.id);
+        
+        if ($scope.transect.info.site) Sites.get($scope.transect.info.site).then(function (data) { $scope.transect.info.site = data }, function (error) { });
       }, function (error) {
         //console.log(error)
         //$state.go('app.projects.view.survey', { projectId: $stateParams.surveyId });
@@ -99,13 +116,13 @@ angular.module('app.controllers')
       });    
     }
 
-    $scope.getDataLineTransect = function (transect) {
-      angular.forEach($scope.line_transect, function (v, k) {
+    $scope.getDataLine = function (transect) {
+      angular.forEach($scope.transect.line.data, function (v, k) {
         Segment.list(transect, MASCREF_CONF.TRANSECT_TYPE.LINE, k + 1)
         .then(function (data) {
           //$scope.line_transect[k] = data
           angular.forEach(data, function (dV, dK) {
-            $scope.line_transect[k][dV.value-1] = dV;
+            $scope.transect.line.data[k][dV.value-1] = dV;
           });
         }, function (error) {
 
@@ -117,24 +134,24 @@ angular.module('app.controllers')
       return $filter('sum')(data,prop);
     }
 
-    $scope.initLineTransect = function () {
-      for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i) {
-        $scope.line_transect[i] = [];
-      }
-    }
+    // $scope.initLineTransect = function () {
+    //   for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i) {
+    //     $scope.line_transect[i] = [];
+    //   }
+    // }
 
     $scope.save = function () {
       // First I need to check if I have the site ID
-      Transect.save($scope.transect)
+      Transect.save($scope.transect.info)
       .then(function (data) {
-        $scope.transect = data;
-        if ($scope.transect.id) {
-          angular.forEach($scope.line_transect, function (seg, k) {
+        $scope.transect.info = data;
+        if ($scope.transect.info.id) {
+          angular.forEach($scope.transect.line.data, function (seg, k) {
             angular.forEach(seg, function (point, key) {
               if (!point.token) {
                 var pad = ('00' + (key + 1)).slice(-2);
-                point.token = $scope.transect.id + '_' + MASCREF_CONF.TRANSECT_TYPE.LINE + '_' + (k + 1) + '_' + pad;
-                point.transect = $scope.transect.id;
+                point.token = $scope.transect.info.id + '_' + MASCREF_CONF.TRANSECT_TYPE.LINE + '_' + (k + 1) + '_' + pad;
+                point.transect = $scope.transect.info.id;
                 point.segment = k + 1;
                 point.type = MASCREF_CONF.TRANSECT_TYPE.LINE;                
                 point.value = key + 1;
@@ -143,7 +160,7 @@ angular.module('app.controllers')
                   else point.group = $filter('filter')($scope.line_groups, { name: point.group_name }, true)[0].id;
                 }
               }             
-              Segment.save(point).then(function (data) { $scope.line_transect[k][key] = data; }, function (error) { });
+              Segment.save(point).then(function (data) { $scope.transect.line.data[k][key] = data; }, function (error) { });
             });
           });
         }
@@ -154,15 +171,15 @@ angular.module('app.controllers')
 
     $scope.updateMarkers = function() {
       $scope.markers = [{
-        id: $scope.transect.id ? $scope.transect.id : 1,
+        id: $scope.transect.info.id ? $scope.transect.info.id : 1,
         coords: {
-          latitude: $scope.transect.site.lat,
-          longitude: $scope.transect.site.long
+          latitude: $scope.transect.info.site.lat,
+          longitude: $scope.transect.info.site.long
         },
         options: {
           draggable: true,
           show: true,
-          title: $scope.transect.site.name
+          title: $scope.transect.info.site.name
         }
       }];
 
@@ -174,7 +191,6 @@ angular.module('app.controllers')
       $scope.map = { center: { latitude: $scope.bounds.getCenter().lat(), longitude: $scope.bounds.getCenter().lng() } };
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
 
-      console.log($scope.control)
       $scope.control.getGMap().fitBounds($scope.bounds);
     }
 
@@ -185,61 +201,15 @@ angular.module('app.controllers')
     });
 
     uiGmapIsReady.promise().then((function (maps) {
-      $scope.$watch('transect.site.lat', function (newVal, oldVal) {
-        if ($scope.transect.site && $scope.transect.site.lat && $scope.transect.site.long) {
+      $scope.$watch('transect.info.site.lat', function (newVal, oldVal) {
+        if ($scope.transect.info.site && $scope.transect.info.site.lat && $scope.transect.info.site.long) {
           $scope.updateMarkers();
         }
       });
     }));
-
-    // uiGmapIsReady.promise(1).then(function (instances) {
-    //  console.log('teste')
-    //  console.log(instances)
-    //  instances.forEach(function (inst) {
-    //    var map = inst.map;
-    //    var uuid = map.uiGmap_id;
-    //    var mapInstanceNumber = inst.instance; // Starts at 1.
-    //    console.log(map)
-    //    console.log(uuid)
-    //    console.log(mapInstanceNumber)
-    //  });
-    // });
-
-    //Use the LatLngBounds class in Google Maps API, like this:
-
-    //var bounds = new google.maps.LatLngBounds();
-    //for (var i in markers) // your marker list here
-    //    bounds.extend(markers[i].position) // your marker position, must be a LatLng instance
-
-    //map.fitBounds(bounds); // map should be your map class
-    
-
-    // $scope.$watch('transect.site.lat', function (newVal, oldVal) {
-    //   if ($scope.transect.site && $scope.transect.site.lat && $scope.transect.site.long) {
-    //     var bounds = new google.maps.LatLngBounds();
-    //     bounds.extend(new google.maps.LatLng($scope.transect.site.lat, $scope.transect.site.long))
-    //     //$scope.map.control.getGMap().setCenter(new google.maps.LatLng($scope.transect.site.lat, $scope.transect.site.long));
-    //     $scope.map.control.getGMap().fitBounds(bounds);
-
-    //     $scope.marker = {
-    //       id: $scope.transect.id ? $scope.transect.id : 1,
-    //       coords: {
-    //         latitude: $scope.transect.site.lat,
-    //         longitude: $scope.transect.site.long
-    //       },
-    //       options: {
-    //         draggable: true,
-    //         show: true,
-    //         title: $scope.transect.site.name
-    //       }
-    //     }
-    //   }
-    // });
-    
+        
     // Run
     if ($stateParams.transectId) $scope.getTransect($stateParams.transectId);
     $scope.getCategories(null, MASCREF_CONF.TRANSECT_TYPE.BELT);
-    $scope.getGroups('line_groups', 'null', MASCREF_CONF.TRANSECT_TYPE.LINE);
-    $scope.initLineTransect();
-    $scope.getDataLineTransect($stateParams.transectId);
+    $scope.getGroups('line_groups', 'null', MASCREF_CONF.TRANSECT_TYPE.LINE);    
   }]);
