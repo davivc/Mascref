@@ -4,7 +4,7 @@
       <!-- Begin Surveys Panel-->
       <div class="panel">
         <div class="wrapper-lg">
-          <h2 class="m-t-none"><a href>{{transect.info.site.name ? transect.info.site.name : 'Site name' }}</a></h2>
+          <h2 class="m-t-none"><a href>{{transect.info.site.name ? transect.info.site.name : transect.info.site ? transect.info.site : 'Site name' }}</a></h2>
           <div>
             <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' control='control'>
               <ui-gmap-marker coords="item.coords" idkey="item.id" options="item.options" events="item.events" ng-repeat="item in markers"></ui-gmap-marker>

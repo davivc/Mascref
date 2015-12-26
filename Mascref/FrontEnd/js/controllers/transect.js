@@ -148,32 +148,70 @@ angular.module('app.controllers')
     }
 
     $scope.save = function () {
-      // First I need to check if I have the site ID
+      if($scope.validateForm()) return false;
+
+      // 0 - Check if site has id, otherwise create everything
+      if($scope.transect.info.site && !$scope.transect.info.site.id) {
+        // 1 - Check if country has id, otherwise create
+        if($scope.transect.info.country && !$scope.transect.info.country.id) $scope.saveCountry();
+        // 2 - Check if province is not null and has an id, otherwise create
+        else if($scope.transect.info.province && !$scope.transect.info.province.id) $scope.saveProvince();
+        // 3 - Check if town has id, otherwise create
+        else if($scope.transect.info.town && !$scope.transect.info.town.id) $scope.saveTown();
+        // 4 - Finally create the site
+        else $scope.saveSite();
+      }
+      // 5 - Save Transect
       Transect.save($scope.transect.info)
       .then(function (data) {
         $scope.transect.info = data;
-        if ($scope.transect.info.id) {
-          angular.forEach($scope.transect.line.data, function (seg, k) {
-            angular.forEach(seg, function (point, key) {
-              if (!point.token) {
-                var pad = ('00' + (key + 1)).slice(-2);
-                point.token = $scope.transect.info.id + '_' + MASCREF_CONF.TRANSECT_TYPE.LINE + '_' + (k + 1) + '_' + pad;
-                point.transect = $scope.transect.info.id;
-                point.segment = k + 1;
-                point.type = MASCREF_CONF.TRANSECT_TYPE.LINE;                
-                point.value = key + 1;
-                if (point.group_name) {
-                  if (point.group_name.id) point.group = point.group_name.id;
-                  else point.group = $filter('filter')($scope.line_groups, { name: point.group_name }, true)[0].id;
-                }
-              }             
-              Segment.save(point).then(function (data) { $scope.transect.line.data[k][key] = data; }, function (error) { });
-            });
-          });
-        }
+        $scope.saveLine();
+        $scope.saveBelt();
+        $scope.saveInfo();
+        $scope.saveTeam();
       }, function (error) {
         $scope.response = error
       });
+    }
+
+    $scope.saveCountry = function () {
+      Country.save($scope.transect.info.country)
+      .then(function (data) {
+        $scope.transect.info.country = data;
+        $scope.save();
+      });
+    }
+
+    $scope.saveLine = function() {
+      angular.forEach($scope.transect.line.data, function (seg, k) {
+        angular.forEach(seg, function (point, key) {
+          if (!point.token) {
+            var pad = ('00' + (key + 1)).slice(-2);
+            point.token = $scope.transect.info.id + '_' + MASCREF_CONF.TRANSECT_TYPE.LINE + '_' + (k + 1) + '_' + pad;
+            point.transect = $scope.transect.info.id;
+            point.segment = k + 1;
+            point.type = MASCREF_CONF.TRANSECT_TYPE.LINE;                
+            point.value = key + 1;
+            if (point.group_name) {
+              if (point.group_name.id) point.group = point.group_name.id;
+              else point.group = $filter('filter')($scope.line_groups, { name: point.group_name }, true)[0].id;
+            }
+          }             
+          Segment.save(point).then(function (data) { $scope.transect.line.data[k][key] = data; }, function (error) { });
+        });
+      });
+    }
+
+    $scope.saveBelt = function() {
+      
+    }
+
+    $scope.saveInfo = function() {
+      
+    }
+
+    $scope.saveTeam = function() {
+      
     }
 
     $scope.updateMap = function() {
