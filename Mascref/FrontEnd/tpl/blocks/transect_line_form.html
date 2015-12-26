@@ -1,0 +1,67 @@
+﻿<div class="panel panel-default">
+  <div class="panel-body">    
+      <div class="row table-responsive">
+        <table class="table table-striped b-t b-light text-sm">
+          <thead>
+            <tr>
+              <th style="width:20px;">Code</th>
+              <th>Name</th>
+              <th class="text-center" ng-repeat="seg in [0,1,2,3]">S{{seg+1}}</th>
+              <th>Total</th>
+              <th>Mean Count</th>  
+              <th class="text-center" ng-repeat="seg in [0,1,2,3]">% S{{seg+1}}</th>
+              <th>Mean % segment</th>              
+              <th>SD (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="lGroup in line_groups">
+              <td>{{lGroup.name}}</td>
+              <td>{{lGroup.description}}</td>
+              <th class="text-center" ng-repeat="seg in [0,1,2,3]">{{totals[seg] = (line_transect[seg] | filter:lGroup.name:strict).length}}</th>
+              <td class="text-center">{{totals | sum }}</td>
+              <td class="text-center">{{totals | mean | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+              <th class="text-center" ng-repeat="seg in [0,1,2,3]">{{totals_percentage[seg] = (totals[seg]/MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*100 | number:MASCREF_CONF.SIGNIFICANT_DIGITS)}}</th>           
+              <td class="text-center"></td>
+              <td class="text-center">{{totals_percentage | mean | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+              <td class="text-center">{{totals_percentage | sd | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td class="text-center" ng-repeat="seg in [0,1,2,3]" ng-class="seg[seg] < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS ? 'text-danger' : 'text-success'">{{seg[seg] = (line_transect[seg]| filter: { group_name:'!true'}).length}}</td>
+              <td class="text-center" ng-class="total_seg < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ? 'text-danger' : 'text-success'">{{total_seg = (seg | sum)}}</td>
+              <td></td>              
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-group">
+        <label class="text-danger">Use the substrate codes above into the white boxes below</label>
+      </div>
+      <div class="form-inline">
+        <div class="col-sm-3" ng-repeat="seg in [0,1,2,3]" ng-init="segStart = (MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH+MASCREF_CONF.TRANSECT_SEGMENTS_SPACE)*seg" >
+          <label class="col-sm-12 text-center">Segment {{seg+1}}</label>
+          <label class="col-sm-12 text-center">{{segStart}} - {{segStart + MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH-(MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH/MASCREF_CONF.TRANSECT_SEGMENTS_POINTS)}} m</label>
+          <div class="form-group form-inline col-sm-12 text-center" ng-repeat="n in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]"ng-init="point = (MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH/MASCREF_CONF.TRANSECT_SEGMENTS_POINTS)*n+segStart">
+            <div class="form-group">
+              <label style="width:30px;">{{point | number:1 }}</label>
+              <input ng-model="line_transect[seg][n].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:55px;" />
+            </div>
+            <div class="form-group">
+              <label style="width:30px;">{{point + 10 | number:1 }}</label>
+              <input ng-model="line_transect[seg][n+20].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:55px;" />
+            </div> 
+          </div>
+        </div>       
+      </div>
+    </div>
+  </div>

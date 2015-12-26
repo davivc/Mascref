@@ -1,0 +1,675 @@
+﻿<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>Basic Information</strong>
+  </div>
+  <div class="panel-body">         
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Identifier</label>
+      <label class="col-sm-9">{{transect.name}}</label>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>           
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Orientation of transect</label>
+      <div class="col-sm-9 form-inline">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.orientation"><i></i> N-S
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="2" ng-model="transect.info.orientation"><i></i> E-W
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="3" ng-model="transect.info.orientation"><i></i> NE-SW
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="4" ng-model="transect.info.orientation"><i></i> SE-NW
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Temperature</label>
+      <div class="">
+        <div class="col-sm-2">
+          <label class="control-label">Air </label>
+          <div class="input-group m-b">                              
+            <input type="text" class="form-control input-sm w-xxs">
+            <span class="input-group-addon">&deg;C</span>
+          </div>  
+        </div>
+        <div class="col-sm-2">
+          <label class="control-label">Surface </label>
+          <div class="input-group m-b">                              
+            <input type="text" class="form-control input-sm w-xxs">
+            <span class="input-group-addon">&deg;C</span>
+          </div>  
+        </div>
+        <div class="col-sm-2">
+          <label class="control-label">at 3m </label>
+          <div class="input-group m-b">                              
+            <input type="text" class="form-control input-sm w-xxs">
+            <span class="input-group-addon">&deg;C</span>
+          </div>                            
+        </div>
+        <div class="col-sm-2">
+          <label class="control-label">at 10m </label>
+          <div class="input-group m-b">                              
+            <input type="text" class="form-control input-sm w-xxs">
+            <span class="input-group-addon">&deg;C</span>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Distance of start point from shore</label>
+      <div class="col-sm-2">
+        <div class="input-group m-b">  
+          <input type="text" class="form-control input-sm w-xxs">
+          <span class="input-group-addon">m</span>
+        </div>
+      </div>
+      <label class="col-sm-3 control-label">Distance from the nearest river</label>
+      <div class="col-sm-2">
+        <div class="input-group m-b">  
+          <input type="text" class="form-control input-sm w-xxs">
+          <span class="input-group-addon">km</span>
+        </div>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">River mouth width</label>
+      <div class="col-sm-9 form-inline">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.river_mouth"><i></i> &lt; 10m
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="2" ng-model="transect.info.river_mouth"><i></i> 11-50m
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="3" ng-model="transect.info.river_mouth"><i></i> 51-100m
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="4" ng-model="transect.info.river_mouth"><i></i> 101-500m
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Distance to nearest population center</label>
+      <div class="col-sm-2">
+        <div class="input-group m-b">  
+          <input type="text" class="form-control input-sm w-xxs">
+          <span class="input-group-addon">km</span>
+        </div>
+      </div>
+      <label class="col-sm-3 control-label">Population size</label>
+      <div class="col-sm-2">
+        <div class="input-group m-b">  
+          <input type="text" class="form-control input-sm w-xxs">
+          <span class="input-group-addon">x1000</span>
+        </div>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Weather</label>
+      <div class="col-sm-9 form-inline">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.weather"><i></i> Sunny
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="2" ng-model="transect.info.weather"><i></i> Cloudy
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="3" ng-model="transect.info.weather"><i></i> Raining
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Horizontal underwater visibility</label>
+      <div class="col-sm-2">
+        <div class="input-group m-b">  
+          <input type="text" class="form-control input-sm w-xxs">
+          <span class="input-group-addon">m</span>
+        </div>
+      </div>
+      <label class="col-sm-3 control-label">Is this the best reef area?</label>
+      <div class="col-sm-4">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.best_reef"><i></i> yes
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="2" ng-model="transect.info.best_reef"><i></i> no
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Why was this site selected</label>
+      <div class="col-sm-9 form-inline">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> MPA
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="2" ng-model="transect.info.why_selected"><i></i> Impacted
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="3" ng-model="transect.info.why_selected"><i></i> Dive Site
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="3" ng-model="transect.info.why_selected"><i></i> Research
+        </label>
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="3" ng-model="transect.info.why_selected"><i></i> Other                            
+        </label>
+        <input type="text" class="form-control input-sm w-m">
+      </div>
+    </div>                      
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>Impacts</strong>
+  </div>
+  <div class="panel-body">                    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Is this site sheltered?</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Always
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Sometimes
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Exposed
+        </label>
+      </div>
+      <div class="col-sm-2">
+ 
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Major coral damaging storms</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Yes
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> No
+        </label>
+      </div>
+      <div class="col-sm-2">
+        If yes, when was last storm?
+      </div>
+      <div class="col-sm-2">
+                          
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Overall anthropogenic impact (estimate)</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Is siltation a problem?</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Never
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Occasionally
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Often
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Always
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Blast fishing</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Poison fishing</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Aquarium fishing</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Harvest of inverts for food</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Harvest of inverts for curio sales</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Tourist diving/snorkeling</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Sewage pollution (outfall or boat)</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Industrial pollution</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Commercial fishing (fish caught to sell for food)</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Live food fish trade</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Artisinal/recreational (personal consumption)</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Low
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> High
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Yachts typically present within 1km of this site</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Few (1-2)
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Med (3-5)
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> Many (>5)
+        </label>
+      </div>
+    </div>
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Other impacts</label>
+      <div class="col-sm-9">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.why_selected"><i></i> None
+        </label>
+      </div>                        
+    </div>                      
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>Protection</strong>
+  </div>
+  <div class="panel-body">                    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Any protection (legal or other) at this site?</label>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="1" ng-model="transect.info.protection"><i></i> Yes
+        </label>
+      </div>
+      <div class="col-sm-2">
+        <label class="checkbox-inline i-checks">
+          <input type="radio" value="2" ng-model="transect.info.protection"><i></i> No
+        </label>
+      </div>
+      <div class="col-sm-3 text-danger" ng-show="transect.info.protection == 1">
+        If yes, answer questions below
+      </div>
+    </div>
+    <div ng-show="transect.info.protection == 1">
+      <div class="line line-dashed b-b line-lg pull-in"></div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Is protection enforced?</label>
+        <div class="col-sm-2">
+          <label class="checkbox-inline i-checks">
+            <input type="radio" value="1" ng-model="transect.info.protection_enforced"><i></i> Yes
+          </label>
+        </div>
+        <div class="col-sm-2">
+          <label class="checkbox-inline i-checks">
+            <input type="radio" value="2" ng-model="transect.info.protection_enforced"><i></i> No
+          </label>
+        </div>
+      </div>
+      <div class="line line-dashed b-b line-lg pull-in"></div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Level of poaching in protected area?</label>
+        <div class="col-sm-2">
+          <label class="checkbox-inline i-checks">
+            <input type="radio" value="1" ng-model="transect.info.protection_poaching"><i></i> None
+          </label>
+        </div>
+        <div class="col-sm-2">
+          <label class="checkbox-inline i-checks">
+            <input type="radio" value="2" ng-model="transect.info.protection_poaching"><i></i> Low (&lt;1/month)
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label class="checkbox-inline i-checks">
+            <input type="radio" value="2" ng-model="transect.info.protection_poaching"><i></i> Med (&gt;1/month, &lt;1/wk)
+          </label>
+        </div>
+        <div class="col-sm-2">
+          <label class="checkbox-inline i-checks">
+            <input type="radio" value="2" ng-model="transect.info.protection_poaching"><i></i> High (1+/wk)
+          </label>
+        </div>
+      </div>
+      <div class="line line-dashed b-b line-lg pull-in"></div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Check which activities are banned?</label>
+        <div class="col-sm-4">
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Spearfishing
+            </label>
+          </div>
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Commercial fishing
+            </label>
+          </div>
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Recreational fishing
+            </label>
+          </div>
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Invertebrate/shell collecting
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Anchoring
+            </label>
+          </div>
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Diving
+            </label>
+          </div>
+          <div>
+            <label class="checkbox-inline i-checks">
+              <input type="checkbox" value="1" ng-model="transect.info.protection_banned"><i></i> Other (please specify below)
+            </label>
+          </div>
+          <div>
+            <input type="text" class="form-control input-sm" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
