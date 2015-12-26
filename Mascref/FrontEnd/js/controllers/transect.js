@@ -3,7 +3,7 @@
 /* Transect Controllers */
 
 angular.module('app.controllers')
-  .controller('TransectCtrl', ['$scope', '$translate', '$state', '$stateParams', '$filter', 'Sites', 'Transect', 'Group', 'Segment', 'Country', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $filter, Sites, Transect, Group, Segment, Country, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF) {
+  .controller('TransectCtrl', ['$scope', '$translate', '$state', '$stateParams', '$filter', 'Sites', 'Transect', 'Group', 'Segment', 'Country', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'coordinateFilterFilter', 'MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $filter, Sites, Transect, Group, Segment, Country, uiGmapGoogleMapApi, uiGmapIsReady, coordinateFilterFilter, MASCREF_CONF) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -34,6 +34,7 @@ angular.module('app.controllers')
     }
 
     $scope.line_groups = []
+    $scope.markers = []
     $scope.belt_categories = {}
     $scope.belt_groups = {}
     $scope.response = {}
@@ -175,24 +176,53 @@ angular.module('app.controllers')
       });
     }
 
-    $scope.updateMarkers = function() {
+    $scope.updateMap = function() {
+      if($scope.transect.info.id || !$scope.transect.info.coords) return 0;
+
       $scope.markers = [{
-        id: $scope.transect.info.id ? $scope.transect.info.id : 1,
+        id: 0,
+        coords: {
+          latitude: parseFloat(coordinateFilterFilter($scope.transect.info.coords.dd.lat, 'toDD')) || MASCREF_CONF.COORD.LAT,
+          longitude: parseFloat(coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDD')) || MASCREF_CONF.COORD.LONG
+        },
+        options: { draggable: true, show: true, title: ($scope.transect.info.site ? $scope.transect.info.site.name : '') },
+        events: {
+          dragend: function (marker, eventName, args) {
+            $scope.transect.info.coords.dd.lat = $filter('number')(marker.getPosition().lat(),6);
+            $scope.transect.info.coords.dd.long = $filter('number')(marker.getPosition().lng(),6);
+          }
+        }
+      }];
+
+      $scope.map.center = {
+        latitude: parseFloat(coordinateFilterFilter($scope.transect.info.coords.dd.lat, 'toDD')) || MASCREF_CONF.COORD.LAT,
+        longitude: parseFloat(coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDD')) || MASCREF_CONF.COORD.LONG
+      }
+
+      console.log($scope.map.center)
+    }
+
+    $scope.initMarkers = function() {
+      $scope.markers = [{
+        id: $scope.transect.info.site.id,
         coords: {
           latitude: $scope.transect.info.site.lat,
-          longitude: $scope.transect.info.site.long
+          longitude: $scope.transect.info.site.long 
         },
         options: {
-          draggable: true,
+          draggable: false,
           show: true,
           title: $scope.transect.info.site.name
         }
       }];
 
+      $scope.transect.info.coords.dd.lat = $scope.transect.info.site.lat;
+      $scope.transect.info.coords.dd.long = $scope.transect.info.site.long;      
+
       $scope.bounds = new google.maps.LatLngBounds();
       angular.forEach($scope.markers, function (value, key) {
-          var myLatLng = new google.maps.LatLng($scope.markers[key].coords.latitude, $scope.markers[key].coords.longitude);
-          $scope.bounds.extend(myLatLng);
+        var myLatLng = new google.maps.LatLng($scope.markers[key].coords.latitude, $scope.markers[key].coords.longitude);
+        $scope.bounds.extend(myLatLng);
       });
       $scope.map = { center: { latitude: $scope.bounds.getCenter().lat(), longitude: $scope.bounds.getCenter().lng() } };
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
@@ -210,9 +240,11 @@ angular.module('app.controllers')
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.$watch('transect.info.site.lat', function (newVal, oldVal) {
         if ($scope.transect.info.site && $scope.transect.info.site.lat && $scope.transect.info.site.long) {
-          $scope.updateMarkers();
+          $scope.initMarkers();
         }
       });
+      //$scope.$watch('transect.info.coords.dd.lat', $scope.updateMap);
+      //$scope.$watch('transect.info.coords.dd.long', $scope.updateMap);
     }));
         
     // Run

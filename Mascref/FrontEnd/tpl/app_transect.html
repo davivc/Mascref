@@ -4,32 +4,31 @@
       <!-- Begin Surveys Panel-->
       <div class="panel">
         <div class="wrapper-lg">
-          <h2 class="m-t-none"><a href>{{transect.site.name ? transect.site.name : 'Site name' }}</a></h2>
+          <h2 class="m-t-none"><a href>{{transect.info.site.name ? transect.info.site.name : 'Site name' }}</a></h2>
           <div>
             <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' control='control'>
-              <ui-gmap-marker coords="item.coords" idkey="item.id" options="item.options" ng-repeat="item in markers"></ui-gmap-marker>
+              <ui-gmap-marker coords="item.coords" idkey="item.id" options="item.options" events="item.events" ng-repeat="item in markers"></ui-gmap-marker>
             </ui-gmap-google-map>
           </div>
           <div>
+
             <div class="form-group pull-in clearfix">
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <label>Site name</label>
                 <i ng-show="loadingSite" class="fa fa-spinner fa-spin form-control-spin"></i>
-                <input type="text" class="form-control" ng-model="transect.info.site" placeholder="Site name" uib-typeahead="site as (site.name + ' (' + site.lat + ', ' + site.long + ')') for site in getSites($viewValue)" uib-typeahead-loading="loadingSite" ng-click="updateMap()">
+                <input type="text" class="form-control" ng-model="transect.info.site" placeholder="Site name" uib-typeahead="site as site.name for site in getSites($viewValue)" uib-typeahead-loading="loadingSite" ng-click="updateMap()">
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <label>Country</label>
                 <i ng-show="loadingCountry" class="fa fa-spinner fa-spin form-control-spin"></i>
                 <input type="text" class="form-control" ng-disabled="transect.info.site.country_name" ng-model="transect.info.country" placeholder="{{transect.info.site.country_name ? transect.info.site.country_name : 'Country name'}}" uib-typeahead="country as country.name for country in getCountries($viewValue)" uib-typeahead-loading="loadingCountry">
               </div>
-            </div>
-            <div class="form-group pull-in clearfix">
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <label>Province / State</label>
                 <i ng-show="loadingProvince" class="fa fa-spinner fa-spin form-control-spin"></i>
                 <input type="text" class="form-control" ng-disabled="transect.info.site.province_name" ng-model="transect.info.province" placeholder="{{transect.info.site.province_name ? transect.info.site.province_name : 'Province / State name'}}" uib-typeahead="province as province.name for province in getProvinces($viewValue,transect.info.country.id)" uib-typeahead-loading="loadingProvince">
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <label>Town / Island</label>
                 <i ng-show="loadingTown" class="fa fa-spinner fa-spin form-control-spin"></i>
                 <input type="text" class="form-control" ng-disabled="transect.info.site.town_name" ng-model="transect.info.town" placeholder="{{transect.info.site.town_name ? transect.info.site.town_name : 'Town / Island name'}}" uib-typeahead="town as town.name for town in getTowns($viewValue,transect.info.country.id,transect.info.province.id)" uib-typeahead-loading="loadingTown">
@@ -37,10 +36,60 @@
             </div>
             <div class="form-group pull-in clearfix">
               <div class="col-sm-6">
-                
+                <div class="form-group">
+                  <label>Lat / Long (DD)</label>
+                </div>
+                <div class="form-group">                  
+                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.lat" placeholder="{{transect.info.site.lat ? transect.info.site.lat : 'Latitude'}}" ng-blur="updateMap()">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.long" placeholder="{{transect.info.site.long ? transect.info.site.long : 'Longitude'}}" ng-blur="updateMap()">
+                </div>
               </div>
               <div class="col-sm-6">
-                
+                <div class="form-group">
+                  <label>Lat / Long (DMS)</label>
+                </div>
+                <div class="form-group form-inline">
+                  <label class="checkbox-inline i-checks">
+                    <input type="radio" value="1"  ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.hemisphere" checked><i></i> N
+                  </label>
+                  <label class="checkbox-inline i-checks">
+                    <input type="radio" value="-1"  ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.hemisphere"><i></i> S
+                  </label>
+                  <div class="input-group m-l">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.deg" placeholder="" style="width:" ng-keyup="updateMap()">
+                    <span class="input-group-addon">&deg;</span>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.min" placeholder="" ng-blur="updateMap()">
+                    <span class="input-group-addon">'</span>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" class="form-control" style="width:80px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.sec" placeholder="" ng-blur="updateMap()">
+                    <span class="input-group-addon">"</span>
+                  </div>
+                </div>
+                <div class="form-group form-inline">
+                  <label class="checkbox-inline i-checks">
+                    <input type="radio" value="-1" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.hemisphere" checked><i></i> E
+                  </label>
+                  <label class="checkbox-inline i-checks">
+                    <input type="radio" value="1" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.hemisphere"><i></i> W
+                  </label>
+                  <div class="input-group m-l">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.deg" placeholder="" ng-blur="updateMap()">
+                    <span class="input-group-addon">&deg;</span>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.min" placeholder="" ng-blur="updateMap()">
+                    <span class="input-group-addon">'</span>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" class="form-control" style="width:80px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.sec" placeholder="" ng-blur="updateMap()">
+                    <span class="input-group-addon">"</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="form-group pull-in clearfix">
