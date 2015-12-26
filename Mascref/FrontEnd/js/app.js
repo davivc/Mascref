@@ -174,4 +174,13 @@ var app = angular.module('app', [
     'js/jquery/wysiwyg/bootstrap-wysiwyg.js',
     'js/jquery/wysiwyg/jquery.hotkeys.js'
   ],
+})
+.value('MASCREF_CONF', {
+  COORD: { LAT: -18.15, LONG: 178.4, ZOOM: 12 },
+  SIGNIFICANT_DIGITS: 4,
+  TRANSECT_SEGMENTS_LENGTH: 20, // Length of segment
+  TRANSECT_SEGMENTS_POINTS: 40, // Number of points per segment 
+  TRANSECT_SEGMENTS_SPACE: 5, // Space between segments
+  TRANSECT_SEGMENTS_TOTAL: 4, // Number of segments per transect  
+  TRANSECT_TYPE: { BELT: 1, LINE: 2 },
 });

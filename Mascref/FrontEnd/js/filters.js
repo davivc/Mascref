@@ -30,7 +30,7 @@ angular.module('app.filters', [])
     var sum = 0;
     angular.forEach(data, function (v, k) {
       var val = 0;
-      if (key) val = parseFloat(v[key]);
+      if (key !== "" && key !== null && key !== undefined) val = parseFloat(v[key]);
       else val = parseFloat(v);
 
       if (isFinite(val)) sum += val;
