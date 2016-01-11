@@ -3,7 +3,7 @@
 /* Surveys Controllers */
 
 angular.module('app.controllers')
-  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Sites', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Sites, uiGmapGoogleMapApi) {
+  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Surveys, uiGmapGoogleMapApi) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');

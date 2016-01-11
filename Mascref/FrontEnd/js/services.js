@@ -19,22 +19,7 @@ angular.module('app.services', [])
     }
 
     return service;
-  })
-  .service('Country', function Country(Rest) {
-    var service = {
-      'url': "/countries/",
-      'list': function (search) {
-        var qStr = '?';
-        if (search) qStr = qStr + 'search=' + search
-        return Rest.get(this.url + qStr);
-      },
-      'get': function (pk) {
-        return Rest.get(this.url + pk + "/");
-      }
-    }
-
-    return service;
-  })
+  })  
   .service('Projects', function Projects(Rest) {
     var service = {      
       'list': function (parent) {
@@ -123,42 +108,7 @@ angular.module('app.services', [])
     }
 
     return service;
-  })
-  .service('Sites', function Surveys(Rest) {
-    var service = {
-      'list': function (search) {
-        var qStr = '?';
-        if (search) qStr = qStr + 'search=' + search
-        return Rest.request({
-          'method': "GET",
-          'url': "/sites/" + qStr
-        });
-      },
-      'get': function (pk) {
-        return Rest.request({
-          'method': "GET",
-          'url': "/sites/" + pk + "/"
-        });
-      },
-      'create': function (pData) {
-        var data = {
-          'name': pData.name,
-          'project': pData.project,
-          'date_start': pData.date_start,
-          'date_end': pData.date_end,
-          'public': pData.restricted,
-          'owner': pData.owner.id
-        }
-        return Rest.request({
-          'method': "POST",
-          'url': "/sites/",
-          'data': data
-        });
-      }
-    }
-
-    return service;
-  })
+  })  
   .service('Transect', function Transect(Rest) {
     var service = {
       'url': "/transects/",

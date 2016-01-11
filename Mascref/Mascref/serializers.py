@@ -77,7 +77,7 @@ class GroupCategorySerializer (serializers.ModelSerializer):
 class ProvinceSerializer (serializers.ModelSerializer):
     class Meta:
         model = Province
-        fields = ('name','country')
+        fields = ('id','name','country')
 
 
 class TownSerializer (serializers.ModelSerializer):
@@ -199,15 +199,22 @@ class GroupCategoryViewSet(viewsets.ModelViewSet):
     ordering = ('name',)
 
 
-class ProvinceViewSet(viewsets.ModelViewSet):
+class ProvinceViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Province.objects.all()
     serializer_class = ProvinceSerializer
     ordering = ('name',)
+    filter_backends = (filters.SearchFilter,filters.DjangoFilterBackend,)
+    filter_fields = ('country',)
+    search_fields = ('name',)
 
 
-class TownViewSet(viewsets.ModelViewSet):
+class TownViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
+    ordering = ('name',)
+    filter_backends = (filters.SearchFilter,filters.DjangoFilterBackend,)
+    filter_fields = ('country','province',)
+    search_fields = ('name',)
 
 
 class SegmentViewSet(LoggingMixin, viewsets.ModelViewSet):

@@ -26,12 +26,12 @@
               <div class="col-sm-3">
                 <label>Province / State</label>
                 <i ng-show="loadingProvince" class="fa fa-spinner fa-spin form-control-spin"></i>
-                <input type="text" class="form-control" ng-disabled="transect.info.site.province_name" ng-model="transect.info.province" placeholder="{{transect.info.site.province_name ? transect.info.site.province_name : 'Province / State name'}}" uib-typeahead="province as province.name for province in getProvinces($viewValue,transect.info.country.id)" uib-typeahead-loading="loadingProvince">
+                <input type="text" class="form-control" ng-disabled="transect.info.site.province_name || !transect.info.country.id" ng-model="transect.info.province" placeholder="{{transect.info.site.province_name ? transect.info.site.province_name : 'Province / State name'}}" uib-typeahead="province as province.name for province in getProvinces($viewValue, transect.info.country.id)" uib-typeahead-loading="loadingProvince">
               </div>
               <div class="col-sm-3">
                 <label>Town / Island</label>
                 <i ng-show="loadingTown" class="fa fa-spinner fa-spin form-control-spin"></i>
-                <input type="text" class="form-control" ng-disabled="transect.info.site.town_name" ng-model="transect.info.town" placeholder="{{transect.info.site.town_name ? transect.info.site.town_name : 'Town / Island name'}}" uib-typeahead="town as town.name for town in getTowns($viewValue,transect.info.country.id,transect.info.province.id)" uib-typeahead-loading="loadingTown">
+                <input type="text" class="form-control" ng-disabled="transect.info.site.town_name || !transect.info.country.id" ng-model="transect.info.town" placeholder="{{transect.info.site.town_name ? transect.info.site.town_name : 'Town / Island name'}}" uib-typeahead="town as town.name for town in getTowns($viewValue,transect.info.country.id,transect.info.province.id)" uib-typeahead-loading="loadingTown">
               </div>
             </div>
             <div class="form-group pull-in clearfix">

@@ -3,7 +3,42 @@
 /* Transect Controllers */
 
 angular.module('app.controllers')
-  .controller('TransectCtrl', ['$scope', '$translate', '$state', '$stateParams', '$filter', 'Sites', 'Transect', 'Group', 'Segment', 'Country', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'coordinateFilterFilter', 'MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $filter, Sites, Transect, Group, Segment, Country, uiGmapGoogleMapApi, uiGmapIsReady, coordinateFilterFilter, MASCREF_CONF) {
+  .controller('TransectCtrl', 
+    [
+      '$scope', 
+      '$translate', 
+      '$state', 
+      '$stateParams', 
+      '$filter', 
+      'Site', 
+      'Transect', 
+      'Group', 
+      'Segment', 
+      'Country', 
+      'Province',
+      'Town',
+      'uiGmapGoogleMapApi', 
+      'uiGmapIsReady', 
+      'coordinateFilterFilter', 
+      'MASCREF_CONF', 
+      function (
+          $scope, 
+          $translate, 
+          $state, 
+          $stateParams, 
+          $filter, 
+          Site, 
+          Transect, 
+          Group, 
+          Segment, 
+          Country, 
+          Province, 
+          Town,
+          uiGmapGoogleMapApi, 
+          uiGmapIsReady, 
+          coordinateFilterFilter, 
+          MASCREF_CONF
+      ) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -91,13 +126,34 @@ angular.module('app.controllers')
         angular.forEach(data, function (item) {
           countries.push(item);
         });
-        console.log(countries)
         return countries;
       });
     };
 
+    $scope.getProvinces = function (val, country) {
+      return Province.list(val, country)
+      .then(function (data) {
+        var provinces = [];
+        angular.forEach(data, function (item) {
+          provinces.push(item);
+        });
+        return provinces;
+      });
+    };
+
+    $scope.getTowns = function (val, country, province) {
+      return Town.list(val, country, province)
+      .then(function (data) {
+        var towns = [];
+        angular.forEach(data, function (item) {
+          towns.push(item);
+        });
+        return towns;
+      });
+    };
+
     $scope.getSites = function (val) {
-      return Sites.list(val)
+      return Site.list(val)
       .then(function (data) {
         var sites = [];
         angular.forEach(data, function (item) {
@@ -148,7 +204,7 @@ angular.module('app.controllers')
     }
 
     $scope.save = function () {
-      if($scope.validateForm()) return false;
+      //if($scope.validateForm()) return false;
 
       // 0 - Check if site has id, otherwise create everything
       if($scope.transect.info.site && !$scope.transect.info.site.id) {
@@ -169,6 +225,7 @@ angular.module('app.controllers')
         $scope.saveBelt();
         $scope.saveInfo();
         $scope.saveTeam();
+        // change url path
       }, function (error) {
         $scope.response = error
       });
@@ -178,6 +235,30 @@ angular.module('app.controllers')
       Country.save($scope.transect.info.country)
       .then(function (data) {
         $scope.transect.info.country = data;
+        $scope.save();
+      });
+    }
+
+    $scope.saveProvince = function () {
+      Province.save({ 'name': $scope.transect.info.province, 'country': $scope.transect.info.country.id })
+      .then(function (data) {
+        $scope.transect.info.province = data;
+        $scope.save();
+      });
+    }
+
+    $scope.saveTown = function () {
+      Town.save({ 'name': $scope.transect.info.town, 'country': $scope.transect.info.country.id, 'province': $scope.transect.info.province.id })
+      .then(function (data) {
+        $scope.transect.info.town = data;
+        $scope.save();
+      });
+    }
+
+    $scope.saveSite = function () {
+      Site.save({ 'name': $scope.transect.info.site, 'lat': $scope.transect.info.coords.dd.lat, 'long': $scope.transect.info.coords.dd.long, 'town': $scope.transect.info.town.id })
+      .then(function (data) {
+        $scope.transect.info.site = data;
         $scope.save();
       });
     }
@@ -237,7 +318,7 @@ angular.module('app.controllers')
         longitude: parseFloat(coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDD')) || MASCREF_CONF.COORD.LONG
       }
 
-      console.log($scope.map.center)
+      // console.log($scope.map.center)
     }
 
     $scope.initMarkers = function() {
