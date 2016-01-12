@@ -99,11 +99,13 @@ class ResearcherSerializer (serializers.ModelSerializer):
 
 class SegmentSerializer (serializers.ModelSerializer):
     group_name = serializers.ReadOnlyField(source='group.name', read_only=True)
+    parent = serializers.ReadOnlyField(source='group.parent.id', read_only=True)
+    parent_name = serializers.ReadOnlyField(source='group.parent.name', read_only=True)
 
     class Meta:
         model = Segment
         #list_serializer_class = SegmentListSerializer
-        fields = ('token', 'transect','type','segment','group','group_name','value','created_at','updated_at',)
+        fields = ('token', 'transect','type','segment','group','group_name','parent','parent_name','value','created_at','updated_at',)
 
 
 class SiteSerializer (serializers.ModelSerializer):

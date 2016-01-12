@@ -64,7 +64,7 @@ angular.module('app.controllers')
     }
 
     for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
-      $scope.transect.belt.data[i] = [];
+      // $scope.transect.belt.data[i] = [];
       $scope.transect.line.data[i] = [];
     }
 
@@ -108,7 +108,7 @@ angular.module('app.controllers')
         $scope.transect.info = data;        
 
         $scope.getDataLine($scope.transect.info.id);
-        //$scope.getDataBelt($stateParams.transect.id);
+        $scope.getDataBelt($scope.transect.info.id);
         $scope.getInfo($scope.transect.info.id);
         //$scope.getTeam($stateParams.transect.id);
         
@@ -197,6 +197,29 @@ angular.module('app.controllers')
 
         });
       });
+    }
+
+    $scope.getDataBelt = function (transect) {
+      for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
+        Segment.list(transect, MASCREF_CONF.TRANSECT_TYPE.BELT, i + 1)
+        .then(function (data) {
+          //$scope.line_transect[k] = data
+          console.log(data)
+          angular.forEach(data, function (dV, dK) {
+            if(!$scope.transect.belt.data[dV['group']]) $scope.transect.belt.data[dV['group']] = [];
+            $scope.transect.belt.data[dV['group']][i] = dV.value;
+            if(dV['parent']) {
+              if(!$scope.transect.belt.data[dV['parent']]) $scope.transect.belt.data[dV['parent']] = { 'sub_groups': [] };
+              if(!$scope.transect.belt.data[dV['parent']]['sub_groups'][dV['group']]) $scope.transect.belt.data[dV['parent']]['sub_groups'][dV['group']] = [];
+              $scope.transect.belt.data[dV['parent']]['sub_groups'][dV['group']][i] = dV.value;
+            }
+          });
+          console.log($scope.transect.belt.data)
+        }, function (error) {
+
+        });
+        break;
+      }
     }
 
     $scope.getInfo = function (pId) {
@@ -390,9 +413,19 @@ angular.module('app.controllers')
       //$scope.$watch('transect.info.coords.dd.lat', $scope.updateMap);
       //$scope.$watch('transect.info.coords.dd.long', $scope.updateMap);
     }));
+
+    // $scope.initBeltForm = function() {
+    //   angular.forEach($scope.transect.belt.data, function (v, seg) {
+    //     angular.forEach($scope.belt_groups, function (val, key) {
+    //       console.log(val)
+    //       //if(dV['parent']) $scope.transect.belt.data[dV['parent']]['sub_groups'][dV['group']][seg] = dV.value;
+    //       //else $scope.transect.belt.data[dV['group']][seg] = dV.value;
+    //     });
+    //   });
+    // }
         
     // Run
-    if ($stateParams.transectId) $scope.getTransect($stateParams.transectId);
     $scope.getCategories(null, MASCREF_CONF.TRANSECT_TYPE.BELT);
     $scope.getGroups('line_groups', 'null', MASCREF_CONF.TRANSECT_TYPE.LINE);    
+    if ($stateParams.transectId) $scope.getTransect($stateParams.transectId);
   }]);

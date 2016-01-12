@@ -39,7 +39,7 @@
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
               <div ng-if="group.sub_groups.length != 0">{{ transect.belt.data[group.id]['sub_groups'] | sum:seg }}</div>
               <div ng-if="group.sub_groups.length == 0" class="input-group">
-                <input ng-model="transect.belt.data[group.id][seg]" type="text" class="form-control input-sm text-center" value="0" />
+                <input ng-model="transect.belt.data[group.id][seg]" ng-init="transect.belt.data[group.id][seg] = 0" type="text" class="form-control input-sm text-center" value="0" />
                 <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
@@ -51,7 +51,7 @@
             <td>{{sub.name}}</td>
             <td class="text-center" ng-repeat="seg in [0,1,2,3]">
               <div class="input-group">
-                <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg]" type="text" class="form-control input-sm text-center" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
+                <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg]" ng-init="transect.belt.data[group.id]['sub_groups'][sub.id][seg] = 0" type="text" class="form-control input-sm text-center" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
                 <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
