@@ -108,32 +108,5 @@ angular.module('app.services', [])
     }
 
     return service;
-  })  
-  .service('Transect', function Transect(Rest) {
-    var service = {
-      'url': "/transects/",
-      'list': function (search) {
-        var qStr = '?';
-        if (search) qStr = qStr + 'search=' + search
-        return Rest.get(this.url + qStr);
-      },
-      'get': function (pk) {
-        return Rest.get(this.url + pk + "/");
-      },
-      'save': function (pData) {
-        var data = {
-          'name': pData.name,
-          'survey': pData.survey,
-          'site': pData.site.id,
-          'date': pData.date,
-          'time_start': pData.time_start,          
-          //'team_leader': pData.team_leader.id ? pData.team_leader.id : '',
-          'depth': pData.depth
-        }
-        if (pData.id) return Rest.patch(this.url + pData.id + "/", data);
-        else return Rest.post(this.url, data);
-      }
-    }
-
-    return service;
   });
+  

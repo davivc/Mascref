@@ -57,7 +57,7 @@ angular.module('app.controllers')
     ];
     $scope.transect = { 
       info: {},      
-      conditions: {},
+      basic: {},
       team: {},
       belt: { data: [] },
       line: { data: [] }
@@ -109,10 +109,10 @@ angular.module('app.controllers')
 
         $scope.getDataLine($scope.transect.info.id);
         //$scope.getDataBelt($stateParams.transect.id);
-        //$scope.getInfo($stateParams.transect.id);
+        $scope.getInfo($scope.transect.info.id);
         //$scope.getTeam($stateParams.transect.id);
         
-        if ($scope.transect.info.site) Sites.get($scope.transect.info.site).then(function (data) { $scope.transect.info.site = data }, function (error) { });
+        if ($scope.transect.info.site) Site.get($scope.transect.info.site).then(function (data) { $scope.transect.info.site = data }, function (error) { });
       }, function (error) {
         //console.log(error)
         //$state.go('app.projects.view.survey', { projectId: $stateParams.surveyId });
@@ -199,6 +199,17 @@ angular.module('app.controllers')
       });
     }
 
+    $scope.getInfo = function (pId) {
+      Transect.getInfo(pId)
+      .then(function (data) {
+        angular.forEach(data, function (v, k) {
+          $scope.transect.basic[v['name']] = v['value'];
+        });
+      }, function (error) {
+
+      });    
+    }
+
     $scope.sum = function (data,prop) {
       return $filter('sum')(data,prop);
     }
@@ -220,7 +231,7 @@ angular.module('app.controllers')
       // 5 - Save Transect
       Transect.save($scope.transect.info)
       .then(function (data) {
-        $scope.transect.info = data;
+        // $scope.transect.info = data;
         $scope.saveLine();
         $scope.saveBelt();
         $scope.saveInfo();
@@ -288,7 +299,16 @@ angular.module('app.controllers')
     }
 
     $scope.saveInfo = function() {
-      
+      angular.forEach($scope.transect.basic, function (v, k) {
+        Transect.getInfo($scope.transect.info.id,k).then(function (data) { 
+          Transect.saveInfo({ 
+            'id': data[0].id ? data[0].id : null,
+            'transect': $scope.transect.info.id,
+            'name': k,
+            'value': v,
+          }).then(function (data) {  }, function (error) { });
+        }, function (error) { });
+      });
     }
 
     $scope.saveTeam = function() {
@@ -335,8 +355,12 @@ angular.module('app.controllers')
         }
       }];
 
-      $scope.transect.info.coords.dd.lat = $scope.transect.info.site.lat;
-      $scope.transect.info.coords.dd.long = $scope.transect.info.site.long;      
+      $scope.transect.info.coords = {
+        'dd': {
+          lat: $scope.transect.info.site.lat,
+          long: $scope.transect.info.site.long,
+        }
+      }
 
       $scope.bounds = new google.maps.LatLngBounds();
       angular.forEach($scope.markers, function (value, key) {
@@ -347,6 +371,7 @@ angular.module('app.controllers')
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
 
       $scope.control.getGMap().fitBounds($scope.bounds);
+      $scope.control.getGMap().setZoom($scope.control.getGMap().getZoom()-2)
     }
 
     // uiGmapGoogleMapApi is a promise.

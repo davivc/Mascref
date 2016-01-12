@@ -21,6 +21,7 @@ from app.models import Survey
 from app.models import Town
 from app.models import Transect
 from app.models import Transect_Type
+from app.models import Transect_Info
 from django.contrib.auth.models import User
 
 
@@ -77,7 +78,7 @@ class GroupCategorySerializer (serializers.ModelSerializer):
 class ProvinceSerializer (serializers.ModelSerializer):
     class Meta:
         model = Province
-        fields = ('id','name','country')
+        fields = ('name','country')
 
 
 class TownSerializer (serializers.ModelSerializer):
@@ -137,10 +138,17 @@ class TransectSerializer (serializers.ModelSerializer):
         model = Transect
         fields = ('id','survey','site','name','depth','date','time_start','team_leader')
 
+
 class TransectTypeSerializer (serializers.ModelSerializer):
     class Meta:
         model = Transect_Type
         fields = ('name',)
+
+
+class TransectInfoSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Transect_Info
+        fields = ('id','transect','name','value','description',)
 
 
 # Non-Models Serializers
@@ -285,6 +293,14 @@ class TransectTypeViewSet(viewsets.ModelViewSet):
     queryset = Transect_Type.objects.all()
     serializer_class = TransectTypeSerializer
     ordering = ('name',)
+
+
+class TransectInfoViewSet(viewsets.ModelViewSet):
+    queryset = Transect_Info.objects.all()
+    serializer_class = TransectInfoSerializer
+    ordering = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('transect','name',)
 
 
 # Non-Models

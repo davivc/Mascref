@@ -92,6 +92,41 @@
                 </div>
               </div>
             </div>
+             <div class="form-group pull-in clearfix">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label>Depth</label>
+                </div>
+                <div class="form-group">                  
+                  <input type="text" class="form-control" ng-model="transect.info.depth" placeholder="{{transect.info.depth ? transect.info.depth : 'Depth'}}">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label>Depth category</label>
+                </div>
+                <div class="form-group">                  
+                  <span ng-show="transect.info.depth <= 6" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth > 6">Shallow</span>
+                  <span ng-show="transect.info.depth > 6 && transect.info.depth <= 12" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth <= 6">Medium</span>
+                  <span ng-show="transect.info.depth > 6" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth <= 12">Deep</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Date</label>
+                </div>
+                <div class="form-group form-inline">                
+                  <!-- <div class="input-group"> -->
+                    <input type="text" class="form-control" style="width:120px;" uib-datepicker-popup="dd/MM/yyyy" ng-model="transect.info.date" is-open="$parent.openedDateEnd" uib-datepicker-options="dateOptions" close-text="X" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="toggleOpenDatePicker($event,'openedDateEnd')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    Start <input type="text" class="form-control" style="width:80px;" ng-model="transect.info.date_start" placeholder="{{transect.info.date_start ? transect.info.date_start : 'HH:MM'}}">
+                    End <input type="text" class="form-control" style="width:80px;" ng-model="transect.info.date_end" placeholder="{{transect.info.date_end ? transect.info.date_end : 'HH:MM'}}">
+                  <!-- </div> -->
+                </div>
+              </div>
+            </div>
             <div class="form-group pull-in clearfix">
               <div class="col-sm-12">
                 <uib-tabset class="tab-container">
@@ -102,7 +137,10 @@
               </div>
             </div>
             <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted text-right">
+            <div class="text-muted text-left col-sm-10">
+              {{response}}
+            </div>
+            <div class="text-muted text-right col-sm-2">
               <button type="submit" class="btn btn-sm btn-info" ng-click="save()">Save</button>
             </div>
           </div>

@@ -101,7 +101,7 @@ class Survey(models.Model):
 
 class Transect(models.Model):
     name = models.CharField(max_length=150)
-    depth = models.IntegerField()
+    depth = models.FloatField()
     date = models.DateField(blank=True, null=True)
     time_start = models.TimeField(blank=True, null=True)
     team_leader = models.ForeignKey(Researcher, blank=True, null=True)
@@ -118,6 +118,15 @@ class Transect_Researchers(models.Model):
 
 class Transect_Type(models.Model):
     name = models.CharField(max_length=100)
+
+
+class Transect_Info(models.Model):
+    transect = models.ForeignKey(Transect)
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=255,blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Group_Category(models.Model):
