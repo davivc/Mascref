@@ -9,9 +9,10 @@ angular.module('app.services')
   var service = {
     'url': "/transects/",
     'url_infos': "/transects_infos/",
-    'list': function (search) {
+    'list': function (survey) {
       var qStr = '?';
-      if (search) qStr = qStr + 'search=' + search
+      // if (search) qStr = qStr + 'search=' + search
+      if (survey) qStr = qStr + 'survey=' + survey
       return Rest.get(this.url + qStr);
     },
     'get': function (pk) {

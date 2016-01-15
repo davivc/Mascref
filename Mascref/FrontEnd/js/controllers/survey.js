@@ -3,7 +3,7 @@
 /* Surveys Controllers */
 
 angular.module('app.controllers')
-  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Surveys, uiGmapGoogleMapApi) {
+  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Transect, uiGmapGoogleMapApi) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -32,11 +32,20 @@ angular.module('app.controllers')
         $scope.survey = data;
         $scope.survey.description = $sce.trustAsHtml($scope.survey.description);
         $scope.$parent.breadcrumbs[1] = $scope.survey.name;
+        $scope.getTransects();
       }, function (error) {
         $state.go('app.projects.view', { projectId: $stateParams.projectId });
       });
     }
 
+    $scope.getTransects = function() {
+      Transect.list($scope.survey.id)
+      .then(function (data) {
+        $scope.transects = data;
+      }, function (error) {
+      $state.go('app.projects.view', { projectId: $stateParams.projectId });
+      });
+    }
 
     $scope.goToTransect = function (pk) {
       $state.go('app.projects.view.survey.transect', { transectId: pk });

@@ -136,9 +136,13 @@ class SurveySerializer (serializers.ModelSerializer):
 
 
 class TransectSerializer (serializers.ModelSerializer):
+    site_name = serializers.ReadOnlyField(source='site.name', read_only=True)
+    town_name = serializers.ReadOnlyField(source='site.town.name', read_only=True)
+    team_leader_name = serializers.ReadOnlyField(source='team_leader.name', read_only=True)
+
     class Meta:
         model = Transect
-        fields = ('id','survey','site','name','depth','date','time_start','team_leader')
+        fields = ('id','survey','site','name','depth','date','time_start','team_leader','team_leader_name','site_name','town_name')
 
 
 class TransectTypeSerializer (serializers.ModelSerializer):
@@ -289,6 +293,9 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
 class TransectViewSet(viewsets.ModelViewSet):
     queryset = Transect.objects.all()
     serializer_class = TransectSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('survey',)
+    ordering = ('name','date',)
 
 
 class TransectTypeViewSet(viewsets.ModelViewSet):

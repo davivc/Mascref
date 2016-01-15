@@ -28,11 +28,10 @@
                   <tr>
                     <th>Identifier</th>
                     <th>Site</th>
-                    <th>Depth</th>
+                    <th>Depth (m)</th>
                     <th>Date</th>
+                    <th>Time Start</th>
                     <th>Leader</th>
-                    <th>Created</th>
-                    <th>Public</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,13 +39,12 @@
                       <td colspan="4">No transects found for this project.</td>
                   </tr>        
                   <tr ng-repeat="transect in transects">
-                      <td><a ui-sref="app.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
-                      <td>{{transect.date_start | date:'shortDate'}}</td>
-                      <td>{{transect.date_end | date:'shortDate'}}</td>
-                      <td>{{transect.owner}}</td>
-                      <td>{{transect.type}}</td>
-                      <td>{{transect.created_at | date:'short'}}</td>
-                      <td><i ng-if="transect.public" class="fa fa-check text-success text"></i><i  ng-if="!transect.public" class="fa fa-times text-danger text"></i></td>
+                      <td><a ui-sref="app.projects.view.survey.transect({transectId:transect.id})">{{transect.name}}</a></td>
+                      <td>{{transect.site_name}} ({{transect.town_name}})</td>
+                      <td>{{transect.depth}}</td>
+                      <td>{{transect.date | date:'shortDate'}}</td>
+                      <td>{{transect.time_start}}</td>
+                      <td>{{transect.team_leader_name}}</td>
                   </tr>       
                 </tbody>
                 <tfoot class="hide-if-no-paging">
