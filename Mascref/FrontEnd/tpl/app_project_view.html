@@ -1,5 +1,5 @@
 ﻿<div ng-controller="ProjectViewCtrl" ui-view class="row">
-  <div class="col-sm-9">
+  <div class="col-sm-12">
     <div class="blog-post">                   
       <div class="panel">
         <div>
@@ -132,12 +132,13 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Start</th>
-                  <th>End</th>
+                  <th class="text-center">Date Start</th>
+                  <th class="text-center">Date End</th>
                   <!--<th>Owner</th>-->
-                  <th>Transects</th>
-                  <th>Created</th>
-                  <th>Public</th>
+                  <th class="text-center">Transects</th>
+                  <th class="text-center">Members</th>
+                  <th class="text-center">Date Created</th>
+                  <th class="text-center">Public</th>
                 </tr>
               </thead>
               <tbody>
@@ -146,12 +147,13 @@
                 </tr>        
                 <tr ng-repeat="survey in surveys">
                     <td><a ui-sref="app.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
-                    <td>{{survey.date_start | date:'shortDate'}}</td>
-                    <td>{{survey.date_end | date:'shortDate'}}</td>
+                    <td class="text-center">{{survey.date_start | date:'dd/MM/yyyy'}}</td>
+                    <td class="text-center">{{survey.date_end | date:'dd/MM/yyyy'}}</td>
                     <!--<td>{{survey.owner}}</td>-->
-                    <td>{{survey.transects_count ? survey.transects_count : '0'}}</td>
-                    <td>{{survey.created_at | date:'short'}}</td>
-                    <td><i ng-if="survey.public" class="fa fa-check text-success text"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
+                    <td class="text-center">{{survey.transects_count ? survey.transects_count : '0'}}</td>
+                    <td class="text-center">{{survey.members_count ? survey.members_count : '0'}}</td>
+                    <td class="text-center">{{survey.created_at | date:'short'}}</td>
+                    <td class="text-center"><i ng-if="survey.public" class="fa fa-check text-success text"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
                 </tr>       
               </tbody>
               <tfoot class="hide-if-no-paging">
@@ -255,7 +257,7 @@
              
     </div>
   </div>
-  <div class="col-sm-3">
+  <!-- <div class="col-sm-3">
     <h5 class="font-bold">Info</h5>
     <ul class="list-group">
       <li class="list-group-item">
@@ -296,5 +298,5 @@
       </div>
       <div class="line"></div>        
     </div>
-  </div>
+  </div> -->
 </div>

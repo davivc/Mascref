@@ -18,31 +18,31 @@
             <th style="width:20px;">Code</th>
             <th>Name</th>
             <th class="text-center" ng-repeat="seg in [0,1,2,3]">S{{seg+1}}</th>
-            <th>Total</th>
-            <th>Mean Count</th>  
+            <th class="text-center">Total</th>
+            <th class="text-center">Mean Count</th>  
             <th class="text-center" ng-repeat="seg in [0,1,2,3]">% S{{seg+1}}</th>
-            <th>Mean % segment</th>              
-            <th>SD (%)</th>
+            <th class="text-center">Mean % segment</th>              
+            <th class="text-center">SD (%)</th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="lGroup in line_groups" ng-init="totals[lGroup.name] = []; totals_percentage[lGroup.name] = []">
+          <tr ng-repeat="lGroup in line_groups">
             <th>{{lGroup.name}}</th>
             <td>{{lGroup.description}}</td>
-            <td class="text-center" ng-repeat="seg in [0,1,2,3]">{{totals[lGroup.name][seg] = (transect.line.data[seg] | filter:lGroup.name:strict).length}}</td>
-            <th class="text-center">{{totals[lGroup.name] | sum }}</th>
-            <td class="text-center">{{totals[lGroup.name] | mean | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
-            <td class="text-center" ng-repeat="seg in [0,1,2,3]">{{totals_percentage[lGroup.name][seg] = (totals[lGroup.name][seg]/MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*100 | number:MASCREF_CONF.SIGNIFICANT_DIGITS)}}</td>           
-            <td class="text-center">{{totals_percentage[lGroup.name] | mean | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
-            <td class="text-center">{{totals_percentage[lGroup.name] | sd | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+            <td class="text-center" ng-repeat="seg in [0,1,2,3]">{{line_graphs[lGroup.name]['segs'][seg]}}</td>
+            <th class="text-center">{{line_graphs[lGroup.name]['sum']}}</th>
+            <td class="text-center">{{line_graphs[lGroup.name]['mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+            <td class="text-center" ng-repeat="seg in [0,1,2,3]">{{line_graphs[lGroup.name]['percent_segs'][seg] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+            <td class="text-center">{{line_graphs[lGroup.name]['percent_mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+            <td class="text-center">{{line_graphs[lGroup.name]['percent_sd'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
           </tr>
         </tbody>
         <tbody>
-          <tr>
+          <tr ng-init="totals_seg = []">
             <td></td>
             <td></td>
-            <td class="text-center" ng-repeat="seg in [0,1,2,3]" ng-class="totals[seg] < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS ? 'text-danger' : 'text-success'">{{totals[seg] = (transect.line.data[seg] | filter: { group_name:'!true'}).length}}</td>
-            <td class="text-center" ng-class="total_seg < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ? 'text-danger' : 'text-success'">{{total_seg = (seg | sum)}}</td>
+            <td class="text-center" ng-repeat="seg in [0,1,2,3]" ng-class="totals_seg[seg] < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS ? 'text-danger' : 'text-success'">{{totals_seg[seg] = (transect.line.data[seg] | filter: { group_name:'!true'}).length}}</td>
+            <td class="text-center" ng-class="total_segs < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ? 'text-danger' : 'text-success'">{{total_segs = (totals_seg | sum)}}</td>
             <td></td>              
             <td></td>
             <td></td>

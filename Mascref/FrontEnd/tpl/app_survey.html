@@ -1,6 +1,6 @@
 ﻿<div class="wrapper-md" ng-controller="SurveyCtrl" ui-view>
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-sm-12">
       <div class="blog-post">                   
         <div class="panel">
           <div>
@@ -26,12 +26,12 @@
               <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
                 <thead>
                   <tr>
-                    <th>Identifier</th>
-                    <th>Site</th>
-                    <th>Depth (m)</th>
-                    <th>Date</th>
-                    <th>Time Start</th>
-                    <th>Leader</th>
+                    <th>Reef Check Identifier</th>
+                    <th class="text-center">Site</th>
+                    <th class="text-center">Depth (m)</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Time Start</th>
+                    <th class="text-center">Leader</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,11 +40,11 @@
                   </tr>        
                   <tr ng-repeat="transect in transects">
                       <td><a ui-sref="app.projects.view.survey.transect({transectId:transect.id})">{{transect.name}}</a></td>
-                      <td>{{transect.site_name}} ({{transect.town_name}})</td>
-                      <td>{{transect.depth}}</td>
-                      <td>{{transect.date | date:'shortDate'}}</td>
-                      <td>{{transect.time_start}}</td>
-                      <td>{{transect.team_leader_name}}</td>
+                      <td class="text-center">{{transect.site_name}} ({{transect.town_name}})</td>
+                      <td class="text-center">{{transect.depth | number : 2 }}</td>
+                      <td class="text-center">{{transect.date | date:'shortDate'}}</td>
+                      <td class="text-center">{{transect.time_start}}</td>
+                      <td class="text-center">{{transect.team_leader_name}}</td>
                   </tr>       
                 </tbody>
                 <tfoot class="hide-if-no-paging">
@@ -73,33 +73,21 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3">
+    <!-- <div class="col-sm-3">
       <h5 class="font-bold">Info</h5>
       <ul class="list-group">
         <li class="list-group-item">
           <a href>
-            <span class="badge pull-right">{{info.surveys}}</span>
-            Surveys
+            <span class="badge pull-right">{{survey.transects_count ? survey.transects_count : 0}}</span>
+            Transects
           </a>
         </li>
         <li class="list-group-item">
           <a href>
-            <span class="badge pull-right">{{info.members}}</span>
+            <span class="badge pull-right">{{survey.members_count ? survey.members_count : 0}}</span>
             Members
           </a>
         </li>        
-        <li class="list-group-item">
-          <a href>
-            <span class="badge pull-right">{{info.transects_count}}</span>
-            Transects Count
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href>
-            <span class="badge pull-right">{{info.transects_cover}}</span>
-            Transects Cover
-          </a>
-        </li>
       </ul>
       <h5 class="font-bold">Members</h5>
       <div>
@@ -114,6 +102,6 @@
         </div>
         <div class="line"></div>        
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

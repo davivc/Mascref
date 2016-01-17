@@ -177,7 +177,7 @@ var app = angular.module('app', [
 })
 .value('MASCREF_CONF', {
   COORD: { LAT: -18.15, LONG: 178.4, ZOOM: 12 },
-  SIGNIFICANT_DIGITS: 3,
+  SIGNIFICANT_DIGITS: 2,
   TRANSECT_SEGMENTS_LENGTH: 20, // Length of segment
   TRANSECT_SEGMENTS_POINTS: 40, // Number of points per segment 
   TRANSECT_SEGMENTS_SPACE: 5, // Space between segments

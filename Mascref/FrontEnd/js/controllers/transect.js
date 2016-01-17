@@ -56,12 +56,15 @@ angular.module('app.controllers')
       { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
     ];
     $scope.transect = { 
-      info: {},      
+      info: { survey: $stateParams.surveyId },      
       basic: {},
       team: {},
       belt: { data: [] },
       line: { data: [] }
     }
+
+    $scope.line_graphs = {};
+    $scope.$watch('transect.line.data',function(oldVal,newVal) { $scope.updateLineGraphs(); }, true)
 
     for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
       // $scope.transect.belt.data[i] = [];
@@ -204,7 +207,7 @@ angular.module('app.controllers')
         Segment.list(transect, MASCREF_CONF.TRANSECT_TYPE.BELT, i + 1)
         .then(function (data) {
           //$scope.line_transect[k] = data
-          console.log(data)
+          // console.log(data)
           angular.forEach(data, function (dV, dK) {
             if(!$scope.transect.belt.data[dV['group']]) $scope.transect.belt.data[dV['group']] = [];
             $scope.transect.belt.data[dV['group']][i] = dV.value;
@@ -214,7 +217,7 @@ angular.module('app.controllers')
               $scope.transect.belt.data[dV['parent']]['sub_groups'][dV['group']][i] = dV.value;
             }
           });
-          console.log($scope.transect.belt.data)
+          // console.log($scope.transect.belt.data)
         }, function (error) {
 
         });
@@ -231,6 +234,28 @@ angular.module('app.controllers')
       }, function (error) {
 
       });    
+    }
+
+    $scope.updateLineGraphs = function() {
+      angular.forEach($scope.line_groups, function (groups_val, groups_key) {
+        $scope.line_graphs[groups_val.name] = { 'segs': [], 'sum': 0, 'mean': 0, 'sd': 0, 'se': 0, 'percent_segs': [], 'percent_sum': 0, 'percent_mean': 0, 'percent_sd': 0, 'percent_se': 0 }
+        for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
+          $scope.line_graphs[groups_val.name]['segs'][i] = $filter('filter')($scope.transect.line.data[i],groups_val.name).length;
+          $scope.line_graphs[groups_val.name]['percent_segs'][i] = $scope.line_graphs[groups_val.name]['segs'][i]/MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*100;
+        }
+        $scope.line_graphs[groups_val.name].sum = $filter('sum')($scope.line_graphs[groups_val.name]['segs']);
+        $scope.line_graphs[groups_val.name].mean = $filter('mean')($scope.line_graphs[groups_val.name]['segs']);
+        $scope.line_graphs[groups_val.name].sd = $filter('sd')($scope.line_graphs[groups_val.name]['segs']);
+        $scope.line_graphs[groups_val.name].se = $scope.line_graphs[groups_val.name].sd/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL);
+
+        $scope.line_graphs[groups_val.name].percent_sum = $filter('sum')($scope.line_graphs[groups_val.name]['percent_segs']);
+        $scope.line_graphs[groups_val.name].percent_mean = $filter('mean')($scope.line_graphs[groups_val.name]['percent_segs']);
+        $scope.line_graphs[groups_val.name].percent_sd = $filter('sd')($scope.line_graphs[groups_val.name]['percent_segs']);
+        $scope.line_graphs[groups_val.name].percent_se = $scope.line_graphs[groups_val.name].percent_sd/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL);
+        // $scope.line_graphs.push(group_data);
+      });
+      // $scope.$apply();
+      console.log($scope.line_graphs);
     }
 
     $scope.sum = function (data,prop) {
