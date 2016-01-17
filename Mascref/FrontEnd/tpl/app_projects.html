@@ -27,13 +27,13 @@
         <thead>
           <tr>
               <th>Name</th>
-              <th>Date Start</th>
-              <th>Date End</th>
-              <th>Owner / Leader</th>
-              <th>Surveys</th>
-              <th>Transects</th>
-              <th>Date Created</th>
-              <th>Public</th>             
+              <th class="text-center">Date Start</th>
+              <th class="text-center">Date End</th>
+              <th class="text-center">Owner / Leader</th>
+              <th class="text-center">Surveys</th>
+              <th class="text-center">Transects</th>
+              <th class="text-center">Date Created</th>
+              <th class="text-center">Public</th>             
           </tr>
         </thead>
         <tbody>
@@ -42,13 +42,13 @@
           </tr>        
           <tr ng-repeat="project in projects">
               <td><a ui-sref="app.projects.view({projectId:project.id})">{{project.name}}</a></td>
-              <td>{{project.date_start | date:'shortDate'}}</td>
-              <td>{{project.date_end | date:'shortDate'}}</td>
-              <td>{{project.owner_name}}</td>
+              <td class="text-center">{{project.date_start | date:'shortDate'}}</td>
+              <td class="text-center">{{project.date_end | date:'shortDate'}}</td>
+              <td class="text-center">{{project.owner_name}}</td>
               <td class="text-center">{{project.surveys_count ? project.surveys_count : '0'}}</td>
               <td class="text-center">{{project.transects_count ? project.transects_count : '0'}}</td>
-              <td>{{project.created_at | date:'short'}}</td>
-              <td><i ng-if="project.public" class="fa fa-check text-success text"></i><i ng-if="!project.public" class="fa fa-times text-danger text"></i></td>
+              <td class="text-center">{{project.created_at | date:'short'}}</td>
+              <td class="text-center"><i ng-if="project.public" class="fa fa-check text-success text"></i><i ng-if="!project.public" class="fa fa-times text-danger text"></i></td>
           </tr> 
         </tbody>
         <tfoot class="hide-if-no-paging">
