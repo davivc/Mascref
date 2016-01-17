@@ -118,13 +118,14 @@ class SiteSerializer (serializers.ModelSerializer):
         fields = ('id','name','lat','long','town','town_name','province_name','country_name')
 
 
-class ProjectSerializer (serializers.ModelSerializer):
-    created_by = serializers.ReadOnlyField(source='created_by.username')
-    owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
+class TransectSerializer (serializers.ModelSerializer):
+    site_name = serializers.ReadOnlyField(source='site.name', read_only=True)
+    town_name = serializers.ReadOnlyField(source='site.town.name', read_only=True)
+    team_leader_name = serializers.ReadOnlyField(source='team_leader.name', read_only=True)    
 
     class Meta:
-        model = Project
-        fields = ('id','name','description','parent','public','created_at','created_by','owner','updated_at','owner_name')
+        model = Transect
+        fields = ('id','survey','site','name','depth','date','time_start','team_leader','team_leader_name','site_name','town_name')
 
 
 class SurveySerializer (serializers.ModelSerializer):
@@ -132,17 +133,16 @@ class SurveySerializer (serializers.ModelSerializer):
 
     class Meta:
         model = Survey
-        fields = ('id','project','name','date_start','date_end','owner','public','created_at','owner_name')
+        fields = ('id','project','name','date_start','date_end','owner','public','created_at','transects_count','owner_name')
 
 
-class TransectSerializer (serializers.ModelSerializer):
-    site_name = serializers.ReadOnlyField(source='site.name', read_only=True)
-    town_name = serializers.ReadOnlyField(source='site.town.name', read_only=True)
-    team_leader_name = serializers.ReadOnlyField(source='team_leader.name', read_only=True)
+class ProjectSerializer (serializers.ModelSerializer):
+    created_by = serializers.ReadOnlyField(source='created_by.username')
+    owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
 
     class Meta:
-        model = Transect
-        fields = ('id','survey','site','name','depth','date','time_start','team_leader','team_leader_name','site_name','town_name')
+        model = Project
+        fields = ('id','name','description','parent','public','created_at','created_by','owner','updated_at','surveys_count','transects_count','owner_name')
 
 
 class TransectTypeSerializer (serializers.ModelSerializer):

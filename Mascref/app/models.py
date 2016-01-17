@@ -80,12 +80,23 @@ class Project(models.Model):
     def __unicode__(self):
         return '%s' % (self.name)
 
+    @property
+    def surveys_count(self):
+        return self.surveys.all().count()
+
+    @property
+    def transects_count(self):
+        total = 0
+        for survey in self.surveys.all():
+            total += survey.transects_count
+        return total
+
 
 class Survey(models.Model):
     name = models.CharField(max_length=150)
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, related_name='surveys')
     public = models.BooleanField(default=False)
     owner = models.ForeignKey(Researcher, blank=True, null=True)
     created_by = models.ForeignKey(User, blank=True, null=True)
@@ -98,15 +109,19 @@ class Survey(models.Model):
     def __unicode__(self):
         return '%s' % (self.name)
 
+    @property
+    def transects_count(self):
+        return self.transects.all().count()
+
 
 class Transect(models.Model):
+    survey = models.ForeignKey(Survey, related_name='transects')
+    site = models.ForeignKey(Site)
     name = models.CharField(max_length=150)
     depth = models.FloatField()
     date = models.DateField(blank=True, null=True)
     time_start = models.TimeField(blank=True, null=True)
     team_leader = models.ForeignKey(Researcher, blank=True, null=True)
-    site = models.ForeignKey(Site)
-    survey = models.ForeignKey(Survey)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

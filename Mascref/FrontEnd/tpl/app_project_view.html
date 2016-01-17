@@ -135,8 +135,7 @@
                   <th>Start</th>
                   <th>End</th>
                   <!--<th>Owner</th>-->
-                  <th>Count</th>
-                  <th>Cover</th>
+                  <th>Transects</th>
                   <th>Created</th>
                   <th>Public</th>
                 </tr>
@@ -150,8 +149,7 @@
                     <td>{{survey.date_start | date:'shortDate'}}</td>
                     <td>{{survey.date_end | date:'shortDate'}}</td>
                     <!--<td>{{survey.owner}}</td>-->
-                    <td>{{survey.transect_a ? project.transect_a : '0'}}</td>
-                    <td>{{survey.transect_b ? survey.transect_b : '0'}}</td>
+                    <td>{{survey.transects_count ? survey.transects_count : '0'}}</td>
                     <td>{{survey.created_at | date:'short'}}</td>
                     <td><i ng-if="survey.public" class="fa fa-check text-success text"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
                 </tr>       

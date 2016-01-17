@@ -45,8 +45,8 @@
               <td>{{project.date_start | date:'shortDate'}}</td>
               <td>{{project.date_end | date:'shortDate'}}</td>
               <td>{{project.owner_name}}</td>
-              <td>{{project.surveys ? project.surveys : '0'}}</td>
-              <td>{{project.transects ? project.transects : '0'}}</td>
+              <td class="text-center">{{project.surveys_count ? project.surveys_count : '0'}}</td>
+              <td class="text-center">{{project.transects_count ? project.transects_count : '0'}}</td>
               <td>{{project.created_at | date:'short'}}</td>
               <td><i ng-if="project.public" class="fa fa-check text-success text"></i><i ng-if="!project.public" class="fa fa-times text-danger text"></i></td>
           </tr> 
