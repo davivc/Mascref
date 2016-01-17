@@ -64,6 +64,36 @@ angular.module('app.controllers')
     }
 
     $scope.line_graphs = {};
+    $scope.line_graphs_data = null;    
+    $scope.line_graphs_layout = {height: 600, width: 1000, title: 'Mean Percent of Substrate Cover with SE bars'};
+    $scope.plot_options = { showLink: true, displayLogo: false };
+    $scope.$watch('line_groups',function(oldVal,newVal) {
+      $scope.line_graphs_data = [{
+        x: [0],
+        y: [0],
+        error_y: {
+          type: 'data',
+          array: [0],
+          visible: true
+        },
+        type: 'bar'
+      }];
+      // angular.forEach(newVal, function (item) {
+      //   names.push(item.name);
+      //   y_init.push(0);
+      // });
+      // $scope.line_graphs_data = [{
+      //   x: names,
+      //   y: y_init,
+      //   error_y: {
+      //     type: 'data',
+      //     array: y_init,
+      //     visible: true
+      //   },
+      //   type: 'bar'
+      // }]; 
+      $scope.updateLineGraphs();
+    }, true);
     $scope.$watch('transect.line.data',function(oldVal,newVal) { $scope.updateLineGraphs(); }, true)
 
     for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
@@ -237,6 +267,9 @@ angular.module('app.controllers')
     }
 
     $scope.updateLineGraphs = function() {
+      var x = [];
+      var y = [];
+      var error_y = [];
       angular.forEach($scope.line_groups, function (groups_val, groups_key) {
         $scope.line_graphs[groups_val.name] = { 'segs': [], 'sum': 0, 'mean': 0, 'sd': 0, 'se': 0, 'percent_segs': [], 'percent_sum': 0, 'percent_mean': 0, 'percent_sd': 0, 'percent_se': 0 }
         for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
@@ -253,9 +286,15 @@ angular.module('app.controllers')
         $scope.line_graphs[groups_val.name].percent_sd = $filter('sd')($scope.line_graphs[groups_val.name]['percent_segs']);
         $scope.line_graphs[groups_val.name].percent_se = $scope.line_graphs[groups_val.name].percent_sd/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL);
         // $scope.line_graphs.push(group_data);
+        x.push(groups_val.name);
+        y.push($scope.line_graphs[groups_val.name].percent_mean);
+        error_y.push($scope.line_graphs[groups_val.name].percent_se);
       });
+      $scope.line_graphs_data[0].x = x;
+      $scope.line_graphs_data[0].y = y;
+      $scope.line_graphs_data[0].error_y.array = error_y;
       // $scope.$apply();
-      console.log($scope.line_graphs);
+      // console.log($scope.line_graphs_data);
     }
 
     $scope.sum = function (data,prop) {
