@@ -51,11 +51,11 @@ angular.module('app.filters', [])
     var totalObjects = 0;
     angular.forEach(data, function (v, k) {
       var val = 0;
-      if (key) val = parseFloat(v[key]);
-      else val = parseFloat(v);
+      if (key) val = v[key];
+      else val = v;
 
       if (isFinite(val)) {
-        sum += val;
+        sum += parseFloat(val);
         totalObjects++;
       }
     });
