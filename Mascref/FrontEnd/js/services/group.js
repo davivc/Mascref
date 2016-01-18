@@ -22,9 +22,10 @@ angular.module('app.services')
     'get': function (pk) {
       return Rest.get(this.url + pk);
     },
-    'getCategories': function (pk) {
-      if (!pk) pk = '';
-      return Rest.get(this.url_categories + pk);
+    'getCategories': function (type) {
+      var qStr = '';
+      if (type) qStr = '?type='+type;
+      return Rest.get(this.url_categories + qStr);
     },
     'create': function (pData) {
       var data = {

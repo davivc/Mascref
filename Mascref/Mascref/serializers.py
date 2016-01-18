@@ -211,6 +211,8 @@ class GroupCategoryViewSet(viewsets.ModelViewSet):
     queryset = Group_Category.objects.all()
     serializer_class = GroupCategorySerializer
     ordering = ('name',)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('type',)
 
 
 class ProvinceViewSet(LoggingMixin, viewsets.ModelViewSet):

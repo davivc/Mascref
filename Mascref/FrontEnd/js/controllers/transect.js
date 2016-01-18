@@ -62,6 +62,9 @@ angular.module('app.controllers')
       belt: { data: [] },
       line: { data: [] }
     }
+    
+    $scope.belt_graphs = {};
+    $scope.belt_graphs_data = {};
 
     $scope.line_graphs = {};
     $scope.line_graphs_data = null;    
@@ -94,7 +97,10 @@ angular.module('app.controllers')
       // }]; 
       $scope.updateLineGraphs();
     }, true);
-    $scope.$watch('transect.line.data',function(oldVal,newVal) { $scope.updateLineGraphs(); }, true)
+    $scope.$watch('belt_groups',function(oldVal,newVal) { $scope.initBeltGraphs(); }, true);
+    $scope.$watch('transect.line.data',function(oldVal,newVal) { $scope.updateLineGraphs(); }, true);
+    $scope.$watch('transect.belt.data',function(oldVal,newVal) { $scope.updateBeltGraphs(); }, true)
+    $scope.$watch('belt_graphs',function(newVal,oldVal) { $scope.updateBeltGraphsData(); }, true)
 
     for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
       // $scope.transect.belt.data[i] = [];
@@ -196,12 +202,12 @@ angular.module('app.controllers')
       });
     };
 
-    $scope.getCategories = function (parent, type) {
-      Group.getCategories(parent, type)
+    $scope.getBeltCategories = function () {
+      Group.getCategories(MASCREF_CONF.TRANSECT_TYPE.BELT)
       .then(function (data) {
         $scope.belt_categories = data;
         angular.forEach(data, function (v, k) {
-          $scope.getGroups('belt_groups', 'null', type, v['id']);
+          $scope.getGroups('belt_groups', 'null', MASCREF_CONF.TRANSECT_TYPE.BELT, v['id']);
         });
       }, function (error) {
 
@@ -295,6 +301,76 @@ angular.module('app.controllers')
       $scope.line_graphs_data[0].error_y.array = error_y;
       // $scope.$apply();
       // console.log($scope.line_graphs_data);
+    }
+
+    $scope.initBeltGraphs = function() {      
+      angular.forEach($scope.belt_categories, function (category) {
+        var x = [];
+        var y = [];
+        var error_y = [];
+        $scope.belt_graphs[category.id] = []
+        angular.forEach($scope.belt_groups[category.id], function (item) {
+          // $scope.belt_graphs[category.id].push({
+          //   id: item.id,
+          //   sum: 0,
+          //   mean: 0,
+          //   sd: 0,
+          //   se: 0
+          // });
+          $scope.belt_graphs[category.id][item.id] = {
+            id: item.id,
+            sum: 0,
+            mean: 0,
+            sd: 0,
+            se: 0
+          };
+          x.push(item.name);
+          y.push(0);
+          error_y.push(0);
+        });
+        $scope.belt_graphs_data[category.id] = {
+          'data': [{ 'x': x, 'y': y, 'error_y': { type: 'data', array: error_y, visible: true }, 'type': 'bar'}],
+          'layout': { title: 'Mean Abundance of ' + category.name + ' with SE bars', width: '100%' },
+          'options': { showLink: true, displayLogo: false },
+        }
+      });
+    }
+
+    $scope.updateBeltGraphs = function() {
+      angular.forEach($scope.belt_categories, function (category) {
+        angular.forEach($scope.belt_groups[category.id], function (item) {
+          $scope.belt_graphs[category.id][item.id] = {
+            id: item.id,
+            sum: $filter('sum')($scope.transect.belt.data[item.id]),
+            mean: $filter('mean')($scope.transect.belt.data[item.id]),
+            sd: $filter('sd')($scope.transect.belt.data[item.id]),
+            se: $filter('sd')($scope.transect.belt.data[item.id])/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL)
+          }
+        });
+      });
+      // console.log($scope.belt_graphs)
+    }
+
+    $scope.updateBeltGraphsData = function() {
+      angular.forEach($scope.belt_graphs, function (val, key) {
+        var error_y = [], y = [];
+        angular.forEach(val, function (item) {
+          y.push(item.mean);
+          error_y.push(item.se);
+        });
+        $scope.belt_graphs_data[key].data[0].y = y;
+        $scope.belt_graphs_data[key].data[0].error_y.array = error_y;
+        // console.log($filter('filter')(val,'sum'))
+        // angular.forEach(val, function (item) {
+        //   $scope.belt_graphs[item.id] = {
+        //     sum: $filter('sum')($scope.transect.belt.data[item.id]),
+        //     mean: $filter('mean')($scope.transect.belt.data[item.id]),
+        //     sd: $filter('sd')($scope.transect.belt.data[item.id]),
+        //     se: $scope.belt_graphs[item.id].sd/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL)
+        //   }
+        // });
+      });
+      console.log($scope.belt_graphs_data)
     }
 
     $scope.sum = function (data,prop) {
@@ -489,7 +565,7 @@ angular.module('app.controllers')
     // }
         
     // Run
-    $scope.getCategories(null, MASCREF_CONF.TRANSECT_TYPE.BELT);
+    $scope.getBeltCategories();
     $scope.getGroups('line_groups', 'null', MASCREF_CONF.TRANSECT_TYPE.LINE);    
     if ($stateParams.transectId) $scope.getTransect($stateParams.transectId);
   }]);

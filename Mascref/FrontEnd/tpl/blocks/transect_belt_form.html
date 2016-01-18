@@ -43,9 +43,9 @@
                 <span ng-if="group.format == 2" class="input-group-addon">%</span>
               </div>
             </td>
-            <td class="text-center"><span ng-show="group.format != 2">{{ transect.belt.data[group.id] | sum }}</span></td>
-            <td class="text-center">{{ transect.belt.data[group.id] | mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
-            <td class="text-center">{{ transect.belt.data[group.id] | sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center"><span ng-show="group.format != 2">{{ belt_graphs[category.id][group.id].sum }}</span></td>
+            <td class="text-center">{{ belt_graphs[category.id][group.id].mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+            <td class="text-center">{{ belt_graphs[category.id][group.id].sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS+1 }}</td>
           </tr>
           <tr ng-if="group.sub_groups.length != 0" ng-repeat="sub in group.sub_groups">
             <td>{{sub.name}}</td>
