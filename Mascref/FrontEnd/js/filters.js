@@ -151,7 +151,7 @@ angular.module('app.filters', [])
         // When the degrees value is negative, the math is a bit different
         // than when the value is positive. This checks whether the value is below zero
         // and does subtraction instead of addition if it is. 
-        console.log(degrees, minutes, seconds)
+        // console.log(degrees, minutes, seconds)
         if(degrees < 0) {
           var calculated = degrees - minutes - seconds;
 
