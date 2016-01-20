@@ -56,7 +56,7 @@ angular.module('app.controllers')
       { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
     ];
     $scope.transect = { 
-      info: { survey: $stateParams.surveyId },      
+      info: { survey: $stateParams.surveyId, coords: { dd: {}, dms: { lat: {}, long: {} } } },      
       basic: {},
       team: {},
       belt: { data: [] },
@@ -130,8 +130,7 @@ angular.module('app.controllers')
         //if (data.project != $stateParams.projectId) {
          // $state.go('app.projects.view.survey', { projectId: $stateParams.surveyId })
         //}
-        $scope.transect.info = data;        
-
+        $scope.transect.info = data;
         $scope.getDataLine($scope.transect.info.id);
         $scope.getDataBelt($scope.transect.info.id);
         $scope.getInfo($scope.transect.info.id);
@@ -472,6 +471,51 @@ angular.module('app.controllers')
       
     }
 
+    $scope.updateCoordsDD = function() {
+      var ddLat = 0;
+      var ddLong = 0;
+      if($scope.transect.info.coords.dms.lat.deg) {
+        var pLat = [];
+        // pLat.push('');
+        pLat.push($scope.transect.info.coords.dms.lat.deg * $scope.transect.info.coords.dms.lat.hemisphere);
+        pLat.push($scope.transect.info.coords.dms.lat.min ? $scope.transect.info.coords.dms.lat.min : 0);
+        pLat.push($scope.transect.info.coords.dms.lat.sec ? $scope.transect.info.coords.dms.lat.sec : 0);
+        ddLat = coordinateFilterFilter(pLat.join(' '), 'toDD', 'lat', 5);
+      }
+      if($scope.transect.info.coords.dms.long.deg) {
+        var pLong = [];
+        // pLat.push('');
+        pLong.push($scope.transect.info.coords.dms.long.deg * $scope.transect.info.coords.dms.long.hemisphere);
+        pLong.push($scope.transect.info.coords.dms.long.min ? $scope.transect.info.coords.dms.long.min : 0);
+        pLong.push($scope.transect.info.coords.dms.long.sec ? $scope.transect.info.coords.dms.long.sec : 0);
+        ddLong = coordinateFilterFilter(pLong.join(' '), 'toDD', 'lon', 5);
+      }
+      $scope.transect.info.coords.dd.lat = ddLat;
+      $scope.transect.info.coords.dd.long = ddLong;
+    }
+
+    $scope.updateCoordsDMS = function() {
+      var dmsLat = coordinateFilterFilter($scope.transect.info.coords.dd.lat, 'toDMS');
+      var dmsLong = coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDMS');
+      if(dmsLat) {
+        $scope.transect.info.coords.dms.lat = {
+          hemisphere: ($scope.transect.info.coords.dd.lat > 0) ? 1 : -1,
+          deg: abs(dmsLat.deg),
+          min: dmsLat.min,
+          sec: dmsLat.sec
+        };
+      }
+
+      if(dmsLong) {
+        $scope.transect.info.coords.dms.long = {
+          hemisphere: ($scope.transect.info.coords.dd.long > 0) ? 1 : -1,
+          deg: abs(dmsLong.deg),
+          min: dmsLong.min,
+          sec: dmsLong.sec
+        };
+      }
+    }
+
     $scope.updateMap = function() {
       if($scope.transect.info.id || !$scope.transect.info.coords) return 0;
 
@@ -512,12 +556,33 @@ angular.module('app.controllers')
         }
       }];
 
+      var dmsLat = coordinateFilterFilter($scope.transect.info.site.lat, 'toDMS');
+      var dmsLong = coordinateFilterFilter($scope.transect.info.site.long, 'toDMS');
+
       $scope.transect.info.coords = {
-        'dd': {
+        dd: {
           lat: $scope.transect.info.site.lat,
           long: $scope.transect.info.site.long,
-        }
+        },
+        dms: {
+          lat: {
+            hemisphere: ($scope.transect.info.site.lat > 0) ? 1 : -1,
+            deg: dmsLat.deg,
+            min: dmsLat.min,
+            sec: dmsLat.sec
+          },
+          long: {
+            hemisphere: ($scope.transect.info.site.long > 0) ? 1 : -1,
+            deg: dmsLong.deg,
+            min: dmsLong.min,
+            sec: dmsLong.sec
+          }
+        }        
       }
+
+      // console.log(coordinateFilterFilter($scope.transect.info.coords.dd.lat, 'toDMS'))
+      // console.log(coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDMS'))
+
 
       $scope.bounds = new google.maps.LatLngBounds();
       angular.forEach($scope.markers, function (value, key) {

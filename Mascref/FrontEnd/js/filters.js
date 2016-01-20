@@ -104,8 +104,7 @@ angular.module('app.filters', [])
       // Check for user input that is a positive or negative number with the option
       // that it is a float. Match only the numbers and not the white space or other characters
       var pattern = /[-+]?[0-9]*\.?[0-9]+/g
-
-      var match = coordinate.match(pattern);
+      var match = String(coordinate).match(pattern);
 
       if(conversion === "toDD" && match && coordinateIsValid(match, type)) {
         // If the match array only has one item, the user has provided decimal degrees
@@ -147,17 +146,28 @@ angular.module('app.filters', [])
         // from DMS to DD
         var degrees = parseInt(coord[0]);
         var minutes = parseInt(coord[1]) / 60;
-        var seconds = parseInt(coord[2]) / 3600;
+        var seconds = parseFloat(coord[2]) / 3600;
 
         // When the degrees value is negative, the math is a bit different
         // than when the value is positive. This checks whether the value is below zero
         // and does subtraction instead of addition if it is. 
+        console.log(degrees, minutes, seconds)
         if(degrees < 0) {
           var calculated = degrees - minutes - seconds;
+
+          // Correction with Google 0 degrees South and West
+          // if(type == 'lat') calculated += 0.000261;
+          if(type == 'lat') calculated += 0.000011;
+          if(type == 'lon') calculated += 0.000011;
           return calculated.toFixed(places || 4);
         }
         else {
           var calculated = degrees + minutes + seconds
+
+          // Correction with Google 0 degrees North and East
+          // if(type == 'lat') calculated -= 0.000222;
+          if(type == 'lat') calculated -= 0.000011;
+          if(type == 'lon') calculated -= 0.000011;
           return calculated.toFixed(places || 4);
         }
       }
@@ -167,7 +177,7 @@ angular.module('app.filters', [])
       function toDegreesMinutesSeconds(coordinate) {
         var degrees = coordinate[0].split('.')[0];
         var minutes = Math.abs(Math.floor(60 * (Math.abs(coordinate[0]) - Math.abs(degrees))));
-        var seconds = 3600 * (Math.abs(coordinate[0]) - Math.abs(degrees) - Math.abs(minutes) / 60).toFixed(2);
+        var seconds = (3600 * (Math.abs(coordinate[0]) - Math.abs(degrees) - Math.abs(minutes) / 60)).toFixed(1);
 
         //return $sce.trustAsHtml(degrees + '&deg; ' + minutes + '&prime; ' + seconds + '&Prime; ');
         return { deg: degrees, min: minutes, sec: seconds };    
@@ -177,23 +187,24 @@ angular.module('app.filters', [])
       // If the coordinate doesn't pass one of these rules, the function will return false
       // which will then alert the user that the coordinate is invalid.
       function coordinateIsValid(coordinate, type) {
+        console.log(coordinate)
         if(coordinate) {
 
           // The degree values of latitude coordinates have a range between -90 and 90
-          if(coordinate[0] && type === 'lat') {
-            if(!parseInt(coordinate[0]).between(-90, 90)) return false; 
-          }
-          // The degree values longitude coordinates have a range between -180 and 180
-          else if(coordinate[0] && type === 'lon') {
-            if(!parseInt(coordinate[0]).between(-180, 180)) return false;
-          }
-          // Minutes and seconds can only be between 0 and 60
-          if(coordinate[1]) {
-            if(!parseInt(coordinate[1]).between(0, 60)) return false;
-          }
-          if(coordinate[2]) {
-            if(!parseInt(coordinate[2]).between(0, 60)) return false;
-          }                         
+          // if(coordinate[0] && type === 'lat') {
+          //   if(!parseInt(coordinate[0]).between(-90, 90)) return false; 
+          // }
+          // // The degree values longitude coordinates have a range between -180 and 180
+          // else if(coordinate[0] && type === 'lon') {
+          //   if(!parseInt(coordinate[0]).between(-180, 180)) return false;
+          // }
+          // // Minutes and seconds can only be between 0 and 60
+          // if(coordinate[1]) {
+          //   if(!parseInt(coordinate[1]).between(0, 60)) return false;
+          // }
+          // if(coordinate[2]) {
+          //   if(!parseInt(coordinate[2]).between(0, 60)) return false;
+          // }                         
         }
         
         // If the coordinate made it through all the rules above, the function

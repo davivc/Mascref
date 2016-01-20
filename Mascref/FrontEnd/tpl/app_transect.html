@@ -40,10 +40,10 @@
                   <label>Lat / Long (DD)</label>
                 </div>
                 <div class="form-group">                  
-                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.lat" placeholder="{{transect.info.site.lat ? transect.info.site.lat : 'Latitude'}}" ng-blur="updateMap()">
+                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.lat" placeholder="{{transect.info.site.lat ? transect.info.site.lat : 'Latitude'}}" ng-keyup="updateCoordsDMS();" ng-blur="updateMap();">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.long" placeholder="{{transect.info.site.long ? transect.info.site.long : 'Longitude'}}" ng-blur="updateMap()">
+                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.long" placeholder="{{transect.info.site.long ? transect.info.site.long : 'Longitude'}}"  ng-keyup="updateCoordsDMS();" ng-blur="updateMap()">
                 </div>
               </div>
               <div class="col-sm-6">
@@ -53,44 +53,44 @@
                 <div class="form-group form-inline">
                   <div class="input-group">
                     <label class="checkbox-inline i-checks">
-                      <input type="radio" value="1"  ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.hemisphere" checked><i></i> N
+                      <input type="radio" value="1"  ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.hemisphere" ng-click="updateCoordsDD() ; updateMap()"><i></i> N
                     </label>
                     <label class="checkbox-inline i-checks">
-                      <input type="radio" value="-1"  ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.hemisphere"><i></i> S
+                      <input type="radio" value="-1"  ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.hemisphere" ng-click="updateCoordsDD(); updateMap()"><i></i> S
                     </label>
                   </div>
                   <div class="input-group m-l">
-                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.deg" placeholder="" style="width:" ng-keyup="updateMap()">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.deg" placeholder="" style="width:" ng-keyup="updateCoordsDD();" ng-blur="updateMap()">
                     <span class="input-group-addon">&deg;</span>
                   </div>
                   <div class="input-group">
-                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.min" placeholder="" ng-blur="updateMap()">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.min" placeholder="" ng-keyup="updateCoordsDD();" ng-blur="updateMap()">
                     <span class="input-group-addon">'</span>
                   </div>
                   <div class="input-group">
-                    <input type="text" class="form-control" style="width:80px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.sec" placeholder="" ng-blur="updateMap()">
+                    <input type="text" class="form-control" style="width:80px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.lat.sec" placeholder="" ng-keyup="updateCoordsDD();" ng-blur="updateMap()">
                     <span class="input-group-addon">"</span>
                   </div>
                 </div>
                 <div class="form-group form-inline">
                   <div class="input-group">
                     <label class="checkbox-inline i-checks">
-                      <input type="radio" value="-1" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.hemisphere" checked><i></i> E
+                      <input type="radio" value="-1" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.hemisphere" ng-click="updateCoordsDD(); updateMap()"><i></i> W
                     </label>
                     <label class="checkbox-inline i-checks">
-                      <input type="radio" value="1" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.hemisphere"><i></i> W
+                      <input type="radio" value="1" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.hemisphere" ng-click="updateCoordsDD(); updateMap()"><i></i> E
                     </label>
                   </div>
                   <div class="input-group m-l">
-                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.deg" placeholder="" ng-blur="updateMap()">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.deg" placeholder="" ng-keyup="updateCoordsDD();" ng-blur="updateMap()">
                     <span class="input-group-addon">&deg;</span>
                   </div>
                   <div class="input-group">
-                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.min" placeholder="" ng-blur="updateMap()">
+                    <input type="text" class="form-control" style="width:50px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.min" placeholder="" ng-keyup="updateCoordsDD();" ng-blur="updateMap()">
                     <span class="input-group-addon">'</span>
                   </div>
                   <div class="input-group">
-                    <input type="text" class="form-control" style="width:80px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.sec" placeholder="" ng-blur="updateMap()">
+                    <input type="text" class="form-control" style="width:80px;" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dms.long.sec" placeholder="" ng-keyup="updateCoordsDD();" ng-blur="updateMap()">
                     <span class="input-group-addon">"</span>
                   </div>
                 </div>
