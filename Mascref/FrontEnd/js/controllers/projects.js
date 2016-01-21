@@ -189,7 +189,7 @@ angular.module('app.controllers')
       Surveys.create($scope.formSurvey)
       .then(function (data) {
         $scope.formSurvey.message = "Survey created successfully";
-        $scope.getSurveys();
+        $scope.getSurveys($stateParams.projectId);
         $timeout(function () {
           $scope.resetFormSurvey();
           $scope.setShowNewSurvey(false);

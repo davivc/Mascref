@@ -187,7 +187,6 @@ angular.module('app.filters', [])
       // If the coordinate doesn't pass one of these rules, the function will return false
       // which will then alert the user that the coordinate is invalid.
       function coordinateIsValid(coordinate, type) {
-        console.log(coordinate)
         if(coordinate) {
 
           // The degree values of latitude coordinates have a range between -90 and 90

@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 angular.module('app.services')
-.service('Transect', function Transect(Rest) {
+.service('Transect', function Transect(Rest, $filter) {
   var service = {
     'url': "/transects/",
     'url_infos': "/transects_infos/",
@@ -24,11 +24,12 @@ angular.module('app.services')
       return Rest.get(this.url_infos + "?transect=" + transectId + nameFilter);
     },
     'save': function (pData) {
+      var name = pData.site.name + ' ' + $filter('date')(pData.date,'dd-MM-yy') + ' site '+ (pData.depth ? (pData.depth <= 6 ? 's' : (pData.depth <= 12 ? 'm' : 'd')) : '');
       var data = {
-        'name': pData.name,
+        'name': name,
         'survey': pData.survey,
         'site': pData.site.id,
-        'date': pData.date,
+        'date': $filter('date')(pData.date,'yyyy-MM-dd'),
         'time_start': pData.time_start,          
         //'team_leader': pData.team_leader.id ? pData.team_leader.id : '',
         'depth': pData.depth

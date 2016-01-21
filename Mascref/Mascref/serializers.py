@@ -78,7 +78,7 @@ class GroupCategorySerializer (serializers.ModelSerializer):
 class ProvinceSerializer (serializers.ModelSerializer):
     class Meta:
         model = Province
-        fields = ('name','country')
+        fields = ('id','name','country')
 
 
 class TownSerializer (serializers.ModelSerializer):
@@ -238,7 +238,7 @@ class SegmentViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = SegmentSerializer
     ordering = ('token',)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('segment','group','token','type',)
+    filter_fields = ('transect','segment','group','token','type',)
 
 
 class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):

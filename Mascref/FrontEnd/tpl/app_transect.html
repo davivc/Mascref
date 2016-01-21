@@ -112,7 +112,7 @@
                 <div class="form-group">                  
                   <span ng-show="transect.info.depth <= 6" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth > 6">Shallow</span>
                   <span ng-show="transect.info.depth > 6 && transect.info.depth <= 12" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth <= 6">Medium</span>
-                  <span ng-show="transect.info.depth > 6" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth <= 12">Deep</span>
+                  <span ng-show="transect.info.depth > 12" ng-hide="!transect.info.depth || transect.info.depth == '' || transect.info.depth <= 12">Deep</span>
                 </div>
               </div>
               <div class="col-sm-6">
@@ -149,7 +149,7 @@
             </div>
             <div class="line line-lg b-b b-light"></div>
             <div class="text-muted text-left col-sm-10">
-              
+              {{response.message}}
             </div>
             <div class="text-muted text-right col-sm-2">
               <button type="submit" class="btn btn-sm btn-info" ng-click="save()">Save</button>
