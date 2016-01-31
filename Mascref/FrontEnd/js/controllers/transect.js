@@ -47,7 +47,7 @@ angular.module('app.controllers')
     // Init
     $scope.MASCREF_CONF = MASCREF_CONF;
     $scope.tabs = [
-      { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
+      // { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
       { heading: "Site Info", template: 'tpl/blocks/transect_site_info.html' },
       { heading: "Line Transect", template: 'tpl/blocks/transect_line_form.html' },
       { heading: "Line Graphs", template: 'tpl/blocks/transect_line_graphs.html' },
@@ -94,10 +94,11 @@ angular.module('app.controllers')
     }
 
     $scope.line_groups = []
-    $scope.markers = []
     $scope.belt_categories = {}
     $scope.belt_groups = {}
     $scope.response = {}
+    $scope.markers = []
+    $scope.markersSurvey = []
     $scope.map = {
       center: {
         latitude: MASCREF_CONF.COORD.LAT,
@@ -106,7 +107,7 @@ angular.module('app.controllers')
         //longitude: -48.49
       },
       zoom: MASCREF_CONF.COORD.ZOOM,
-      options: { scrollwheel: false, panControl: false, streetViewControl: false }
+      options: { scrollwheel: false, panControl: false, streetViewControl: false, mapTypeId: 'satellite' }
     };
     $scope.control = {}
     $scope.marker = {
@@ -131,6 +132,17 @@ angular.module('app.controllers')
          $state.go('app.projects.view.survey', { surveyId: $stateParams.surveyId })
         }
         $scope.transect.info = data;
+
+        if($scope.transect.info.time_start) {
+          var mTime = $scope.transect.info.time_start.split(':');
+          $scope.transect.info.time_start = new Date(1970, 0, 1, mTime[0], mTime[1], mTime[2]);
+        }
+
+        if($scope.transect.info.time_end) {
+          var mTime = $scope.transect.info.time_end.split(':');
+          $scope.transect.info.time_end = new Date(1970, 0, 1, mTime[0], mTime[1], mTime[2]);
+        }
+
         $scope.getDataLine($scope.transect.info.id);
         $scope.getDataBelt($scope.transect.info.id);
         $scope.getInfo($scope.transect.info.id);
@@ -624,9 +636,16 @@ angular.module('app.controllers')
     // The "then" callback function provides the google.maps object.
     uiGmapGoogleMapApi.then(function (maps) {
       $('.angular-google-map-container').css('height', '300px');
+      // $scope.$watch('transect.info.site.lat', function (newVal, oldVal) {
+      //   if ($scope.transect.info.site && $scope.transect.info.site.lat && $scope.transect.info.site.long) {
+      //     $scope.initMarkers();
+      //   }
+      // });
     });
 
-    uiGmapIsReady.promise().then((function (maps) {
+
+    uiGmapIsReady.promise(2).then(function (maps) {
+      console.log(maps)
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.$watch('transect.info.site.lat', function (newVal, oldVal) {
         if ($scope.transect.info.site && $scope.transect.info.site.lat && $scope.transect.info.site.long) {
@@ -635,7 +654,7 @@ angular.module('app.controllers')
       });
       //$scope.$watch('transect.info.coords.dd.lat', $scope.updateMap);
       //$scope.$watch('transect.info.coords.dd.long', $scope.updateMap);
-    }));
+    });
 
     // $scope.initBeltForm = function() {
     //   angular.forEach($scope.transect.belt.data, function (v, seg) {

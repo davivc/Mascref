@@ -24,13 +24,14 @@ angular.module('app.services')
       return Rest.get(this.url_infos + "?transect=" + transectId + nameFilter);
     },
     'save': function (pData) {
-      var name = pData.site.name + ' ' + $filter('date')(pData.date,'dd-MM-yy') + ' site '+ (pData.depth ? (pData.depth <= 6 ? 's' : (pData.depth <= 12 ? 'm' : 'd')) : '');
+      var name = pData.site.name + ' ' + $filter('date')(pData.date,'dd-MM-yy') + ' '+ (pData.depth ? (pData.depth <= 6 ? 's' : (pData.depth <= 12 ? 'm' : 'd')) : '');
       var data = {
         'name': name,
         'survey': pData.survey,
         'site': pData.site.id,
         'date': $filter('date')(pData.date,'yyyy-MM-dd'),
-        'time_start': pData.time_start,          
+        'time_start': $filter('date')(pData.time_start,'HH:mm:ss'),          
+        'time_end': $filter('date')(pData.time_end,'HH:mm:ss'),          
         //'team_leader': pData.team_leader.id ? pData.team_leader.id : '',
         'depth': pData.depth
       }

@@ -129,11 +129,12 @@ class TransectSerializer (serializers.ModelSerializer):
 
 
 class SurveySerializer (serializers.ModelSerializer):
+    sites = SiteSerializer(many=True, read_only=True)
     owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
 
     class Meta:
         model = Survey
-        fields = ('id','project','name','date_start','date_end','owner','public','created_at','transects_count','owner_name')
+        fields = ('id','project','name','date_start','date_end','owner','public','created_at','transects_count','sites','owner_name')
 
 
 class ProjectSerializer (serializers.ModelSerializer):
@@ -315,7 +316,7 @@ class TransectInfoViewSet(viewsets.ModelViewSet):
 
 
 # Non-Models
-class DashboardStatsViewSet(LoggingMixin, viewsets.ViewSet):
+class DashboardStatsViewSet(viewsets.ViewSet):
     def list(self, request):
         serializer = DashboardStatsSerializer(DashboardStats())
         return Response(serializer.data)

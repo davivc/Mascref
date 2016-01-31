@@ -3,7 +3,7 @@
 /* Surveys Controllers */
 
 angular.module('app.controllers')
-  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Transect, uiGmapGoogleMapApi) {
+  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', 'uiGmapIsReady','MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Transect, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -17,7 +17,18 @@ angular.module('app.controllers')
     // Info about totals
     $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }
     // Init Google Maps
-    $scope.map = { center: { latitude: -18.20, longitude: 179 }, zoom: 7, options: { scrollwheel: false, panControl: false, streetViewControl: false } };
+    $scope.markersSurvey = []
+    $scope.mapSurvey = {
+      center: {
+        latitude: MASCREF_CONF.COORD.LAT,
+        longitude: MASCREF_CONF.COORD.LONG
+        //latitude: -27.68,
+        //longitude: -48.49
+      },
+      zoom: MASCREF_CONF.COORD.ZOOM,
+      options: { scrollwheel: false, panControl: false, streetViewControl: false }
+    };
+    $scope.mapSurveyControl = {}
 
     //******** Begin Functions ********//
     // Retrieve info about the project
@@ -47,15 +58,49 @@ angular.module('app.controllers')
       });
     }
 
-    $scope.goToTransect = function (pk) {
-      $state.go('app.projects.view.survey.transect', { transectId: pk });
+    $scope.initMarkersSurvey = function() {
+      $scope.bounds = new google.maps.LatLngBounds();
+
+      angular.forEach($scope.survey.sites, function (item, key) {
+        var myLatLng = new google.maps.LatLng(item.lat, item.long);
+        $scope.bounds.extend(myLatLng);
+        
+        $scope.markersSurvey.push({
+          id: item.id,
+          coords: {
+            latitude: item.lat,
+            longitude: item.long 
+          },
+          options: {
+            draggable: false,
+            show: true,
+            title: item.name
+          }
+        });
+      });
+
+      $scope.mapSurvey = { center: { latitude: $scope.bounds.getCenter().lat(), longitude: $scope.bounds.getCenter().lng() } };
+      $scope.mapSurvey.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
+
+      $scope.mapSurveyControl.getGMap().fitBounds($scope.bounds);
+      $scope.mapSurveyControl.getGMap().setZoom($scope.mapSurveyControl.getGMap().getZoom())
     }
 
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
     uiGmapGoogleMapApi.then(function (maps) {
-
+      console.log($scope.markersSurvey)
       $('.angular-google-map-container').css('height', '300px');
+    });
+
+    uiGmapIsReady.promise(1).then(function (maps) {
+      $scope.mapSurvey.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
+      $scope.$watch('survey.sites', function (newVal, oldVal) {
+        if ($scope.survey.sites) {
+          console.log($scope.survey.sites)
+          $scope.initMarkersSurvey();
+        }
+      });
     });
 
     //******** Run ********//

@@ -4,7 +4,9 @@
       <div class="blog-post">                   
         <div class="panel">
           <div>
-            <!--<ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options'></ui-gmap-google-map>-->
+            <ui-gmap-google-map center='mapSurvey.center' zoom='mapSurvey.zoom' options='mapSurvey.options' control='mapSurveyControl'>
+              <ui-gmap-marker coords="item.coords" idkey="item.id" options="item.options" events="item.events" ng-repeat="item in markersSurvey"></ui-gmap-marker>
+            </ui-gmap-google-map>
           </div>
           <div class="wrapper-lg">
             <h2 class="m-t-none"><a href>{{survey.name}}</a></h2>

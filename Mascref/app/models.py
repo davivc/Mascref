@@ -63,6 +63,12 @@ class Site(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
+
 
 class Project(models.Model):
     name = models.CharField(max_length=150)
@@ -113,6 +119,14 @@ class Survey(models.Model):
     def transects_count(self):
         return self.transects.all().count()
 
+    @property
+    def sites(self):
+        sites = []
+        for my_site in self.transects.all().values('site__id').distinct():
+            sites.append(Site.objects.get(pk=my_site['site__id']))
+            # sites.append(my_site['site__id'])
+        return sites
+
 
 class Transect(models.Model):
     survey = models.ForeignKey(Survey, related_name='transects')
@@ -124,6 +138,9 @@ class Transect(models.Model):
     team_leader = models.ForeignKey(Researcher, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
 
 
 class Transect_Researchers(models.Model):
