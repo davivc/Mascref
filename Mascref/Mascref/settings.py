@@ -5,31 +5,6 @@ Django settings for Mascref project.
 from os import path
 PROJECT_ROOT = path.dirname(path.abspath(path.dirname(__file__)))
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = (
-    'localhost',
-    'mascref',
-)
-
-ADMINS = (
-    ('Davi Candido', 'davivc@gmail.com'),
-)
-
-MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mascref',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
 LOGIN_URL = '/login'
 
 # Local time zone for this installation. Choices can be found here:
@@ -178,18 +153,6 @@ LOGGING = {
     }
 }
 
-# Specify the default test runner.
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
-
-CORS_ORIGIN_ALLOW_ALL = False
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = (
-        'http://mascref',
-        'http://mascref:53190',
-        'mascref',
-    )
-
 AUTHENTICATION_METHOD = 'EMAIL'
+
+from settings_local import * 
