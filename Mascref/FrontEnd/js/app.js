@@ -45,7 +45,8 @@ var app = angular.module('app', [
         $stateProvider
           .state('home', {
               url: '/',
-              templateUrl: 'tpl/public_index.html'
+              templateUrl: 'tpl/public_index.html',
+              controller: 'PublicCtrl',
           })
           .state('app', {
               abstract: true,
