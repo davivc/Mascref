@@ -108,5 +108,15 @@ angular.module('app.services', [])
     }
 
     return service;
+  })
+  .service('Activity', function Activity(Rest) {
+    var service = {      
+      'url': "/activity/",
+      'list': function () {
+        return Rest.get(this.url);
+      },
+    }
+
+    return service;
   });
   

@@ -27,6 +27,7 @@ from Mascref.serializers import TransectTypeViewSet
 from Mascref.serializers import TransectInfoViewSet
 from Mascref.serializers import UserViewSet
 from Mascref.serializers import DashboardStatsViewSet
+from Mascref.serializers import ActivityViewSet
 
 admin.autodiscover()
 
@@ -47,6 +48,7 @@ router.register(r'api/transects', TransectViewSet)
 router.register(r'api/transects_types', TransectTypeViewSet)
 router.register(r'api/transects_infos', TransectInfoViewSet)
 router.register(r'api/users', UserViewSet)
+router.register(r'api/activity', ActivityViewSet)
 router.register(r'api/dashboard/stats', DashboardStatsViewSet, 'dashboard-list')
 
 urlpatterns = patterns('',

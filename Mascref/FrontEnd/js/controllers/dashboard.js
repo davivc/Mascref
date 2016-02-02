@@ -3,12 +3,23 @@
 /* Dashboard Controllers */
 
 angular.module('app.controllers')
-  .controller('DashboardCtrl', ['$scope', '$translate', '$state', function ($scope, $translate, $state) {
+  .controller('DashboardCtrl', ['$scope', '$translate', '$state', 'Activity', function ($scope, $translate, $state, Activity) {
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
 
+    $scope.activity = []
 
+    $scope.getActivities = function () {
+      Activity.list()
+      .then(function (data) {
+        $scope.activity = data;
+      }, function (error) {
+        $scope.activity.error = error;
+      });
+    }
+
+    $scope.getActivities();
 
   }])
   .controller('DashboardStatsCtrl', ['$scope', '$translate', '$filter', 'Dashboard', function ($scope, $translate, $filter, Dashboard) {

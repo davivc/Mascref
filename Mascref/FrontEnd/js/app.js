@@ -18,6 +18,7 @@ var app = angular.module('app', [
     'app.services',
     'app.directives',
     'app.controllers',
+    'angularMoment',
 ])
 .run(
   ['$rootScope', '$state', '$stateParams', 'djangoAuth', 'ENV_CONF',  

@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics, serializers, viewsets, permissions, filters
 from rest_framework_tracking.mixins import LoggingMixin
+from rest_framework_tracking.models import APIRequestLog
 from app.models import Config
 from app.models import Country
 from app.models import Group
@@ -23,6 +24,7 @@ from app.models import Transect
 from app.models import Transect_Type
 from app.models import Transect_Info
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 # Objects for non-Models api
@@ -36,12 +38,27 @@ class DashboardStats(object):
         self.transects = Transect.objects.count()
 
 
+
+
 class RecursiveField(serializers.Serializer):
     def to_representation(self, value):
         serializer = self.parent.parent.__class__(value, context=self.context)
         return serializer.data
 
+
 # Serializers define the API representation.
+class ActivitySerializer(serializers.ModelSerializer):
+    firstname = serializers.ReadOnlyField(source='user.firstname', read_only=True)
+
+    class Meta:
+        model = APIRequestLog
+        fields = ('id','requested_at','path','method','data','response','user','firstname',)
+
+        # def get_queryset(self):
+        #     queryset = APIRequestLog.objects.filter(method='POST') | APIRequestLog.objects.filter(method='PATCH')
+        #     return queryset
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
@@ -169,17 +186,17 @@ class DashboardStatsSerializer (serializers.Serializer):
 
 
 # ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-class ConfigViewSet(viewsets.ModelViewSet):
+class ConfigViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Config.objects.all()
     serializer_class = ConfigSerializer
 
 
-class CountryViewSet(viewsets.ModelViewSet):
+class CountryViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
     ordering = ('name',)
@@ -190,7 +207,7 @@ class CountryViewSet(viewsets.ModelViewSet):
     #]
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     ordering = ('name',)
@@ -208,7 +225,7 @@ class GroupViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class GroupCategoryViewSet(viewsets.ModelViewSet):
+class GroupCategoryViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Group_Category.objects.all()
     serializer_class = GroupCategorySerializer
     ordering = ('name',)
@@ -293,7 +310,7 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
       serializer.save(created_by=self.request.user)
 
 
-class TransectViewSet(viewsets.ModelViewSet):
+class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Transect.objects.all()
     serializer_class = TransectSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -307,7 +324,7 @@ class TransectTypeViewSet(viewsets.ModelViewSet):
     ordering = ('name',)
 
 
-class TransectInfoViewSet(viewsets.ModelViewSet):
+class TransectInfoViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Transect_Info.objects.all()
     serializer_class = TransectInfoSerializer
     ordering = ('name',)
@@ -320,6 +337,14 @@ class DashboardStatsViewSet(viewsets.ViewSet):
     def list(self, request):
         serializer = DashboardStatsSerializer(DashboardStats())
         return Response(serializer.data)
+
+
+class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(path__contains='segments').order_by('-requested_at')[:20]
+    serializer_class = ActivitySerializer
+    ordering = ('requested_at',)
+    #def list(self, request):
+    #    return Response(serializer.data)
 
 
 #class JSONResponse(HttpResponse):
