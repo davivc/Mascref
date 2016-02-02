@@ -14,7 +14,9 @@ framework.
 
 """
 import os
+import sys
 
+sys.path = ['/home/ubuntu/mascref/Mascref/'] + sys.path
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Mascref.settings")
 
 # This application object is used by any WSGI server configured to use this
