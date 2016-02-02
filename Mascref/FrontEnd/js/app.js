@@ -17,18 +17,19 @@ var app = angular.module('app', [
     'app.services',
     'app.directives',
     'app.controllers',
+    'app.env_conf',
 ])
 .run(
-  ['$rootScope', '$state', '$stateParams', 'djangoAuth',
-    function ($rootScope, $state, $stateParams, djangoAuth) {
+  ['$rootScope', '$state', '$stateParams', 'djangoAuth', 'ENV_CONF',  
+    function ($rootScope, $state, $stateParams, djangoAuth, ENV_CONF) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-        djangoAuth.initialize('http://mascref:53190/rest-auth', true);
+        djangoAuth.initialize(ENV_CONF.api_url + '/rest-auth', true);
     }
   ]
 )
 .config(
-  ['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$locationProvider'
+  ['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$locationProvider', 
     function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $locationProvider) {
 
         // lazy controller, directive and service
@@ -130,7 +131,10 @@ var app = angular.module('app', [
             url: '/404',
             templateUrl: 'tpl/404.html'
           });
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode({
+          enabled: true,
+          requireBase: true
+        });
     }
   ]
 )

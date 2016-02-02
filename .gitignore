@@ -211,5 +211,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 *.pyc
+
 #/Mascref
 settings_local.py
+app.env_conf.js
