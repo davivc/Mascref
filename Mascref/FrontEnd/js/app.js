@@ -28,8 +28,8 @@ var app = angular.module('app', [
   ]
 )
 .config(
-  ['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
-    function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
+  ['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$locationProvider'
+    function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $locationProvider) {
 
         // lazy controller, directive and service
         app.controller = $controllerProvider.register;
@@ -40,92 +40,97 @@ var app = angular.module('app', [
         app.constant = $provide.constant;
 
         $urlRouterProvider
-            .otherwise('/access/404');
+          .otherwise('/access/404');
         $stateProvider
-            .state('app', {
-                abstract: true,
-                url: '/app',
-                templateUrl: 'tpl/app.html',                
-                resolve: {
+          .state('home', {
+              url: '/',
+              templateUrl: 'tpl/public_index.html'
+          })
+          .state('app', {
+              abstract: true,
+              url: '/app',
+              templateUrl: 'tpl/app.html',                
+              resolve: {
+                authenticated: ['djangoAuth', function (djangoAuth) {
+                  return djangoAuth.authenticationStatus();
+                }],
+              }
+          })
+          .state('app.dashboard', {
+              url: '/dashboard',
+              templateUrl: 'tpl/app_dashboard.html',
+              controller: 'DashboardCtrl',
+              resolve: {
+                authenticated: ['djangoAuth', function (djangoAuth) {
+                  return djangoAuth.authenticationStatus();
+                }],
+              }
+          })
+          .state('app.projects', {
+              url: '/projects',
+              templateUrl: 'tpl/app_projects.html',
+              controller: 'ProjectsCtrl',
+              resolve: {
                   authenticated: ['djangoAuth', function (djangoAuth) {
                     return djangoAuth.authenticationStatus();
                   }],
-                }
-            })
-            .state('app.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'tpl/app_dashboard.html',
-                controller: 'DashboardCtrl',
-                resolve: {
-                  authenticated: ['djangoAuth', function (djangoAuth) {
-                    return djangoAuth.authenticationStatus();
-                  }],
-                }
-            })
-            .state('app.projects', {
-                url: '/projects',
-                templateUrl: 'tpl/app_projects.html',
-                controller: 'ProjectsCtrl',
-                resolve: {
-                    authenticated: ['djangoAuth', function (djangoAuth) {
-                      return djangoAuth.authenticationStatus();
-                    }],
-                    }
-            })
-            .state('app.projects.view', {
-              url: '/view/{projectId}',
-              templateUrl: 'tpl/app_project_view.html'
-            })
-            .state('app.projects.view.survey', {
-              url: '/survey/{surveyId}',
-              templateUrl: 'tpl/app_survey.html'
-            })
-            .state('app.projects.view.survey.transect', {
-              url: '/transect/{transectId}',
-              templateUrl: 'tpl/app_transect.html'
-            })
-            .state('app.projects.transect.count', {
-              url: '/transect/count',
-              templateUrl: 'tpl/app_transect_count.html'
-            })
-            .state('app.projects.transect.cover', {
-              url: '/transect/cover',
-              templateUrl: 'tpl/app_transect_cover.html'
-            })
-            .state('app.maps', {
-                url: '/maps',
-                templateUrl: 'tpl/app_maps.html'
-            })
-            .state('app.stats', {
-                url: '/stats',
-                templateUrl: 'tpl/app_stats.html'
-            })
-            .state('app.settings', {
-                url: '/settings',
-                templateUrl: 'tpl/app_settings.html'
-            })
-            .state('app.settings.countries', {
-              url: '/countries',
-              templateUrl: 'tpl/app_settings_countries.html'
-            })
-            // others
-            .state('access', {
-              url: '/access',
-              template: '<div ui-view class="fade-in-right-big smooth"></div>'
-            })
-            .state('access.signin', {
-              url: '/signin',
-              templateUrl: 'tpl/signin.html',
-              controller: 'AccessSigninCtrl'
-            })
-            .state('access.forgotpwd', {
-              url: '/forgotpwd',
-              templateUrl: 'tpl/forgotpwd.html'
-            })
-            .state('access.404', {
-              url: '/404',
-              templateUrl: 'tpl/404.html'
-            })
+                  }
+          })
+          .state('app.projects.view', {
+            url: '/view/{projectId}',
+            templateUrl: 'tpl/app_project_view.html'
+          })
+          .state('app.projects.view.survey', {
+            url: '/survey/{surveyId}',
+            templateUrl: 'tpl/app_survey.html'
+          })
+          .state('app.projects.view.survey.transect', {
+            url: '/transect/{transectId}',
+            templateUrl: 'tpl/app_transect.html'
+          })
+          .state('app.projects.transect.count', {
+            url: '/transect/count',
+            templateUrl: 'tpl/app_transect_count.html'
+          })
+          .state('app.projects.transect.cover', {
+            url: '/transect/cover',
+            templateUrl: 'tpl/app_transect_cover.html'
+          })
+          .state('app.maps', {
+              url: '/maps',
+              templateUrl: 'tpl/app_maps.html'
+          })
+          .state('app.stats', {
+              url: '/stats',
+              templateUrl: 'tpl/app_stats.html'
+          })
+          .state('app.settings', {
+              url: '/settings',
+              templateUrl: 'tpl/app_settings.html'
+          })
+          .state('app.settings.countries', {
+            url: '/countries',
+            templateUrl: 'tpl/app_settings_countries.html'
+          })
+          // others
+          .state('access', {
+            url: '/access',
+            template: '<div ui-view class="fade-in-right-big smooth"></div>'
+          })
+          .state('access.signin', {
+            url: '/signin',
+            templateUrl: 'tpl/signin.html',
+            controller: 'AccessSigninCtrl'
+          })
+          .state('access.forgotpwd', {
+            url: '/forgotpwd',
+            templateUrl: 'tpl/forgotpwd.html'
+          })
+          .state('access.404', {
+            url: '/404',
+            templateUrl: 'tpl/404.html'
+          });
+        $locationProvider.html5Mode(true);
     }
   ]
 )
