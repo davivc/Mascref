@@ -13,11 +13,11 @@ var app = angular.module('app', [
     'uiGmapgoogle-maps',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
+    'app.env_conf',
     'app.filters',
     'app.services',
     'app.directives',
     'app.controllers',
-    'app.env_conf',
 ])
 .run(
   ['$rootScope', '$state', '$stateParams', 'djangoAuth', 'ENV_CONF',  

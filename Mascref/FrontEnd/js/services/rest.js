@@ -4,13 +4,13 @@
 
 
 // Demonstrate how to register services
-angular.module('app.services', ['app.env_conf'])
+angular.module('app.services')
 .service('Rest', function Rest($q, $http, $cookies, ENV_CONF) {
   var service = {
     /* START CUSTOMIZATION HERE */
     // Change this to point to your Django REST Auth API
     // e.g. /api/rest-auth  (DO NOT INCLUDE ENDING SLASH)
-    'API_URL': ENV_CONF.api_rul + '/api',
+    'API_URL': ENV_CONF.api_url + '/api',
     // Set use_session to true to use Django sessions to store security token.
     // Set use_session to false to store the security token locally and transmit it as a custom header.
     'use_session': true,
