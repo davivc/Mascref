@@ -189,11 +189,17 @@ class DashboardStatsSerializer (serializers.Serializer):
 class UserViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class ConfigViewSet(LoggingMixin, viewsets.ModelViewSet):
     queryset = Config.objects.all()
     serializer_class = ConfigSerializer
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class CountryViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -202,9 +208,9 @@ class CountryViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
-    #permission_classes = [
-    #    permissions.AllowAny
-    #]
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -213,6 +219,9 @@ class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('category','type',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
     def get_queryset(self):
         queryset = Group.objects.all()
@@ -231,6 +240,9 @@ class GroupCategoryViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('type',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class ProvinceViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -240,6 +252,9 @@ class ProvinceViewSet(LoggingMixin, viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,filters.DjangoFilterBackend,)
     filter_fields = ('country',)
     search_fields = ('name',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class TownViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -249,6 +264,9 @@ class TownViewSet(LoggingMixin, viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,filters.DjangoFilterBackend,)
     filter_fields = ('country','province',)
     search_fields = ('name',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class SegmentViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -257,6 +275,9 @@ class SegmentViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('token',)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('transect','segment','group','token','type',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -265,6 +286,9 @@ class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class ResearcherViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -273,6 +297,9 @@ class ResearcherViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -281,6 +308,9 @@ class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     #filter_backends = (filters.DjangoFilterBackend,)
     #filter_fields = ('parent',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
     def perform_create(self, serializer):
       serializer.save(created_by=self.request.user)
@@ -305,6 +335,9 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = SurveySerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('project',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
     def perform_create(self, serializer):
       serializer.save(created_by=self.request.user)
@@ -316,12 +349,18 @@ class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('survey',)
     ordering = ('name','date',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class TransectTypeViewSet(viewsets.ModelViewSet):
     queryset = Transect_Type.objects.all()
     serializer_class = TransectTypeSerializer
     ordering = ('name',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class TransectInfoViewSet(LoggingMixin, viewsets.ModelViewSet):
@@ -330,7 +369,9 @@ class TransectInfoViewSet(LoggingMixin, viewsets.ModelViewSet):
     ordering = ('name',)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('transect','name',)
-
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 # Non-Models
 class DashboardStatsViewSet(viewsets.ViewSet):
@@ -343,6 +384,9 @@ class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(path__contains='segments').order_by('-requested_at')[:20]
     serializer_class = ActivitySerializer
     ordering = ('requested_at',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
     #def list(self, request):
     #    return Response(serializer.data)
 
