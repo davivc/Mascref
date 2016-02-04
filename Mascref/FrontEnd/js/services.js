@@ -21,14 +21,16 @@ angular.module('app.services', [])
     return service;
   })  
   .service('Projects', function Projects(Rest) {
-    var service = {      
+    var service = {
+      'url': "/projects/",
       'list': function (parent) {
-        var search = '?';
-        if(parent) search = search  + 'parent=' + parent
-        return Rest.request({
-          'method': "GET",
-          'url': "/projects/" + search
-        });
+        var query = [];
+        var qStr = '';
+        if (parent) query.push('parent=' + parent);
+
+        if (query.length > 1) qStr = '?' + query.join('&');
+        else if (query.length == 1) qStr = '?' + query[0];
+        return Rest.get(this.url + qStr);
       },
       'get': function (pk) {
         return Rest.request({

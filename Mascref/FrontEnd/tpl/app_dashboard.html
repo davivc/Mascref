@@ -99,7 +99,7 @@
         <div class="sl-item b-l" ng-repeat="item in activity" ng-class="{ 'b-info': (item.method == 'PATCH') , 'b-success': (item.method == 'POST')}">
           <div class="m-l">
             <div class="text-muted"><time am-time-ago="item.requested_at"></time></div>
-            <p><a href class="text-info">{{item.user}}</a> <span class="ng-hide" ng-show="item.method == 'PATCH'">edited</span><span class="ng-hide" ng-show="item.method == 'POST'">created</span> something.</p>
+            <p><a href class="text-info">{{item.firstname}}</a> <span class="ng-hide" ng-show="item.method == 'PATCH'">edited</span><span class="ng-hide" ng-show="item.method == 'POST'">created</span> a {{item.path | toActivity}} </p>
           </div>
         </div>        
       </div>

@@ -25,7 +25,9 @@ from Mascref.serializers import TownViewSet
 from Mascref.serializers import TransectViewSet
 from Mascref.serializers import TransectTypeViewSet
 from Mascref.serializers import TransectInfoViewSet
-from Mascref.serializers import UserViewSet
+# from Mascref.serializers import UserViewSet
+from Mascref.serializers import UserList
+from Mascref.serializers import UserDetail
 from Mascref.serializers import DashboardStatsViewSet
 from Mascref.serializers import ActivityViewSet
 
@@ -47,13 +49,21 @@ router.register(r'api/towns', TownViewSet)
 router.register(r'api/transects', TransectViewSet)
 router.register(r'api/transects_types', TransectTypeViewSet)
 router.register(r'api/transects_infos', TransectInfoViewSet)
-router.register(r'api/users', UserViewSet)
+# router.register(r'api/users', UserViewSet)
+# router.register(r'api/users/$', UserList,as_view(), base_name='user')
+# router.register(r'api/users/(?P<pk>[0-9]+)/$', UserDetail.as_view(),'user')
 router.register(r'api/activity', ActivityViewSet)
-router.register(r'api/dashboard/stats', DashboardStatsViewSet, 'dashboard-list')
+router.register(r'api/dashboard/stats', DashboardStatsViewSet, 'dashboard-stats')
 
 urlpatterns = patterns('',
-    # Examples:
+    # Pages
     url(r'^$', 'app.views.home', name='home'),
+
+    # Custom Views
+    url(r'^api/users/$', UserList.as_view(), name='user-list'),
+    url(r'^api/users/(?P<pk>[0-9]+)/$', UserDetail.as_view(), name='user-detail'),
+
+    # Router
     url(r'^', include(router.urls)),
     #url(r'api/dashboard/stats', 'Mascref.serializers.dashboard_totals', name='dashboard_totals'),
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -84,3 +94,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 )
+
+
+
+
+

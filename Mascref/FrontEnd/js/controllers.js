@@ -73,6 +73,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       $scope.profile = function () {
         djangoAuth.profile()
         .then(function (data) {
+          console.log(data)
           $scope.username = data.username;
           $scope.email = data.email;
           $scope.first_name = data.first_name;

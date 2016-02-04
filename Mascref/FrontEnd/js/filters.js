@@ -18,6 +18,16 @@ angular.module('app.filters', [])
     return (!!input) ? input.split(' ').map(function (wrd) { return wrd.charAt(0).toUpperCase() + wrd.substr(1).toLowerCase(); }).join(' ') : '';
   }
 })
+.filter('toActivity', function () {
+  return function (input) {
+    var text = input.match(/\/api\/(.*?)\//);
+    console.log(text);
+    text = text[1];
+    text = text.slice(0, -1);
+    if(text.indexOf('countrie') >= 0) text = 'country';
+    return text;
+  }
+})
 .filter('toPrecision', function () {
   return function (input, digits) {
     return (!!input && isFinite(input)) ? parseFloat(input).toPrecision(digits) : '';
@@ -42,7 +52,8 @@ angular.module('app.filters', [])
     });
     return sum;
   }
-}).filter('mean', function () {
+})
+.filter('mean', function () {
   return function (data, key) {
 
     if (angular.isUndefined(data))
@@ -61,7 +72,8 @@ angular.module('app.filters', [])
     });
     return sum / totalObjects;
   }
-}).filter('sd', function () {
+})
+.filter('sd', function () {
   return function (data, key) {
     if (angular.isUndefined(data))
       return 0;
@@ -95,7 +107,7 @@ angular.module('app.filters', [])
     return Math.sqrt(sumDeviation/dof);
   }
 })
-.filter('coordinateFilter', function coordinateFilter($sce) {
+.filter('coordinateFilter', ['$sce', function ($sce) {
   return function(coordinate, conversion, type, places) {
     // The filter will be running as we type values into the input boxes, which returns undefined
     // and brings up an error in the console. Here wait until the coordinate is defined
@@ -139,9 +151,10 @@ angular.module('app.filters', [])
       // Output a notice that the coordinates are invalid if they are
       else if(!coordinateIsValid(match, type)) {
         return "Invalid Coordinate!";
-      }       
+      }    
 
-      function toDecimalDegrees(coord) {
+      // Fix to firefox -> (function() {}());
+      (function toDecimalDegrees(coord) {
         // Setup for all parts of the DMS coordinate and the necessary math to convert
         // from DMS to DD
         var degrees = parseInt(coord[0]);
@@ -170,24 +183,24 @@ angular.module('app.filters', [])
           if(type == 'lon') calculated -= 0.000011;
           return calculated.toFixed(places || 4);
         }
-      }
+      }());
 
       // This function converts from DD to DMS. Math.abs is used a lot because
       // for the minutes and seconds, negative values aren't valid 
-      function toDegreesMinutesSeconds(coordinate) {
+      (function toDegreesMinutesSeconds(coordinate) {
         var degrees = coordinate[0].split('.')[0];
         var minutes = Math.abs(Math.floor(60 * (Math.abs(coordinate[0]) - Math.abs(degrees))));
         var seconds = (3600 * (Math.abs(coordinate[0]) - Math.abs(degrees) - Math.abs(minutes) / 60)).toFixed(1);
 
         //return $sce.trustAsHtml(degrees + '&deg; ' + minutes + '&prime; ' + seconds + '&Prime; ');
         return { deg: degrees, min: minutes, sec: seconds };    
-      }
+      }());
 
       // This function checks whether the coordinate value the user enters is valid or not. 
       // If the coordinate doesn't pass one of these rules, the function will return false
       // which will then alert the user that the coordinate is invalid.
-      function coordinateIsValid(coordinate, type) {
-        if(coordinate) {
+      (function coordinateIsValid(coordinate, type) {
+        // if(coordinate) {
 
           // The degree values of latitude coordinates have a range between -90 and 90
           // if(coordinate[0] && type === 'lat') {
@@ -204,12 +217,12 @@ angular.module('app.filters', [])
           // if(coordinate[2]) {
           //   if(!parseInt(coordinate[2]).between(0, 60)) return false;
           // }                         
-        }
+        // }
         
         // If the coordinate made it through all the rules above, the function
         // returns true because the coordinate is good
         return true;
-      }         
+      }());        
     }       
   }
-});
+}])

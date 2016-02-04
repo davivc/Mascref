@@ -13,6 +13,7 @@ angular.module('app.controllers')
     $scope.breadcrumbs = [];
     $scope.projects = {}
     $scope.showNewProject = false;
+    $scope.loadingProjects = false;
     $scope.formProject = {}
 
     // Functions
@@ -48,10 +49,11 @@ angular.module('app.controllers')
     }
 
     $scope.getProjects = function (parent) {
+      $scope.loadingProjects = true;
       Projects.list('null')
       .then(function (data) {
-        $scope.projects = data;
-        //console.log($scope.projects)
+          $scope.loadingProjects = false;
+          $scope.projects = data;
       }, function (error) {
         //console.error('Projects list: ' + error);
         //$scope.stats.error = error;

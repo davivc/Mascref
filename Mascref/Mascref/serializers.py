@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework import generics, serializers, viewsets, permissions, filters
 from rest_framework_tracking.mixins import LoggingMixin
 from rest_framework_tracking.models import APIRequestLog
+from Mascref.permissions import UserPermissionsObj
 from app.models import Config
 from app.models import Country
 from app.models import Group
@@ -48,7 +49,7 @@ class RecursiveField(serializers.Serializer):
 
 # Serializers define the API representation.
 class ActivitySerializer(serializers.ModelSerializer):
-    firstname = serializers.ReadOnlyField(source='user.firstname', read_only=True)
+    firstname = serializers.ReadOnlyField(source='user.first_name', read_only=True)
 
     class Meta:
         model = APIRequestLog
@@ -59,7 +60,7 @@ class ActivitySerializer(serializers.ModelSerializer):
         #     return queryset
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'username', 'email', 'is_staff','date_joined')
@@ -186,11 +187,26 @@ class DashboardStatsSerializer (serializers.Serializer):
 
 
 # ViewSets define the view behavior.
-class UserViewSet(LoggingMixin, viewsets.ModelViewSet):
+# class UserViewSet(LoggingMixin, viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     permission_classes = (
+#         permissions.IsAuthenticated,
+#     )
+
+class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (
-        permissions.IsAuthenticated,
+        permissions.IsAdminUser,
+    )
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (
+        UserPermissionsObj,
     )
 
 
@@ -381,7 +397,7 @@ class DashboardStatsViewSet(viewsets.ViewSet):
 
 
 class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(path__contains='segments').order_by('-requested_at')[:20]
+    queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(Q(path__contains='segments') | Q(status_code=400)).order_by('-requested_at')[:10]
     serializer_class = ActivitySerializer
     ordering = ('requested_at',)
     permission_classes = (
