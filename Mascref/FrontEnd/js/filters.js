@@ -21,7 +21,6 @@ angular.module('app.filters', [])
 .filter('toActivity', function () {
   return function (input) {
     var text = input.match(/\/api\/(.*?)\//);
-    console.log(text);
     text = text[1];
     text = text.slice(0, -1);
     if(text.indexOf('countrie') >= 0) text = 'country';

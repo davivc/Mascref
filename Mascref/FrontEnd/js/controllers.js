@@ -3,8 +3,10 @@
 /* Controllers */
 
 angular.module('app.controllers', ['pascalprecht.translate'])
-  .controller('AppCtrl', function ($scope, $translate, $state, djangoAuth, $location, tmhDynamicLocale) {
+  .controller('AppCtrl', function ($scope, $rootScope, $translate, $state, djangoAuth, $location, tmhDynamicLocale, User) {
     tmhDynamicLocale.set('en-au');
+
+    $rootScope.userProfile = {};
 
     // add 'no-touch' 'ie' classes to html
       var isTouchDevice = !!('ontouchstart' in window);
@@ -73,11 +75,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       $scope.profile = function () {
         djangoAuth.profile()
         .then(function (data) {
-          console.log(data)
-          $scope.username = data.username;
-          $scope.email = data.email;
-          $scope.first_name = data.first_name;
-          $scope.last_name = data.last_name;
+          $rootScope.userProfile.data
         }, handleError);
       }
 

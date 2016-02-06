@@ -11,25 +11,24 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.models import User
 from rest_framework import routers
-from Mascref.serializers import ConfigViewSet
-from Mascref.serializers import CountryViewSet
-from Mascref.serializers import GroupViewSet
-from Mascref.serializers import GroupCategoryViewSet
-from Mascref.serializers import ProjectViewSet
-from Mascref.serializers import ProvinceViewSet
-from Mascref.serializers import ResearcherViewSet
-from Mascref.serializers import SegmentViewSet
-from Mascref.serializers import SiteViewSet
-from Mascref.serializers import SurveyViewSet
-from Mascref.serializers import TownViewSet
-from Mascref.serializers import TransectViewSet
-from Mascref.serializers import TransectTypeViewSet
-from Mascref.serializers import TransectInfoViewSet
-# from Mascref.serializers import UserViewSet
-from Mascref.serializers import UserList
-from Mascref.serializers import UserDetail
-from Mascref.serializers import DashboardStatsViewSet
-from Mascref.serializers import ActivityViewSet
+from Mascref.views import ConfigViewSet
+from Mascref.views import CountryViewSet
+from Mascref.views import GroupViewSet
+from Mascref.views import GroupCategoryViewSet
+from Mascref.views import ProjectViewSet
+from Mascref.views import ProvinceViewSet
+from Mascref.views import ResearcherViewSet
+from Mascref.views import SegmentViewSet
+from Mascref.views import SiteViewSet
+from Mascref.views import SurveyViewSet
+from Mascref.views import TownViewSet
+from Mascref.views import TransectViewSet
+from Mascref.views import TransectTypeViewSet
+from Mascref.views import TransectInfoViewSet
+from Mascref.views import UserList
+from Mascref.views import UserDetail
+from Mascref.views import DashboardStatsViewSet
+from Mascref.views import ActivityViewSet
 
 admin.autodiscover()
 
@@ -65,7 +64,7 @@ urlpatterns = patterns('',
 
     # Router
     url(r'^', include(router.urls)),
-    #url(r'api/dashboard/stats', 'Mascref.serializers.dashboard_totals', name='dashboard_totals'),
+    #url(r'api/dashboard/stats', 'Mascref.views.dashboard_totals', name='dashboard_totals'),
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-docs/', include('rest_framework_swagger.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),

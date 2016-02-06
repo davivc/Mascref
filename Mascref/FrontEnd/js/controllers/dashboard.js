@@ -3,24 +3,10 @@
 /* Dashboard Controllers */
 
 angular.module('app.controllers')
-  .controller('DashboardCtrl', ['$scope', '$translate', '$state', 'Activity', function ($scope, $translate, $state, Activity) {
+  .controller('DashboardCtrl', ['$scope', '$translate', '$state', 'User', function ($scope, $translate, $state, User) {
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
-
-    $scope.activity = []
-
-    $scope.getActivities = function () {
-      Activity.list()
-      .then(function (data) {
-        $scope.activity = data;
-      }, function (error) {
-        $scope.activity.error = error;
-      });
-    }
-
-    $scope.getActivities();
-
   }])
   .controller('DashboardStatsCtrl', ['$scope', '$translate', '$filter', 'Dashboard', function ($scope, $translate, $filter, Dashboard) {
     $scope.stats = {
@@ -67,6 +53,17 @@ angular.module('app.controllers')
     $scope.getResearchers();
 
   }])
-  .controller('DashboardRecentCtrl', ['$scope', '$translate', function ($scope, $translate) {
+  .controller('DashboardRecentCtrl', ['$scope', '$translate', 'Activity', function ($scope, $translate, Activity) {
+    $scope.activity = []
 
+    $scope.getActivities = function () {
+      Activity.list()
+      .then(function (data) {
+        $scope.activity = data;
+      }, function (error) {
+        $scope.activity.error = error;
+      });
+    }
+
+    $scope.getActivities();
   }]);

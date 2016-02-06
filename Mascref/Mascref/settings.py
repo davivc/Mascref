@@ -156,3 +156,7 @@ LOGGING = {
 AUTHENTICATION_METHOD = 'EMAIL'
 
 from settings_local import * 
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'Mascref.serializers.UserSerializer',
+}
