@@ -1,0 +1,470 @@
+[
+{
+  "fields": {
+    "category": 1,
+    "name": "Butterflyfish",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 1
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Haemulidae",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 2
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Snapper",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 3
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Parrotfish",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 4
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Moray eel",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 5
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Nassau grouper",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 6
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Nassau grouper 30-40 cm",
+    "parent": 6,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 7
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Nassau grouper 40-50 cm",
+    "parent": 6,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 8
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Nassau grouper 50-60 cm",
+    "parent": 6,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 9
+},
+{
+  "fields": {
+    "category": 1,
+    "name": "Nassau grouper >60 cm",
+    "parent": 6,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 10
+},
+{
+  "fields": {
+    "category": null,
+    "name": "HC",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Hard coral"
+  },
+  "model": "app.group",
+  "pk": 11
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SC",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Soft coral"
+  },
+  "model": "app.group",
+  "pk": 12
+},
+{
+  "fields": {
+    "category": null,
+    "name": "RKC",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Recently killed coral"
+  },
+  "model": "app.group",
+  "pk": 13
+},
+{
+  "fields": {
+    "category": null,
+    "name": "NIA",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Nutrient indicator algae"
+  },
+  "model": "app.group",
+  "pk": 14
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SP",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Sponge"
+  },
+  "model": "app.group",
+  "pk": 15
+},
+{
+  "fields": {
+    "category": null,
+    "name": "RC",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Rock"
+  },
+  "model": "app.group",
+  "pk": 16
+},
+{
+  "fields": {
+    "category": null,
+    "name": "RB",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Rubble"
+  },
+  "model": "app.group",
+  "pk": 17
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SD",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Sand"
+  },
+  "model": "app.group",
+  "pk": 18
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SI",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Silt/clay"
+  },
+  "model": "app.group",
+  "pk": 19
+},
+{
+  "fields": {
+    "category": null,
+    "name": "OT",
+    "parent": null,
+    "format": 1,
+    "type": 2,
+    "description": "Other"
+  },
+  "model": "app.group",
+  "pk": 20
+},
+{
+  "fields": {
+    "category": 2,
+    "name": "Banded coral shrimp",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": "Diadema"
+  },
+  "model": "app.group",
+  "pk": 21
+},
+{
+  "fields": {
+    "category": 2,
+    "name": "Diadema",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 22
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Coral damage: Boat/Anchor",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 23
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Coral damage: Dynamite",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 24
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Coral damage: Other",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 25
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Trash: Fish nets",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 26
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Trash: General",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 27
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Bleaching (% of coral population)",
+    "parent": null,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 28
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Bleaching (% of coral colony)",
+    "parent": null,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 29
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Coral Disease",
+    "parent": null,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 30
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Black Band",
+    "parent": 30,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 31
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "White Band",
+    "parent": 30,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 32
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "White Plague",
+    "parent": 30,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 33
+},
+{
+  "fields": {
+    "category": 3,
+    "name": "Aspergillosis",
+    "parent": 30,
+    "format": 2,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 34
+},
+{
+  "fields": {
+    "category": 4,
+    "name": "Sharks",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 35
+},
+{
+  "fields": {
+    "category": 4,
+    "name": "Turtles",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 36
+},
+{
+  "fields": {
+    "category": 4,
+    "name": "Mantas",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 37
+},
+{
+  "fields": {
+    "category": 4,
+    "name": "Lionfish",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 38
+},
+{
+  "fields": {
+    "category": 4,
+    "name": "Other",
+    "parent": null,
+    "format": 1,
+    "type": 1,
+    "description": null
+  },
+  "model": "app.group",
+  "pk": 39
+}
+]

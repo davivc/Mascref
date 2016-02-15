@@ -1,0 +1,118 @@
+[
+{
+  "fields": {
+    "name": "MARS2005",
+    "parent": null,
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "created_by": 1,
+    "owner": 1,
+    "public": false,
+    "description": "This course aims to develop an understanding of the significance of Australia's marine systems and their importance in the global scene. The course examines the diversity of marine environments, both pristine and altered, sites of conservation significance, endangered plants and animals, as well as jurisdictional responsibilities. Field trips are not compulsory but highly recommended. There is an additional cost for the field trip, please contact biologyadmin@uq.edu.au for further information."
+  },
+  "model": "app.project",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "Maare",
+    "parent": null,
+    "created_at": "2015-12-19T06:30:18Z",
+    "updated_at": "2015-12-22T05:38:02Z",
+    "created_by": 1,
+    "owner": 3,
+    "public": false,
+    "description": ""
+  },
+  "model": "app.project",
+  "pk": 11
+},
+{
+  "fields": {
+    "name": "Reefcheck Australia",
+    "parent": null,
+    "created_at": "2015-12-19T06:30:51Z",
+    "updated_at": "2015-12-19T06:30:51Z",
+    "created_by": 1,
+    "owner": 1,
+    "public": true,
+    "description": ""
+  },
+  "model": "app.project",
+  "pk": 12
+},
+{
+  "fields": {
+    "name": "MS306",
+    "parent": null,
+    "created_at": "2015-12-19T07:38:09Z",
+    "updated_at": "2015-12-22T05:37:07Z",
+    "created_by": 1,
+    "owner": 2,
+    "public": false,
+    "description": "<table border=\"0\" width=\"90%\" cellpadding=\"0\" cellspacing=\"2\" bgcolor=\"\" style=\"color: rgb(0, 0, 0); font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; line-height: normal; background-color: rgb(255, 255, 255);\"><tbody><tr><td colspan=\"5\"></td></tr><tr><td colspan=\"5\"><b><i>Prerequisites:&nbsp;</i></b><i>(BI201 and BI202) or (BI2% and MS2%) or (MS2% and MS2%)&nbsp;</i><br><b><i>Course Coordinator:&nbsp;</i></b><i>To be advised&nbsp;</i><br>Continuous Assessment: 60/100 Examination: 40/100<br>Continuous Assessment elements: Field reports (30%). Midterm exam: Lecture (15%); Practical (15%).&nbsp;<br><br>Coral reefs are one of the richest and most productive ecosystems in the world. Coral reefs are under serious threat globally, not least in the Pacific region. This course examines the origins of coral reefs (reef types and formation); the biology of corals and other reef organisms (taxonomy, feeding, growth and reproduction); ecosystem structure and function (particularly coral/zooxanthellae, coral/algae, and predator/prey relationships); biodiversity values (significant and threatened species); human uses and values (especially fisheries); major issues (especially coral bleaching, terrestrial run-off, and effects of fishing); and environmental management and sustainable use of reef resources.<br><br><b><i>Topics&nbsp;</i></b><br>Topic 1. General introduction to coral reefs and management issues (importance of coral reefs in USP region, human impacts, major issues, global reefs under threat). Topic 2. Coral reef formation, geomorphology (island and reef types, formation, reef development, particularly in the USP region). Topic 3. Biology of corals (polyps, zooxanthellae, nutrition, calcification, skeletons and growth forms, classification (major families, genera), feeding, growth, reproduction). Topic 4. Ecology of coral reefs (algal/coral interactions; primary production and nutrient sources, competition, disturbance theory, grazing and phase shifts; secondary production and trophic pathways). Topic 5. Coral reef communities (plants, invertebrates, vertebrates, keystone habitats and species, biodiversity values, threatened species) Topic 6. Human uses and values in South Pacific region (reef fisheries (traditional and modern); tourism; natural products; biodiversity and conservation). Topic 7. Major issues affecting coral reefs (status of world and SPC reefs; major threats, global coral bleaching events and global warming; terrestrial run-off; effects of fishing; ecosystem shifts). Topic 8. Coral reef conservation and management (traditional management strategies; marine protected areas, fisheries and tourism management strategies; multiple-use management models, co-management and LMMAs in South Pacific). Topic 9. Coral reef survey techniques (benthic survey techniques transects, intercepts and manta-tows; Reefcheck and GCRM; underwater visual census of reef fish). Topic 10. Comm<br><b><i>Prescribed Text:&nbsp;</i></b>Hawaiian Coral Reef Ecology - D. Gulko<br><b><i>Contact Hours:&nbsp;</i></b>98 hrs</td></tr></tbody></table>"
+  },
+  "model": "app.project",
+  "pk": 15
+},
+{
+  "fields": {
+    "created_at": "2015-12-19T09:11:29Z",
+    "name": "2015.2",
+    "date_end": null,
+    "date_start": "2015-08-04",
+    "updated_at": "2015-12-19T09:11:29Z",
+    "created_by": 1,
+    "project": 15,
+    "owner": 2,
+    "public": false
+  },
+  "model": "app.survey",
+  "pk": 1
+},
+{
+  "fields": {
+    "created_at": "2015-12-20T07:20:56Z",
+    "name": "2016.1",
+    "date_end": null,
+    "date_start": "2016-02-01",
+    "updated_at": "2015-12-20T07:20:56Z",
+    "created_by": 1,
+    "project": 15,
+    "owner": null,
+    "public": false
+  },
+  "model": "app.survey",
+  "pk": 2
+},
+{
+  "fields": {
+    "created_at": "2015-12-22T05:47:43Z",
+    "name": "2016.2",
+    "date_end": "2016-12-01",
+    "date_start": "2016-08-01",
+    "updated_at": "2015-12-22T05:47:43Z",
+    "created_by": 1,
+    "project": 15,
+    "owner": 1,
+    "public": true
+  },
+  "model": "app.survey",
+  "pk": 3
+},
+{
+  "fields": {
+    "created_at": "2016-01-21T05:39:47Z",
+    "name": "2015",
+    "date_end": "2015-12-31",
+    "date_start": "2015-01-01",
+    "updated_at": "2016-01-21T05:39:47Z",
+    "created_by": 1,
+    "project": 11,
+    "owner": 3,
+    "public": false
+  },
+  "model": "app.survey",
+  "pk": 4
+}
+]

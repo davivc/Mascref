@@ -1,0 +1,56 @@
+[
+{
+  "fields": {
+    "type": 1,
+    "name": "Fish",
+    "description": null
+  },
+  "model": "app.group_category",
+  "pk": 1
+},
+{
+  "fields": {
+    "type": 1,
+    "name": "Inverts",
+    "description": null
+  },
+  "model": "app.group_category",
+  "pk": 2
+},
+{
+  "fields": {
+    "type": 1,
+    "name": "Impacts: Coral Damage/Disease/Bleaching/Trash",
+    "description": "0 = none, 1 = low (1 piece), 2 = medium (2-4 pieces) and 3 = high (5+ pieces)"
+  },
+  "model": "app.group_category",
+  "pk": 3
+},
+{
+  "fields": {
+    "type": 1,
+    "name": "Rare animals sighted",
+    "description": "# / type / size"
+  },
+  "model": "app.group_category",
+  "pk": 4
+},
+{
+  "fields": {
+    "type": 2,
+    "name": "Living Cover",
+    "description": null
+  },
+  "model": "app.group_category",
+  "pk": 5
+},
+{
+  "fields": {
+    "type": 2,
+    "name": "Non-Living Cover",
+    "description": null
+  },
+  "model": "app.group_category",
+  "pk": 6
+}
+]
