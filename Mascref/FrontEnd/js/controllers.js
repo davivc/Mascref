@@ -75,7 +75,8 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       $scope.profile = function () {
         djangoAuth.profile()
         .then(function (data) {
-          $rootScope.userProfile.data
+          $rootScope.userProfile = data;
+          // $rootScope.$apply()
         }, handleError);
       }
 

@@ -41,9 +41,11 @@ class ActivitySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    is_admin = serializers.ReadOnlyField(source='is_superuser', read_only=True)
+
     class Meta:
         model = User
-        fields = ('id', 'url', 'username', 'email', 'is_staff','date_joined')
+        fields = ('id', 'url', 'username', 'email', 'first_name', 'last_name', 'is_staff', 'is_admin', 'date_joined')
 
         
 class ConfigSerializer (serializers.ModelSerializer):
@@ -86,9 +88,12 @@ class TownSerializer (serializers.ModelSerializer):
 
 
 class ResearcherSerializer (serializers.ModelSerializer):
+    is_admin = serializers.ReadOnlyField(source='user.is_superuser')
+    is_staff = serializers.ReadOnlyField(source='user.is_staff')
+
     class Meta:
         model = Researcher
-        fields = ('id', 'name',)
+        fields = ('id', 'name','is_admin','is_staff')
 
 
 #class SegmentListSerializer(serializers.ListSerializer):

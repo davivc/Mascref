@@ -71,17 +71,18 @@
                     <a href class="thumb-sm m-r">
                       <img src="img/a1.jpg" class="r r-2x">
                     </a>
-                    <span ng-switch="researcher.role">
-                      <span ng-switch-when="1" class="pull-right label bg-danger inline m-t-sm" translate="app.dashboard.ADMIN">Admin</span>
-                      <span ng-switch-when="2" class="pull-right label bg-dark inline m-t-sm" translate="app.dashboard.MEMBER">Member</span>
-                      <span ng-switch-default class="pull-right label bg-warning inline m-t-sm" translate="app.dashboard.RESEARCHER">Researcher</span>
+                    <span>
+                      <span ng-show="researcher.is_staff && researcher.is_admin" class="ng-hide pull-right label bg-danger inline m-t-sm" translate="app.dashboard.ADMIN">Admin</span>
+                      <span ng-show="researcher.is_staff && !researcher.is_admin" class="ng-hide pull-right label bg-dark inline m-t-sm" translate="app.dashboard.MEMBER">Member</span>
+                      <span ng-show="!researcher.is_staff && !researcher.is_admin" class="ng-hide pull-right label bg-warning inline m-t-sm" translate="app.dashboard.RESEARCHER">Researcher</span>
                     </span>
                     <a href>{{researcher.name}}</a>
                   </li>
                 </ul>
                 <div class="panel-footer">
                   <span class="pull-right badge badge-bg m-t-xs">{{researchers.length}}</span>
-                  <button class="btn btn-success btn-addon btn-sm"><i class="fa fa-plus"></i><span translate="app.dashboard.ADDRESEARCHER">Add Researcher</span></button>
+                  <button class="btn btn-success btn-addon btn-sm ng-hide" ng-show="userProfile.is_admin"><i class="fa fa-plus"></i><span translate="app.dashboard.ADDRESEARCHER">Add Researcher</span></button>
+                  <br />
                 </div>
               </div>
         </div>

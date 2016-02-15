@@ -3,12 +3,17 @@
 /* Dashboard Controllers */
 
 angular.module('app.controllers')
-  .controller('DashboardCtrl', ['$scope', '$translate', '$state', 'User', function ($scope, $translate, $state, User) {
+  .controller('DashboardCtrl', ['$scope', '$rootScope', '$translate', '$state', 'User', function ($scope, $rootScope, $translate, $state, User) {
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
+
+    $scope.$watch('userProfile', function(newValue, oldValue) {
+      //update the DOM with newValue
+      console.log($rootScope.userProfile)
+    });
   }])
-  .controller('DashboardStatsCtrl', ['$scope', '$translate', '$filter', 'Dashboard', function ($scope, $translate, $filter, Dashboard) {
+  .controller('DashboardStatsCtrl', ['$scope', '$rootScope', '$translate', '$filter', 'Dashboard', function ($scope, $rootScope, $translate, $filter, Dashboard) {
     $scope.stats = {
       'countries': 0,
       'projects': 0,
@@ -17,7 +22,7 @@ angular.module('app.controllers')
       'surveys': 0,
       'transects': 0
     }
-
+    console.log($rootScope.userProfile)
     $scope.researchers = []
     $scope.totalAdmin = 0;
     $scope.totalMembers = 0;
@@ -44,9 +49,9 @@ angular.module('app.controllers')
     }
 
     $scope.$watch('researchers', function (data) {
-      $scope.totalAdmin = $filter('filter')($scope.researchers, { role: 1 }, true).length;
-      $scope.totalMembers = $filter('filter')($scope.researchers, { role: 2 }, true).length;
-      $scope.totalResearchers = $filter('filter')($scope.researchers, { role: 3 } && { role: null } && { role: undefined }, true).length;
+      $scope.totalAdmin = $filter('filter')($scope.researchers, { is_admin: true }, true).length;
+      $scope.totalMembers = $filter('filter')($scope.researchers, { is_staff: true, is_admin: false }, true).length;
+      $scope.totalResearchers = $scope.researchers.length - $scope.totalAdmin - $scope.totalMembers;
     });
 
     $scope.getStats();

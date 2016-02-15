@@ -15,6 +15,7 @@ class Config(models.Model):
 class Researcher(models.Model):
     name = models.CharField(max_length=100)
     eco_diver = models.CharField(max_length=100, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
