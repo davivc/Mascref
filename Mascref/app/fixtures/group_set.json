@@ -1,0 +1,16 @@
+[
+{
+  "fields": {
+    "name": "ReefCheck Pacific"
+  },
+  "model": "app.group_set",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Custom"
+  },
+  "model": "app.group_set",
+  "pk": 2
+}
+]

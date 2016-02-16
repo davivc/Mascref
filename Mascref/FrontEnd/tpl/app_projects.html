@@ -27,13 +27,14 @@
         <thead>
           <tr>
               <th>Name</th>
-              <th class="text-center">Date Start</th>
-              <th class="text-center">Date End</th>
-              <th class="text-center">Owner / Leader</th>
+              <!-- <th class="text-center">Date Start</th> -->
+              <!-- <th class="text-center">Date End</th> -->
+              <th class="text-center">Project Leader</th>
               <th class="text-center">Surveys</th>
               <th class="text-center">Transects</th>
               <th class="text-center">Date Created</th>
-              <th class="text-center">Public</th>             
+              <th class="text-center">Public</th>
+              <th class="text-center" ng-if="userProfile.is_admin">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -49,13 +50,14 @@
           </tr>        
           <tr ng-repeat="project in projects">
               <td><a ui-sref="app.projects.view({projectId:project.id})">{{project.name}}</a></td>
-              <td class="text-center">{{project.date_start | date:'shortDate'}}</td>
-              <td class="text-center">{{project.date_end | date:'shortDate'}}</td>
+              <!-- <td class="text-center">{{project.date_start | date:'shortDate'}}</td> -->
+              <!-- <td class="text-center">{{project.date_end | date:'shortDate'}}</td> -->
               <td class="text-center">{{project.owner_name}}</td>
               <td class="text-center">{{project.surveys_count ? project.surveys_count : '0'}}</td>
               <td class="text-center">{{project.transects_count ? project.transects_count : '0'}}</td>
               <td class="text-center">{{project.created_at | date:'short'}}</td>
               <td class="text-center"><i ng-if="project.public" class="fa fa-check text-success text"></i><i ng-if="!project.public" class="fa fa-times text-danger text"></i></td>
+              <td class="text-center" ng-if="userProfile.is_admin"><i class="fa fa-edit text"></i></td>
           </tr> 
         </tbody>
         <tfoot class="hide-if-no-paging">
@@ -91,7 +93,7 @@
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Owner / Leader</label>
+          <label class="col-sm-2 control-label">Project Leader</label>
           <div class="col-sm-4">
             <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
             <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">

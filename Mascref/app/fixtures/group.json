@@ -5,6 +5,7 @@
     "name": "Butterflyfish",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -17,6 +18,7 @@
     "name": "Haemulidae",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -29,6 +31,7 @@
     "name": "Snapper",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -41,6 +44,7 @@
     "name": "Parrotfish",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -53,6 +57,7 @@
     "name": "Moray eel",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -65,6 +70,7 @@
     "name": "Nassau grouper",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -77,6 +83,7 @@
     "name": "Nassau grouper 30-40 cm",
     "parent": 6,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -89,6 +96,7 @@
     "name": "Nassau grouper 40-50 cm",
     "parent": 6,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -101,6 +109,7 @@
     "name": "Nassau grouper 50-60 cm",
     "parent": 6,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -113,6 +122,7 @@
     "name": "Nassau grouper >60 cm",
     "parent": 6,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -125,6 +135,7 @@
     "name": "HC",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Hard coral"
   },
@@ -137,6 +148,7 @@
     "name": "SC",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Soft coral"
   },
@@ -149,6 +161,7 @@
     "name": "RKC",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Recently killed coral"
   },
@@ -161,6 +174,7 @@
     "name": "NIA",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Nutrient indicator algae"
   },
@@ -173,6 +187,7 @@
     "name": "SP",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Sponge"
   },
@@ -185,6 +200,7 @@
     "name": "RC",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Rock"
   },
@@ -197,6 +213,7 @@
     "name": "RB",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Rubble"
   },
@@ -209,6 +226,7 @@
     "name": "SD",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Sand"
   },
@@ -221,6 +239,7 @@
     "name": "SI",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Silt/clay"
   },
@@ -233,6 +252,7 @@
     "name": "OT",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 2,
     "description": "Other"
   },
@@ -245,6 +265,7 @@
     "name": "Banded coral shrimp",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": "Diadema"
   },
@@ -257,6 +278,7 @@
     "name": "Diadema",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -269,6 +291,7 @@
     "name": "Coral damage: Boat/Anchor",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -281,6 +304,7 @@
     "name": "Coral damage: Dynamite",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -293,6 +317,7 @@
     "name": "Coral damage: Other",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -305,6 +330,7 @@
     "name": "Trash: Fish nets",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -317,6 +343,7 @@
     "name": "Trash: General",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -329,6 +356,7 @@
     "name": "Bleaching (% of coral population)",
     "parent": null,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -341,6 +369,7 @@
     "name": "Bleaching (% of coral colony)",
     "parent": null,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -353,6 +382,7 @@
     "name": "Coral Disease",
     "parent": null,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -365,6 +395,7 @@
     "name": "Black Band",
     "parent": 30,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -377,6 +408,7 @@
     "name": "White Band",
     "parent": 30,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -389,6 +421,7 @@
     "name": "White Plague",
     "parent": 30,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -401,6 +434,7 @@
     "name": "Aspergillosis",
     "parent": 30,
     "format": 2,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -413,6 +447,7 @@
     "name": "Sharks",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -425,6 +460,7 @@
     "name": "Turtles",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -437,6 +473,7 @@
     "name": "Mantas",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -449,6 +486,7 @@
     "name": "Lionfish",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },
@@ -461,6 +499,7 @@
     "name": "Other",
     "parent": null,
     "format": 1,
+    "set": 1,
     "type": 1,
     "description": null
   },

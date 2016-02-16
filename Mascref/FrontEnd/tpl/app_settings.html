@@ -5,11 +5,11 @@
   <div class="row">
     <div class="col-sm-12 connected">
       <div  ng-controller="SettingsCtrl">
-        <accordion close-others="oneAtATime">          
-          <accordion-group is-open="status.maps.open" class="b-info">
-              <accordion-heading>
+        <uib-accordion close-others="oneAtATime">          
+          <uib-accordion-group is-open="status.maps.open" class="b-info">
+              <uib-accordion-heading>
                  <i class="glyphicon glyphicon-globe icon text-info-lter"></i> <span class="font-bold">Maps</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.maps.open, 'fa-angle-right': !status.maps.open}"></i>
-              </accordion-heading>
+              </uib-accordion-heading>
               <form class="form-horizontal">
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Center Lat</label>
@@ -35,11 +35,11 @@
                   </div>
                 </div>
               </form>
-          </accordion-group>
-          <accordion-group is-open="status.transects.open" class="b-primary">
-              <accordion-heading>
+          </uib-accordion-group>
+          <uib-accordion-group is-open="status.transects.open" class="b-primary">
+              <uib-accordion-heading>
                  <i class="glyphicon glyphicon-align-justify icon text-primary"></i> <span class="font-bold">Transects</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.transects.open, 'fa-angle-right': !status.transects.open}"></i>
-              </accordion-heading>
+              </uib-accordion-heading>
               <form class="form-horizontal">
                 <div class="form-group">
                   <label class="col-lg-2 control-label">Length (m)</label>
@@ -68,19 +68,52 @@
                   </div>
                 </div>
               </form>
-          </accordion-group>
-          <accordion-group is-open="status.researchers.open" class="b-success">
-              <accordion-heading>
+          </uib-accordion-group>
+          <uib-accordion-group is-open="status.researchers.open" class="b-success">
+              <uib-accordion-heading>
                  <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Researchers</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.researchers.open, 'fa-angle-right': !status.researchers.open}"></i>
-              </accordion-heading>
+              </uib-accordion-heading>
               <form class="form-horizontal">
                 
               </form>
-          </accordion-group>
-          <accordion-group is-open="status.entries.open" class="b-black">
-              <accordion-heading>
-                 <i class="glyphicon glyphicon-floppy-open icon text-black"></i> <span class="font-bold">Entries list</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.entries.open, 'fa-angle-right': !status.entries.open}"></i>
-              </accordion-heading>
+          </uib-accordion-group>
+          <uib-accordion-group is-open="status.entries.open" class="b-black">
+              <uib-accordion-heading>
+                 <i class="glyphicon glyphicon-list-alt icon text-black"></i> <span class="font-bold">Places list</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.entries.open, 'fa-angle-right': !status.entries.open}"></i>
+              </uib-accordion-heading>
+              <form class="form-horizontal">
+                <div class="list-group bg-white"> 
+                  Click on the desired item to manage its entries and properties.
+                </div>
+                <div class="list-group bg-white">
+                  <uib-accordion>
+                    <uib-accordion-group ng-repeat="acc in accordions">
+                      <div ng-include="acc.template"></div>
+                    </uib-accordion-group>         
+                  </uib-accordion>
+                  <!-- <uib-accordion-group is-open="status.entries.countries.open" class="b-black">
+                    <uib-accordion-heading>
+                      Countries
+                      <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.entries.countries.open, 'fa-angle-right': !status.entries.countries.open}"></i>
+                    </uib-accordion-heading>
+                    <ng-include src="tpl/blocks/transect_site_info.html"></ng-include>
+                  </uib-accordion-group>
+                  <uib-accordion-group is-open="status.entries.provinces.open" class="b-black">
+                    <uib-accordion-heading>Provinces</uib-accordion-heading>
+                  </uib-accordion-group>
+                  <uib-accordion-group is-open="status.entries.towns.open" class="b-black">
+                    <uib-accordion-heading>Towns</uib-accordion-heading>
+                  </uib-accordion-group>
+                  <uib-accordion-group is-open="status.entries.sites.open" class="b-black">
+                    <uib-accordion-heading>Sites</uib-accordion-heading>
+                  </uib-accordion-group> -->
+                </div>
+              </form>
+          </uib-accordion-group>
+          <uib-accordion-group is-open="status.groups.open" class="b-black">
+              <uib-accordion-heading>
+                 <i class="glyphicon glyphicon-list-alt icon text-black"></i> <span class="font-bold">Entries list</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.entries.open, 'fa-angle-right': !status.entries.open}"></i>
+              </uib-accordion-heading>
               <form class="form-horizontal">
                 <div class="list-group bg-white"> 
                   Click on the desired item to manage its entries and properties.
@@ -106,8 +139,8 @@
                   </a>
                 </div>
               </form>
-          </accordion-group>
-        </accordion>
+          </uib-accordion-group>
+        </uib-accordion>
       </div>
     </div>
   </div>

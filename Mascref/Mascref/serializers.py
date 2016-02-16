@@ -54,10 +54,25 @@ class ConfigSerializer (serializers.ModelSerializer):
         fields = ('name','value')
 
 
+class SiteSerializer (serializers.ModelSerializer):
+    town_name = serializers.ReadOnlyField(source='town.name', read_only=True)
+    province_name = serializers.ReadOnlyField(source='town.province.name', read_only=True)
+    country_name = serializers.ReadOnlyField(source='town.country.name', read_only=True)
+    
+    class Meta:
+        model = Site
+        fields = ('id','name','lat','long','town','town_name','province_name','country_name')
+
+
 class CountrySerializer (serializers.ModelSerializer):
+    # provinces_total = serializers.ReadOnlyField(source='provinces.count')
+    # towns_total = serializers.ReadOnlyField(source='towns.count')
+    # sites = serializers.ReadOnlyField(source='sites__len')
+    # sites = SiteSerializer
+
     class Meta:
         model = Country
-        fields = ('id','name',)
+        fields = ('id','name','provinces','towns','sites','surveys','transects')
 
 
 class GroupSerializer (serializers.ModelSerializer):
@@ -111,16 +126,6 @@ class SegmentSerializer (serializers.ModelSerializer):
         fields = ('token', 'transect','type','segment','group','group_name','parent','parent_name','value','created_at','updated_at',)
 
 
-class SiteSerializer (serializers.ModelSerializer):
-    town_name = serializers.ReadOnlyField(source='town.name', read_only=True)
-    province_name = serializers.ReadOnlyField(source='town.province.name', read_only=True)
-    country_name = serializers.ReadOnlyField(source='town.country.name', read_only=True)
-    
-    class Meta:
-        model = Site
-        fields = ('id','name','lat','long','town','town_name','province_name','country_name')
-
-
 class TransectSerializer (serializers.ModelSerializer):
     site_name = serializers.ReadOnlyField(source='site.name', read_only=True)
     town_name = serializers.ReadOnlyField(source='site.town.name', read_only=True)
@@ -143,10 +148,29 @@ class SurveySerializer (serializers.ModelSerializer):
 class ProjectSerializer (serializers.ModelSerializer):
     created_by = serializers.ReadOnlyField(source='created_by.username')
     owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
+    # groups = GroupSerializer(many=True)
 
     class Meta:
         model = Project
-        fields = ('id','name','description','parent','public','created_at','created_by','owner','updated_at','surveys_count','transects_count','owner_name')
+        fields = ('id','name','description','parent','public','created_at','created_by','owner','updated_at','surveys_count','transects_count','owner_name','groups')
+
+
+    def create(self, validated_data):
+        groups = Group.objects.filter(set=1)
+        project = Project.objects.create(**validated_data)
+        project.groups.add(*groups)
+        return project
+
+
+    # def update(self, instance, validated_data):
+    #     groups = validated_data.pop('groups')
+    #     instance.name = validated_data.get('name', instance.name)
+    #     instance.parent = validated_data.get('parent', instance.parent)
+    #     instance.owner = validated_data.get('name', instance.owner)
+    #     instance.name = validated_data.get('name', instance.name)
+    #     instance.name = validated_data.get('name', instance.name)
+    #     # project.groups.add(*groups)
+    #     return project
 
 
 class TransectTypeSerializer (serializers.ModelSerializer):

@@ -109,12 +109,18 @@ var app = angular.module('app', [
           })
           .state('app.settings', {
               url: '/settings',
-              templateUrl: 'tpl/app_settings.html'
+              templateUrl: 'tpl/app_settings.html',
+              controller: 'SettingsCtrl',
+              resolve: {
+                authenticated: ['djangoAuth', function (djangoAuth) {
+                  return djangoAuth.authenticationStatus();
+                }],
+              }
           })
-          .state('app.settings.countries', {
-            url: '/countries',
-            templateUrl: 'tpl/app_settings_countries.html'
-          })
+          // .state('app.settings.countries', {
+          //   url: '/countries',
+          //   templateUrl: 'tpl/app_settings_countries.html'
+          // })
           // others
           .state('access', {
             url: '/access',
