@@ -8,12 +8,10 @@ angular.module('app.controllers')
       '$scope', 
       '$translate', 
       '$state',
-      'Country',
       function (
           $scope, 
           $translate, 
-          $state,
-          Country
+          $state
       ){
         // Logged status
         if (!$scope.authenticated) {
@@ -21,9 +19,26 @@ angular.module('app.controllers')
         }
 
         // Init
-        $scope.accordions = [
-          { template: 'tpl/app_settings_countries.html' },
+
+        $scope.modules = [
+          { 
+            name: 'ReefCheck', 
+            templateSettings: 'tpl/reefcheck/settings/block.html'
+          },
+          { 
+            name: 'Maps', 
+            templateSettings: 'tpl/maps/settings/block.html'
+          },
+          { 
+            name: 'Stats', 
+            templateSettings: 'tpl/maps/stats/block.html'
+          }
         ];
+
+        console.log($scope.modules)
+        // $scope.accordions = [
+        //   { template: 'tpl/app_settings_countries.html' },
+        // ];
       }
     ]
   );

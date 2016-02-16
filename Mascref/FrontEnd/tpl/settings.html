@@ -1,0 +1,16 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Settings</h1>
+</div>
+<div class="wrapper-md" ui-view>
+  <div class="row">
+    <div class="col-sm-12 connected">
+      <div  ng-controller="SettingsCtrl">
+        <uib-accordion close-others="oneAtATime">
+          <uib-accordion-group ng-repeat="module in modules">
+            <div ng-include="module.templateSettings"></div>
+          </uib-accordion-group>
+        </uib-accordion>
+      </div>
+    </div>
+  </div>
+</div>

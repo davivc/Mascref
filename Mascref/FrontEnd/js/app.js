@@ -18,6 +18,8 @@ var app = angular.module('app', [
     'app.services',
     'app.directives',
     'app.controllers',
+    'reefcheck.controllers',
+    'maps.controllers',
     'angularMoment',
 ])
 .run(
@@ -109,7 +111,7 @@ var app = angular.module('app', [
           })
           .state('app.settings', {
               url: '/settings',
-              templateUrl: 'tpl/app_settings.html',
+              templateUrl: 'tpl/settings.html',
               controller: 'SettingsCtrl',
               resolve: {
                 authenticated: ['djangoAuth', function (djangoAuth) {
