@@ -1,0 +1,16 @@
+<uib-accordion-heading>
+   <i class="glyphicon glyphicon-list-alt icon text-success"></i>  <span class="font-bold">Places list</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': places.open, 'fa-angle-right': !places.open}"></i>
+</uib-accordion-heading>
+<form class="form-horizontal" ng-controller="ReefCheckSettingsPlacesCtrl">
+  <div class="list-group bg-white"> 
+    Click on the desired item to manage its entries and properties.
+  </div>
+  <div class="list-group bg-white">
+    <uib-accordion>
+      <div ng-repeat="placesBlock in placesBlocks">
+        <uib-accordion-group>
+          <div ng-include="placesBlock.template"></div>
+        </uib-accordion-group>
+      </div>         
+    </uib-accordion>
+</form>

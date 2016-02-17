@@ -6,7 +6,7 @@
     <div class="col-sm-12 connected">
       <div  ng-controller="SettingsCtrl">
         <uib-accordion close-others="oneAtATime">
-          <uib-accordion-group ng-repeat="module in modules">
+          <uib-accordion-group is-open="module.open" ng-repeat="module in modules">
             <div ng-include="module.templateSettings"></div>
           </uib-accordion-group>
         </uib-accordion>

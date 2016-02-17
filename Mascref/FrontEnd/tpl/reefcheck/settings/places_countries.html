@@ -1,36 +1,47 @@
 ﻿<uib-accordion-heading>
-   <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Researchers</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.researchers.open, 'fa-angle-right': !status.researchers.open}"></i>
+   <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Countries</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.countries.open, 'fa-angle-right': !status.countries.open}"></i>
 </uib-accordion-heading>
 <form class="form-horizontal">
   <div class="row">
     <div class="col-sm-12 connected">
-      <div  ng-controller="SettingsCountriesCtrl">
+      <div>
         <div class="panel-body b-b b-light">
           Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
         </div>
         <div>
-          <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+          <table class="table m-b-none" ui-jq="footable" ui-refresh="countries" data-filter="#filter" data-page-size="11">
             <thead>
               <tr>
-                  <th data-toggle="true">Id</th>
-                  <th>Name</th>
-                  <th>Flag</th>
-                  <th>Provinces</th>
-                  <th>Towns</th>
-                  <th>Surveys</th>
-                  <th>Transects</th>
-                  <th>Actions</th>
+                  <th class="text-center">Id</th>
+                  <th class="col-sm-4">Name</th>
+                  <th class="text-center">Flag</th>
+                  <th class="text-center" data-sort-initial="descending">Provinces</th>
+                  <th class="text-center" data-sort-initial="descending">Towns</th>
+                  <th class="text-center" data-sort-initial="descending">Sites</th>
+                  <th class="text-center" data-sort-initial="descending">Surveys</th>
+                  <th class="text-center" data-sort-initial="descending">Transects</th>
               </tr>
             </thead>
             <tbody>
+              <tr ng-show="loadingCountries">
+                <td colspan="8" class="text-center">
+                  <div>
+                    <i class="fa fa-spinner fa-spin"></i> Loading projects list
+                  </div>
+                </td>
+              </tr>
+              <tr ng-if="countries.length == 0">
+                  <td colspan="4">No countries found in the system</td>
+              </tr> 
               <tr ng-repeat="country in countries">
-                  <td>1</td>
+                  <td class="text-center">{{country.id}}</td>
                   <td><a href>{{country.name}}</a></td>
-                  <td><img src="img/flags_style2_tiny/Afghanistan.png"></td>
-                  <td>{{country.provinces}}</td>
-                  <td>{{country.towns}}</td>
-                  <td>{{country.surveys}}</td>
-                  <td>{{country.transects}}</td>
+                  <td class="text-center"><img src="img/flags_style2_tiny/{{country.name | spaceless}}.png"></td>
+                  <td class="text-center">{{country.provinces.length}}</td>
+                  <td class="text-center">{{country.towns.length}}</td>
+                  <td class="text-center">{{country.sites.length}}</td>
+                  <td class="text-center">{{country.surveys.length}}</td>
+                  <td class="text-center">{{country.transects.length}}</td>
                   <td></td>
               </tr>
             </tbody>

@@ -103,13 +103,6 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
     });
   })
-  // Settings Controllers
-  .controller('SettingsCtrl', ['$scope', '$translate', function ($scope, $translate) {
-
-  }])
-  .controller('SettingsCountriesCtrl', ['$scope', '$translate', function ($scope, $translate) {
-
-  }])
   // Signin
   .controller('AccessSigninCtrl', ['$scope', '$translate', '$state', 'djangoAuth', 'Validate', function ($scope, $translate, $state, djangoAuth, Validate) {
     $scope.model = { 'username': '', 'password': '' };

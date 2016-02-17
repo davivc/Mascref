@@ -185,6 +185,11 @@ var app = angular.module('app', [
  */
 
 .constant('JQ_CONFIG', {
+  dataTable: [
+    'js/jquery/datatables/jquery.dataTables.min.js',
+    'js/jquery/datatables/dataTables.bootstrap.js',
+    'js/jquery/datatables/dataTables.bootstrap.css'
+  ],
   footable: [
     'js/jquery/footable/footable.all.min.js',
     'js/jquery/footable/footable.core.css'

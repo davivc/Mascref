@@ -19,7 +19,6 @@ angular.module('app.controllers')
         }
 
         // Init
-
         $scope.modules = [
           { 
             name: 'ReefCheck', 
@@ -34,11 +33,6 @@ angular.module('app.controllers')
             templateSettings: 'tpl/maps/stats/block.html'
           }
         ];
-
-        console.log($scope.modules)
-        // $scope.accordions = [
-        //   { template: 'tpl/app_settings_countries.html' },
-        // ];
       }
     ]
   );

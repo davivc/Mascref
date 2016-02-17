@@ -3,6 +3,13 @@
 /* Filters */
 // need load the moment.js to use this filter. 
 angular.module('app.filters', [])
+.filter('spaceless',function() {
+    return function(input) {
+        if (input) {
+            return input.replace(/\s+/g, '_');    
+        }
+    }
+})
 .filter('fromNow', function() {
   return function(date) {
     return moment(date).fromNow();
