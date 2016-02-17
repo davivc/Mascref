@@ -91,15 +91,20 @@ class GroupCategorySerializer (serializers.ModelSerializer):
 
 
 class ProvinceSerializer (serializers.ModelSerializer):
+    country_name = serializers.ReadOnlyField(source='country.name', read_only=True)
+    
     class Meta:
         model = Province
-        fields = ('id','name','country','towns','sites','surveys','transects')
+        fields = ('id','name','country','towns','sites','surveys','transects','country_name')
 
 
 class TownSerializer (serializers.ModelSerializer):
+    province_name = serializers.ReadOnlyField(source='province.name', read_only=True)
+    country_name = serializers.ReadOnlyField(source='country.name', read_only=True)
+
     class Meta:
         model = Town
-        fields = ('id','name','country','province')
+        fields = ('id','name','country','province','sites','surveys','transects','province_name','country_name')
 
 
 class ResearcherSerializer (serializers.ModelSerializer):

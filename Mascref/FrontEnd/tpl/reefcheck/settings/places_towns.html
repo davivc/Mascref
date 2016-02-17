@@ -1,5 +1,5 @@
 <uib-accordion-heading>
-   <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Provinces</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.province.open, 'fa-angle-right': !status.province.open}"></i>
+   <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Towns</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.town.open, 'fa-angle-right': !status.town.open}"></i>
 </uib-accordion-heading>
 <form class="form-horizontal">
   <div class="row">
@@ -9,13 +9,13 @@
           Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
         </div>
         <div>
-          <table class="table m-b-none text-xs" ui-jq="footable" ui-refresh="province" data-filter="#filter" data-page-size="11">
+          <table class="table m-b-none text-xs" ui-jq="footable" ui-refresh="town" data-filter="#filter" data-page-size="11">
             <thead>
               <tr>
                   <th class="text-center">Id</th>
                   <th class="col-sm-3">Name</th>
                   <th>Country</th>
-                  <th class="text-center" data-sort-initial="descending">Towns</th>
+                  <th>Province</th>
                   <th class="text-center" data-sort-initial="descending">Sites</th>
                   <th class="text-center" data-sort-initial="descending">Surveys</th>
                   <th class="text-center" data-sort-initial="descending">Transects</th>
@@ -26,21 +26,21 @@
               <tr ng-show="loadingProvinces">
                 <td colspan="8" class="text-center">
                   <div>
-                    <i class="fa fa-spinner fa-spin"></i> Loading provinces list
+                    <i class="fa fa-spinner fa-spin"></i> Loading towns list
                   </div>
                 </td>
               </tr>
               <tr ng-if="countries.length == 0">
                   <td colspan="4">No countries found in the system</td>
               </tr> 
-              <tr ng-repeat="province in provinces">
-                  <td class="text-center">{{province.id}}</td>
-                  <td><a href>{{province.name}}</a></td>
-                  <td><a href>{{province.country_name}}</a></td>
-                  <td class="text-center">{{province.towns.length}}</td>
-                  <td class="text-center">{{province.sites.length}}</td>
-                  <td class="text-center">{{province.surveys.length}}</td>
-                  <td class="text-center">{{province.transects.length}}</td>
+              <tr ng-repeat="town in towns">
+                  <td class="text-center">{{town.id}}</td>
+                  <td><a href>{{town.name}}</a></td>    
+                  <td><a href>{{town.country_name}}</a></td>    
+                  <td><a href>{{town.province_name}}</a></td>    
+                  <td class="text-center">{{town.sites.length}}</td>
+                  <td class="text-center">{{town.surveys.length}}</td>
+                  <td class="text-center">{{town.transects.length}}</td>
                   <td></td>
               </tr>
             </tbody>

@@ -99,12 +99,15 @@ class Country(models.Model):
 class Province(models.Model):
     name = models.CharField(max_length=150)
     country = models.ForeignKey(Country, related_name='provinces')
+    
 
     class Meta:
         ordering = ('name',)
 
+
     def __unicode__(self):
         return '%s' % (self.name)
+
 
 
     @property
@@ -144,11 +147,39 @@ class Town(models.Model):
     province = models.ForeignKey(Province, blank=True, null=True, related_name='towns')
     country = models.ForeignKey(Country, related_name='towns')
 
+
     def __unicode__(self):
         return unicode(self.name)
     
+
     class Meta:
         ordering = ('name',)
+
+
+    @property
+    def sites(self):
+        sites = []
+        for _item in self.sites.all():
+            sites.append(_item.id)
+        return sites
+
+
+    @property
+    def surveys(self):
+        surveys = []
+        for _site in self.sites.all():
+            for _transect in _site.transects.all():
+                surveys.append(_transect.survey_id)
+        return sorted(set(surveys))
+
+
+    @property
+    def transects(self):
+        transects = []
+        for _site in self.sites.all():
+            for _transect in _site.transects.all():
+                transects.append(_transect.id)
+        return transects
 
 
 
