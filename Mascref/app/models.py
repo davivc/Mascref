@@ -99,7 +99,7 @@ class Country(models.Model):
 class Province(models.Model):
     name = models.CharField(max_length=150)
     country = models.ForeignKey(Country, related_name='provinces')
-    
+
 
     class Meta:
         ordering = ('name',)
@@ -196,6 +196,21 @@ class Site(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.name)
+
+    @property
+    def surveys(self):
+        surveys = []
+        for _transect in self.transects.all():
+            surveys.append(_transect.survey_id)
+        return sorted(set(surveys))
+
+
+    @property
+    def transects(self):
+        transects = []
+        for _transect in self.transects.all():
+            transects.append(_transect.id)
+        return transects
 
 
 class Group(models.Model):

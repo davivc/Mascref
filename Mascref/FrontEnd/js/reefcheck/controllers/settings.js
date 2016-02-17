@@ -28,8 +28,8 @@ angular.module('reefcheck.controllers', [])
       }
     ]
   ).controller('ReefCheckSettingsPlacesCtrl', 
-    ['$scope','$timeout','Country', 'Province', 'Town',
-      function ($scope, $timeout, Country, Province, Town){
+    ['$scope','$timeout','Country', 'Province', 'Town', 'Site',
+      function ($scope, $timeout, Country, Province, Town, Site){
         // Init
         $scope.placesBlocks = [
           { template: 'tpl/reefcheck/settings/places_countries.html' },
@@ -99,6 +99,27 @@ angular.module('reefcheck.controllers', [])
           });
         }
         $scope.getTowns();
+        // Towns End -------------------------------------------------
+
+        // Sites Begin ----------------------------------------------- 
+        $scope.loadingSites = false;
+        $scope.sites = {}
+
+        $scope.getSites = function() {
+          $scope.loadingSites = true;
+          Site.list()
+          .then(function (data) {            
+            $scope.loadingSites = false;
+            $scope.sites = data;
+            
+            $timeout(function(){
+                $('.table').trigger('footable_redraw');
+            }, 100);
+          }, function (error) {
+            
+          });
+        }
+        $scope.getSites();
         // Towns End -------------------------------------------------
       }
     ]

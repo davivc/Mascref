@@ -61,7 +61,7 @@ class SiteSerializer (serializers.ModelSerializer):
     
     class Meta:
         model = Site
-        fields = ('id','name','lat','long','town','town_name','province_name','country_name')
+        fields = ('id','name','lat','long','town','surveys','transects','town_name','province_name','country_name')
 
 
 class CountrySerializer (serializers.ModelSerializer):
@@ -92,7 +92,7 @@ class GroupCategorySerializer (serializers.ModelSerializer):
 
 class ProvinceSerializer (serializers.ModelSerializer):
     country_name = serializers.ReadOnlyField(source='country.name', read_only=True)
-    
+
     class Meta:
         model = Province
         fields = ('id','name','country','towns','sites','surveys','transects','country_name')
