@@ -119,10 +119,15 @@ var app = angular.module('app', [
                 }],
               }
           })
-          // .state('app.settings.countries', {
-          //   url: '/countries',
-          //   templateUrl: 'tpl/app_settings_countries.html'
-          // })
+          .state('app.settings.reefcheck', {
+              url: '/reefcheck',
+          })
+          .state('app.settings.reefcheck.places', {
+              url: '/places',
+          })
+          .state('app.settings.reefcheck.places.countries', {
+              url: '/countries',
+          })
           // others
           .state('access', {
             url: '/access',

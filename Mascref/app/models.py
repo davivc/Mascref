@@ -107,9 +107,41 @@ class Province(models.Model):
         return '%s' % (self.name)
 
 
+    @property
+    def sites(self):
+        sites = []
+        for _town in self.towns.all():
+            for _item in _town.sites.all():
+               sites.append(_item.id)
+        # print len(sites)
+        return sites
+
+
+    @property
+    def surveys(self):
+        surveys = []
+        for _town in self.towns.all():
+            for _site in _town.sites.all():
+                for _transect in _site.transects.all():
+                    surveys.append(_transect.survey_id)
+        # print sorted(set(surveys))
+        return sorted(set(surveys))
+
+
+    @property
+    def transects(self):
+        transects = []
+        for _town in self.towns.all():
+            for _site in _town.sites.all():
+                for _transect in _site.transects.all():
+                    transects.append(_transect.id)
+        # print len(sites)
+        return transects
+
+
 class Town(models.Model):
     name = models.CharField(max_length=150)
-    province = models.ForeignKey(Province, blank=True, null=True)
+    province = models.ForeignKey(Province, blank=True, null=True, related_name='towns')
     country = models.ForeignKey(Country, related_name='towns')
 
     def __unicode__(self):

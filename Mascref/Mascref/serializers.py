@@ -93,7 +93,7 @@ class GroupCategorySerializer (serializers.ModelSerializer):
 class ProvinceSerializer (serializers.ModelSerializer):
     class Meta:
         model = Province
-        fields = ('id','name','country')
+        fields = ('id','name','country','towns','sites','surveys','transects')
 
 
 class TownSerializer (serializers.ModelSerializer):

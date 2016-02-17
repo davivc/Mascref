@@ -6,11 +6,9 @@
     Click on the desired item to manage its entries and properties.
   </div>
   <div class="list-group bg-white">
-    <uib-accordion>
-      <div ng-repeat="placesBlock in placesBlocks">
-        <uib-accordion-group>
-          <div ng-include="placesBlock.template"></div>
-        </uib-accordion-group>
-      </div>         
+    <uib-accordion close-others="oneAtATime">
+      <uib-accordion-group ng-repeat="placesBlock in placesBlocks">
+        <div ng-include="placesBlock.template"></div>
+      </uib-accordion-group>
     </uib-accordion>
 </form>
