@@ -2,4 +2,54 @@
    <i class="glyphicon glyphicon-folder-open icon text-danger"></i>  <span class="font-bold">Group categories</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': places.open, 'fa-angle-right': !places.open}"></i>
 </uib-accordion-heading>
 <form class="form-horizontal" ng-controller="ReefCheckSettingsGroupsCtrl">
+  <div class="list-group">
+    <table class="table m-b-none text-xs" ui-jq="footable" data-sort="true" ui-refresh="group_set" data-page-size="11">
+      <thead>
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="col-sm-4">Name</th>
+            <th class="text-center">Belt Groups</th>
+            <th class="text-center">Line Groups</th>
+            <th class="text-center">Created by</th>
+            <th class="text-center">Created at</th>
+            <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="loadingGroupSet">
+          <td colspan="8" class="text-center">
+            <div>
+              <i class="fa fa-spinner fa-spin"></i> Loading group sets list
+            </div>
+          </td>
+        </tr>
+        <tr ng-if="group_set.length == 0">
+          <td colspan="7">No group sets found in the system</td>
+        </tr> 
+        <tr ng-repeat="set in group_set">
+          <td class="text-center">{{set.id}}</td>
+          <td><a href>{{set.name}}</a></td>
+          <td class="text-center">{{set.belt.length}}</td>
+          <td class="text-center">{{set.line.length}}</td>
+          <td class="text-center">{{set.created_by}}</td>
+          <td class="text-center">{{set.created_at}}</td>
+          <td class="text-center"></td>
+        </tr>
+      </tbody>
+      <tfoot class="hide-if-no-paging">
+        <tr>
+            <td colspan="8" class="text-center">
+                <ul class="pagination"></ul>
+            </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="list-group" ng-if="group_set.length > 0">
+    <uib-tabset class="tab-container">
+      <uib-tab heading="{{set.name}}" ng-repeat="set in center">
+        
+      </uib-tab>
+    </uib-tabset>
+  </div>
 </form>

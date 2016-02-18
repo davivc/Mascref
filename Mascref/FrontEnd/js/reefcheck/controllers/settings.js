@@ -2,15 +2,15 @@
 
 /* Transect Controllers */
 
-angular.module('reefcheck.controllers', [])
+angular.module('reefcheck')
   .controller('ReefCheckSettingsCtrl', 
-    ['$scope','Country', 
-      function ($scope, Country){
+    ['$scope','$state','Country', 
+      function ($scope,$state, Country){
         // Init
         $scope.blocks = [
-          { template: 'tpl/reefcheck/settings/transects.html'},
-          { template: 'tpl/reefcheck/settings/places.html' },
-          { template: 'tpl/reefcheck/settings/groups.html' },
+          { template: 'tpl/reefcheck/settings/transects.html', open: ($state.current.name.indexOf('reefcheck.transects') > 0) ? true : false },
+          { template: 'tpl/reefcheck/settings/places.html', open: ($state.current.name.indexOf('reefcheck.places') > 0) ? true : false },
+          { template: 'tpl/reefcheck/settings/groups.html', open: ($state.current.name.indexOf('reefcheck.groups') > 0) ? true : false },
         ];     
       }
     ]
@@ -28,19 +28,19 @@ angular.module('reefcheck.controllers', [])
       }
     ]
   ).controller('ReefCheckSettingsPlacesCtrl', 
-    ['$scope','$timeout','Country', 'Province', 'Town', 'Site',
-      function ($scope, $timeout, Country, Province, Town, Site){
+    ['$scope','$state','$timeout','Country', 'Province', 'Town', 'Site',
+      function ($scope, $state, $timeout, Country, Province, Town, Site){
         // Init
         $scope.placesBlocks = [
-          { template: 'tpl/reefcheck/settings/places_countries.html' },
-          { template: 'tpl/reefcheck/settings/places_provinces.html' },
-          { template: 'tpl/reefcheck/settings/places_towns.html' },
-          { template: 'tpl/reefcheck/settings/places_sites.html' },
+          { template: 'tpl/reefcheck/settings/places_countries.html', open: ($state.current.name.indexOf('places.countries') > 0) ? true : false },
+          { template: 'tpl/reefcheck/settings/places_provinces.html', open: ($state.current.name.indexOf('places.provinces') > 0) ? true : false },
+          { template: 'tpl/reefcheck/settings/places_towns.html', open: ($state.current.name.indexOf('places.towns') > 0) ? true : false },
+          { template: 'tpl/reefcheck/settings/places_sites.html', open: ($state.current.name.indexOf('places.sites') > 0) ? true : false },
         ];
-        console.log('ReefCheckSettingsPlacesCtrl')
+        
         // Countries Begin ----------------------------------------------- 
         $scope.loadingCountries = false;
-        $scope.countries = {}
+        $scope.countries = []
 
         $scope.getCountries = function() {
           $scope.loadingCountries = true;
@@ -50,7 +50,7 @@ angular.module('reefcheck.controllers', [])
             $scope.countries = data;
             
             $timeout(function(){
-                $('.table').trigger('footable_redraw');
+                // $('.table').trigger('footable_redraw');
             }, 100);
           }, function (error) {
             
@@ -61,7 +61,7 @@ angular.module('reefcheck.controllers', [])
 
         // Provinces Begin ----------------------------------------------- 
         $scope.loadingProvinces = false;
-        $scope.provinces = {}
+        $scope.provinces = []
 
         $scope.getProvinces = function() {
           $scope.loadingProvinces = true;
@@ -71,7 +71,7 @@ angular.module('reefcheck.controllers', [])
             $scope.provinces = data;
             
             $timeout(function(){
-                $('.table').trigger('footable_redraw');
+                // $('.table').trigger('footable_redraw');
             }, 100);
           }, function (error) {
             
@@ -82,7 +82,7 @@ angular.module('reefcheck.controllers', [])
 
         // Towns Begin ----------------------------------------------- 
         $scope.loadingTowns = false;
-        $scope.towns = {}
+        $scope.towns = []
 
         $scope.getTowns = function() {
           $scope.loadingTowns = true;
@@ -92,7 +92,7 @@ angular.module('reefcheck.controllers', [])
             $scope.towns = data;
             
             $timeout(function(){
-                $('.table').trigger('footable_redraw');
+                // $('.table').trigger('footable_redraw');
             }, 100);
           }, function (error) {
             
@@ -103,7 +103,7 @@ angular.module('reefcheck.controllers', [])
 
         // Sites Begin ----------------------------------------------- 
         $scope.loadingSites = false;
-        $scope.sites = {}
+        $scope.sites = []
 
         $scope.getSites = function() {
           $scope.loadingSites = true;
@@ -113,7 +113,7 @@ angular.module('reefcheck.controllers', [])
             $scope.sites = data;
             
             $timeout(function(){
-                $('.table').trigger('footable_redraw');
+                // $('.table').trigger('footable_redraw');
             }, 100);
           }, function (error) {
             
@@ -124,11 +124,34 @@ angular.module('reefcheck.controllers', [])
       }
     ]
   ).controller('ReefCheckSettingsGroupsCtrl', 
-    ['$scope', 
-      function ($scope){
+    ['$scope','reefCheckGroupSet', 
+      function ($scope,reefCheckGroupSet){
         // Init
 
+        // Group Set Begin ----------------------------------------------- 
+        $scope.loadingGroupSet = false;
+        $scope.errorGroupSet = {};
+        $scope.group_set = []
 
+        $scope.getGroupSet = function() {
+          $scope.loadingGroupSet = true;
+          reefCheckGroupSet.list()
+          .then(function (data) {            
+            $scope.loadingCountries = false;
+            $scope.countries = data;
+            
+            $timeout(function(){
+                // $('.table').trigger('footable_redraw');
+            }, 100);
+          }, function (error) {
+            console.log('lala')
+            console.log(error)
+            $scope.loadingCountries = false;
+            $scope.errorGroupSet = error;
+          });
+        }
+        $scope.getGroupSet();
+        // Countries End -------------------------------------------------
       }
     ]
   );

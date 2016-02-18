@@ -18,7 +18,7 @@ var app = angular.module('app', [
     'app.services',
     'app.directives',
     'app.controllers',
-    'reefcheck.controllers',
+    'reefcheck',
     'maps.controllers',
     'angularMoment',
 ])
@@ -61,73 +61,94 @@ var app = angular.module('app', [
                 }],
               }
           })
-          .state('app.dashboard', {
-              url: '/dashboard',
-              templateUrl: 'tpl/app_dashboard.html',
-              controller: 'DashboardCtrl',
-              resolve: {
-                authenticated: ['djangoAuth', function (djangoAuth) {
-                  return djangoAuth.authenticationStatus();
-                }],
-              }
-          })
-          .state('app.projects', {
-              url: '/projects',
-              templateUrl: 'tpl/app_projects.html',
-              controller: 'ProjectsCtrl',
-              resolve: {
+            .state('app.dashboard', {
+                url: '/dashboard',
+                templateUrl: 'tpl/app_dashboard.html',
+                controller: 'DashboardCtrl',
+                resolve: {
                   authenticated: ['djangoAuth', function (djangoAuth) {
                     return djangoAuth.authenticationStatus();
                   }],
-                  }
-          })
-          .state('app.projects.view', {
-            url: '/view/{projectId}',
-            templateUrl: 'tpl/app_project_view.html'
-          })
-          .state('app.projects.view.survey', {
-            url: '/survey/{surveyId}',
-            templateUrl: 'tpl/app_survey.html'
-          })
-          .state('app.projects.view.survey.transect', {
-            url: '/transect/{transectId}',
-            templateUrl: 'tpl/app_transect.html'
-          })
-          .state('app.projects.transect.count', {
-            url: '/transect/count',
-            templateUrl: 'tpl/app_transect_count.html'
-          })
-          .state('app.projects.transect.cover', {
-            url: '/transect/cover',
-            templateUrl: 'tpl/app_transect_cover.html'
-          })
-          .state('app.maps', {
-              url: '/maps',
-              templateUrl: 'tpl/app_maps.html'
-          })
-          .state('app.stats', {
-              url: '/stats',
-              templateUrl: 'tpl/app_stats.html'
-          })
-          .state('app.settings', {
-              url: '/settings',
-              templateUrl: 'tpl/settings.html',
-              controller: 'SettingsCtrl',
-              resolve: {
-                authenticated: ['djangoAuth', function (djangoAuth) {
-                  return djangoAuth.authenticationStatus();
-                }],
-              }
-          })
-          .state('app.settings.reefcheck', {
-              url: '/reefcheck',
-          })
-          .state('app.settings.reefcheck.places', {
-              url: '/places',
-          })
-          .state('app.settings.reefcheck.places.countries', {
-              url: '/countries',
-          })
+                }
+            })
+            .state('app.projects', {
+                url: '/projects',
+                templateUrl: 'tpl/app_projects.html',
+                controller: 'ProjectsCtrl',
+                resolve: {
+                    authenticated: ['djangoAuth', function (djangoAuth) {
+                      return djangoAuth.authenticationStatus();
+                    }],
+                    }
+            })
+              .state('app.projects.view', {
+                url: '/view/{projectId}',
+                templateUrl: 'tpl/app_project_view.html'
+              })
+              .state('app.projects.view.survey', {
+                url: '/survey/{surveyId}',
+                templateUrl: 'tpl/app_survey.html'
+              })
+              .state('app.projects.view.survey.transect', {
+                url: '/transect/{transectId}',
+                templateUrl: 'tpl/app_transect.html'
+              })
+              .state('app.projects.transect.count', {
+                url: '/transect/count',
+                templateUrl: 'tpl/app_transect_count.html'
+              })
+              .state('app.projects.transect.cover', {
+                url: '/transect/cover',
+                templateUrl: 'tpl/app_transect_cover.html'
+              })
+            .state('app.maps', {
+                url: '/maps',
+                templateUrl: 'tpl/app_maps.html'
+            })
+            .state('app.stats', {
+                url: '/stats',
+                templateUrl: 'tpl/app_stats.html'
+            })
+            .state('app.settings', {
+                url: '/settings',
+                templateUrl: 'tpl/settings.html',
+                controller: 'SettingsCtrl',
+                resolve: {
+                  authenticated: ['djangoAuth', function (djangoAuth) {
+                    return djangoAuth.authenticationStatus();
+                  }],
+                }
+            })
+              .state('app.settings.reefcheck', {
+                  url: '/reefcheck',
+              })
+                .state('app.settings.reefcheck.transects', {
+                    url: '/transects',
+                })
+                .state('app.settings.reefcheck.places', {
+                    url: '/places',
+                })
+                  .state('app.settings.reefcheck.places.countries', {
+                      url: '/countries',
+                  })
+                  .state('app.settings.reefcheck.places.provinces', {
+                      url: '/provinces',
+                  })
+                  .state('app.settings.reefcheck.places.towns', {
+                      url: '/towns',
+                  })
+                  .state('app.settings.reefcheck.places.sites', {
+                      url: '/sites',
+                  })
+                .state('app.settings.reefcheck.groups', {
+                    url: '/groups',
+                })
+              .state('app.settings.maps', {
+                  url: '/maps',
+              })
+              .state('app.settings.stats', {
+                  url: '/stats',
+              })
           // others
           .state('access', {
             url: '/access',

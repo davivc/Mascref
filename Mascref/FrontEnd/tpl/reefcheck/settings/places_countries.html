@@ -1,15 +1,15 @@
 ﻿<uib-accordion-heading>
-   <i class="glyphicon glyphicon-user icon text-success"></i> <span class="font-bold">Countries</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.countries.open, 'fa-angle-right': !status.countries.open}"></i>
+   <i class="glyphicon glyphicon-flag icon text-success"></i> <span class="font-bold">Countries</span> <i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.countries.open, 'fa-angle-right': !status.countries.open}"></i>
 </uib-accordion-heading>
 <form class="form-horizontal">
   <div class="row">
     <div class="col-sm-12 connected">
       <div>
         <div class="panel-body b-b b-light text-xs">
-          Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+          Search: <input id="filterCountries" type="text" class="form-control input-sm w-sm inline m-r"/>
         </div>
         <div>
-          <table class="table m-b-none text-xs" ui-jq="footable" ui-refresh="countries" data-filter="#filter" data-page-size="11">
+          <table class="table m-b-none text-xs" ui-jq="footable" data-sort="true" ui-refresh="countries" data-filter="#filterCountries" data-page-size="11">
             <thead>
               <tr>
                   <th class="text-center">Id</th>

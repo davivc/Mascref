@@ -22,15 +22,18 @@ angular.module('app.controllers')
         $scope.modules = [
           { 
             name: 'ReefCheck', 
-            templateSettings: 'tpl/reefcheck/settings/block.html'
+            templateSettings: 'tpl/reefcheck/settings/block.html',
+            open: ($state.current.name.indexOf('settings.reefcheck') > 0) ? true : false
           },
           { 
             name: 'Maps', 
-            templateSettings: 'tpl/maps/settings/block.html'
+            templateSettings: 'tpl/maps/settings/block.html',
+            open: ($state.current.name.indexOf('settings.maps') > 0) ? true : false
           },
           { 
             name: 'Stats', 
-            templateSettings: 'tpl/maps/stats/block.html'
+            templateSettings: 'tpl/maps/stats/block.html',
+            open: ($state.current.name.indexOf('settings.stats') > 0) ? true : false
           }
         ];
       }
