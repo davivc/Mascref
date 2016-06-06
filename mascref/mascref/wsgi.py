@@ -1,5 +1,5 @@
 """
-WSGI config for Mascref project.
+WSGI config for mascref project.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
@@ -16,8 +16,8 @@ framework.
 import os
 import sys
 
-sys.path = ['/home/ubuntu/mascref/Mascref/'] + sys.path
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Mascref.settings")
+sys.path = ['/home/led/dev/mascref/mascref/'] + sys.path
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mascref.settings")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

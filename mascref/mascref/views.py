@@ -3,7 +3,7 @@ from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.response import Response
 from rest_framework_tracking.mixins import LoggingMixin
 
-from Mascref.permissions import UserPermissionsObj
+from mascref.permissions import UserPermissionsObj
 
 # import django_filters
 # from rest_framework.decorators import api_view
@@ -34,23 +34,23 @@ from app.models import Transect_Type
 from app.models import Transect_Info
 
 # Serializers
-from Mascref.serializers import UserSerializer
-from Mascref.serializers import ConfigSerializer
-from Mascref.serializers import CountrySerializer
-from Mascref.serializers import GroupSerializer
-from Mascref.serializers import GroupCategorySerializer
-from Mascref.serializers import ProvinceSerializer
-from Mascref.serializers import TownSerializer
-from Mascref.serializers import SegmentSerializer
-from Mascref.serializers import SiteSerializer
-from Mascref.serializers import ResearcherSerializer
-from Mascref.serializers import ProjectSerializer
-from Mascref.serializers import SurveySerializer
-from Mascref.serializers import TransectSerializer
-from Mascref.serializers import TransectTypeSerializer
-from Mascref.serializers import TransectInfoSerializer
-from Mascref.serializers import DashboardStatsSerializer
-from Mascref.serializers import ActivitySerializer
+from mascref.serializers import UserSerializer
+from mascref.serializers import ConfigSerializer
+from mascref.serializers import CountrySerializer
+from mascref.serializers import GroupSerializer
+from mascref.serializers import GroupCategorySerializer
+from mascref.serializers import ProvinceSerializer
+from mascref.serializers import TownSerializer
+from mascref.serializers import SegmentSerializer
+from mascref.serializers import SiteSerializer
+from mascref.serializers import ResearcherSerializer
+from mascref.serializers import ProjectSerializer
+from mascref.serializers import SurveySerializer
+from mascref.serializers import TransectSerializer
+from mascref.serializers import TransectTypeSerializer
+from mascref.serializers import TransectInfoSerializer
+from mascref.serializers import DashboardStatsSerializer
+from mascref.serializers import ActivitySerializer
 
 
 # Objects for non-Models api
