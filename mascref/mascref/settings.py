@@ -91,10 +91,10 @@ MIDDLEWARE_CLASSES = (
     
 )
 
-ROOT_URLCONF = 'Mascref.urls'
+ROOT_URLCONF = 'mascref.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'Mascref.wsgi.application'
+WSGI_APPLICATION = 'mascref.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or
@@ -158,5 +158,5 @@ AUTHENTICATION_METHOD = 'EMAIL'
 from settings_local import * 
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'Mascref.serializers.UserSerializer',
+    'USER_DETAILS_SERIALIZER': 'mascref.serializers.UserSerializer',
 }
