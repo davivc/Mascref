@@ -56,7 +56,7 @@ router.register(r'api/dashboard/stats', DashboardStatsViewSet, 'dashboard-stats'
 
 urlpatterns = patterns('',
     # Pages
-    url(r'^$', 'app.views.home', name='home'),
+    # url(r'^$', 'app.views.home', name='home'),
 
     # Custom Views
     url(r'^api/users/$', UserList.as_view(), name='user-list'),
