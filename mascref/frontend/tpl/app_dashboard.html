@@ -96,7 +96,8 @@
     <div class="padder-md">      
       <!-- streamline -->
       <div class="m-b text-md" translate="app.dashboard.RECENT">Recent Activity</div>
-      <div class="streamline b-l">
+      <div class="" ng-if="activity.length == 0">No recent activity</div>
+      <div class="streamline b-l" ng-hide="activity.length == 0">
         <div class="sl-item b-l" ng-repeat="item in activity" ng-class="{ 'b-info': (item.method == 'PATCH') , 'b-success': (item.method == 'POST')}">
           <div class="m-l">
             <div class="text-muted"><time am-time-ago="item.requested_at"></time></div>
