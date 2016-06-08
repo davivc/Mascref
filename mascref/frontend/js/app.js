@@ -51,17 +51,18 @@ var app = angular.module('app', [
               templateUrl: 'tpl/public_index.html',
               controller: 'PublicCtrl',
           })
-          .state('app', {
-              abstract: true,
-              url: '/app',
-              templateUrl: 'tpl/app.html',                
+          .state('admin', {
+              // abstract: true,
+              url: '/admin',
+              templateUrl: 'tpl/app.html',
+              controller: 'AdminCtrl',            
               resolve: {
                 authenticated: ['djangoAuth', function (djangoAuth) {
                   return djangoAuth.authenticationStatus();
                 }],
               }
           })
-            .state('app.dashboard', {
+            .state('admin.dashboard', {
                 url: '/dashboard',
                 templateUrl: 'tpl/app_dashboard.html',
                 controller: 'DashboardCtrl',
@@ -71,45 +72,45 @@ var app = angular.module('app', [
                   }],
                 }
             })
-            .state('app.projects', {
+            .state('admin.projects', {
                 url: '/projects',
                 templateUrl: 'tpl/app_projects.html',
                 controller: 'ProjectsCtrl',
                 resolve: {
-                    authenticated: ['djangoAuth', function (djangoAuth) {
-                      return djangoAuth.authenticationStatus();
-                    }],
-                    }
+                  authenticated: ['djangoAuth', function (djangoAuth) {
+                    return djangoAuth.authenticationStatus();
+                  }],
+                } 
             })
-              .state('app.projects.view', {
+              .state('admin.projects.view', {
                 url: '/view/{projectId}',
                 templateUrl: 'tpl/app_project_view.html'
               })
-              .state('app.projects.view.survey', {
+              .state('admin.projects.view.survey', {
                 url: '/survey/{surveyId}',
                 templateUrl: 'tpl/app_survey.html'
               })
-              .state('app.projects.view.survey.transect', {
+              .state('admin.projects.view.survey.transect', {
                 url: '/transect/{transectId}',
                 templateUrl: 'tpl/app_transect.html'
               })
-              .state('app.projects.transect.count', {
+              .state('admin.projects.transect.count', {
                 url: '/transect/count',
                 templateUrl: 'tpl/app_transect_count.html'
               })
-              .state('app.projects.transect.cover', {
+              .state('admin.projects.transect.cover', {
                 url: '/transect/cover',
                 templateUrl: 'tpl/app_transect_cover.html'
               })
-            .state('app.maps', {
+            .state('admin.maps', {
                 url: '/maps',
                 templateUrl: 'tpl/app_maps.html'
             })
-            .state('app.stats', {
+            .state('admin.stats', {
                 url: '/stats',
                 templateUrl: 'tpl/app_stats.html'
             })
-            .state('app.settings', {
+            .state('admin.settings', {
                 url: '/settings',
                 templateUrl: 'tpl/settings.html',
                 controller: 'SettingsCtrl',
@@ -119,34 +120,34 @@ var app = angular.module('app', [
                   }],
                 }
             })
-              .state('app.settings.reefcheck', {
+              .state('admin.settings.reefcheck', {
                   url: '/reefcheck',
               })
-                .state('app.settings.reefcheck.transects', {
+                .state('admin.settings.reefcheck.transects', {
                     url: '/transects',
                 })
-                .state('app.settings.reefcheck.places', {
+                .state('admin.settings.reefcheck.places', {
                     url: '/places',
                 })
-                  .state('app.settings.reefcheck.places.countries', {
+                  .state('admin.settings.reefcheck.places.countries', {
                       url: '/countries',
                   })
-                  .state('app.settings.reefcheck.places.provinces', {
+                  .state('admin.settings.reefcheck.places.provinces', {
                       url: '/provinces',
                   })
-                  .state('app.settings.reefcheck.places.towns', {
+                  .state('admin.settings.reefcheck.places.towns', {
                       url: '/towns',
                   })
-                  .state('app.settings.reefcheck.places.sites', {
+                  .state('admin.settings.reefcheck.places.sites', {
                       url: '/sites',
                   })
-                .state('app.settings.reefcheck.groups', {
+                .state('admin.settings.reefcheck.groups', {
                     url: '/groups',
                 })
-              .state('app.settings.maps', {
+              .state('admin.settings.maps', {
                   url: '/maps',
               })
-              .state('app.settings.stats', {
+              .state('admin.settings.stats', {
                   url: '/stats',
               })
           // others
