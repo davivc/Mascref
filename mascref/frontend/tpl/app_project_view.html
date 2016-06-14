@@ -146,7 +146,7 @@
                     <td colspan="4">No surveys found for this project.</td>
                 </tr>        
                 <tr ng-repeat="survey in surveys">
-                    <td><a ui-sref="app.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
+                    <td><a ui-sref="admin.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
                     <td class="text-center">{{survey.date_start | date:'dd/MM/yyyy'}}</td>
                     <td class="text-center">{{survey.date_end | date:'dd/MM/yyyy'}}</td>
                     <!--<td>{{survey.owner}}</td>-->

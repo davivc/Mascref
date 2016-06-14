@@ -41,7 +41,7 @@ angular.module('app.controllers')
         $scope.showNewProject = false;
         $scope.loadingNewProject = false;
         //$timeout(function () {
-        $state.go('app.projects.view', { projectId: data.id })
+        $state.go('admin.projects.view', { projectId: data.id })
         //}, 2000);
       }, function (error) {
         console.error('Project create: ' + error);
@@ -146,7 +146,7 @@ angular.module('app.controllers')
         $scope.project.description = $sce.trustAsHtml($scope.project.description);
         $scope.$parent.breadcrumbs[1] = $scope.project.name;
       }, function (error) {
-        $state.go('app.projects');
+        $state.go('admin.projects');
         //$scope.stats.error = error;        
       });
     }

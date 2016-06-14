@@ -49,7 +49,7 @@
               <td colspan="4">No projects found in the system</td>
           </tr>        
           <tr ng-repeat="project in projects">
-              <td><a ui-sref="app.projects.view({projectId:project.id})">{{project.name}}</a></td>
+              <td><a ui-sref="admin.projects.view({projectId:project.id})">{{project.name}}</a></td>
               <!-- <td class="text-center">{{project.date_start | date:'shortDate'}}</td> -->
               <!-- <td class="text-center">{{project.date_end | date:'shortDate'}}</td> -->
               <td class="text-center">{{project.owner_name}}</td>

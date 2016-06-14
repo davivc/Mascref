@@ -41,7 +41,7 @@
                       <td colspan="4">No transects found for this project.</td>
                   </tr>        
                   <tr ng-repeat="transect in transects">
-                      <td><a ui-sref="app.projects.view.survey.transect({transectId:transect.id})">{{transect.name}}</a></td>
+                      <td><a ui-sref="admin.projects.view.survey.transect({transectId:transect.id})">{{transect.name}}</a></td>
                       <td class="text-center">{{transect.site_name}} ({{transect.town_name}})</td>
                       <td class="text-center">{{transect.depth | number : 2 }}</td>
                       <td class="text-center">{{transect.date | date:'shortDate'}}</td>
