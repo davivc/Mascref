@@ -23,7 +23,7 @@
       "SETTINGS": "Settings"
     }
   },
-  "app": {
+  "admin": {
     "dashboard": {
       "TITLE": "Dashboard",
       "WELCOME": "Welcome to Mapping Coral Reefs application",

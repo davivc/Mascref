@@ -9,9 +9,8 @@ angular.module('app.controllers')
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
-    else {
-      console.log('admin.dashboard')
-      $state.go('admin.dashboard'); 
-    }
+    // else {
+    //   $state.go('admin.dashboard'); 
+    // }
 
   }]);

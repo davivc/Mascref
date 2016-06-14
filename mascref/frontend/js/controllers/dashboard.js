@@ -10,7 +10,7 @@ angular.module('app.controllers')
 
     $scope.$watch('userProfile', function(newValue, oldValue) {
       //update the DOM with newValue
-      console.log($rootScope.userProfile)
+      // console.log($rootScope.userProfile)
     });
   }])
   .controller('DashboardStatsCtrl', ['$scope', '$rootScope', '$translate', '$filter', 'Dashboard', function ($scope, $rootScope, $translate, $filter, Dashboard) {

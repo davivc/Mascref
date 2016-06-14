@@ -15,7 +15,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       isIE && $('html').addClass('ie');
 
     // config
-      $scope.app = {
+      $scope.admin = {
           name: 'Mascref',
           version: '1.0.0',
         // for chart colors
