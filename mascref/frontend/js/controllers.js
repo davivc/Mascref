@@ -114,8 +114,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         djangoAuth.login($scope.model.username, $scope.model.password)
         .then(function (data) {
           // success case
-          //$location.path("/app");
-          $state.go('app.dashboard');
+          $state.go('admin.dashboard');
         }, function (data) {
           // error case
           $scope.errors = data;

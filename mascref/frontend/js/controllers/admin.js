@@ -10,6 +10,7 @@ angular.module('app.controllers')
       $state.go('access.signin');
     }
     else {
+      console.log('admin.dashboard')
       $state.go('admin.dashboard'); 
     }
 
