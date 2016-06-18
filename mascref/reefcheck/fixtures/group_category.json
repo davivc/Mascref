@@ -5,7 +5,7 @@
     "name": "Fish",
     "description": null
   },
-  "model": "app.group_category",
+  "model": "reefcheck.groupcategory",
   "pk": 1
 },
 {
@@ -14,7 +14,7 @@
     "name": "Inverts",
     "description": null
   },
-  "model": "app.group_category",
+  "model": "reefcheck.groupcategory",
   "pk": 2
 },
 {
@@ -23,7 +23,7 @@
     "name": "Impacts: Coral Damage/Disease/Bleaching/Trash",
     "description": "0 = none, 1 = low (1 piece), 2 = medium (2-4 pieces) and 3 = high (5+ pieces)"
   },
-  "model": "app.group_category",
+  "model": "reefcheck.groupcategory",
   "pk": 3
 },
 {
@@ -32,7 +32,7 @@
     "name": "Rare animals sighted",
     "description": "# / type / size"
   },
-  "model": "app.group_category",
+  "model": "reefcheck.groupcategory",
   "pk": 4
 },
 {
@@ -41,7 +41,7 @@
     "name": "Living Cover",
     "description": null
   },
-  "model": "app.group_category",
+  "model": "reefcheck.groupcategory",
   "pk": 5
 },
 {
@@ -50,7 +50,7 @@
     "name": "Non-Living Cover",
     "description": null
   },
-  "model": "app.group_category",
+  "model": "reefcheck.groupcategory",
   "pk": 6
 }
 ]

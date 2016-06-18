@@ -3,14 +3,14 @@
   "fields": {
     "name": "ReefCheck Pacific"
   },
-  "model": "app.group_set",
+  "model": "reefcheck.groupset",
   "pk": 1
 },
 {
   "fields": {
     "name": "Custom"
   },
-  "model": "app.group_set",
+  "model": "reefcheck.groupset",
   "pk": 2
 }
 ]

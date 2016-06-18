@@ -112,16 +112,19 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'reefcheck',
     # Uncomment the next line to enable the admin:
-    #'django.contrib.admin',
+    # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    #'django.contrib.admindocs',
+    # 'django.contrib.admindocs',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_auth',
     'corsheaders',
     'rest_framework_tracking',
+    'rest_assured',
+    # 'factory',
 )
 
 # A sample logging configuration. The only tangible logging

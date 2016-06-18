@@ -3,14 +3,14 @@
   "fields": {
     "name": "Belt"
   },
-  "model": "app.transect_type",
+  "model": "reefcheck.transecttype",
   "pk": 1
 },
 {
   "fields": {
     "name": "Line"
   },
-  "model": "app.transect_type",
+  "model": "reefcheck.transecttype",
   "pk": 2
 }
 ]

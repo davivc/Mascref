@@ -2,8 +2,8 @@
 {
   "fields": {
     "username": "admin",
-    "first_name": "Davi",
-    "last_name": "Candido",
+    "first_name": "Admin",
+    "last_name": "Teste",
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
@@ -11,7 +11,7 @@
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$20000$fsR4yPrxW7lk$ffpEYaICAmY5TrbrydMfTmIOrsRC0f5h8BN1Md+/Z54=",
-    "email": "davivc@gmail.com",
+    "email": "admin@gmail.com",
     "date_joined": "2015-09-22T01:43:53Z"
   },
   "model": "auth.user",
@@ -19,9 +19,9 @@
 },
 {
   "fields": {
-    "username": "ldutra",
-    "first_name": "Leo",
-    "last_name": "Dutra",
+    "username": "user",
+    "first_name": "User",
+    "last_name": "Test",
     "is_active": true,
     "is_superuser": false,
     "is_staff": true,
@@ -29,7 +29,7 @@
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$20000$fsR4yPrxW7lk$ffpEYaICAmY5TrbrydMfTmIOrsRC0f5h8BN1Md+/Z54=",
-    "email": "teste@teste.com.br",
+    "email": "test@test.com",
     "date_joined": "2015-11-04T05:17:03Z"
   },
   "model": "auth.user",

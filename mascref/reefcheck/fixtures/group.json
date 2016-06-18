@@ -9,7 +9,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 1
 },
 {
@@ -22,7 +22,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 2
 },
 {
@@ -35,7 +35,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 3
 },
 {
@@ -48,7 +48,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 4
 },
 {
@@ -61,7 +61,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 5
 },
 {
@@ -74,7 +74,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 6
 },
 {
@@ -87,7 +87,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 7
 },
 {
@@ -100,7 +100,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 8
 },
 {
@@ -113,7 +113,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 9
 },
 {
@@ -126,7 +126,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 10
 },
 {
@@ -139,7 +139,7 @@
     "type": 2,
     "description": "Hard coral"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 11
 },
 {
@@ -152,7 +152,7 @@
     "type": 2,
     "description": "Soft coral"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 12
 },
 {
@@ -165,7 +165,7 @@
     "type": 2,
     "description": "Recently killed coral"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 13
 },
 {
@@ -178,7 +178,7 @@
     "type": 2,
     "description": "Nutrient indicator algae"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 14
 },
 {
@@ -191,7 +191,7 @@
     "type": 2,
     "description": "Sponge"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 15
 },
 {
@@ -204,7 +204,7 @@
     "type": 2,
     "description": "Rock"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 16
 },
 {
@@ -217,7 +217,7 @@
     "type": 2,
     "description": "Rubble"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 17
 },
 {
@@ -230,7 +230,7 @@
     "type": 2,
     "description": "Sand"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 18
 },
 {
@@ -243,7 +243,7 @@
     "type": 2,
     "description": "Silt/clay"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 19
 },
 {
@@ -256,7 +256,7 @@
     "type": 2,
     "description": "Other"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 20
 },
 {
@@ -269,7 +269,7 @@
     "type": 1,
     "description": "Diadema"
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 21
 },
 {
@@ -282,7 +282,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 22
 },
 {
@@ -295,7 +295,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 23
 },
 {
@@ -308,7 +308,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 24
 },
 {
@@ -321,7 +321,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 25
 },
 {
@@ -334,7 +334,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 26
 },
 {
@@ -347,7 +347,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 27
 },
 {
@@ -360,7 +360,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 28
 },
 {
@@ -373,7 +373,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 29
 },
 {
@@ -386,7 +386,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 30
 },
 {
@@ -399,7 +399,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 31
 },
 {
@@ -412,7 +412,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 32
 },
 {
@@ -425,7 +425,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 33
 },
 {
@@ -438,7 +438,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 34
 },
 {
@@ -451,7 +451,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 35
 },
 {
@@ -464,7 +464,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 36
 },
 {
@@ -477,7 +477,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 37
 },
 {
@@ -490,7 +490,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 38
 },
 {
@@ -503,7 +503,7 @@
     "type": 1,
     "description": null
   },
-  "model": "app.group",
+  "model": "reefcheck.group",
   "pk": 39
 }
 ]
