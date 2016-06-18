@@ -1,0 +1,39 @@
+v 1.0.2
+
+1: Add angular-translate for international
+	add: "js/angular/angular-translate.js", "js/angular/angular-cookies.min.js", "l10n" folder
+	changed: "js/app.js", "js/controllers.js", "tpl/blocks/header.html", "tpl/blocks/nav.html"
+
+2: Add footable jquery plugin
+	added: "js/jquery/footable/footable.all.min.js", "tpl/table_footable.html"
+	changed "js/app.js" to config ui-jq footable files
+
+3: fix menu on small device.
+	changed: "tpl/blocks/header.html" add  ui-scroll="app" on menu button. 
+		and give a "#app" on "tpl/index.html".
+		you can change the name "#app" as you want.
+
+4: fix line-height on ".btn-icon" class
+	changed: "css/less/app.button.less", regenerated app.css
+
+
+
+v 1.0.1
+
+1: Add Fullscreen directive
+	usage:   <a ui-fullscreen></a> or <a ui-fullscreen target="#target"></a>
+	added:   "js/libs/screenfull.min.js"
+	changed: "tpl/blocks/header.html", "js/directives.js" add "uiFullscreen" directive
+
+2: Add Butterbar directive for loading indicator
+	usage: <div ui-butterbar></div>
+	added: "css/less/app.butterbar.less" 
+	changed: "tpl/app.html", "js/directives.js" add "uiButterbar" directive
+	
+3: Add list group .auto class
+	effect 404 page
+	List group has .auto class for "bg-info","bg-primary" ...
+	Changed, css/less/app.mixins.less, and regenerated app.css
+
+4: Fix scroll bounce when page transition
+	changed, css/less/app.ng.class, and regenerated app.css
