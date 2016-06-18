@@ -86,6 +86,10 @@ var app = angular.module('app', [
                 url: '/view/{projectId}',
                 templateUrl: 'tpl/app_project_view.html'
               })
+              .state('admin.projects.edit', {
+                url: '/edit/{projectId}',
+                templateUrl: 'tpl/app_project_edit.html'
+              })
               .state('admin.projects.view.survey', {
                 url: '/survey/{surveyId}',
                 templateUrl: 'tpl/app_survey.html'

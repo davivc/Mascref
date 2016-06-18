@@ -35,7 +35,7 @@ angular.module('app.controllers')
       }
       $scope.loadingNewProject = true;
       $scope.formProject.errors = {}
-      Projects.create($scope.formProject)
+      Projects.save($scope.formProject)
       .then(function (data) {
         $scope.resetFormProject();
         $scope.getProjects();
@@ -126,6 +126,55 @@ angular.module('app.controllers')
     $scope.resetFormProject();
     $scope.getProjects();
     $scope.breadcrumbs[0] = 'Projects';
+  }])
+  .controller('ProjectEditCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Projects', function ($scope, $translate, $state, $stateParams, $sce, Projects) {
+    // Logged status
+    if (!$scope.authenticated) {
+      $state.go('access.signin');
+    }
+
+    // project object
+    $scope.project = {}    
+    $scope.formProject = {}    
+    $scope.description = "Davi legal"    
+
+    // Retrieve info about the project
+    $scope.getProject = function (projectId) {
+      Projects.get(projectId)
+      .then(function (data) {
+        $scope.project = data;
+        $scope.$parent.breadcrumbs[1] = $scope.project.name;
+      }, function (error) {
+        $state.go('admin.projects');
+        // $scope.stats.error = error;        
+      });
+    }
+
+    $scope.$watch('project', function (value) {
+      $scope.description = $sce.trustAsHtml(value.description);
+    });
+
+    $scope.saveProject = function () {
+      if (!$scope.project.name) {
+        console.log('aqui')
+        $scope.formProject.errors.name = true;
+        return false;
+      }
+      $scope.loadingNewProject = true;
+      $scope.formProject.errors = {}
+      if($scope.formProject.owner) $scope.project.owner = $scope.formProject.owner;
+      // if(angular.isObject($scope.description)) $scope.project.description = "";
+      // else $scope.project.description = $scope.description;
+      console.log($scope.project)
+      Projects.save($scope.project)
+      .then(function (data) {
+        $scope.loadingNewProject = false;
+      }, function (error) {
+        console.error('Project create: ' + error);
+      });
+    }
+
+    $scope.getProject($stateParams.projectId);
   }])
   .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', '$filter', '$timeout', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, $filter, $timeout, Projects, Surveys, uiGmapGoogleMapApi) {
     //******** Projects List Init ********//

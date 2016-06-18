@@ -20,16 +20,21 @@ angular.module('app.services')
     'get': function (pk) {
       return Rest.get(this.url + pk + '/');
     },
-    'create': function (pData) {
+    'save': function (pData) {
       var data = {
         'name': pData.name,
         'description': pData.description,
         'parent': pData.parent,
         'public': pData.restricted,
-        'owner': pData.owner.id,
-        'surveys': []
+        'owner': pData.owner.id
+      };
+      if(pData.id) {
+       return Rest.patch(this.url + pData.id + '/', data); 
       }
-      return Rest.post(this.url, data);
+      else {
+        data.surveys = [];
+        return Rest.post(this.url, data);
+      }
     },
     'delete': function (pk) {
       return Rest.delete(this.url, pk);
