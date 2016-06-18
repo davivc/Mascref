@@ -19,7 +19,7 @@
         Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
       </div>
       <div class="text-muted text-right">
-        <button type="submit" class="btn btn-sm btn-info" ng-click="showNewProject = true">+ New Project</button>
+        <button type="submit" class="btn btn-sm btn-success" ng-click="showNewProject = true">+ New Project</button>
       </div>
     </div>    
     <div>
@@ -31,7 +31,6 @@
               <!-- <th class="text-center">Date End</th> -->
               <th class="text-center">Project Leader</th>
               <th class="text-center">Surveys</th>
-              <th class="text-center">Transects</th>
               <th class="text-center">Date Created</th>
               <th class="text-center">Public</th>
               <th class="text-center" ng-if="userProfile.is_admin">Actions</th>
@@ -54,10 +53,13 @@
               <!-- <td class="text-center">{{project.date_end | date:'shortDate'}}</td> -->
               <td class="text-center">{{project.owner_name}}</td>
               <td class="text-center">{{project.surveys_count ? project.surveys_count : '0'}}</td>
-              <td class="text-center">{{project.transects_count ? project.transects_count : '0'}}</td>
               <td class="text-center">{{project.created_at | date:'short'}}</td>
-              <td class="text-center"><i ng-if="project.public" class="fa fa-check text-success text"></i><i ng-if="!project.public" class="fa fa-times text-danger text"></i></td>
-              <td class="text-center" ng-if="userProfile.is_admin"><i class="fa fa-edit text"></i></td>
+              <td class="text-center"><i ng-if="project.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!project.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
+              <td class="text-center">
+                <a ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                <a ng-if="userProfile.is_admin" ui-sref="admin.projects.edit({projectId:project.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
+                <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs">Delete</button></a>
+              </td>
           </tr> 
         </tbody>
         <tfoot class="hide-if-no-paging">
