@@ -22,7 +22,7 @@ angular.module('app.controllers')
       'surveys': 0,
       'transects': 0
     }
-    console.log($rootScope.userProfile)
+    // console.log($rootScope.userProfile)
     $scope.researchers = []
     $scope.totalAdmin = 0;
     $scope.totalMembers = 0;

@@ -2,7 +2,7 @@
   <h1 class="m-n font-thin h3">
     <ul class="breadcrumb">
       <li ng-repeat="(key, bread) in breadcrumbs">
-        <span ng-if="key == 0"><a href><i class="fa fa-home"></i> {{bread}}</a> </span>
+        <span ng-if="key == 0"><a href><i class="glyphicon glyphicon-folder-open icon text-info-dker"></i> {{bread}}</a> </span>
         <span ng-if="key != 0 && key != breadcrumbs.length-1"><a href>{{bread}}</a></span>
         <span ng-if="key != 0 && key == breadcrumbs.length-1" class="active">{{bread}}</span>
       </li>

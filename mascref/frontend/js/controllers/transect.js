@@ -645,7 +645,7 @@ angular.module('app.controllers')
 
 
     uiGmapIsReady.promise(2).then(function (maps) {
-      console.log(maps)
+      // console.log(maps)
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.$watch('transect.info.site.lat', function (newVal, oldVal) {
         if ($scope.transect.info.site && $scope.transect.info.site.lat && $scope.transect.info.site.long) {

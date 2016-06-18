@@ -37,7 +37,7 @@ angular.module('app.controllers')
       .then(function (data) {
         // Check if parent project on the view is the same as the parent on the retrieved survey
         if (data.project != $stateParams.projectId) {
-          $state.go('app.projects.view', { projectId: $stateParams.projectId })
+          $state.go('admin.projects.view', { projectId: $stateParams.projectId })
         }
 
         $scope.survey = data;
@@ -45,7 +45,7 @@ angular.module('app.controllers')
         $scope.$parent.breadcrumbs[1] = $scope.survey.name;
         $scope.getTransects();
       }, function (error) {
-        $state.go('app.projects.view', { projectId: $stateParams.projectId });
+        $state.go('admin.projects.view', { projectId: $stateParams.projectId });
       });
     }
 
@@ -54,7 +54,7 @@ angular.module('app.controllers')
       .then(function (data) {
         $scope.transects = data;
       }, function (error) {
-      $state.go('app.projects.view', { projectId: $stateParams.projectId });
+        $state.go('admin.projects.view', { projectId: $stateParams.projectId });
       });
     }
 
@@ -89,7 +89,7 @@ angular.module('app.controllers')
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
     uiGmapGoogleMapApi.then(function (maps) {
-      console.log($scope.markersSurvey)
+      // console.log($scope.markersSurvey)
       $('.angular-google-map-container').css('height', '300px');
     });
 
@@ -97,7 +97,7 @@ angular.module('app.controllers')
       $scope.mapSurvey.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.$watch('survey.sites', function (newVal, oldVal) {
         if ($scope.survey.sites) {
-          console.log($scope.survey.sites)
+          // console.log($scope.survey.sites)
           $scope.initMarkersSurvey();
         }
       });
