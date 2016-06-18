@@ -10,7 +10,7 @@ angular.module('app.services', [])
       'stats': function () {
         return Rest.request({
           'method': "GET",
-          'url': "/dashboard/stats/"
+          'url': "/stats/app/"
         });
       },
       'researchers': function () {
