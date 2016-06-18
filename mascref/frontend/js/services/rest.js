@@ -101,6 +101,13 @@ angular.module('app.services')
         'data': data
       })
     },
+    'delete': function (url, data) {
+      return this.request({
+        'method': "DELETE",
+        'url': url,
+        'data': data
+      })
+    }
   }
 
   return service;

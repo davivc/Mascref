@@ -20,42 +20,49 @@ angular.module('app.services', [])
 
     return service;
   })  
-  .service('Projects', function Projects(Rest) {
-    var service = {
-      'url': "/projects/",
-      'list': function (parent) {
-        var query = [];
-        var qStr = '';
-        if (parent) query.push('parent=' + parent);
+  // .service('Projects', function Projects(Rest) {
+  //   var service = {
+  //     'url': "/projects/",
+  //     'list': function (parent) {
+  //       var query = [];
+  //       var qStr = '';
+  //       if (parent) query.push('parent=' + parent);
 
-        if (query.length > 1) qStr = '?' + query.join('&');
-        else if (query.length == 1) qStr = '?' + query[0];
-        return Rest.get(this.url + qStr);
-      },
-      'get': function (pk) {
-        return Rest.request({
-          'method': "GET",
-          'url': "/projects/" + pk + "/"
-        });
-      },
-      'create': function (pData) {
-        var data = {
-          'name': pData.name,
-          'description': pData.description,
-          'parent': pData.parent,
-          'public': pData.restricted,
-          'owner': pData.owner.id
-        }
-        return Rest.request({
-          'method': "POST",
-          'url': "/projects/",
-          'data': data
-        });
-      }
-    }
+  //       if (query.length > 1) qStr = '?' + query.join('&');
+  //       else if (query.length == 1) qStr = '?' + query[0];
+  //       return Rest.get(this.url + qStr);
+  //     },
+  //     'get': function (pk) {
+  //       return Rest.request({
+  //         'method': "GET",
+  //         'url': "/projects/" + pk + "/"
+  //       });
+  //     },
+  //     'create': function (pData) {
+  //       var data = {
+  //         'name': pData.name,
+  //         'description': pData.description,
+  //         'parent': pData.parent,
+  //         'public': pData.restricted,
+  //         'owner': pData.owner.id
+  //       }
+  //       return Rest.request({
+  //         'method': "POST",
+  //         'url': "/projects/",
+  //         'data': data
+  //       });
+  //     },
+  //     'delete': function (url, data) {
+  //       return this.request({
+  //         'method': "PATCH",
+  //         'url': url,
+  //         'data': data
+  //       })
+  //     }
+  //   }
 
-    return service;
-  })
+  //   return service;
+  // })
   .service('Surveys', function Surveys(Rest) {
     var service = {
       'list': function (project) {
