@@ -3,7 +3,7 @@
 /* Projects Controllers */
 
 angular.module('app.controllers')
-  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', '$timeout', 'Projects', 'Researchers', function ($scope, $translate, $state, $timeout, Projects, Researchers) {
+  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', '$timeout', '$uibModal', '$log', 'Projects', 'Researchers', function ($scope, $translate, $state, $timeout, $uibModal, $log, Projects, Researchers) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -11,6 +11,7 @@ angular.module('app.controllers')
 
     // Projects List Init
     $scope.breadcrumbs = [];
+    $scope.alerts = [];
     $scope.projects = {}
     $scope.showNewProject = false;
     $scope.loadingProjects = false;
@@ -69,6 +70,56 @@ angular.module('app.controllers')
         });
         return researchers;
       });
+    };
+
+    // Delete project
+    var ModalInstanceCtrl = function ($scope, $uibModalInstance, project) {
+      $scope.project = project;
+      $scope.title = 'Delete Project ' + project.name;
+      $scope.content = 'Warning: By removing you project \''+project.name+'\', you will lose all its related contents (surveys, transects, etc).';
+
+      $scope.ok = function () {
+        $uibModalInstance.close($scope.project);
+      };
+
+      $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+      };
+    };
+
+    $scope.deleteProject = function (id, name) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'tpl/blocks/modal.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+          project: function () {
+            return { 'id': id, 'name': name };
+          }
+        }
+      });
+
+      modalInstance.result.then(function (project) {
+        $scope.addAlert('Your project \''+ project.name +'\' is being deleted...', 'danger');
+        Projects.delete(project.id)
+        .then(function (data) {
+          $scope.closeAlert();
+          // $log.info('Project ' + itemId + ' deleted at: ' + new Date());
+          $scope.addAlert('Your project \''+ project.name +'\' was deleted successfully...', 'success');
+          $scope.getProjects();
+        }, function (error) {
+          $scope.closeAlert();
+        });
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $scope.addAlert = function(msg, type) {
+      $scope.alerts.push({type: type, msg: msg});
+    };
+
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
     };
 
     // Run

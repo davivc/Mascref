@@ -35,7 +35,7 @@ angular.module('app.services')
         url: url,
         withCredentials: this.use_session,
         method: method.toUpperCase(),
-        headers: { 'X-CSRFToken': $cookies.get('csrftoken') },
+        headers: { 'X-CSRFToken': $cookies.get('csrftoken'), 'Content-Type': 'application/json' },
         params: params,
         data: data
       })
@@ -101,11 +101,10 @@ angular.module('app.services')
         'data': data
       })
     },
-    'delete': function (url, data) {
+    'delete': function (url, pk) {
       return this.request({
         'method': "DELETE",
-        'url': url,
-        'data': data
+        'url': url + pk + '/'
       })
     }
   }
