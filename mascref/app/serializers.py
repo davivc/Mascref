@@ -71,7 +71,7 @@ class ProjectSerializer (serializers.ModelSerializer):
         model = Project
         fields = (
             'id', 'name', 'description', 'parent', 'public', 'created_at',
-            'created_by', 'owner', 'updated_at', 'owner_name', 'surveys'
+            'created_by', 'owner', 'updated_at', 'owner_name', 'surveys',
         )
 
     # def create(self, validated_data):

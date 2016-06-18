@@ -198,7 +198,7 @@ angular.module('app.controllers')
         $scope.$parent.breadcrumbs[1] = $scope.project.name;
       }, function (error) {
         $state.go('admin.projects');
-        //$scope.stats.error = error;        
+        // $scope.stats.error = error;        
       });
     }
     // Retrieve the list of sub-projects children of this project

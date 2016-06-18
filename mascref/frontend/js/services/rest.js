@@ -36,6 +36,7 @@ angular.module('app.services')
         withCredentials: this.use_session,
         method: method.toUpperCase(),
         headers: { 'X-CSRFToken': $cookies.get('csrftoken'), 'Content-Type': 'application/json' },
+        // headers: { 'X-CSRFToken': $cookies.get('csrftoken') },
         params: params,
         data: data
       })

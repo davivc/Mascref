@@ -18,7 +18,7 @@ angular.module('app.services')
       return Rest.get(this.url + qStr);
     },
     'get': function (pk) {
-      return Rest.get(this.url + pk);
+      return Rest.get(this.url + pk + '/');
     },
     'create': function (pData) {
       var data = {
@@ -26,7 +26,8 @@ angular.module('app.services')
         'description': pData.description,
         'parent': pData.parent,
         'public': pData.restricted,
-        'owner': pData.owner.id
+        'owner': pData.owner.id,
+        'surveys': []
       }
       return Rest.post(this.url, data);
     },
