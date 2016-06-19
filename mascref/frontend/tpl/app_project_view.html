@@ -126,7 +126,21 @@
       <!-- Begin Surveys Panel-->
       <div class="panel">
         <div class="wrapper-lg">
-          <h2 class="m-t-none"><a href>Surveys</a></h2>
+          <div class="panel-heading">
+            List of surveys
+          </div>
+          <div class="panel-body b-b b-light ">
+            <div class="text-muted text-left">
+              Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
+            </div>
+            <div class="text-muted text-right">
+              <button type="submit" class="btn btn-sm btn-success" ng-click="setShowNewSurvey(true)">+ New Survey</button>
+            </div>
+            <div ng-if="alerts.length > 0" class="m-b-md">
+              <br />
+              <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><i ng-if="alert.type == 'danger'" class="fa fa-spinner fa-spin"></i> {{alert.msg}}</uib-alert>
+            </div>
+          </div>
           <div>
             <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
               <thead>
@@ -135,25 +149,31 @@
                   <th class="text-center">Date Start</th>
                   <th class="text-center">Date End</th>
                   <!--<th>Owner</th>-->
-                  <th class="text-center">Transects</th>
+                  <!-- <th class="text-center">Transects</th> -->
                   <th class="text-center">Members</th>
                   <th class="text-center">Date Created</th>
                   <th class="text-center">Public</th>
+                  <th class="text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-if="surveys.length == 0">
-                    <td colspan="4">No surveys found for this project.</td>
+                <tr ng-if="surveys.length == 0" class="text-center">
+                    <td colspan="7">No surveys found for this project.</td>
                 </tr>        
                 <tr ng-repeat="survey in surveys">
                     <td><a ui-sref="admin.projects.view.survey({surveyId:survey.id})">{{survey.name}}</a></td>
                     <td class="text-center">{{survey.date_start | date:'dd/MM/yyyy'}}</td>
                     <td class="text-center">{{survey.date_end | date:'dd/MM/yyyy'}}</td>
                     <!--<td>{{survey.owner}}</td>-->
-                    <td class="text-center">{{survey.transects_count ? survey.transects_count : '0'}}</td>
+                    <!-- <td class="text-center">{{survey.transects_count ? survey.transects_count : '0'}}</td> -->
                     <td class="text-center">{{survey.members_count ? survey.members_count : '0'}}</td>
                     <td class="text-center">{{survey.created_at | date:'short'}}</td>
-                    <td class="text-center"><i ng-if="survey.public" class="fa fa-check text-success text"></i><i  ng-if="!survey.public" class="fa fa-times text-danger text"></i></td>
+                    <td class="text-center"><i ng-if="survey.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!survey.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
+                    <td class="text-center">
+                      <a ui-sref="admin.projects.view.survey({surveyId:survey.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                      <a ng-if="userProfile.is_admin" ui-sref="admin.projects.view.survey.edit({surveyId:survey.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
+                      <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs" ng-click="deleteSurvey(survey.id, survey.name)">Delete</button></a>
+                    </td>
                 </tr>       
               </tbody>
               <tfoot class="hide-if-no-paging">
@@ -166,9 +186,6 @@
             </table>
           </div>
           <div class="line line-lg b-b b-light"></div>
-          <div class="text-muted text-right">
-            <button type="submit" class="btn btn-sm btn-info" ng-click="setShowNewSurvey(true)">+ New Survey</button>
-          </div>
         </div>
       </div> 
         
