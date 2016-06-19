@@ -127,7 +127,7 @@ angular.module('app.controllers')
     $scope.getProjects();
     $scope.breadcrumbs[0] = 'Projects';
   }])
-  .controller('ProjectEditCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Projects', function ($scope, $translate, $state, $stateParams, $sce, Projects) {
+  .controller('ProjectEditCtrl', ['$scope', '$translate', '$state', '$stateParams', 'Projects', function ($scope, $translate, $state, $stateParams, Projects) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -135,8 +135,15 @@ angular.module('app.controllers')
 
     // project object
     $scope.project = {}    
-    $scope.formProject = {}    
-    $scope.description = "Davi legal"    
+    $scope.formEditProject = {}    
+    // $scope.description = "";
+    
+    // $scope.$watch('project', function (value) {
+    //   value.description = "Davi legal mil vezes"
+    //   // $scope.description = $scope.project.description
+    //   $scope.description = value.description
+    //   console.log(value.description)
+    // }, true);
 
     // Retrieve info about the project
     $scope.getProject = function (projectId) {
@@ -149,10 +156,6 @@ angular.module('app.controllers')
         // $scope.stats.error = error;        
       });
     }
-
-    $scope.$watch('project', function (value) {
-      $scope.description = $sce.trustAsHtml(value.description);
-    });
 
     $scope.saveProject = function () {
       if (!$scope.project.name) {

@@ -11,9 +11,16 @@ angular.module('app.directives', ['ui.load'])
     scope: { model: '=ngModel'},
     link: function (scope, element, attr) {
       scope.text = scope.model;
+      console.log(attr['ngModel'])
+      scope.$watch(attr['ngModel'], function (v) {
+        console.log('value changed, new value is: ' + v);
+      });
+
       scope.$watch('text', function (value) {
+        console.log('text ' + value)
         scope.model = scope.text;
       });
+
     },
     templateUrl: 'tpl/directives/wysiwyg.html'
   };

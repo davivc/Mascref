@@ -7,8 +7,8 @@
         </div>
         <div class="wrapper-lg">
           <h2 class="m-t-none"><a href>{{project.name}}</a> Settings</h2>
-          <form name="formProject" class="form-horizontal" ng-submit="saveProject()" novalidate>
-            <div class="form-group" ng-class="{ 'has-error' : formProject.errors.name }">
+          <form name="formEditProject" class="form-horizontal" ng-submit="saveProject()" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : formEditProject.errors.name }">
               <label class="col-sm-2 control-label">Name</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control w-xxl" ng-model="project.name" name="name" required>
@@ -18,7 +18,8 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Description</label>
               <div class="col-sm-10">
-                <wysiwyg ng-model="description"></wysiwyg>            
+                <!-- <wysiwyg ng-model="description"></wysiwyg>             -->
+                <textarea class="form-control" rows="5" ng-model="project.description"></textarea>
               </div>
               <br />
             </div>
@@ -27,7 +28,7 @@
               <label class="col-sm-2 control-label">Owner / Leader</label>              
               <div class="col-sm-5">
                 <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
-                <input type="text" class="form-control w-xxl" ng-model="formProject.owner" placeholder="Researchers found in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
+                <input type="text" class="form-control w-xxl" ng-model="formEditProject.owner" placeholder="Researchers found in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
               </div>
               <label class="col-sm-4 control-label">
                 <span ng-if="project.owner"><b>Actual leader</b>: {{project.owner_name || project.owner.name}}</span>
