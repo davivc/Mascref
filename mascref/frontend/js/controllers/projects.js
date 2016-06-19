@@ -191,7 +191,7 @@ angular.module('app.controllers')
 
     $scope.getProject($stateParams.projectId);
   }])
-  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', '$filter', '$timeout', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, $filter, $timeout, Projects, Surveys, uiGmapGoogleMapApi) {
+  .controller('ProjectViewCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', '$filter', '$timeout', '$uibModal', '$log', 'Projects', 'Surveys', 'uiGmapGoogleMapApi', function ($scope, $translate, $state, $stateParams, $sce, $filter, $timeout,  $uibModal, $log, Projects, Surveys, uiGmapGoogleMapApi) {
     //******** Projects List Init ********//
 
     // project object
@@ -199,6 +199,7 @@ angular.module('app.controllers')
     // Surveys and subprojects list
     $scope.surveys = []
     $scope.subProjects = []
+    $scope.alerts = [];
     // Info about totals
     $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }
     // Init Google Maps
@@ -303,7 +304,7 @@ angular.module('app.controllers')
 
       $scope.formSurvey.loadingNewSurvey = true;
       $scope.formSurvey.errors = {}
-      Surveys.create($scope.formSurvey)
+      Surveys.save($scope.formSurvey)
       .then(function (data) {
         $scope.formSurvey.message = "Survey created successfully";
         $scope.getSurveys($stateParams.projectId);
@@ -322,6 +323,55 @@ angular.module('app.controllers')
       $('.angular-google-map-container').css('height', '300px');
     });
 
+    // Delete project
+    var ModalInstanceCtrl = function ($scope, $uibModalInstance, survey) {
+      $scope.survey = survey;
+      $scope.title = 'Delete Survey ' + survey.name;
+      $scope.content = 'Warning: By removing your survey \''+survey.name+'\', you will lose all its related contents (transects, etc).';
+
+      $scope.ok = function () {
+        $uibModalInstance.close($scope.survey);
+      };
+
+      $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+      };
+    };
+
+    $scope.deleteSurvey = function (id, name) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'tpl/blocks/modal.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+          survey: function () {
+            return { 'id': id, 'name': name };
+          }
+        }
+      });
+
+      modalInstance.result.then(function (survey) {
+        $scope.addAlert('Your survey \''+ survey.name +'\' is being deleted...', 'danger');
+        Surveys.delete(survey.id)
+        .then(function (data) {
+          $scope.closeAlert();
+          // $log.info('Project ' + itemId + ' deleted at: ' + new Date());
+          $scope.addAlert('Your survey \''+ survey.name +'\' was deleted successfully...', 'success');
+          $scope.getSurveys();
+        }, function (error) {
+          $scope.closeAlert();
+        });
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $scope.addAlert = function(msg, type) {
+      $scope.alerts.push({type: type, msg: msg});
+    };
+
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
 
     //******** Run ********//
     $scope.resetFormSurvey();

@@ -63,41 +63,41 @@ angular.module('app.services', [])
 
   //   return service;
   // })
-  .service('Surveys', function Surveys(Rest) {
-    var service = {
-      'list': function (project) {
-        var search = '?';
-        if (project) search = search + 'project=' + project
-        return Rest.request({
-          'method': "GET",
-          'url': "/surveys/" + search
-        });
-      },
-      'get': function (pk) {
-        return Rest.request({
-          'method': "GET",
-          'url': "/surveys/" + pk + "/"
-        });
-      },
-      'create': function (pData) {
-        var data = {
-          'name': pData.name,
-          'project': pData.project,
-          'date_start': pData.date_start,
-          'date_end': pData.date_end,
-          'public': pData.restricted,
-          'owner': pData.owner.id
-        }
-        return Rest.request({
-          'method': "POST",
-          'url': "/surveys/",
-          'data': data
-        });
-      }
-    }
+  // .service('Surveys', function Surveys(Rest) {
+  //   var service = {
+  //     'list': function (project) {
+  //       var search = '?';
+  //       if (project) search = search + 'project=' + project
+  //       return Rest.request({
+  //         'method': "GET",
+  //         'url': "/surveys/" + search
+  //       });
+  //     },
+  //     'get': function (pk) {
+  //       return Rest.request({
+  //         'method': "GET",
+  //         'url': "/surveys/" + pk + "/"
+  //       });
+  //     },
+  //     'create': function (pData) {
+  //       var data = {
+  //         'name': pData.name,
+  //         'project': pData.project,
+  //         'date_start': pData.date_start,
+  //         'date_end': pData.date_end,
+  //         'public': pData.restricted,
+  //         'owner': pData.owner.id
+  //       }
+  //       return Rest.request({
+  //         'method': "POST",
+  //         'url': "/surveys/",
+  //         'data': data
+  //       });
+  //     }
+  //   }
 
-    return service;
-  })
+  //   return service;
+  // })
   .service('Researchers', function Projects(Rest) {
     var service = {
       'list': function (search) {
