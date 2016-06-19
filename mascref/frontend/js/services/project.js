@@ -29,7 +29,9 @@ angular.module('app.services')
         'owner': pData.owner.id
       };
       if(pData.id) {
-       return Rest.patch(this.url + pData.id + '/', data); 
+        data.surveys = pData.surveys;
+        data.public = pData.public;
+        return Rest.patch(this.url + pData.id + '/', data); 
       }
       else {
         data.surveys = [];

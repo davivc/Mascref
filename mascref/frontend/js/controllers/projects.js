@@ -135,7 +135,15 @@ angular.module('app.controllers')
 
     // project object
     $scope.project = {}    
-    $scope.formEditProject = {}    
+    $scope.formEditProject = {}
+    $scope.msgs = { 
+      settings: {
+        show: false,
+        loading: false,
+        type: 'info',
+        text: ''
+      }
+    }
     // $scope.description = "";
     
     // $scope.$watch('project', function (value) {
@@ -163,15 +171,19 @@ angular.module('app.controllers')
         $scope.formProject.errors.name = true;
         return false;
       }
-      $scope.loadingNewProject = true;
+      $scope.msgs.settings.show = true;
+      $scope.msgs.settings.loading = true;
+      $scope.msgs.settings.type = 'primary';
+      $scope.msgs.settings.text = 'Saving project settings...';
       $scope.formProject.errors = {}
       if($scope.formProject.owner) $scope.project.owner = $scope.formProject.owner;
       // if(angular.isObject($scope.description)) $scope.project.description = "";
       // else $scope.project.description = $scope.description;
-      console.log($scope.project)
       Projects.save($scope.project)
       .then(function (data) {
-        $scope.loadingNewProject = false;
+        $scope.msgs.settings.loading = false;
+        $scope.msgs.settings.type = 'success';
+        $scope.msgs.settings.text = 'Project settings saved successfully!';
       }, function (error) {
         console.error('Project create: ' + error);
       });

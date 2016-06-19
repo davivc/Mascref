@@ -41,7 +41,7 @@
               <!-- <input type="hidden" ng-model="project.public"> -->
               <div class="col-sm-10">
                 <label class="i-switch m-t-xs m-r">
-                  <input type="checkbox" ng-click="project.public = !project.public">
+                  <input type="checkbox" checked="{{project.public}}" ng-click="project.public = !project.public">
                   <i></i>              
                 </label>
               </div>
@@ -49,9 +49,12 @@
             <div class="line line-dashed b-b line-lg pull-in"></div>
             <div class="form-group">
               <label class="col-sm-2 control-label"></label>
-              <div class="col-sm-2">
+              <div class="col-sm-6">
                 <button class="btn btn-sm btn-success">Save Project</button>
-                <i ng-show="loadingProject" class="fa fa-spinner fa-spin form-control-spin text-left"></i>
+                <a ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-sm text-info">Go to project</button></a>
+                  <span ng-show="msgs.settings.show" class="text-{{msgs.settings.type}}">
+                    <i ng-show="msgs.settings.loading" class="fa fa-spinner fa-spin"></i> {{msgs.settings.text}}
+                  </span>
               </div>
             </div>
           </form>
