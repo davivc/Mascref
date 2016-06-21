@@ -221,6 +221,15 @@ angular.module('app.controllers')
     $scope.surveys = []
     $scope.subProjects = []
     $scope.alerts = [];
+    $scope.msgs = { 
+      saving_survey: {
+        show: false,
+        loading: false,
+        type: 'info',
+        text: ''
+      }
+    }
+
     // Info about totals
     $scope.info = { 'members': 0, 'surveys': 0, 'transects_count': 0, 'transects_cover': 0 }
     // Init Google Maps
@@ -323,11 +332,18 @@ angular.module('app.controllers')
       if ($scope.formSurvey.date_start) $scope.formSurvey.date_start = $filter('date')($scope.formSurvey.date_start, 'yyyy-MM-dd');
       if ($scope.formSurvey.date_end) $scope.formSurvey.date_end = $filter('date')($scope.formSurvey.date_end, 'yyyy-MM-dd');
 
-      $scope.formSurvey.loadingNewSurvey = true;
+      $scope.msgs.saving_survey.show = true;
+      $scope.msgs.saving_survey.loading = true;
+      $scope.msgs.saving_survey.type = 'info';
+      $scope.msgs.saving_survey.text = 'Saving survey settings...';
+
       $scope.formSurvey.errors = {}
       Surveys.save($scope.formSurvey)
       .then(function (data) {
-        $scope.formSurvey.message = "Survey created successfully";
+        $scope.msgs.saving_survey.loading = false;
+        $scope.msgs.saving_survey.type = 'success';
+        $scope.msgs.saving_survey.text = 'Survey created successfully!';
+
         $scope.getSurveys($stateParams.projectId);
         $timeout(function () {
           $scope.resetFormSurvey();
@@ -335,7 +351,10 @@ angular.module('app.controllers')
         }, 3000);
         //$state.go('app.projects.view.survey', { surveyId: data.id })
       }, function (error) {
-        $scope.formSurvey.errors.others = error;
+        $scope.msgs.saving_survey.loading = false;
+        $scope.msgs.saving_survey.type = 'danger';
+        $scope.msgs.saving_survey.text = '(Error) Sruvey create: ' + error;
+        // $scope.formSurvey.errors.others = error;
       });
     }
     // uiGmapGoogleMapApi is a promise.
@@ -374,7 +393,7 @@ angular.module('app.controllers')
         $scope.addAlert('Your survey \''+ survey.name +'\' is being deleted...', 'danger');
         Surveys.delete(survey.id)
         .then(function (data) {
-          $scope.closeAlert();
+          $scope.closeAlert($scope.alerts.length-1);
           // $log.info('Project ' + itemId + ' deleted at: ' + new Date());
           $scope.addAlert('Your survey \''+ survey.name +'\' was deleted successfully...', 'success');
           $scope.getSurveys();
