@@ -17,4 +17,6 @@ python manage.py loaddata initial_data.json
 
 python manage.py runserver 53190
 
+Copy frontend/js app.env_conf.template.js to app.env_conf.js
 
+Copy mascref/mascref/mascref/settings_local.template to settings_local.py
