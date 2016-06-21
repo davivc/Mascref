@@ -16,6 +16,14 @@ angular.module('app.controllers')
     $scope.showNewProject = false;
     $scope.loadingProjects = false;
     $scope.formProject = {}
+    $scope.msgs = { 
+      saving_project: {
+        show: false,
+        loading: false,
+        type: 'info',
+        text: ''
+      }
+    }
 
     // Functions
     $scope.resetFormProject = function () {
@@ -33,19 +41,32 @@ angular.module('app.controllers')
         $scope.formProject.errors.name = true;
         return false;
       }
-      $scope.loadingNewProject = true;
+      $scope.msgs.saving_project.show = true;
+      $scope.msgs.saving_project.loading = true;
+      $scope.msgs.saving_project.type = 'info';
+      $scope.msgs.saving_project.text = 'Creating new project...';
+
       $scope.formProject.errors = {}
+
       Projects.save($scope.formProject)
       .then(function (data) {
         $scope.resetFormProject();
         $scope.getProjects();
-        $scope.showNewProject = false;
-        $scope.loadingNewProject = false;
-        //$timeout(function () {
-        $state.go('admin.projects.view', { projectId: data.id })
-        //}, 2000);
+
+        $scope.msgs.saving_project.loading = false;
+        $scope.msgs.saving_project.type = 'success';
+        $scope.msgs.saving_project.text = 'Project created successfully!';
+        
+        $timeout(function () {
+          $state.go('admin.projects.view', { projectId: data.id })
+          $scope.showNewProject = false;
+        }, 2000);
       }, function (error) {
-        console.error('Project create: ' + error);
+        $scope.msgs.saving_project.loading = false;
+        $scope.msgs.saving_project.loading = false;
+        $scope.msgs.saving_project.type = 'danger';
+        $scope.msgs.saving_project.text = '(Error) Project create: ' + error;
+        // console.error('Project create: ' + error);
       });
     }
 
