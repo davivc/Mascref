@@ -123,7 +123,7 @@ angular.module('app.controllers')
         $scope.addAlert('Your project \''+ project.name +'\' is being deleted...', 'danger');
         Projects.delete(project.id)
         .then(function (data) {
-          $scope.closeAlert();
+          $scope.closeAlert($scope.alerts.length-1);
           // $log.info('Project ' + itemId + ' deleted at: ' + new Date());
           $scope.addAlert('Your project \''+ project.name +'\' was deleted successfully...', 'success');
           $scope.getProjects();
