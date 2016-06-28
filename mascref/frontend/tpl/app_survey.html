@@ -23,22 +23,38 @@
         </div>
         <div class="panel">
           <div class="wrapper-lg">
-            <h2 class="m-t-none"><a href>Transects</a></h2>
+            <div class="panel-heading">
+              <h2 class="m-t-none"><a href>Transects</a></h2>
+              <!-- <h2>List of surveys</h2> -->
+            </div>
+            <div class="panel-body b-b b-light ">
+              <div class="text-muted text-left">
+                Search: <input id="filter_surveys" type="text" class="form-control input-sm w-sm inline m-r"/>
+              </div>
+              <div class="text-muted text-right">
+                <button type="submit" class="btn btn-sm btn-success" ng-click="goToTransect('')">+ New Transect</button>
+              </div>
+              <div ng-if="alerts.length > 0" class="m-b-md">
+                <br />
+                <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><i ng-if="alert.type == 'danger'" class="fa fa-spinner fa-spin"></i> {{alert.msg}}</uib-alert>
+              </div>
+            </div>
             <div>
-              <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+              <table class="table m-b-none" ui-jq="footable" data-filter="#filter_transects" data-page-size="10">
                 <thead>
                   <tr>
-                    <th>Reef Check Identifier</th>
+                    <th>Identifier</th>
                     <th class="text-center">Site</th>
                     <th class="text-center">Depth (m)</th>
                     <th class="text-center">Date</th>
                     <th class="text-center">Time Start</th>
                     <th class="text-center">Leader</th>
+                    <th class="text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-if="transects.length == 0">
-                      <td colspan="4">No transects found for this project.</td>
+                      <td class="text-center" colspan="7">No transects found for this project.</td>
                   </tr>        
                   <tr ng-repeat="transect in transects">
                       <td><a ui-sref="admin.projects.view.survey.transect({transectId:transect.id})">{{transect.name}}</a></td>
@@ -47,6 +63,10 @@
                       <td class="text-center">{{transect.date | date:'shortDate'}}</td>
                       <td class="text-center">{{transect.time_start}}</td>
                       <td class="text-center">{{transect.team_leader_name}}</td>
+                      <td class="text-center">
+                        <a ui-sref="admin.projects.view.survey.transect({transectId:transect.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                        <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs" ng-click="deleteTransect(transect.id, transect.name)">Delete</button></a>
+                    </td>
                   </tr>       
                 </tbody>
                 <tfoot class="hide-if-no-paging">
@@ -59,12 +79,9 @@
               </table>
             </div>
             <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted text-right">
-              <button type="submit" class="btn btn-sm btn-info" ng-click="goToTransect('')">+ New Transect</button>
-            </div>
           </div>
         </div>
-        <div class="panel">
+        <!-- <div class="panel">
           <div class="wrapper-lg">
             <h2 class="m-t-none"><a href>Stats summary</a></h2>
             <div>
@@ -72,7 +89,7 @@
             </div>
             <div class="line line-lg b-b b-light"></div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- <div class="col-sm-3">
