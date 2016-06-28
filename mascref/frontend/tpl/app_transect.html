@@ -37,16 +37,21 @@
             <div class="form-group pull-in clearfix">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Lat / Long (DD)</label>
+                  <label>Latitude (DD)</label>
                 </div>
                 <div class="form-group">                  
-                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.lat" placeholder="{{transect.info.site.lat ? transect.info.site.lat : 'Latitude'}}" ng-keyup="updateCoordsDMS();" ng-blur="updateMap();">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.long" placeholder="{{transect.info.site.long ? transect.info.site.long : 'Longitude'}}"  ng-keyup="updateCoordsDMS();" ng-blur="updateMap()">
+                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.lat" placeholder="{{transect.info.site.lat ? transect.info.site.lat : 'Latitude'}}"  ng-blur="updateMap();">
                 </div>
               </div>
               <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Longitude (DD)</label>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-disabled="transect.info.site.id" ng-model="transect.info.coords.dd.long" placeholder="{{transect.info.site.long ? transect.info.site.long : 'Longitude'}}" ng-blur="updateMap()">
+                </div>
+              </div>
+              <!-- <div class="col-sm-6">
                 <div class="form-group">
                   <label>Lat / Long (DMS)</label>
                 </div>
@@ -94,7 +99,7 @@
                     <span class="input-group-addon">"</span>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
              <div class="form-group pull-in clearfix">
               <div class="col-sm-3">
