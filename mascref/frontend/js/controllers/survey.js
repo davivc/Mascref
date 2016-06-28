@@ -31,6 +31,10 @@ angular.module('app.controllers')
     $scope.mapSurveyControl = {}
 
     //******** Begin Functions ********//
+    $scope.goToTransect = function(pk) {
+      $state.go('admin.projects.view.survey.transect', { transectId: pk });
+    }
+
     // Retrieve info about the project
     $scope.getSurvey = function (pk) {
       Surveys.get(pk)
