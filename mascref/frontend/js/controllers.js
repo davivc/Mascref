@@ -7,6 +7,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     tmhDynamicLocale.set('en-au');
 
     $rootScope.userProfile = {};
+    $scope.userProfile = {};
 
     // add 'no-touch' 'ie' classes to html
       var isTouchDevice = !!('ontouchstart' in window);
@@ -56,6 +57,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     // Wait for the status of authentication, set scope var to true if it resolves
       djangoAuth.authenticationStatus(true).then(function () {
         $scope.authenticated = true;
+        $scope.profile();
       });
     // Wait and respond to the logout event.
       $scope.$on('djangoAuth.logged_out', function () {
@@ -76,6 +78,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         djangoAuth.profile()
         .then(function (data) {
           $rootScope.userProfile = data;
+          $scope.userProfile = $rootScope.userProfile;
           // $rootScope.$apply()
         }, handleError);
       }
@@ -88,7 +91,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.response = data;
       }
 
-      $scope.profile();
+      
 
   }) 
   // Maps Controllers

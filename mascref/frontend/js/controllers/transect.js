@@ -45,19 +45,34 @@ angular.module('app.controllers')
     }
 
     // Init
+
+    // Get Configs
     $scope.MASCREF_CONF = MASCREF_CONF;
 
     $scope.segments_total = $scope.MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL;
+    $scope.segments_points = $scope.MASCREF_CONF.TRANSECT_SEGMENTS_POINTS;
+    $scope.segments_space = $scope.MASCREF_CONF.TRANSECT_SEGMENTS_SPACE;
+    $scope.segments_length = $scope.MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH;
+    $scope.segments_intersect = $scope.segment_length/$scope.segments_points;
+
+    $scope.config_line = $scope.MASCREF_CONF.REEFCHECK_LINE;   
+    $scope.config_belt = $scope.MASCREF_CONF.REEFCHECK_BELT;    
 
     $scope.tabs = [
-      { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
+      // { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
       { heading: "Site Info", template: 'tpl/blocks/transect_site_info.html' },
       { heading: "Line Transect", template: 'tpl/blocks/transect_line_form.html' },
       { heading: "Line Graphs", template: 'tpl/blocks/transect_line_graphs.html' },
       { heading: "Belt Transect", template: 'tpl/blocks/transect_belt_form.html' },
       { heading: "Belt Graphs", template: 'tpl/blocks/transect_belt_graphs.html' },
-      { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
+      // { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
     ];
+
+    // if($scope.config_line) {
+    //   $scope.tabs.push({ heading: "Line Transect", template: 'tpl/blocks/transect_line_form.html' });
+    //   $scope.tabs.push({ heading: "Line Graphs", template: 'tpl/blocks/transect_line_graphs.html' });
+    // }
+
     $scope.transect = { 
       info: { survey: $stateParams.surveyId, coords: { dd: {}, dms: { lat: {}, long: {} } } },      
       basic: {},
@@ -91,7 +106,7 @@ angular.module('app.controllers')
     $scope.$watch('transect.belt.data',function(oldVal,newVal) { $scope.updateBeltGraphs(); }, true)
     $scope.$watch('belt_graphs',function(newVal,oldVal) { $scope.updateBeltGraphsData(); }, true)
 
-    for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
+    for (var i = 0 ; i < $scope.segments_total ; ++i){
       // $scope.transect.belt.data[i] = [];
       $scope.transect.line.data[i] = [];
     }
@@ -280,19 +295,19 @@ angular.module('app.controllers')
       var error_y = [];
       angular.forEach($scope.line_groups, function (groups_val, groups_key) {
         $scope.line_graphs[groups_val.name] = { 'segs': [], 'sum': 0, 'mean': 0, 'sd': 0, 'se': 0, 'percent_segs': [], 'percent_sum': 0, 'percent_mean': 0, 'percent_sd': 0, 'percent_se': 0 }
-        for (var i = 0 ; i < MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ; ++i){
+        for (var i = 0 ; i < $scope.segments_total ; ++i){
           $scope.line_graphs[groups_val.name]['segs'][i] = $filter('filter')($scope.transect.line.data[i],groups_val.name).length;
-          $scope.line_graphs[groups_val.name]['percent_segs'][i] = $scope.line_graphs[groups_val.name]['segs'][i]/MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*100;
+          $scope.line_graphs[groups_val.name]['percent_segs'][i] = $scope.line_graphs[groups_val.name]['segs'][i]/$scope.segments_points*100;
         }
         $scope.line_graphs[groups_val.name].sum = $filter('sum')($scope.line_graphs[groups_val.name]['segs']);
         $scope.line_graphs[groups_val.name].mean = $filter('mean')($scope.line_graphs[groups_val.name]['segs']);
         $scope.line_graphs[groups_val.name].sd = $filter('sd')($scope.line_graphs[groups_val.name]['segs']);
-        $scope.line_graphs[groups_val.name].se = $scope.line_graphs[groups_val.name].sd/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL);
+        $scope.line_graphs[groups_val.name].se = $scope.line_graphs[groups_val.name].sd/Math.sqrt($scope.segments_total);
 
         $scope.line_graphs[groups_val.name].percent_sum = $filter('sum')($scope.line_graphs[groups_val.name]['percent_segs']);
         $scope.line_graphs[groups_val.name].percent_mean = $filter('mean')($scope.line_graphs[groups_val.name]['percent_segs']);
         $scope.line_graphs[groups_val.name].percent_sd = $filter('sd')($scope.line_graphs[groups_val.name]['percent_segs']);
-        $scope.line_graphs[groups_val.name].percent_se = $scope.line_graphs[groups_val.name].percent_sd/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL);
+        $scope.line_graphs[groups_val.name].percent_se = $scope.line_graphs[groups_val.name].percent_sd/Math.sqrt($scope.segments_total);
         // $scope.line_graphs.push(group_data);
         x.push(groups_val.name);
         y.push($scope.line_graphs[groups_val.name].percent_mean);
@@ -344,7 +359,7 @@ angular.module('app.controllers')
                 sum: $filter('sum')($scope.transect.belt.data[item.id]['sub_groups'][sub.id]), 
                 mean: $filter('mean')($scope.transect.belt.data[item.id]['sub_groups'][sub.id]), 
                 sd: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id]), 
-                se: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id])/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL)
+                se: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id])/Math.sqrt($scope.segments_total)
               };
               sum += $scope.belt_graphs[category.id][item.id].sub_groups[sub.id].sum;
             });
@@ -354,7 +369,7 @@ angular.module('app.controllers')
           $scope.belt_graphs[category.id][item.id].sum = $filter('sum')($scope.transect.belt.data[item.id]);
           $scope.belt_graphs[category.id][item.id].mean = $filter('mean')($scope.transect.belt.data[item.id]);
           $scope.belt_graphs[category.id][item.id].sd = $filter('sd')($scope.transect.belt.data[item.id]);
-          $scope.belt_graphs[category.id][item.id].se = $filter('sd')($scope.transect.belt.data[item.id])/Math.sqrt(MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL);
+          $scope.belt_graphs[category.id][item.id].se = $filter('sd')($scope.transect.belt.data[item.id])/Math.sqrt($scope.segments_total);
         });
       });
     }
@@ -510,50 +525,50 @@ angular.module('app.controllers')
       
     }
 
-    $scope.updateCoordsDD = function() {
-      var ddLat = 0;
-      var ddLong = 0;
-      if($scope.transect.info.coords.dms.lat.deg) {
-        var pLat = [];
-        // pLat.push('');
-        pLat.push($scope.transect.info.coords.dms.lat.deg * $scope.transect.info.coords.dms.lat.hemisphere);
-        pLat.push($scope.transect.info.coords.dms.lat.min ? $scope.transect.info.coords.dms.lat.min : 0);
-        pLat.push($scope.transect.info.coords.dms.lat.sec ? $scope.transect.info.coords.dms.lat.sec : 0);
-        ddLat = coordinateFilterFilter(pLat.join(' '), 'toDD', 'lat', 5);
-      }
-      if($scope.transect.info.coords.dms.long.deg) {
-        var pLong = [];
-        // pLat.push('');
-        pLong.push($scope.transect.info.coords.dms.long.deg * $scope.transect.info.coords.dms.long.hemisphere);
-        pLong.push($scope.transect.info.coords.dms.long.min ? $scope.transect.info.coords.dms.long.min : 0);
-        pLong.push($scope.transect.info.coords.dms.long.sec ? $scope.transect.info.coords.dms.long.sec : 0);
-        ddLong = coordinateFilterFilter(pLong.join(' '), 'toDD', 'lon', 5);
-      }
-      $scope.transect.info.coords.dd.lat = ddLat;
-      $scope.transect.info.coords.dd.long = ddLong;
-    }
+    // $scope.updateCoordsDD = function() {
+    //   var ddLat = 0;
+    //   var ddLong = 0;
+    //   if($scope.transect.info.coords.dms.lat.deg) {
+    //     var pLat = [];
+    //     // pLat.push('');
+    //     pLat.push($scope.transect.info.coords.dms.lat.deg * $scope.transect.info.coords.dms.lat.hemisphere);
+    //     pLat.push($scope.transect.info.coords.dms.lat.min ? $scope.transect.info.coords.dms.lat.min : 0);
+    //     pLat.push($scope.transect.info.coords.dms.lat.sec ? $scope.transect.info.coords.dms.lat.sec : 0);
+    //     ddLat = coordinateFilterFilter(pLat.join(' '), 'toDD', 'lat', 5);
+    //   }
+    //   if($scope.transect.info.coords.dms.long.deg) {
+    //     var pLong = [];
+    //     // pLat.push('');
+    //     pLong.push($scope.transect.info.coords.dms.long.deg * $scope.transect.info.coords.dms.long.hemisphere);
+    //     pLong.push($scope.transect.info.coords.dms.long.min ? $scope.transect.info.coords.dms.long.min : 0);
+    //     pLong.push($scope.transect.info.coords.dms.long.sec ? $scope.transect.info.coords.dms.long.sec : 0);
+    //     ddLong = coordinateFilterFilter(pLong.join(' '), 'toDD', 'lon', 5);
+    //   }
+    //   $scope.transect.info.coords.dd.lat = ddLat;
+    //   $scope.transect.info.coords.dd.long = ddLong;
+    // }
 
-    $scope.updateCoordsDMS = function() {
-      var dmsLat = coordinateFilterFilter($scope.transect.info.coords.dd.lat, 'toDMS');
-      var dmsLong = coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDMS');
-      if(dmsLat) {
-        $scope.transect.info.coords.dms.lat = {
-          hemisphere: ($scope.transect.info.coords.dd.lat > 0) ? 1 : -1,
-          deg: Math.abs(dmsLat.deg),
-          min: dmsLat.min,
-          sec: dmsLat.sec
-        };
-      }
+    // $scope.updateCoordsDMS = function() {
+    //   var dmsLat = coordinateFilterFilter($scope.transect.info.coords.dd.lat, 'toDMS');
+    //   var dmsLong = coordinateFilterFilter($scope.transect.info.coords.dd.long, 'toDMS');
+    //   if(dmsLat) {
+    //     $scope.transect.info.coords.dms.lat = {
+    //       hemisphere: ($scope.transect.info.coords.dd.lat > 0) ? 1 : -1,
+    //       deg: Math.abs(dmsLat.deg),
+    //       min: dmsLat.min,
+    //       sec: dmsLat.sec
+    //     };
+    //   }
 
-      if(dmsLong) {
-        $scope.transect.info.coords.dms.long = {
-          hemisphere: ($scope.transect.info.coords.dd.long > 0) ? 1 : -1,
-          deg: Math.abs(dmsLong.deg),
-          min: dmsLong.min,
-          sec: dmsLong.sec
-        };
-      }
-    }
+    //   if(dmsLong) {
+    //     $scope.transect.info.coords.dms.long = {
+    //       hemisphere: ($scope.transect.info.coords.dd.long > 0) ? 1 : -1,
+    //       deg: Math.abs(dmsLong.deg),
+    //       min: dmsLong.min,
+    //       sec: dmsLong.sec
+    //     };
+    //   }
+    // }
 
     $scope.updateMap = function() {
       if($scope.transect.info.id || !$scope.transect.info.coords) return 0;
