@@ -27,7 +27,7 @@
             <th class="" ng-repeat="seg in segments_total | range" ng-init="segStart = (segments_length+segments_space)*seg">{{segStart}} - {{segStart + segments_length}} m</th>
             <th class="text-center" style="width:75px;">Total</th>
             <th class="text-center" style="width:75px;">Mean</th>                           
-            <th class="text-center" style="width:75px;">SD</th>              
+            <th class="text-center" style="width:75px;">SD</th>          
           </tr>
         </thead>
         <tbody ng-if="belt_groups[category.id].length == 0">
