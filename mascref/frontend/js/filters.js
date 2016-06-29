@@ -113,6 +113,15 @@ angular.module('app.filters', [])
     return Math.sqrt(sumDeviation/dof);
   }
 })
+.filter('range', function(){
+  return function(n) {
+    var res = [];
+    for (var i = 0; i < n; i++) {
+      res.push(i);
+    }
+    return res;
+  };
+})
 .filter('coordinateFilter', ['$sce', function ($sce) {
   return function(coordinate, conversion, type, places) {
     // The filter will be running as we type values into the input boxes, which returns undefined

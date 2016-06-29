@@ -46,8 +46,11 @@ angular.module('app.controllers')
 
     // Init
     $scope.MASCREF_CONF = MASCREF_CONF;
+
+    $scope.segments_total = $scope.MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL;
+
     $scope.tabs = [
-      // { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
+      { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
       { heading: "Site Info", template: 'tpl/blocks/transect_site_info.html' },
       { heading: "Line Transect", template: 'tpl/blocks/transect_line_form.html' },
       { heading: "Line Graphs", template: 'tpl/blocks/transect_line_graphs.html' },

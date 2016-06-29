@@ -236,6 +236,6 @@ var app = angular.module('app', [
   TRANSECT_SEGMENTS_LENGTH: 20, // Length of segment
   TRANSECT_SEGMENTS_POINTS: 40, // Number of points per segment 
   TRANSECT_SEGMENTS_SPACE: 5, // Space between segments
-  TRANSECT_SEGMENTS_TOTAL: 4, // Number of segments per transect  
+  TRANSECT_SEGMENTS_TOTAL: 2, // Number of segments per transect  
   TRANSECT_TYPE: { BELT: 1, LINE: 2 },
 });
