@@ -24,7 +24,7 @@
         <thead>
           <tr>
             <th class="col-sm-3">Group</th>
-            <th class="text-center" ng-repeat="seg in [0,1,2,3]" ng-init="segStart = (MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH+MASCREF_CONF.TRANSECT_SEGMENTS_SPACE)*seg">{{segStart}} - {{segStart + MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH}} m</th>
+            <th class="" ng-repeat="seg in segments_total | range" ng-init="segStart = (segments_length+segments_space)*seg">{{segStart}} - {{segStart + segments_length}} m</th>
             <th class="text-center" style="width:75px;">Total</th>
             <th class="text-center" style="width:75px;">Mean</th>                           
             <th class="text-center" style="width:75px;">SD</th>              
@@ -36,7 +36,7 @@
         <tbody ng-repeat="group in belt_groups[category.id]">
           <tr>
             <td>{{group.name}}</td>
-            <td class="text-center" ng-repeat="seg in [0,1,2,3]">
+            <td class="text-center" ng-repeat="seg in segments_total | range">
               <div ng-if="group.sub_groups.length != 0">{{ transect.belt.data[group.id]['sub_groups'] | sum:seg }}</div>
               <div ng-if="group.sub_groups.length == 0" class="input-group">
                 <input ng-model="transect.belt.data[group.id][seg]" ng-init="transect.belt.data[group.id][seg] = 0" type="text" class="form-control input-sm text-center" value="0" />
@@ -49,7 +49,7 @@
           </tr>
           <tr ng-if="group.sub_groups.length != 0" ng-repeat="sub in group.sub_groups">
             <td>{{sub.name}}</td>
-            <td class="text-center" ng-repeat="seg in [0,1,2,3]">
+            <td class="text-center" ng-repeat="seg in segments_total | range">
               <div class="input-group">
                 <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg]" ng-init="transect.belt.data[group.id]['sub_groups'][sub.id][seg] = 0" type="text" class="form-control input-sm text-center" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
                 <span ng-if="group.format == 2" class="input-group-addon">%</span>
