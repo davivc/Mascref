@@ -67,8 +67,8 @@
             <input ng-model="transect.line.data[seg][n].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:45px; font-size:10px;" />
           </div>
           <div class="form-group">
-            <label style="width:30px;">{{point + segments_length/(segments_points/segments_length) | number:1 }}</label>
             <input ng-model="transect.line.data[seg][n+(segments_points/2)].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:45px; font-size:10px;" />
+            <label style="width:30px;">{{point + segments_length/(segments_points/segments_length) | number:1 }}</label>
           </div> 
         </div>
       </div>       

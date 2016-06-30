@@ -7,7 +7,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     tmhDynamicLocale.set('en-au');
 
     $rootScope.userProfile = {};
-    $scope.userProfile = {};
+    // $scope.userProfile = {};
 
     // add 'no-touch' 'ie' classes to html
       var isTouchDevice = !!('ontouchstart' in window);
@@ -67,6 +67,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
     // Wait and respond to the log in event.
       $scope.$on('djangoAuth.logged_in', function () {
         $scope.authenticated = true;
+        $scope.profile();
       });    
 
       $scope.logout = function () {
@@ -78,7 +79,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         djangoAuth.profile()
         .then(function (data) {
           $rootScope.userProfile = data;
-          $scope.userProfile = $rootScope.userProfile;
+          // $scope.userProfile = $rootScope.userProfile;
           // $rootScope.$apply()
         }, handleError);
       }
@@ -91,7 +92,8 @@ angular.module('app.controllers', ['pascalprecht.translate'])
         $scope.response = data;
       }
 
-      
+
+      // $scope.$watch('userProfile',function(oldVal,newVal) { console.log(oldVal,newVal) }, true);
 
   }) 
   // Maps Controllers

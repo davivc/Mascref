@@ -55,7 +55,7 @@ var app = angular.module('app', [
               // abstract: true,
               url: '/admin',
               templateUrl: 'tpl/app.html',
-              controller: 'AdminCtrl',            
+              controller: 'AdminCtrl',          
               resolve: {
                 authenticated: ['djangoAuth', function (djangoAuth) {
                   return djangoAuth.authenticationStatus();
