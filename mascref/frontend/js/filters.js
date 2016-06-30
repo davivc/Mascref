@@ -133,7 +133,8 @@ angular.module('app.filters', [])
       var pattern = /[-+]?[0-9]*\.?[0-9]+/g
       var match = String(coordinate).match(pattern);
 
-      if(conversion === "toDD" && match && coordinateIsValid(match, type)) {
+      // if(conversion === "toDD" && match && coordinateIsValid(match, type)) {
+      if(conversion === "toDD" && match) {
         // If the match array only has one item, the user has provided decimal degrees
         // and we can just return what the user typed in
         if(match.length === 1) {
