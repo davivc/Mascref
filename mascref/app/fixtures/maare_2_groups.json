@@ -1,0 +1,195 @@
+[{
+  "fields": {
+    "category": null,
+    "name": "AA",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Alga calcária articulada"
+  },
+  "model": "reefcheck.group",
+  "pk": 100
+},
+{
+  "fields": {
+    "category": null,
+    "name": "AR",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Areia"
+  },
+  "model": "reefcheck.group",
+  "pk": 101
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ASC",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Ascídia"
+  },
+  "model": "reefcheck.group",
+  "pk": 102
+},
+{
+  "fields": {
+    "category": null,
+    "name": "BRENC",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Briozoa encrustante"
+  },
+  "model": "reefcheck.group",
+  "pk": 103
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CC",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Cascalho"
+  },
+  "model": "reefcheck.group",
+  "pk": 104
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CM",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Coral mole"
+  },
+  "model": "reefcheck.group",
+  "pk": 105
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ESP",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Esponja"
+  },
+  "model": "reefcheck.group",
+  "pk": 106
+},
+{
+  "fields": {
+    "category": null,
+    "name": "GOR",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Gorgônia"
+  },
+  "model": "reefcheck.group",
+  "pk": 107
+},
+{
+  "fields": {
+    "category": null,
+    "name": "HDBR",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Hidrozoa/briozoa"
+  },
+  "model": "reefcheck.group",
+  "pk": 108
+},
+{
+  "fields": {
+    "category": null,
+    "name": "MA",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Macroalga"
+  },
+  "model": "reefcheck.group",
+  "pk": 109
+},
+{
+  "fields": {
+    "category": null,
+    "name": "OT",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Outros"
+  },
+  "model": "reefcheck.group",
+  "pk": 110
+},
+{
+  "fields": {
+    "category": null,
+    "name": "RD",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Rocha"
+  },
+  "model": "reefcheck.group",
+  "pk": 111
+},
+{
+  "fields": {
+    "category": null,
+    "name": "RODO",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Rodolito"
+  },
+  "model": "reefcheck.group",
+  "pk": 112
+},
+{
+  "fields": {
+    "category": null,
+    "name": "TF",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Turf"
+  },
+  "model": "reefcheck.group",
+  "pk": 113
+},
+{
+  "fields": {
+    "category": null,
+    "name": "AC",
+    "parent": null,
+    "format": 1,
+    "set": 10,
+    "type": 2,
+    "description": "Alga calcária encrustante"
+  },
+  "model": "reefcheck.group",
+  "pk": 114
+}]

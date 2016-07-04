@@ -148,7 +148,8 @@ angular.module('app.filters', [])
         }
       }
 
-      else if(conversion === 'toDMS' && match && coordinateIsValid(match, type)) {
+      // else if(conversion === 'toDMS' && match && coordinateIsValid(match, type)) {
+      else if(conversion === 'toDMS' && match) {
         // When converting from decimal degrees to degrees, minutes and seconds, if
         // the match array has one item we know the user has input decimal degrees
         // so we can convert it to degrees, minutes and seconds
@@ -165,9 +166,9 @@ angular.module('app.filters', [])
       }
 
       // Output a notice that the coordinates are invalid if they are
-      else if(!coordinateIsValid(match, type)) {
-        return "Invalid Coordinate!";
-      }    
+      // else if(!coordinateIsValid(match, type)) {
+      //   return "Invalid Coordinate!";
+      // }    
 
       // Fix to firefox -> (function() {}());
       (function toDecimalDegrees(coord) {
