@@ -100,8 +100,8 @@ angular.module('app.controllers')
     uiGmapIsReady.promise(1).then(function (maps) {
       $scope.mapSurvey.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.$watch('survey.sites', function (newVal, oldVal) {
+        // console.log($scope.survey.sites)
         if ($scope.survey.sites) {
-          // console.log($scope.survey.sites)
           $scope.initMarkersSurvey();
         }
       });

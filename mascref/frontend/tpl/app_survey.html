@@ -3,21 +3,23 @@
     <div class="col-sm-12">
       <div class="blog-post">                   
         <div class="panel">
-          <div>
-            <ui-gmap-google-map center='mapSurvey.center' zoom='mapSurvey.zoom' options='mapSurvey.options' control='mapSurveyControl'>
-              <ui-gmap-marker coords="item.coords" idkey="item.id" options="item.options" events="item.events" ng-repeat="item in markersSurvey"></ui-gmap-marker>
-            </ui-gmap-google-map>
-          </div>
-          <div class="wrapper-lg">
-            <h2 class="m-t-none"><a href>{{survey.name}}</a></h2>
-            <div>
-              <p ng-bind-html="survey.description"></p>
+          <div class="row">
+            <div class="col-sm-4">
+              <ui-gmap-google-map center='mapSurvey.center' zoom='mapSurvey.zoom' options='mapSurvey.options' control='mapSurveyControl'>
+                <ui-gmap-marker coords="item.coords" idkey="item.id" options="item.options" events="item.events" ng-repeat="item in markersSurvey"></ui-gmap-marker>
+              </ui-gmap-google-map>
             </div>
-            <div class="line line-lg b-b b-light"></div>
-            <div class="text-muted">
-              <span ng-show="project.owner_name"><i class="fa fa-group text-muted"></i> survey leader <a href class="m-r-sm">{{survey.owner_name | ucFirst }}</a></span>
-              <i class="fa fa-user text-muted"></i> created by <a href class="m-r-sm">{{survey.created_by | ucFirst }}</a>
-              <i class="fa fa-clock-o text-muted"></i> {{survey.created_at | date:'medium'}}
+            <div class="wrapper-lg col-sm-8">
+              <h2 class="m-t-none"><a href>{{survey.name}}</a></h2>
+              <div>
+                <p ng-bind-html="survey.description"></p>
+              </div>
+              <div class="line line-lg b-b b-light"></div>
+              <div class="text-muted">
+                <span ng-show="project.owner_name"><i class="fa fa-group text-muted"></i> survey leader <a href class="m-r-sm">{{survey.owner_name | ucFirst }}</a></span>
+                <i class="fa fa-user text-muted"></i> created by <a href class="m-r-sm">{{survey.created_by | ucFirst }}</a>
+                <i class="fa fa-clock-o text-muted"></i> {{survey.created_at | date:'medium'}}
+              </div>
             </div>
           </div>
         </div>
@@ -40,14 +42,14 @@
               </div>
             </div>
             <div>
-              <table class="table m-b-none" ui-jq="footable" data-filter="#filter_transects" data-page-size="10">
+              <table class="table m-b-none" ui-jq="footable" data-filter="#filter_surveys" data-page-size="15">
                 <thead>
                   <tr>
                     <th>Identifier</th>
                     <th class="text-center">Site</th>
                     <th class="text-center">Depth (m)</th>
                     <th class="text-center">Date</th>
-                    <th class="text-center">Time Start</th>
+                    <!-- <th class="text-center">Time Start</th> -->
                     <th class="text-center">Leader</th>
                     <th class="text-center">Actions</th>
                   </tr>
@@ -61,8 +63,8 @@
                       <td class="text-center">{{transect.site_name}} ({{transect.town_name}})</td>
                       <td class="text-center">{{transect.depth | number : 2 }}</td>
                       <td class="text-center">{{transect.date | date:'shortDate'}}</td>
-                      <td class="text-center">{{transect.time_start}}</td>
-                      <td class="text-center">{{transect.team_leader_name}}</td>
+                      <!-- <td class="text-center">{{transect.time_start}}</td> -->
+                      <td class="text-center">{{transect.team_leader_name ? transect.team_leader_name : '-'}}</td>
                       <td class="text-center">
                         <a ui-sref="admin.projects.view.survey.transect({transectId:transect.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
                         <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs" ng-click="deleteTransect(transect.id, transect.name)">Delete</button></a>
@@ -71,9 +73,14 @@
                 </tbody>
                 <tfoot class="hide-if-no-paging">
                   <tr>
-                      <td colspan="8" class="text-center">
-                          <ul class="pagination"></ul>
-                      </td>
+                    <td colspan="8" class="text-center">
+                        <ul class="pagination"></ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="8" class="text-center">
+                        Transects total: {{transects.length}}
+                    </td>
                   </tr>
                 </tfoot>
               </table>

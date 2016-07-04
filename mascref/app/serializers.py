@@ -82,7 +82,7 @@ class ProjectSerializer (serializers.ModelSerializer):
 
 
 class SurveySerializer (serializers.ModelSerializer):
-    # sites = SiteSerializer(many=True, read_only=True)
+    sites = SiteSerializer(many=True, read_only=True)
     created_by = serializers.ReadOnlyField(source='created_by.username')
     owner_name = serializers.ReadOnlyField(
         source='owner.name', read_only=True
@@ -92,7 +92,7 @@ class SurveySerializer (serializers.ModelSerializer):
         model = Survey
         fields = (
             'id', 'project', 'name', 'date_start', 'date_end', 'owner',
-            'public', 'created_at', 'created_by', 'owner_name'
+            'public', 'created_at', 'created_by', 'owner_name', 'sites'
         )
 
 

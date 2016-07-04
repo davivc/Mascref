@@ -186,9 +186,14 @@ class Survey(models.Model):
     # def transects_count(self):
     #     return self.transects.all().count()
 
-    # @property
-    # def sites(self):
-    #     sites = []
-    #     for my_site in self.transects.all().values('site__id').distinct():
-    #         sites.append(Site.objects.get(pk=my_site['site__id']))
-    #     return sites
+    @property
+    def sites(self):
+        sites = []
+        for my_site in self.transects.all().values('site__id').distinct():
+            sites.append(Site.objects.get(pk=my_site['site__id']))
+        return sites
+
+# class SurveySites(models.Model):
+#     survey = models.ForeignKey(Survey, related_name='sites')
+#     site = models.ForeignKey(Site, related_name='sites')
+
