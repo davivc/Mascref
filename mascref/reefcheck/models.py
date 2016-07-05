@@ -64,9 +64,9 @@ class Transect(models.Model):
     time_start = models.TimeField(blank=True, null=True)
     time_end = models.TimeField(blank=True, null=True)
     team_leader = models.ForeignKey(Researcher, blank=True, null=True)
-    members = models.ManyToManyField(
-        Researcher, related_name="members"
-    )
+    # members = models.ManyToManyField(
+    #     Researcher, related_name="members"
+    # )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -81,6 +81,16 @@ class TransectInfo(models.Model):
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class TransectMemberRole(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class TransectMembers(models.Model):
+    transect = models.ForeignKey(Transect)
+    researcher = models.ForeignKey(Researcher)
+    role = models.ForeignKey(TransectMemberRole)
 
 
 class Segment(models.Model):

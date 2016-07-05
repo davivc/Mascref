@@ -9,14 +9,16 @@ angular.module('app.services')
   var service = {
     'url': "/groups/",
     'url_categories': "/groups_categories/",
-    'list': function (parent, type, category) {
+    'list': function (parent, type, category, set) {
       var query = [];
       var qStr = '';
       if (parent) query.push('parent=' + parent);
       if (type) query.push('type=' + type);
       if (category) query.push('category=' + category);
+      if (set) query.push('set=' + set);
       if (query.length > 1) qStr = '?' + query.join('&');
       else if (query.length == 1) qStr = '?' + query[0];
+      console.log(this.url + qStr)
       return Rest.get(this.url + qStr);
     },
     'get': function (pk) {

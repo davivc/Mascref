@@ -23,6 +23,7 @@
             <th class="text-center" ng-repeat="seg in segments_total | range">% S{{seg+1}}</th>
             <th class="text-center">Mean % segment</th>              
             <th class="text-center">SD (%)</th>
+            <th class="text-center">SE (%)</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
             <td class="text-center" ng-repeat="seg in segments_total | range">{{line_graphs[lGroup.name]['percent_segs'][seg] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
             <td class="text-center">{{line_graphs[lGroup.name]['percent_mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
             <td class="text-center">{{line_graphs[lGroup.name]['percent_sd'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
+            <td class="text-center">{{line_graphs[lGroup.name]['percent_se'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
           </tr>
         </tbody>
         <tbody>

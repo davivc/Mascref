@@ -60,7 +60,7 @@ class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     ordering = ('name',)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('category', 'type',)
+    filter_fields = ('category', 'type','set',)
     permission_classes = (
         permissions.IsAuthenticated,
     )
