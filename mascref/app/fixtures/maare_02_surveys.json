@@ -12,7 +12,7 @@
     "public": false
   },
   "model": "app.survey",
-  "pk": 101
+  "pk": 1
 },
 {
   "fields": {
@@ -27,6 +27,6 @@
     "public": false
   },
   "model": "app.survey",
-  "pk": 102
+  "pk": 2
 }
 ]

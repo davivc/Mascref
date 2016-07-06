@@ -3359,1046 +3359,1046 @@
       "updated_at": "2015-12-14T07:43:50Z"
     }
   },
-  {
-    "pk": 380,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_01",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 1,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 381,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_02",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 2,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 382,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_03",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 3,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 383,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_04",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 4,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 384,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_05",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 5,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 385,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_06",
-      "type": 2,
-      "group": 102,
-      "segment": 2,
-      "value": 6,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 386,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_07",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 7,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 387,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_08",
-      "type": 2,
-      "group": 104,
-      "segment": 2,
-      "value": 8,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 388,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_09",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 9,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 389,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_10",
-      "type": 2,
-      "group": 101,
-      "segment": 2,
-      "value": 10,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 390,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_11",
-      "type": 2,
-      "group": 104,
-      "segment": 2,
-      "value": 11,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 391,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_12",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 12,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 392,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_13",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 13,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 393,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_14",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 14,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 394,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_15",
-      "type": 2,
-      "group": 104,
-      "segment": 2,
-      "value": 15,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 395,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_16",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 16,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 396,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_17",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 17,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 397,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_18",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 18,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 398,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_19",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 19,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 399,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_20",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 20,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 400,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_21",
-      "type": 2,
-      "group": 109,
-      "segment": 2,
-      "value": 21,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 401,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_22",
-      "type": 2,
-      "group": 114,
-      "segment": 2,
-      "value": 22,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 402,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_23",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 23,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 403,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_24",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 24,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 404,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_25",
-      "type": 2,
-      "group": 101,
-      "segment": 2,
-      "value": 25,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 405,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_26",
-      "type": 2,
-      "group": 104,
-      "segment": 2,
-      "value": 26,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 406,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_27",
-      "type": 2,
-      "group": 113,
-      "segment": 2,
-      "value": 27,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 407,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_28",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 28,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 408,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_29",
-      "type": 2,
-      "group": 104,
-      "segment": 2,
-      "value": 29,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 409,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_30",
-      "type": 2,
-      "group": 109,
-      "segment": 2,
-      "value": 30,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 410,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_31",
-      "type": 2,
-      "group": 109,
-      "segment": 2,
-      "value": 31,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 411,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_32",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 32,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 412,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_33",
-      "type": 2,
-      "group": 101,
-      "segment": 2,
-      "value": 33,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 413,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_34",
-      "type": 2,
-      "group": 101,
-      "segment": 2,
-      "value": 34,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 414,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_35",
-      "type": 2,
-      "group": 104,
-      "segment": 2,
-      "value": 35,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 415,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_36",
-      "type": 2,
-      "group": 114,
-      "segment": 2,
-      "value": 36,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 416,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_37",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 37,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 417,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_38",
-      "type": 2,
-      "group": 106,
-      "segment": 2,
-      "value": 38,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 418,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_39",
-      "type": 2,
-      "group": 114,
-      "segment": 2,
-      "value": 39,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 419,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_2_40",
-      "type": 2,
-      "group": 114,
-      "segment": 2,
-      "value": 40,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 420,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_01",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 1,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 421,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_02",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 2,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 422,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_03",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 3,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 423,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_04",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 4,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 424,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_05",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 5,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 425,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_06",
-      "type": 2,
-      "group": 102,
-      "segment": 3,
-      "value": 6,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 426,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_07",
-      "type": 2,
-      "group": 102,
-      "segment": 3,
-      "value": 7,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 427,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_08",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 8,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 428,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_09",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 9,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 429,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_10",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 10,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 430,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_11",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 11,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 431,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_12",
-      "type": 2,
-      "group": 104,
-      "segment": 3,
-      "value": 12,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 432,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_13",
-      "type": 2,
-      "group": 104,
-      "segment": 3,
-      "value": 13,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 433,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_14",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 14,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 434,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_15",
-      "type": 2,
-      "group": 104,
-      "segment": 3,
-      "value": 15,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 435,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_16",
-      "type": 2,
-      "group": 104,
-      "segment": 3,
-      "value": 16,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 436,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_17",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 17,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 437,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_18",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 18,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 438,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_19",
-      "type": 2,
-      "group": 109,
-      "segment": 3,
-      "value": 19,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 439,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_20",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 20,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 440,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_21",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 21,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 441,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_22",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 22,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 442,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_23",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 23,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 443,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_24",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 24,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 444,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_25",
-      "type": 2,
-      "group": 102,
-      "segment": 3,
-      "value": 25,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 445,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_26",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 26,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 446,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_27",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 27,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 447,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_28",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 28,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 448,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_29",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 29,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 449,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_30",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 30,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 450,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_31",
-      "type": 2,
-      "group": 102,
-      "segment": 3,
-      "value": 31,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 451,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_32",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 32,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 452,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_33",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 33,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 453,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_34",
-      "type": 2,
-      "group": 102,
-      "segment": 3,
-      "value": 34,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 454,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_35",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 35,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 455,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_36",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 36,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 456,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_37",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 37,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 457,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_38",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 38,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 458,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_39",
-      "type": 2,
-      "group": 106,
-      "segment": 3,
-      "value": 39,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 459,
-    "model": "reefcheck.segment",
-    "fields": {
-      "token": "NA_2_3_40",
-      "type": 2,
-      "group": 113,
-      "segment": 3,
-      "value": 40,
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
+  // {
+  //   "pk": 380,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_01",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 1,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 381,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_02",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 2,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 382,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_03",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 3,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 383,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_04",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 4,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 384,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_05",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 5,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 385,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_06",
+  //     "type": 2,
+  //     "group": 102,
+  //     "segment": 2,
+  //     "value": 6,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 386,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_07",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 7,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 387,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_08",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 2,
+  //     "value": 8,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 388,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_09",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 9,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 389,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_10",
+  //     "type": 2,
+  //     "group": 101,
+  //     "segment": 2,
+  //     "value": 10,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 390,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_11",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 2,
+  //     "value": 11,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 391,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_12",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 12,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 392,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_13",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 13,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 393,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_14",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 14,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 394,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_15",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 2,
+  //     "value": 15,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 395,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_16",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 16,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 396,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_17",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 17,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 397,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_18",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 18,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 398,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_19",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 19,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 399,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_20",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 20,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 400,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_21",
+  //     "type": 2,
+  //     "group": 109,
+  //     "segment": 2,
+  //     "value": 21,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 401,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_22",
+  //     "type": 2,
+  //     "group": 114,
+  //     "segment": 2,
+  //     "value": 22,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 402,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_23",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 23,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 403,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_24",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 24,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 404,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_25",
+  //     "type": 2,
+  //     "group": 101,
+  //     "segment": 2,
+  //     "value": 25,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 405,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_26",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 2,
+  //     "value": 26,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 406,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_27",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 2,
+  //     "value": 27,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 407,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_28",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 28,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 408,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_29",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 2,
+  //     "value": 29,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 409,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_30",
+  //     "type": 2,
+  //     "group": 109,
+  //     "segment": 2,
+  //     "value": 30,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 410,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_31",
+  //     "type": 2,
+  //     "group": 109,
+  //     "segment": 2,
+  //     "value": 31,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 411,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_32",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 32,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 412,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_33",
+  //     "type": 2,
+  //     "group": 101,
+  //     "segment": 2,
+  //     "value": 33,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 413,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_34",
+  //     "type": 2,
+  //     "group": 101,
+  //     "segment": 2,
+  //     "value": 34,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 414,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_35",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 2,
+  //     "value": 35,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 415,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_36",
+  //     "type": 2,
+  //     "group": 114,
+  //     "segment": 2,
+  //     "value": 36,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 416,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_37",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 37,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 417,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_38",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 2,
+  //     "value": 38,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 418,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_39",
+  //     "type": 2,
+  //     "group": 114,
+  //     "segment": 2,
+  //     "value": 39,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 419,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_2_40",
+  //     "type": 2,
+  //     "group": 114,
+  //     "segment": 2,
+  //     "value": 40,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 420,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_01",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 1,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 421,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_02",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 2,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 422,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_03",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 3,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 423,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_04",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 4,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 424,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_05",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 5,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 425,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_06",
+  //     "type": 2,
+  //     "group": 102,
+  //     "segment": 3,
+  //     "value": 6,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 426,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_07",
+  //     "type": 2,
+  //     "group": 102,
+  //     "segment": 3,
+  //     "value": 7,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 427,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_08",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 8,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 428,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_09",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 9,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 429,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_10",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 10,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 430,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_11",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 11,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 431,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_12",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 3,
+  //     "value": 12,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 432,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_13",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 3,
+  //     "value": 13,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 433,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_14",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 14,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 434,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_15",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 3,
+  //     "value": 15,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 435,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_16",
+  //     "type": 2,
+  //     "group": 104,
+  //     "segment": 3,
+  //     "value": 16,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 436,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_17",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 17,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 437,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_18",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 18,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 438,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_19",
+  //     "type": 2,
+  //     "group": 109,
+  //     "segment": 3,
+  //     "value": 19,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 439,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_20",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 20,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 440,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_21",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 21,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 441,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_22",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 22,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 442,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_23",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 23,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 443,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_24",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 24,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 444,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_25",
+  //     "type": 2,
+  //     "group": 102,
+  //     "segment": 3,
+  //     "value": 25,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 445,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_26",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 26,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 446,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_27",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 27,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 447,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_28",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 28,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 448,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_29",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 29,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 449,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_30",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 30,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 450,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_31",
+  //     "type": 2,
+  //     "group": 102,
+  //     "segment": 3,
+  //     "value": 31,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 451,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_32",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 32,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 452,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_33",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 33,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 453,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_34",
+  //     "type": 2,
+  //     "group": 102,
+  //     "segment": 3,
+  //     "value": 34,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 454,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_35",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 35,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 455,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_36",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 36,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 456,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_37",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 37,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 457,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_38",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 38,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 458,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_39",
+  //     "type": 2,
+  //     "group": 106,
+  //     "segment": 3,
+  //     "value": 39,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
+  // {
+  //   "pk": 459,
+  //   "model": "reefcheck.segment",
+  //   "fields": {
+  //     "token": "NA_2_3_40",
+  //     "type": 2,
+  //     "group": 113,
+  //     "segment": 3,
+  //     "value": 40,
+  //     "created_at": "2015-12-14T07:43:50Z",
+  //     "updated_at": "2015-12-14T07:43:50Z"
+  //   }
+  // },
   {
     "pk": 460,
     "model": "reefcheck.segment",
