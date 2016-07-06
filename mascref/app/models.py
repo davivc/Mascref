@@ -165,6 +165,12 @@ class Project(models.Model):
         return '%s' % (self.name)
 
 
+class ProjectConfig(models.Model):
+    project = models.ForeignKey(Project, related_name='configs')
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
+
+
 class Survey(models.Model):
     project = models.ForeignKey(Project, related_name='surveys')
     name = models.CharField(max_length=150)
@@ -196,4 +202,9 @@ class Survey(models.Model):
 # class SurveySites(models.Model):
 #     survey = models.ForeignKey(Survey, related_name='sites')
 #     site = models.ForeignKey(Site, related_name='sites')
+
+class SurveyConfig(models.Model):
+    survey = models.ForeignKey(Survey, related_name='configs')
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
 

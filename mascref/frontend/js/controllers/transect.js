@@ -60,7 +60,7 @@ angular.module('app.controllers')
     }
 
     $scope.transect = { 
-      info: { survey: $stateParams.surveyId, coords: { dd: {}, dms: { lat: {}, long: {} } } },      
+      info: { site: null, survey: $stateParams.surveyId, coords: { dd: {}, dms: { lat: {}, long: {} } } },      
       // basic: {},
       // team: {},
       // belt: { data: [] },
@@ -178,6 +178,11 @@ angular.module('app.controllers')
       //if($scope.validateForm()) return false;
       $scope.response = {}
       // 0 - Check if site has id, otherwise create everything
+      // if($scope.transect.info.site && !$scope.transect.info.site.id) {
+      if($scope.transect.info.site == null) {
+        $scope.response = { type: 'danger', msg: 'Site is required' }
+        return false;
+      }
       if($scope.transect.info.site && !$scope.transect.info.site.id) {
         // 1 - Check if country has id, otherwise create
         if($scope.transect.info.country && !$scope.transect.info.country.id) $scope.saveCountry();
@@ -186,36 +191,47 @@ angular.module('app.controllers')
         // 3 - Check if town has id, otherwise create
         else if($scope.transect.info.town && !$scope.transect.info.town.id) $scope.saveTown();
         // 4 - Finally create the site
-        else 
+        else {
           if(!$scope.transect.info.country.id) {
             // Select Country
-            $scope.response = { type: 'error', message: 'Country is required' }
+            $scope.response = { type: 'error', msg: 'Country is required' }
             return false;
           }
           else if(!$scope.transect.info.town.id) {
             // Select Town / Island
-            $scope.response = { type: 'error', message: 'Town / Island is required' }
+            $scope.response = { type: 'error', msg: 'Town / Island is required' }
             return false;
           }
           else if(!$scope.transect.info.coords.dd.lat) {
             // Select Latitude
-            $scope.response = { type: 'error', message: 'Latitude is required' }
+            $scope.response = { type: 'error', msg: 'Latitude is required' }
             return false;
           }
           else if(!$scope.transect.info.coords.dd.long) {
             // Select Latitude
-            $scope.response = { type: 'error', message: 'Longitude is required' }
+            $scope.response = { type: 'error', msg: 'Longitude is required' }
+            return false;
+          }
+          else if(!$scope.transect.info.name) {
+            // Select Latitude
+            $scope.response = { type: 'error', msg: 'Transect name is required' }
             return false;
           }
           else {
             $scope.saveSite();
           }
+        }
+      }
+      $scope.response = {
+        type: 'info',
+        msg: 'Saving transect basic information...'
       }
       // 5 - Save Transect
       Transect.save($scope.transect.info)
       .then(function (data) {
         // change url path
-
+        $scope.response.type = "success"
+        $scope.response.msg = "Transect saved successfully" 
       }, function (error) {
         $scope.response = error
       });
@@ -313,7 +329,7 @@ angular.module('app.controllers')
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
     uiGmapGoogleMapApi.then(function (maps) {
-      $('.angular-google-map-container').css('height', '450px');
+      $('.angular-google-map-container').css('height', '500px');
     });
 
 
