@@ -1,0 +1,28 @@
+[
+{
+  "fields": {
+    "name": "Santa Catarina",
+    "country": 28
+  },
+  "model": "app.province",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Florianópolis",
+    "province": 1,
+    "country": 28
+  },
+  "model": "app.town",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Ilha do Arvoredo",
+    "province": 1,
+    "country": 28
+  },
+  "model": "app.town",
+  "pk": 2
+}
+]

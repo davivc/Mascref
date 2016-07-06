@@ -1,0 +1,32 @@
+[
+{
+  "fields": {
+    "created_at": "2015-12-19T09:11:29Z",
+    "name": "Verão 2015",
+    "date_end": "2015-12-31",
+    "date_start": "2015-01-01",
+    "updated_at": "2015-12-19T09:11:29Z",
+    "created_by": 1,
+    "project": 1,
+    "owner": 1,
+    "public": false
+  },
+  "model": "app.survey",
+  "pk": 101
+},
+{
+  "fields": {
+    "created_at": "2015-12-19T09:11:29Z",
+    "name": "Verão 2016",
+    "date_end": "2016-12-31",
+    "date_start": "2016-01-01",
+    "updated_at": "2015-12-19T09:11:29Z",
+    "created_by": 1,
+    "project": 1,
+    "owner": 1,
+    "public": false
+  },
+  "model": "app.survey",
+  "pk": 102
+}
+]

@@ -1,0 +1,146 @@
+[
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Baía do Farol",
+    "lat": "-27.29601",
+    "long": "-048.36168",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 1
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Estaleiro Oeste",
+    "lat": "-27.11862",
+    "long": "-048.51470",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 2
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Estaleiro Leste",
+    "lat": "-27.11839",
+    "long": "-048.51951",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 3
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Ilha das Aranhas",
+    "lat": "-27.48816",
+    "long": "-048.36523",
+    "town": 1
+  },
+  "model": "app.site",
+  "pk": 4
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Ilha Deserta",
+    "lat": "-27.27171",
+    "long": "-048.33171",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 5
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Ilha Deserta Sul",
+    "lat": "-27.27424",
+    "long": "-048.33390",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 6
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Ilha do Xavier",
+    "lat": "-27.60959",
+    "long": "-048.38742",
+    "town": 1
+  },
+  "model": "app.site",
+  "pk": 7
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Naufrágio do Lili",
+    "lat": "-27.17842",
+    "long": "-048.40696",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 8
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Rancho Norte",
+    "lat": "-27.27823",
+    "long": "-048.37542",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 9
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Saco D'água",
+    "lat": "-27.27486",
+    "long": "-048.36674",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 10
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Saco do Capim",
+    "lat": "-27.28370",
+    "long": "-048.37368",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 11
+},
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Toca da Salema",
+    "lat": "-27.18098",
+    "long": "-048.40996",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 12
+}
+]
