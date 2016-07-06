@@ -180,6 +180,7 @@ angular.module('app.controllers')
       // 0 - Check if site has id, otherwise create everything
       // if($scope.transect.info.site && !$scope.transect.info.site.id) {
       if($scope.transect.info.site == null) {
+        
         $scope.response = { type: 'danger', msg: 'Site is required' }
         return false;
       }
