@@ -21,7 +21,6 @@
     "pk": 102,
     "model": "reefcheck.transectmembers",
     "fields": {
-      "researcher": 13,
       "transect": 102,
       "role": 1
     }
@@ -93,7 +92,7 @@
     "pk": 110,
     "model": "reefcheck.transectmembers",
     "fields": {
-      "researcher": 14,
+      "researcher": 13,
       "transect": 110,
       "role": 1
     }
@@ -129,7 +128,7 @@
     "pk": 114,
     "model": "reefcheck.transectmembers",
     "fields": {
-      "researcher": 11,
+      "researcher": 14,
       "transect": 114,
       "role": 1
     }
@@ -165,7 +164,7 @@
     "pk": 118,
     "model": "reefcheck.transectmembers",
     "fields": {
-      "researcher": 12,
+      "researcher": 11,
       "transect": 118,
       "role": 1
     }
@@ -174,8 +173,17 @@
     "pk": 119,
     "model": "reefcheck.transectmembers",
     "fields": {
-      "researcher": 11,
+      "researcher": 12,
       "transect": 119,
+      "role": 1
+    }
+  },
+  {
+    "pk": 120,
+    "model": "reefcheck.transectmembers",
+    "fields": {
+      "researcher": 11,
+      "transect": 120,
       "role": 1
     }
   }
