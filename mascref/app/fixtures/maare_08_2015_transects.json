@@ -3,32 +3,6 @@
     "pk": 100,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "BaÌa do Farol 2015-02-12 prof 10",
-      "survey": 1,
-      "site": 1,
-      "depth": "10",
-      "date": "2015-02-12",
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 101,
-    "model": "reefcheck.transect",
-    "fields": {
-      "name": "BaÌa do Farol 2015-02-12 prof 5",
-      "survey": 1,
-      "site": 1,
-      "depth": "5",
-      "date": "2015-02-12",
-      "created_at": "2015-12-14T07:43:50Z",
-      "updated_at": "2015-12-14T07:43:50Z"
-    }
-  },
-  {
-    "pk": 102,
-    "model": "reefcheck.transect",
-    "fields": {
       "name": "Estaleiro Leste 2015-01-22 prof 5",
       "survey": 1,
       "site": 3,
@@ -39,7 +13,7 @@
     }
   },
   {
-    "pk": 103,
+    "pk": 101,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Estaleiro Oeste 2015-01-22 prof 5",
@@ -52,7 +26,7 @@
     }
   },
   {
-    "pk": 104,
+    "pk": 102,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha das Aranhas 2015-02-03 prof 5",
@@ -65,7 +39,7 @@
     }
   },
   {
-    "pk": 105,
+    "pk": 103,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta 2015-02-04 prof 11",
@@ -78,7 +52,7 @@
     }
   },
   {
-    "pk": 106,
+    "pk": 104,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta 2015-02-04 prof 5",
@@ -91,7 +65,7 @@
     }
   },
   {
-    "pk": 107,
+    "pk": 105,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta Sul 2015-01-27 prof 10",
@@ -104,7 +78,7 @@
     }
   },
   {
-    "pk": 108,
+    "pk": 106,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta Sul 2015-02-04 prof 5",
@@ -117,7 +91,7 @@
     }
   },
   {
-    "pk": 109,
+    "pk": 107,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha do Xavier 2015-01-29 prof 10",
@@ -130,7 +104,7 @@
     }
   },
   {
-    "pk": 110,
+    "pk": 108,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha do Xavier 2015-01-29 prof 5",
@@ -143,10 +117,10 @@
     }
   },
   {
-    "pk": 111,
+    "pk": 109,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "Naufr·gio do Lili 2015-01-28 prof 5",
+      "name": "Naufr√°gio do Lili 2015-01-28 prof 5",
       "survey": 1,
       "site": 8,
       "depth": "5",
@@ -156,7 +130,7 @@
     }
   },
   {
-    "pk": 112,
+    "pk": 110,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Rancho Norte 2015-01-21 prof 5",
@@ -169,7 +143,7 @@
     }
   },
   {
-    "pk": 113,
+    "pk": 111,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Rancho Norte 2015-01-21 prof 6",
@@ -182,10 +156,10 @@
     }
   },
   {
-    "pk": 114,
+    "pk": 112,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "Saco D'·gua 2015-01-20 prof 5",
+      "name": "Saco D'√°gua 2015-01-20 prof 5",
       "survey": 1,
       "site": 10,
       "depth": "4",
@@ -195,10 +169,10 @@
     }
   },
   {
-    "pk": 115,
+    "pk": 113,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "Saco D'·gua 2015-01-20 prof 10",
+      "name": "Saco D'√°gua 2015-01-20 prof 10",
       "survey": 1,
       "site": 10,
       "depth": "9",
@@ -208,7 +182,7 @@
     }
   },
   {
-    "pk": 116,
+    "pk": 114,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Saco do Capim 2015-02-10 prof 10",
@@ -221,7 +195,7 @@
     }
   },
   {
-    "pk": 117,
+    "pk": 115,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Saco do Capim 2015-02-10 prof 5",
@@ -234,7 +208,7 @@
     }
   },
   {
-    "pk": 118,
+    "pk": 116,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Toca da Salema 2015-02-05 prof 10",
@@ -247,7 +221,7 @@
     }
   },
   {
-    "pk": 119,
+    "pk": 117,
     "model": "reefcheck.transect",
     "fields": {
       "name": "Toca da Salema 2015-02-05 prof 5",
@@ -255,6 +229,32 @@
       "site": 12,
       "depth": "5",
       "date": "2015-02-05",
+      "created_at": "2015-12-14T07:43:50Z",
+      "updated_at": "2015-12-14T07:43:50Z"
+    }
+  },
+  {
+    "pk": 118,
+    "model": "reefcheck.transect",
+    "fields": {
+      "name": "Ba√≠a do Farol 2015-02-12 prof 10",
+      "survey": 1,
+      "site": 1,
+      "depth": "10",
+      "date": "2015-02-12",
+      "created_at": "2015-12-14T07:43:50Z",
+      "updated_at": "2015-12-14T07:43:50Z"
+    }
+  },
+  {
+    "pk": 119,
+    "model": "reefcheck.transect",
+    "fields": {
+      "name": "Ba√≠a do Farol 2015-02-12 prof 5",
+      "survey": 1,
+      "site": 1,
+      "depth": "5",
+      "date": "2015-02-12",
       "created_at": "2015-12-14T07:43:50Z",
       "updated_at": "2015-12-14T07:43:50Z"
     }

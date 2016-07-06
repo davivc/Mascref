@@ -133,7 +133,7 @@
     "pk": 210,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "Naufr·gio do Lili 2016-01-28 prof 5",
+      "name": "Naufr√°gio do Lili 2016-01-28 prof 5",
       "survey": 1,
       "site": 8,
       "depth": "5",
@@ -224,7 +224,7 @@
     "pk": 217,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "BaÌa do Farol 2016-02-04 prof 10",
+      "name": "Ba√≠a do Farol 2016-02-04 prof 10",
       "survey": 1,
       "site": 1,
       "depth": "10",
@@ -237,7 +237,7 @@
     "pk": 218,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "BaÌa do Farol 2016-02-04 prof 5",
+      "name": "Ba√≠a do Farol 2016-02-04 prof 5",
       "survey": 1,
       "site": 1,
       "depth": "5",
@@ -250,7 +250,7 @@
     "pk": 219,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "Saco D'·gua 2016-01-27 prof 5",
+      "name": "Saco D'√°gua 2016-01-27 prof 5",
       "survey": 1,
       "site": 10,
       "depth": "4",
@@ -263,7 +263,7 @@
     "pk": 220,
     "model": "reefcheck.transect",
     "fields": {
-      "name": "Saco D'·gua 2016-01-27 prof 10",
+      "name": "Saco D'√°gua 2016-01-27 prof 10",
       "survey": 1,
       "site": 10,
       "depth": "9",
