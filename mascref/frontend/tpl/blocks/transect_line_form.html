@@ -1,4 +1,12 @@
-﻿<div ng-controller="TransectSiteFormCtrl">
+﻿<div ng-controller="TransectLineFormCtrl">
+  <div class="form-group pull-in clearfix">
+    <div class="col-sm-9 text-left">
+      <uib-alert ng-if="alert.type" type="{{alert.type}}" close="closeAlert($index)"><i ng-if="alert.type == 'danger'" class="fa fa-spinner fa-spin"></i> {{alert.msg}}</uib-alert>
+    </div>
+    <div class="col-sm-3 text-right">
+      <button type="submit" class="btn btn-m btn-success" ng-click="saveLine()">Save Line Transect</button>
+    </div>
+  </div>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="form-group">
@@ -44,8 +52,8 @@
             <tr ng-init="totals_seg = []">
               <td></td>
               <td></td>
-              <td class="text-center" ng-repeat="seg in segments_total | range" ng-class="totals_seg[seg] < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS ? 'text-danger' : 'text-success'">{{totals_seg[seg] = (transect.line.data[seg] | filter: { group_name:'!true'}).length}}</td>
-              <td class="text-center" ng-class="total_segs < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ? 'text-danger' : 'text-success'">{{total_segs = (totals_seg | sum)}}</td>
+              <td class="text-center" ng-repeat="seg in segments_total | range" ng-class="totals_seg[seg] < segments_points ? 'text-danger' : 'text-success'">{{totals_seg[seg] = (transect.line.data[seg] | filter: { group_name:'!true'}).length}}</td>
+              <td class="text-center" ng-class="total_segs < segments_points*segments_total ? 'text-danger' : 'text-success'">{{total_segs = (totals_seg | sum)}}</td>
               <td></td>              
               <td></td>
               <td></td>
@@ -83,9 +91,18 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Comments</label>
         <div class="col-sm-8">
-          <textarea class="form-control" rows="6" ng-model="transect.line.comments" placeholder="Type your commenys"></textarea>
+          <textarea class="form-control" rows="6" ng-model="transect.line.comments" placeholder="Type your comments"></textarea>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="form-group pull-in clearfix">
+    <div class="col-sm-9 text-left">
+      <uib-alert ng-if="alert.type" type="{{alert.type}}" close="closeAlert($index)"><i ng-if="alert.type == 'danger'" class="fa fa-spinner fa-spin"></i> {{alert.msg}}</uib-alert>
+    </div>
+    <div class="col-sm-3 text-right">
+      <button type="submit" class="btn btn-m btn-success" ng-click="saveLine()">Save Line Transect</button>
     </div>
   </div>
 </div>

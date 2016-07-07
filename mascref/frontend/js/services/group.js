@@ -18,7 +18,7 @@ angular.module('app.services')
       if (set) query.push('set=' + set);
       if (query.length > 1) qStr = '?' + query.join('&');
       else if (query.length == 1) qStr = '?' + query[0];
-      console.log(this.url + qStr)
+      // console.log(this.url + qStr)
       return Rest.get(this.url + qStr);
     },
     'get': function (pk) {

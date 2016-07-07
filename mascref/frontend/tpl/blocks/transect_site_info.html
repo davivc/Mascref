@@ -43,28 +43,28 @@
           <div class="col-sm-2">
             <label class="control-label">Air </label>
             <div class="input-group m-b">                              
-              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_air">
+              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_air.value">
               <span class="input-group-addon">&deg;C</span>
             </div>  
           </div>
           <div class="col-sm-2">
             <label class="control-label">Surface </label>
             <div class="input-group m-b">                              
-              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_surface">
+              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_surface.value">
               <span class="input-group-addon">&deg;C</span>
             </div>  
           </div>
           <div class="col-sm-2">
             <label class="control-label">at 3m </label>
             <div class="input-group m-b">                              
-              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_3m">
+              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_3m.value">
               <span class="input-group-addon">&deg;C</span>
             </div>                            
           </div>
           <div class="col-sm-2">
             <label class="control-label">at 10m </label>
             <div class="input-group m-b">                              
-              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_10m">
+              <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.temperature_10m.value">
               <span class="input-group-addon">&deg;C</span>
             </div>  
           </div>
@@ -75,14 +75,14 @@
         <label class="col-sm-3 control-label">Distance of start point from shore</label>
         <div class="col-sm-2">
           <div class="input-group m-b">  
-            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.distance_shore">
+            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.distance_shore.value">
             <span class="input-group-addon">m</span>
           </div>
         </div>
         <label class="col-sm-3 control-label">Distance from the nearest river</label>
         <div class="col-sm-2">
           <div class="input-group m-b">  
-            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.distance_river">
+            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.distance_river.value">
             <span class="input-group-addon">km</span>
           </div>
         </div>
@@ -110,14 +110,14 @@
         <label class="col-sm-3 control-label">Distance to nearest population center</label>
         <div class="col-sm-2">
           <div class="input-group m-b">  
-            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.distance_center">
+            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.distance_center.value">
             <span class="input-group-addon">km</span>
           </div>
         </div>
         <label class="col-sm-3 control-label">Population size</label>
         <div class="col-sm-2">
           <div class="input-group m-b">  
-            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.population_size">
+            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.population_size.value">
             <span class="input-group-addon">x1000</span>
           </div>
         </div>
@@ -142,17 +142,17 @@
         <label class="col-sm-3 control-label">Horizontal underwater visibility</label>
         <div class="col-sm-2">
           <div class="input-group m-b">  
-            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.visibility">
+            <input type="text" class="form-control input-sm w-xxs" ng-model="transect.basic.visibility.value">
             <span class="input-group-addon">m</span>
           </div>
         </div>
         <label class="col-sm-3 control-label">Is this the best reef area?</label>
         <div class="col-sm-4">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="yes" ng-model="transect.basic.best_reef"><i></i> yes
+            <input type="radio" value="yes" ng-model="transect.basic.best_reef.value"><i></i> yes
           </label>
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="no" ng-model="transect.basic.best_reef"><i></i> no
+            <input type="radio" value="no" ng-model="transect.basic.best_reef.value"><i></i> no
           </label>
         </div>
       </div>
@@ -161,21 +161,21 @@
         <label class="col-sm-3 control-label">Why was this site selected</label>
         <div class="col-sm-9 form-inline">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="MPA" ng-model="transect.basic.why_selected"><i></i> MPA
+            <input type="radio" value="MPA" ng-model="transect.basic.why_selected.value"><i></i> MPA
           </label>
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Impacted" ng-model="transect.basic.why_selected"><i></i> Impacted
+            <input type="radio" value="Impacted" ng-model="transect.basic.why_selected.value"><i></i> Impacted
           </label>
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Dive Site" ng-model="transect.basic.why_selected"><i></i> Dive Site
+            <input type="radio" value="Dive Site" ng-model="transect.basic.why_selected.value"><i></i> Dive Site
           </label>
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Research" ng-model="transect.basic.why_selected"><i></i> Research
+            <input type="radio" value="Research" ng-model="transect.basic.why_selected.value"><i></i> Research
           </label>
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Other" ng-model="transect.basic.why_selected"><i></i> Other                            
+            <input type="radio" value="Other" ng-model="transect.basic.why_selected.value"><i></i> Other                            
           </label>
-          <input type="text" class="form-control input-sm w-m" ng-model="transect.basic.why_selected_other">
+          <input type="text" class="form-control input-sm w-m" ng-model="transect.basic.why_selected_other.value">
         </div>
       </div>                      
     </div>
@@ -190,17 +190,17 @@
         <label class="col-sm-3 control-label">Is this site sheltered?</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Always" ng-model="transect.basic.sheltered"><i></i> Always
+            <input type="radio" value="Always" ng-model="transect.basic.sheltered.value"><i></i> Always
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Sometimes" ng-model="transect.basic.sheltered"><i></i> Sometimes
+            <input type="radio" value="Sometimes" ng-model="transect.basic.sheltered.value"><i></i> Sometimes
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Exposed" ng-model="transect.basic.sheltered"><i></i> Exposed
+            <input type="radio" value="Exposed" ng-model="transect.basic.sheltered.value"><i></i> Exposed
           </label>
         </div>
         <div class="col-sm-2">
@@ -212,12 +212,12 @@
         <label class="col-sm-3 control-label">Major coral damaging storms</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="yes" ng-model="transect.basic.storms"><i></i> Yes
+            <input type="radio" value="yes" ng-model="transect.basic.storms.value"><i></i> Yes
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="no" ng-model="transect.basic.storms"><i></i> No
+            <input type="radio" value="no" ng-model="transect.basic.storms.value"><i></i> No
           </label>
         </div>
         <div class="col-sm-2">
@@ -232,22 +232,22 @@
         <label class="col-sm-3 control-label">Overall anthropogenic impact (estimate)</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.impacts"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.impacts.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.impacts"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.impacts.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.impacts"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.impacts.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.impacts"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.impacts.value"><i></i> High
           </label>
         </div>
       </div>
@@ -256,22 +256,22 @@
         <label class="col-sm-3 control-label">Is siltation a problem?</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Never" ng-model="transect.basic.siltation"><i></i> Never
+            <input type="radio" value="Never" ng-model="transect.basic.siltation.value"><i></i> Never
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Occasionally" ng-model="transect.basic.siltation"><i></i> Occasionally
+            <input type="radio" value="Occasionally" ng-model="transect.basic.siltation.value"><i></i> Occasionally
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Often" ng-model="transect.basic.siltation"><i></i> Often
+            <input type="radio" value="Often" ng-model="transect.basic.siltation.value"><i></i> Often
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Always" ng-model="transect.basic.siltation"><i></i> Always
+            <input type="radio" value="Always" ng-model="transect.basic.siltation.value"><i></i> Always
           </label>
         </div>
       </div>
@@ -280,22 +280,22 @@
         <label class="col-sm-3 control-label">Blast fishing</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.fishing_blast"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.fishing_blast.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.fishing_blast"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.fishing_blast.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.fishing_blast"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.fishing_blast.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.fishing_blast"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.fishing_blast.value"><i></i> High
           </label>
         </div>
       </div>
@@ -304,22 +304,22 @@
         <label class="col-sm-3 control-label">Poison fishing</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.fishing_poison"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.fishing_poison.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.fishing_poison"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.fishing_poison.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.fishing_poison"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.fishing_poison.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.fishing_poison"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.fishing_poison.value"><i></i> High
           </label>
         </div>
       </div>
@@ -328,22 +328,22 @@
         <label class="col-sm-3 control-label">Aquarium fishing</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.fishing_aquarium"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.fishing_aquarium.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.fishing_aquarium"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.fishing_aquarium.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.fishing_aquarium"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.fishing_aquarium.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.fishing_aquarium"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.fishing_aquarium.value"><i></i> High
           </label>
         </div>
       </div>
@@ -352,22 +352,22 @@
         <label class="col-sm-3 control-label">Harvest of inverts for food</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.harvest_inverts_food"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.harvest_inverts_food.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.harvest_inverts_food"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.harvest_inverts_food.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.harvest_inverts_food"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.harvest_inverts_food.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.harvest_inverts_food"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.harvest_inverts_food.value"><i></i> High
           </label>
         </div>
       </div>
@@ -376,22 +376,22 @@
         <label class="col-sm-3 control-label">Harvest of inverts for curio sales</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.harvest_inverts_sales"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.harvest_inverts_sales.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.harvest_inverts_sales"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.harvest_inverts_sales.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.harvest_inverts_sales"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.harvest_inverts_sales.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.harvest_inverts_sales"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.harvest_inverts_sales.value"><i></i> High
           </label>
         </div>
       </div>
@@ -400,22 +400,22 @@
         <label class="col-sm-3 control-label">Tourist diving/snorkeling</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.tourist_diving"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.tourist_diving.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.tourist_diving"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.tourist_diving.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.tourist_diving"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.tourist_diving.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.tourist_diving"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.tourist_diving.value"><i></i> High
           </label>
         </div>
       </div>
@@ -424,22 +424,22 @@
         <label class="col-sm-3 control-label">Sewage pollution (outfall or boat)</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.pollution_sewage"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.pollution_sewage.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.pollution_sewage"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.pollution_sewage.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.pollution_sewage"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.pollution_sewage.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.pollution_sewage"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.pollution_sewage.value"><i></i> High
           </label>
         </div>
       </div>
@@ -448,22 +448,22 @@
         <label class="col-sm-3 control-label">Industrial pollution</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.pollution_industrial"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.pollution_industrial.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.pollution_industrial"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.pollution_industrial.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.pollution_industrial"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.pollution_industrial.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.pollution_industrial"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.pollution_industrial.value"><i></i> High
           </label>
         </div>
       </div>
@@ -472,22 +472,22 @@
         <label class="col-sm-3 control-label">Commercial fishing (fish caught to sell for food)</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.fishing_commercial"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.fishing_commercial.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.fishing_commercial"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.fishing_commercial.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.fishing_commercial"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.fishing_commercial.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.fishing_commercial"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.fishing_commercial.value"><i></i> High
           </label>
         </div>
       </div>
@@ -496,22 +496,22 @@
         <label class="col-sm-3 control-label">Live food fish trade</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.fish_trade"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.fish_trade.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.fish_trade"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.fish_trade.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.fish_trade"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.fish_trade.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.fish_trade"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.fish_trade.value"><i></i> High
           </label>
         </div>
       </div>
@@ -520,22 +520,22 @@
         <label class="col-sm-3 control-label">Artisanal/recreational (personal consumption)</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.artisanal_recreational"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.artisanal_recreational.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Low" ng-model="transect.basic.artisanal_recreational"><i></i> Low
+            <input type="radio" value="Low" ng-model="transect.basic.artisanal_recreational.value"><i></i> Low
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med" ng-model="transect.basic.artisanal_recreational"><i></i> Med
+            <input type="radio" value="Med" ng-model="transect.basic.artisanal_recreational.value"><i></i> Med
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="High" ng-model="transect.basic.artisanal_recreational"><i></i> High
+            <input type="radio" value="High" ng-model="transect.basic.artisanal_recreational.value"><i></i> High
           </label>
         </div>
       </div>
@@ -544,22 +544,22 @@
         <label class="col-sm-3 control-label">Yachts typically present within 1km of this site</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="None" ng-model="transect.basic.yachts"><i></i> None
+            <input type="radio" value="None" ng-model="transect.basic.yachts.value"><i></i> None
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Few (1-2)" ng-model="transect.basic.yachts"><i></i> Few (1-2)
+            <input type="radio" value="Few (1-2)" ng-model="transect.basic.yachts.value"><i></i> Few (1-2)
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Med (3-5)" ng-model="transect.basic.yachts"><i></i> Med (3-5)
+            <input type="radio" value="Med (3-5)" ng-model="transect.basic.yachts.value"><i></i> Med (3-5)
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Many (>5)" ng-model="transect.basic.yachts"><i></i> Many (>5)
+            <input type="radio" value="Many (>5)" ng-model="transect.basic.yachts.value"><i></i> Many (>5)
           </label>
         </div>
       </div>
@@ -567,7 +567,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label">Other impacts</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" ng-model="transect.basic.other_impacts">
+            <input type="text" class="form-control" ng-model="transect.basic.other_impacts.value">
         </div>                        
       </div>                      
     </div>
@@ -582,30 +582,30 @@
         <label class="col-sm-3 control-label">Any protection (legal or other) at this site?</label>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="Yes" ng-model="transect.basic.protection"><i></i> Yes
+            <input type="radio" value="Yes" ng-model="transect.basic.protection.value"><i></i> Yes
           </label>
         </div>
         <div class="col-sm-2">
           <label class="checkbox-inline i-checks">
-            <input type="radio" value="No" ng-model="transect.basic.protection"><i></i> No
+            <input type="radio" value="No" ng-model="transect.basic.protection.value"><i></i> No
           </label>
         </div>
-        <div class="col-sm-3 text-danger" ng-show="transect.basic.protection == 'Yes'">
+        <div class="col-sm-3 text-danger" ng-show="transect.basic.protection == 'Yes'.value">
           If yes, answer questions below
         </div>
       </div>
-      <div ng-show="transect.basic.protection == 'Yes'">
+      <div ng-show="transect.basic.protection == 'Yes'.value">
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <label class="col-sm-3 control-label">Is protection enforced?</label>
           <div class="col-sm-2">
             <label class="checkbox-inline i-checks">
-              <input type="radio" value="Yes" ng-model="transect.basic.protection_enforced"><i></i> Yes
+              <input type="radio" value="Yes" ng-model="transect.basic.protection_enforced.value"><i></i> Yes
             </label>
           </div>
           <div class="col-sm-2">
             <label class="checkbox-inline i-checks">
-              <input type="radio" value="No" ng-model="transect.basic.protection_enforced"><i></i> No
+              <input type="radio" value="No" ng-model="transect.basic.protection_enforced.value"><i></i> No
             </label>
           </div>
         </div>
@@ -614,22 +614,22 @@
           <label class="col-sm-3 control-label">Level of poaching in protected area?</label>
           <div class="col-sm-2">
             <label class="checkbox-inline i-checks">
-              <input type="radio" value="None" ng-model="transect.basic.protection_poaching"><i></i> None
+              <input type="radio" value="None" ng-model="transect.basic.protection_poaching.value"><i></i> None
             </label>
           </div>
           <div class="col-sm-2">
             <label class="checkbox-inline i-checks">
-              <input type="radio" value="Low (&lt;1/month)" ng-model="transect.basic.protection_poaching"><i></i> Low (&lt;1/month)
+              <input type="radio" value="Low (&lt;1/month)" ng-model="transect.basic.protection_poaching.value"><i></i> Low (&lt;1/month)
             </label>
           </div>
           <div class="col-sm-3">
             <label class="checkbox-inline i-checks">
-              <input type="radio" value="Med (&gt;1/month, &lt;1/wk)" ng-model="transect.basic.protection_poaching"><i></i> Med (&gt;1/month, &lt;1/wk)
+              <input type="radio" value="Med (&gt;1/month, &lt;1/wk)" ng-model="transect.basic.protection_poaching.value"><i></i> Med (&gt;1/month, &lt;1/wk)
             </label>
           </div>
           <div class="col-sm-2">
             <label class="checkbox-inline i-checks">
-              <input type="radio" value="High (1+/wk)" ng-model="transect.basic.protection_poaching"><i></i> High (1+/wk)
+              <input type="radio" value="High (1+/wk)" ng-model="transect.basic.protection_poaching.value"><i></i> High (1+/wk)
             </label>
           </div>
         </div>
@@ -639,43 +639,43 @@
           <div class="col-sm-4">
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Spearfishing" ng-model="transect.basic.protection_banned.spearfishing"><i></i> Spearfishing
+                <input type="checkbox" value="Spearfishing" ng-model="transect.basic.protection_banned.spearfishing.value"><i></i> Spearfishing
               </label>
             </div>
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Commercial fishing" ng-model="transect.basic.protection_banned.fishing_commercial"><i></i> Commercial fishing
+                <input type="checkbox" value="Commercial fishing" ng-model="transect.basic.protection_banned.fishing_commercial.value"><i></i> Commercial fishing
               </label>
             </div>
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Recreational fishing" ng-model="transect.basic.protection_banned.fishing_recreational"><i></i> Recreational fishing
+                <input type="checkbox" value="Recreational fishing" ng-model="transect.basic.protection_banned.fishing_recreational.value"><i></i> Recreational fishing
               </label>
             </div>
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Invertebrate/shell collecting" ng-model="transect.basic.protection_banned.invertebrate"><i></i> Invertebrate/shell collecting
+                <input type="checkbox" value="Invertebrate/shell collecting" ng-model="transect.basic.protection_banned.invertebrate.value"><i></i> Invertebrate/shell collecting
               </label>
             </div>
           </div>
           <div class="col-sm-4">
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Anchoring" ng-model="transect.basic.protection_banned.anchoring"><i></i> Anchoring
+                <input type="checkbox" value="Anchoring" ng-model="transect.basic.protection_banned.anchoring.value"><i></i> Anchoring
               </label>
             </div>
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Diving" ng-model="transect.basic.protection_banned.diving"><i></i> Diving
+                <input type="checkbox" value="Diving" ng-model="transect.basic.protection_banned.diving.value"><i></i> Diving
               </label>
             </div>
             <div>
               <label class="checkbox-inline i-checks">
-                <input type="checkbox" value="Other (please specify below)" ng-model="transect.basic.protection_banned.other"><i></i> Other (please specify below)
+                <input type="checkbox" value="Other (please specify below)" ng-model="transect.basic.protection_banned.other.value"><i></i> Other (please specify below)
               </label>
             </div>
             <div>
-              <input type="text" class="form-control" ng-model="transect.basic.protection_banned.other_description" />
+              <input type="text" class="form-control" ng-model="transect.basic.protection_banned.other_description.value" />
             </div>
           </div>
         </div>

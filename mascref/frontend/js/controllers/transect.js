@@ -52,8 +52,16 @@ angular.module('app.controllers')
         long: $scope.MASCREF_CONF.COORD.LONG,
         zoom: $scope.MASCREF_CONF.COORD.ZOOM
       },
-      reefcheck: {} 
+      reefcheck: {
+        segments_total: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL,
+        segments_points: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_POINTS,
+        segments_length: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH,
+        segments_space: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_SPACE,
+        transect_line_id: $scope.MASCREF_CONF.TRANSECT_TYPE.LINE,
+        group_set: $scope.MASCREF_CONF.REEFCHECK_GROUP_SET_DEFAULT
+      }
     }
+
 
     if(angular.isDefined($rootScope.config)) {
       $scope.config = $rootScope.config;
@@ -63,9 +71,20 @@ angular.module('app.controllers')
       info: { site: null, survey: $stateParams.surveyId, coords: { dd: {}, dms: { lat: {}, long: {} } } },      
       // basic: {},
       // team: {},
-      // belt: { data: [] },
-      // line: { data: [] }
+      belt: { data: [] },
+      line: { data: [] }
     }
+
+    // --- Begin Configs for line and belt transect
+    $scope.line_groups = []
+    $scope.line_graphs = {}
+    $scope.line_graphs_data = null;  
+
+    for (var i = 0 ; i < $scope.config.reefcheck.segments_total ; ++i){
+      // $scope.transect.belt.data[i] = [];
+      $scope.transect.line.data[i] = [];
+    }
+    // --- End Configs for line and belt transect
     
     $scope.tabs = [
       // { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
