@@ -149,7 +149,7 @@
                   <th class="text-center">Date Start</th>
                   <th class="text-center">Date End</th>
                   <!--<th>Owner</th>-->
-                  <!-- <th class="text-center">Transects</th> -->
+                  <th class="text-center">Transects</th>
                   <th class="text-center">Members</th>
                   <th class="text-center">Date Created</th>
                   <th class="text-center">Public</th>
@@ -165,7 +165,7 @@
                     <td class="text-center">{{survey.date_start | date:'dd/MM/yyyy'}}</td>
                     <td class="text-center">{{survey.date_end ? (survey.date_end | date:'dd/MM/yyyy') : '-'}}</td>
                     <!--<td>{{survey.owner}}</td>-->
-                    <!-- <td class="text-center">{{survey.transects_count ? survey.transects_count : '0'}}</td> -->
+                    <td class="text-center">{{survey.transects_count ? survey.transects_count : '0'}}</td>
                     <td class="text-center">{{survey.members_count ? survey.members_count : '0'}}</td>
                     <td class="text-center">{{survey.created_at | date:'short'}}</td>
                     <td class="text-center"><i ng-if="survey.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!survey.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>

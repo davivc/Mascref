@@ -2,6 +2,7 @@ from django.conf.urls import patterns
 from django.conf.urls import url, include
 
 from rest_framework import routers
+from rest_framework_bulk.routes import BulkRouter
 
 from views import TransectTypeViewSet
 from views import GroupCategoryViewSet
@@ -19,11 +20,15 @@ router.register(r'groups_categories', GroupCategoryViewSet)
 router.register(r'groups_sets', GroupSetViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'transects', TransectViewSet)
-router.register(r'transects_infos', TransectInfoViewSet)
+# router.register(r'transects_infos', TransectInfoViewSet)
 router.register(r'segments', SegmentViewSet)
 router.register(r'stats/reefcheck', StatsViewSet, 'stats-reefcheck')
+
+bulk = BulkRouter()
+bulk.register(r'transects_infos', TransectInfoViewSet)
 
 urlpatterns = patterns(
     '',
     url(r'^', include(router.urls)),
+    url(r'^', include(bulk.urls)),
 )

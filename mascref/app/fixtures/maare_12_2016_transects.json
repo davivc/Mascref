@@ -4,7 +4,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Estaleiro Leste 2016-01-20 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 3,
       "depth": "5",
       "date": "2016-01-20",
@@ -17,7 +17,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Estaleiro Oeste 2016-01-20 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 2,
       "depth": "4",
       "date": "2016-01-20",
@@ -30,7 +30,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha das Aranhas 2016-01-21 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 4,
       "depth": "10",
       "date": "2016-01-21",
@@ -43,7 +43,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha das Aranhas 2016-01-21 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 4,
       "depth": "5",
       "date": "2016-01-21",
@@ -56,7 +56,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta 2016-02-16 prof 11",
-      "survey": 1,
+      "survey": 2,
       "site": 5,
       "depth": "11",
       "date": "2016-02-16",
@@ -69,7 +69,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta 2016-02-16 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 5,
       "depth": "5",
       "date": "2016-02-16",
@@ -82,7 +82,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta Sul 2016-02-17 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 6,
       "depth": "10",
       "date": "2016-02-17",
@@ -95,7 +95,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha Deserta Sul 2016-02-17 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 6,
       "depth": "5",
       "date": "2016-02-17",
@@ -108,7 +108,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha do Xavier 2016-01-19 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 7,
       "depth": "10",
       "date": "2016-01-19",
@@ -121,7 +121,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Ilha do Xavier 2016-01-19 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 7,
       "depth": "5",
       "date": "2016-01-19",
@@ -134,7 +134,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Naufrágio do Lili 2016-01-28 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 8,
       "depth": "5",
       "date": "2016-01-28",
@@ -147,7 +147,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Rancho Norte 2016-02-02 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 9,
       "depth": "2.5",
       "date": "2016-02-02",
@@ -160,7 +160,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Rancho Norte 2016-02-02 prof 6",
-      "survey": 1,
+      "survey": 2,
       "site": 9,
       "depth": "6",
       "date": "2016-02-02",
@@ -173,7 +173,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Saco do Capim 2016-01-26 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 11,
       "depth": "10",
       "date": "2016-01-26",
@@ -186,7 +186,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Saco do Capim 2016-01-26 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 11,
       "depth": "5",
       "date": "2016-01-26",
@@ -199,7 +199,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Toca da Salema 2016-01-28 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 12,
       "depth": "10",
       "date": "2016-01-28",
@@ -212,7 +212,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Toca da Salema 2016-01-28 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 12,
       "depth": "5",
       "date": "2016-01-28",
@@ -225,7 +225,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Baía do Farol 2016-02-04 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 1,
       "depth": "10",
       "date": "2016-02-04",
@@ -238,7 +238,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Baía do Farol 2016-02-04 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 1,
       "depth": "5",
       "date": "2016-02-04",
@@ -251,7 +251,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Saco D'água 2016-01-27 prof 5",
-      "survey": 1,
+      "survey": 2,
       "site": 10,
       "depth": "4",
       "date": "2016-01-27",
@@ -264,7 +264,7 @@
     "model": "reefcheck.transect",
     "fields": {
       "name": "Saco D'água 2016-01-27 prof 10",
-      "survey": 1,
+      "survey": 2,
       "site": 10,
       "depth": "9",
       "date": "2016-01-27",

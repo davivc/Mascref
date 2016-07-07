@@ -18,14 +18,6 @@
     }
   },
   {
-    "pk": 102,
-    "model": "reefcheck.transectmembers",
-    "fields": {
-      "transect": 102,
-      "role": 1
-    }
-  },
-  {
     "pk": 103,
     "model": "reefcheck.transectmembers",
     "fields": {

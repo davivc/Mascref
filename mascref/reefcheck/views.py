@@ -3,6 +3,7 @@ Definition of views.
 """
 from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.response import Response
+from rest_framework_bulk import BulkModelViewSet
 from mascref.permissions import UserPermissionsObj
 from rest_framework_tracking.mixins import LoggingMixin
 
@@ -86,7 +87,7 @@ class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
     )
 
 
-class TransectInfoViewSet(LoggingMixin, viewsets.ModelViewSet):
+class TransectInfoViewSet(LoggingMixin, BulkModelViewSet):
     queryset = TransectInfo.objects.all()
     serializer_class = TransectInfoSerializer
     ordering = ('name',)

@@ -1,0 +1,9 @@
+[
+{
+  "fields": {
+    "name": "Line transect recorder"
+  },
+  "model": "reefcheck.transectmemberrole",
+  "pk": 1
+}
+]

@@ -1,88 +1,90 @@
-﻿<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="col-sm-2">Data recorded by</label>
-      <div class="col-sm-4">
-        <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
-        <input type="text" class="form-control w-xxl" ng-model="transect.line.recorded_by" placeholder="Search researchers in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
+﻿<div ng-controller="TransectSiteFormCtrl">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-2">Data recorded by</label>
+        <div class="col-sm-4">
+          <i ng-show="loadingResearchers" class="fa fa-spinner fa-spin form-control-spin"></i>
+          <input type="text" class="form-control w-xxl" ng-model="transect.line.recorded_by" placeholder="Search researchers in the system" uib-typeahead="researcher as researcher.name for researcher in getResearchers($viewValue)" uib-typeahead-loading="loadingResearchers">
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="panel panel-default">
-  <div class="panel-body">    
-    <div class="row table-responsive">
-      <table class="table table-striped b-t b-light text-sm">
-        <thead>
-          <tr>
-            <th style="width:20px;">Code</th>
-            <th>Name</th>
-            <th class="text-center" ng-repeat="seg in segments_total | range">S{{seg+1}}</th>
-            <th class="text-center">Total</th>
-            <th class="text-center">Mean Count</th>  
-            <th class="text-center" ng-repeat="seg in segments_total | range">% S{{seg+1}}</th>
-            <th class="text-center">Mean % segment</th>              
-            <th class="text-center">SD (%)</th>
-            <th class="text-center">SE (%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="lGroup in line_groups">
-            <th>{{lGroup.name}}</th>
-            <td>{{lGroup.description}}</td>
-            <td class="text-center" ng-repeat="seg in segments_total | range">{{line_graphs[lGroup.name]['segs'][seg]}}</td>
-            <th class="text-center">{{line_graphs[lGroup.name]['sum']}}</th>
-            <td class="text-center">{{line_graphs[lGroup.name]['mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
-            <td class="text-center" ng-repeat="seg in segments_total | range">{{line_graphs[lGroup.name]['percent_segs'][seg] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
-            <td class="text-center">{{line_graphs[lGroup.name]['percent_mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
-            <td class="text-center">{{line_graphs[lGroup.name]['percent_sd'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
-            <td class="text-center">{{line_graphs[lGroup.name]['percent_se'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
-          </tr>
-        </tbody>
-        <tbody>
-          <tr ng-init="totals_seg = []">
-            <td></td>
-            <td></td>
-            <td class="text-center" ng-repeat="seg in segments_total | range" ng-class="totals_seg[seg] < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS ? 'text-danger' : 'text-success'">{{totals_seg[seg] = (transect.line.data[seg] | filter: { group_name:'!true'}).length}}</td>
-            <td class="text-center" ng-class="total_segs < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ? 'text-danger' : 'text-success'">{{total_segs = (totals_seg | sum)}}</td>
-            <td></td>              
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="form-group">
-      <label class="text-danger">Use the substrate codes above into the white boxes below</label>
-    </div>
-    <div class="form-inline">
-      <div class="col-sm-3 text-xs" ng-repeat="seg in segments_total | range" ng-init="segStart = (segments_length+segments_space)*seg" >
-        <label class="col-sm-12 text-center">Segment {{seg+1}}</label>
-        <label class="col-sm-12 text-center">{{segStart}} - {{segStart + segments_length-(segments_length/segments_points)}} m</label>
-        <div class="form-group form-inline col-sm-12 text-center" ng-repeat="n in (segments_points/2) | range" ng-init="point = (segments_length/segments_points)*n+segStart">
-          <div class="form-group">
-            <label style="width:30px;">{{point | number:1 }}</label>
-            <input ng-model="transect.line.data[seg][n].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:45px; font-size:10px;" />
+  <div class="panel panel-default">
+    <div class="panel-body">    
+      <div class="row table-responsive">
+        <table class="table table-striped b-t b-light text-sm">
+          <thead>
+            <tr>
+              <th style="width:20px;">Code</th>
+              <th>Name</th>
+              <th class="text-center" ng-repeat="seg in segments_total | range">S{{seg+1}}</th>
+              <th class="text-center">Total</th>
+              <th class="text-center">Mean Count</th>  
+              <th class="text-center" ng-repeat="seg in segments_total | range">% S{{seg+1}}</th>
+              <th class="text-center">Mean % segment</th>              
+              <th class="text-center">SD (%)</th>
+              <th class="text-center">SE (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="lGroup in line_groups">
+              <th>{{lGroup.name}}</th>
+              <td>{{lGroup.description}}</td>
+              <td class="text-center" ng-repeat="seg in segments_total | range">{{line_graphs[lGroup.name]['segs'][seg]}}</td>
+              <th class="text-center">{{line_graphs[lGroup.name]['sum']}}</th>
+              <td class="text-center">{{line_graphs[lGroup.name]['mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+              <td class="text-center" ng-repeat="seg in segments_total | range">{{line_graphs[lGroup.name]['percent_segs'][seg] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+              <td class="text-center">{{line_graphs[lGroup.name]['percent_mean'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS}}</td>
+              <td class="text-center">{{line_graphs[lGroup.name]['percent_sd'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
+              <td class="text-center">{{line_graphs[lGroup.name]['percent_se'] | number:MASCREF_CONF.SIGNIFICANT_DIGITS+1}}</td>            
+            </tr>
+          </tbody>
+          <tbody>
+            <tr ng-init="totals_seg = []">
+              <td></td>
+              <td></td>
+              <td class="text-center" ng-repeat="seg in segments_total | range" ng-class="totals_seg[seg] < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS ? 'text-danger' : 'text-success'">{{totals_seg[seg] = (transect.line.data[seg] | filter: { group_name:'!true'}).length}}</td>
+              <td class="text-center" ng-class="total_segs < MASCREF_CONF.TRANSECT_SEGMENTS_POINTS*MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL ? 'text-danger' : 'text-success'">{{total_segs = (totals_seg | sum)}}</td>
+              <td></td>              
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-group">
+        <label class="text-danger">Use the substrate codes above into the white boxes below</label>
+      </div>
+      <div class="form-inline">
+        <div class="col-sm-3 text-xs" ng-repeat="seg in segments_total | range" ng-init="segStart = (segments_length+segments_space)*seg" >
+          <label class="col-sm-12 text-center">Segment {{seg+1}}</label>
+          <label class="col-sm-12 text-center">{{segStart}} - {{segStart + segments_length-(segments_length/segments_points)}} m</label>
+          <div class="form-group form-inline col-sm-12 text-center" ng-repeat="n in (segments_points/2) | range" ng-init="point = (segments_length/segments_points)*n+segStart">
+            <div class="form-group">
+              <label style="width:30px;">{{point | number:1 }}</label>
+              <input ng-model="transect.line.data[seg][n].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:45px; font-size:10px;" />
+            </div>
+            <div class="form-group">
+              <input ng-model="transect.line.data[seg][n+(segments_points/2)].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:45px; font-size:10px;" />
+              <label style="width:30px;">{{point + segments_length/(segments_points/segments_length) | number:1 }}</label>
+            </div> 
           </div>
-          <div class="form-group">
-            <input ng-model="transect.line.data[seg][n+(segments_points/2)].group_name" type="text" class="form-control input-sm inline v-middle text-center" uib-typeahead="group as group.name for group in line_groups | filter:{ name: $viewValue } " style="width:45px; font-size:10px;" />
-            <label style="width:30px;">{{point + segments_length/(segments_points/segments_length) | number:1 }}</label>
-          </div> 
-        </div>
-      </div>       
+        </div>       
+      </div>
     </div>
   </div>
-</div>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Comments</label>
-      <div class="col-sm-8">
-        <textarea class="form-control" rows="6" ng-model="transect.line.comments" placeholder="Type your commenys"></textarea>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Comments</label>
+        <div class="col-sm-8">
+          <textarea class="form-control" rows="6" ng-model="transect.line.comments" placeholder="Type your commenys"></textarea>
+        </div>
       </div>
     </div>
   </div>

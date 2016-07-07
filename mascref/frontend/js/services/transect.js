@@ -24,9 +24,9 @@ angular.module('app.services')
       return Rest.get(this.url_infos + "?transect=" + transectId + nameFilter);
     },
     'save': function (pData) {
-      var name = pData.site.name + ' ' + $filter('date')(pData.date,'dd-MM-yy') + ' '+ (pData.depth ? (pData.depth <= 6 ? 's' : (pData.depth <= 12 ? 'm' : 'd')) : '');
+      // var name = pData.site.name + ' ' + $filter('date')(pData.date,'dd-MM-yy') + ' '+ (pData.depth ? (pData.depth <= 6 ? 's' : (pData.depth <= 12 ? 'm' : 'd')) : '');
       var data = {
-        'name': name,
+        'name': pData.name,
         'survey': pData.survey,
         'site': pData.site.id,
         'date': $filter('date')(pData.date,'yyyy-MM-dd'),
@@ -46,6 +46,12 @@ angular.module('app.services')
       }
       if (pData.id) return Rest.patch(this.url_infos + pData.id + "/", data);
       else return Rest.post(this.url_infos, data);
+    },
+    'createMultipleInfos': function (pData) {      
+      return Rest.post(this.url_infos, pData);
+    },
+    'updateMultipleInfos': function (pData) {      
+      return Rest.patch(this.url_infos, pData);
     },
   }
 

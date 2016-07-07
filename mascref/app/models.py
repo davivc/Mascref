@@ -188,9 +188,9 @@ class Survey(models.Model):
     def __unicode__(self):
         return '%s' % (self.name)
 
-    # @property
-    # def transects_count(self):
-    #     return self.transects.all().count()
+    @property
+    def transects_count(self):
+        return self.transects.all().count()
 
     @property
     def sites(self):

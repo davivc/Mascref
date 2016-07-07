@@ -69,13 +69,17 @@ angular.module('app.controllers')
     
     $scope.tabs = [
       // { heading: "Debug", template: 'tpl/blocks/transect_debug.html' },
-      { heading: "Site Info", template: 'tpl/blocks/transect_site_info.html', disabled: ($scope.transect.info ? true : false) },
-      { heading: "Line Transect", template: 'tpl/blocks/transect_line_form.html', disabled: ($scope.transect.info ? true : false) },
-      { heading: "Line Graphs", template: 'tpl/blocks/transect_line_graphs.html', disabled: ($scope.transect.info ? true : false) },
-      { heading: "Belt Transect", template: 'tpl/blocks/transect_belt_form.html', disabled: ($scope.transect.info ? true : false) },
-      { heading: "Belt Graphs", template: 'tpl/blocks/transect_belt_graphs.html', disabled: ($scope.transect.info ? true : false) },
+      { heading: "Site Info", controller: "TransectSiteFormCtrl", template: 'tpl/blocks/transect_site_info.html', disabled: ($scope.transect.info.id ? true : false) },
+      { heading: "Line Transect", controller: "TransectLineFormCtrl", template: 'tpl/blocks/transect_line_form.html', disabled: ($scope.transect.info.id ? true : false) },
+      { heading: "Line Graphs", controller: "TransectLineGraphCtrl", template: 'tpl/blocks/transect_line_graphs.html', disabled: ($scope.transect.info.id ? true : false) },
+      { heading: "Belt Transect", controller: "TransectLineBeltFormCtrl", template: 'tpl/blocks/transect_belt_form.html', disabled: ($scope.transect.info.id ? true : false) },
+      { heading: "Belt Graphs", controller: "TransectBeltGraphCtrl", template: 'tpl/blocks/transect_belt_graphs.html', disabled: ($scope.transect.info.id ? true : false) },
       // { heading: "Team Information", template: 'tpl/blocks/transect_team_information.html' },
     ];
+
+    // $scope.setTabContent = function(name) {
+    //   $scope.tabContentUrl = "tpl/blocks/transect_" + name + "html";
+    // }
 
     $scope.response = {}
     $scope.markers = []
@@ -214,7 +218,6 @@ angular.module('app.controllers')
             return false;
           }
           else if(!$scope.transect.info.name) {
-            // Select Latitude
             $scope.response = { type: 'error', msg: 'Transect name is required' }
             return false;
           }

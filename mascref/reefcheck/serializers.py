@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework_bulk import BulkListSerializer
+from rest_framework_bulk import BulkSerializerMixin
 from mascref.serializers import RecursiveField
 
 from models import TransectType
@@ -57,10 +59,18 @@ class TransectSerializer (serializers.ModelSerializer):
         )
 
 
-class TransectInfoSerializer (serializers.ModelSerializer):
+# class TransectInfoSerializer (serializers.ModelSerializer):
+#     class Meta:
+#         model = TransectInfo
+#         fields = ('id', 'transect', 'name', 'value', 'description',)
+
+
+class TransectInfoSerializer (BulkSerializerMixin, serializers.ModelSerializer):
     class Meta:
         model = TransectInfo
         fields = ('id', 'transect', 'name', 'value', 'description',)
+        # only necessary in DRF3
+        list_serializer_class = BulkListSerializer
 
 
 class SegmentSerializer (serializers.ModelSerializer):
