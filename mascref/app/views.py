@@ -5,6 +5,7 @@ from rest_framework import viewsets, permissions, filters
 from rest_framework.response import Response
 from mascref.permissions import UserPermissionsObj
 from mascref.permissions import UserFromAccount
+from mascref.permissions import ObjectFromAccount
 from rest_framework_tracking.mixins import LoggingMixin
 
 from models import Account
@@ -16,6 +17,7 @@ from models import Site
 from models import Project
 from models import Survey
 from models import Researcher
+from reefcheck.models import Transect
 from objects import Stats
 
 # from mascref.serializers import UserSerializer
@@ -35,7 +37,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
     permission_classes = (
-        permissions.IsAuthenticated, 
+        permissions.IsAuthenticated, permissions.IsAdminUser, 
     )
 
 
@@ -43,7 +45,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = (
-        UserFromAccount,
+        permissions.IsAuthenticated, UserFromAccount, ObjectFromAccount, 
     )
 
 
@@ -106,6 +108,7 @@ class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Project.objects.all()
+        queryset = queryset.filter(account=self.request.account)
         parent = self.request.query_params.get('parent', None)
         if parent == 'null':
             queryset = queryset.filter(parent__isnull=True)
@@ -121,8 +124,13 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('project',)
     permission_classes = (
-        permissions.IsAuthenticated,
+        permissions.IsAuthenticated, UserFromAccount, 
     )
+
+    def get_queryset(self):
+        queryset = Survey.objects.all()
+        queryset = queryset.filter(project__account=self.request.account)
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
@@ -138,16 +146,22 @@ class ResearcherViewSet(LoggingMixin, viewsets.ModelViewSet):
         permissions.IsAuthenticated,
     )
 
+    def get_queryset(self):
+        queryset = Researcher.objects.all()
+        queryset = queryset.filter(account=self.request.account)
+        return queryset
+
 
 # Non-Models
 class StatsViewSet(viewsets.ViewSet):
     def list(self, request):
         stats = Stats
-        stats.projects = Project.objects.count()
-        stats.surveys = Survey.objects.count()
-        stats.countries = Country.objects.count()
-        stats.provinces = Province.objects.count()
-        stats.towns = Town.objects.count()
-        stats.sites = Site.objects.count()
+        stats.projects = Project.objects.filter(account=request.account).count()
+        stats.surveys = Survey.objects.filter(project__account=request.account).count()
+        stats.transects = Transect.objects.filter(survey__project__account=request.account).count()
+        stats.sites = Transect.objects.filter(survey__project__account=request.account).values("site").distinct().count()
+        stats.countries = Transect.objects.filter(survey__project__account=request.account).values("site__town__country").distinct().count()
+        stats.provinces = Transect.objects.filter(survey__project__account=request.account).values("site__town__province").distinct().count()
+        stats.towns = Transect.objects.filter(survey__project__account=request.account).values("site__town").distinct().count()
         serializer = StatsSerializer(stats)
         return Response(serializer.data)

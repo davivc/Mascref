@@ -31,8 +31,8 @@ angular.module('app.controllers')
     $scope.getStats = function () {
       Dashboard.stats()
       .then(function (data) {
+        console.log(data)
         $scope.stats = data;
-        $scope.stats.transects = 0;
       }, function (error) {
         console.error('Dash Stats: ' + error);
         $scope.stats.error = error;

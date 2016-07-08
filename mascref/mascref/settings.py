@@ -91,7 +91,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Custom Middleware
     # 'mascref.middleware.SiteMiddleware'
-    # 'mascref.middleware.AccountIDMiddleware',
+    'mascref.middleware.AccountIDMiddleware',
     # 'mascref.middlewares.ThreadLocal.ThreadLocalMiddleware',    
     'mascref.middleware_dynamicsite.DynamicSitesMiddleware',    
 )

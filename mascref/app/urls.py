@@ -16,7 +16,7 @@ from views import StatsViewSet
 
 
 router = routers.DefaultRouter()
-router.register(r'accounts', AccountViewSet)
+# router.register(r'accounts', AccountViewSet)
 router.register(r'user_profile', UserProfileViewSet)
 router.register(r'countries', CountryViewSet)
 router.register(r'provinces', ProvinceViewSet)

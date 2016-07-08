@@ -26,22 +26,22 @@ class AccountIDMiddleware(object):
         path = request.get_full_path()
         domain = request.META['HTTP_HOST']
         pieces = domain.split('.')
-        redirect_path = "http://{0}{1}".format(
-                settings.DEFAULT_SITE_DOMAIN, path)
-        if domain == settings.DEFAULT_SITE_DOMAIN:
-            return None
-        try:
-            resolve(path, frontend_urls)
-        except Resolver404:
-            try:
-                # The slashes are not being appended before getting here
-                resolve(u"{0}/".format(path), frontend_urls)
-            except Resolver404:
-                return redirect(redirect_path)
+        # redirect_path = "http://{0}{1}".format(
+        #         settings.DEFAULT_SITE_DOMAIN, path)
+        # if domain == settings.DEFAULT_SITE_DOMAIN:
+        #     return None
+        # try:
+        #     resolve(path, frontend_urls)
+        # except Resolver404:
+        #     try:
+        #         # The slashes are not being appended before getting here
+        #         resolve(u"{0}/".format(path), frontend_urls)
+        #     except Resolver404:
+        #         return redirect(redirect_path)
         try:
             account = Account.objects.get(domain=pieces[0])
         except Account.DoesNotExist:
-            return redirect(redirect_path)
+            account = None
+            # return redirect(redirect_path)
         request.account = account
-        # print(request.account)
         return None

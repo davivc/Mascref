@@ -86,6 +86,11 @@ class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
         permissions.IsAuthenticated,
     )
 
+    def get_queryset(self):
+        queryset = Transect.objects.all()
+        queryset = queryset.filter(survey__project__account=self.request.account)
+        return queryset
+
 
 class TransectInfoViewSet(LoggingMixin, BulkModelViewSet):
     queryset = TransectInfo.objects.all()
@@ -105,7 +110,7 @@ class SegmentViewSet(LoggingMixin, BulkModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('transect', 'segment', 'group', 'token', 'type',)
     permission_classes = (
-        permissions.IsAuthenticated,
+        permissions.IsAuthenticatedOrReadOnly,
     )
 
 

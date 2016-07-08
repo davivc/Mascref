@@ -17,13 +17,21 @@ class UserFromAccount(permissions.BasePermission):
     """
     User from account can do anything.
     """
+    message = 'Adding customers not allowed.'
 
-    def has_account_permission(self, request, view, obj):
-        # print request
+    def has_permission(self, request, view):
         print(request.user.userprofile.account)
         print(request.account)
         if request.user.userprofile.account == request.account:
-            return true
-        
+            return True
 
 
+class ObjectFromAccount(permissions.BasePermission):
+    """
+    User from account can do anything.
+    """
+    # message = 'You can not access this .'
+
+    def has_object_permission(self, request, view, obj):
+        if obj.account == request.account:
+            return True

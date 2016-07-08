@@ -136,3 +136,4 @@ class StatsSerializer (serializers.Serializer):
     provinces = serializers.IntegerField()
     towns = serializers.IntegerField()
     sites = serializers.IntegerField()
+    transects = serializers.IntegerField()
