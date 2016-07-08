@@ -7,7 +7,7 @@ from django.conf.urls import url, include
 # from app.forms import BootstrapAuthenticationForm
 
 # Uncomment the next lines to enable the admin:
-# from django.contrib import admin
+from django.contrib import admin
 # from django.contrib.auth.models import User
 from rest_framework import routers
 from mascref.views import ConfigViewSet
@@ -24,6 +24,12 @@ router.register(r'api/activity', ActivityViewSet)
 
 urlpatterns = [
    # '',
+   # Uncomment the admin/doc line below to enable admin documentation:
+   # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+   # Uncomment the next line to enable the admin:
+   url(r'^master/admin/', include(admin.site.urls)),
+   
    # Pages
    # url(r'^$', 'app.views.home', name='home'),
 
@@ -62,9 +68,4 @@ urlpatterns = [
    #     },
    #     name='logout'),
 
-   # Uncomment the admin/doc line below to enable admin documentation:
-   # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-   # Uncomment the next line to enable the admin:
-   # url(r'^admin/', include(admin.site.urls)),
                    ]

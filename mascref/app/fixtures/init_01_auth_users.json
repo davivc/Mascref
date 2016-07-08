@@ -23,7 +23,7 @@
     "first_name": "demo",
     "last_name": "",
     "is_active": true,
-    "is_superuser": true,
+    "is_superuser": false,
     "is_staff": true,
     "last_login": "2016-02-15T00:01:38Z",
     "groups": [],
@@ -52,6 +52,24 @@
   },
   "model": "auth.user",
   "pk": 10
+},
+{
+  "fields": {
+    "username": "vitor",
+    "first_name": "Vitor",
+    "last_name": "Picolotto",
+    "is_active": true,
+    "is_superuser": false,
+    "is_staff": true,
+    "last_login": "2016-02-15T00:01:38Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$20000$fsR4yPrxW7lk$ffpEYaICAmY5TrbrydMfTmIOrsRC0f5h8BN1Md+/Z54=",
+    "email": "vitor@gmail.com",
+    "date_joined": "2015-09-22T01:43:53Z"
+  },
+  "model": "auth.user",
+  "pk": 11
 },
 {
   "fields": {

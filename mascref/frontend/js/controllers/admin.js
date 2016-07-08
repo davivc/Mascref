@@ -3,7 +3,7 @@
 /* Dashboard Controllers */
 
 angular.module('app.controllers')
-  .controller('AdminCtrl', ['$scope', '$translate', '$state','$stateParams','MASCREF_CONF', function ($scope, $translate, $state,$stateParams, MASCREF_CONF) {
+  .controller('AdminCtrl', ['$scope', '$translate', '$state','$stateParams','MASCREF_CONF', 'AclService', 'djangoAuth', function ($scope, $translate, $state,$stateParams, MASCREF_CONF, AclService, djangoAuth) {
   
     // Logged status
     if (!$scope.authenticated) {
@@ -14,4 +14,12 @@ angular.module('app.controllers')
       $state.go('admin.dashboard'); 
     }
 
+    // djangoAuth.profile().then(function (data) {
+    //   // console.log(data.userprofile.roles[0])
+    //   AclService.attachRole(data.userprofile.roles[0])
+    // }, function (error) {
+          
+    // });
+
+    $scope.can = AclService.can;
   }]);

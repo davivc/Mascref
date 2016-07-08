@@ -10,6 +10,27 @@ from models import Project
 from models import Survey
 from models import Researcher
 
+from django.contrib.auth.models import Group
+from django.contrib.auth.models import Permission
+
+
+class PermissionACLSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = (
+            'name', 'codename',
+        )
+
+
+class GroupACLSerializer(serializers.ModelSerializer):
+    permissions = PermissionACLSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Group
+        fields = (
+            'name', 'permissions'
+        )
+
 
 class AccountSerializer(serializers.ModelSerializer):
     # site = AccountSerializer(read_only=True)
@@ -22,10 +43,17 @@ class AccountSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     account = AccountSerializer(read_only=True)
+    # roles = serializers.ReadOnlyField(source="user.groups")
+    # roles = serializers.ReadOnlyField(many=True, source="user.groups")
+    # roles = serializers.SerializerMethodField('get_roles_names')
+
+    # def get_roles_names(self, obj):
+    #     return obj.user.groups
+
     class Meta:
         model = UserProfile
         fields = (
-            'account',
+            'account', 'roles'
         )
 
 

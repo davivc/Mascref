@@ -1,5 +1,6 @@
-﻿#from django.contrib import admin
+﻿from django.contrib import admin
 
-#from .models import Config
+from .models import Config
 
-#admin.site.register(Config)
+admin.site.register(Config)
+

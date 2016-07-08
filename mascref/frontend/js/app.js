@@ -21,13 +21,56 @@ var app = angular.module('app', [
     'reefcheck',
     'maps.controllers',
     'angularMoment',
+    'mm.acl',
 ])
 .run(
-  ['$rootScope', '$state', '$stateParams', 'djangoAuth', 'ENV_CONF',  
-    function ($rootScope, $state, $stateParams, djangoAuth, ENV_CONF) {
+  ['$rootScope', '$state', '$stateParams', 'djangoAuth', 'AclService', 'ACL', 'ENV_CONF',  
+    function ($rootScope, $state, $stateParams, djangoAuth, AclService, ACL, ENV_CONF) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         djangoAuth.initialize(ENV_CONF.api_url + '/rest-auth', true);
+
+
+        // Set the ACL data. Normally, you'd fetch this from an API or something.
+        // The data should have the roles as the property names,
+        // with arrays listing their permissions as their value.
+        var aclData = {
+          // Guest: []
+        }
+
+        AclService.flushRoles()
+        // AclService.setAbilities(aclData);
+
+        // Attach the member role to the current user
+        // AclService.attachRole('Guest');
+
+        ACL.list().then(function (data) {
+          angular.forEach(data, function (obj) {
+            var groupPermissions = [];
+            angular.forEach(obj.permissions, function (permission) {
+              groupPermissions.push(permission.codename);
+            });
+            aclData[obj.name] = groupPermissions;
+          });
+          AclService.setAbilities(aclData);     
+          
+        }, function (error) {
+          
+        });
+
+        djangoAuth.profile().then(function (data) {
+          AclService.attachRole(data.userprofile.roles[0])          
+        }, function (error) {
+          
+        });       
+
+        $rootScope.$on('$stateChangeError', function(current, previous, rejection){
+            console.log(current, previous, rejection)
+          
+          // if(rejection === 'Unauthorized'){
+            $state.go('access.signin');
+          // }
+        })
     }
   ]
 )
@@ -42,6 +85,23 @@ var app = angular.module('app', [
         app.factory = $provide.factory;
         app.service = $provide.service;
         app.constant = $provide.constant;
+
+        var aclVerification = function(AclService, djangoAuth, q, role, action) {
+          AclService.flushRoles();
+          return djangoAuth.profile().then(function (data) {
+            AclService.attachRole(data.userprofile.roles[0])
+            if(AclService.hasRole(role)){
+              // console.log('run ', AclService.getRoles())
+              // Has proper permissions  || AclService.hasRole('Staff')
+              return true;
+            } else {
+              // Does not have permission
+              return q.reject('Unauthorized');
+            }
+          }, function (error) {
+            return q.reject('Error retrieving the user profile');
+          }); 
+        }
 
         $urlRouterProvider
           .otherwise('/access/404');
@@ -70,6 +130,9 @@ var app = angular.module('app', [
                   authenticated: ['djangoAuth', function (djangoAuth) {
                     return djangoAuth.authenticationStatus();
                   }],
+                  // acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
+                  //   return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
+                  // }]
                 }
             })
             .state('admin.projects', {
@@ -179,6 +242,13 @@ var app = angular.module('app', [
     }
   ]
 )
+.config(['AclServiceProvider', function (AclServiceProvider) {
+  var myConfig = {
+    storage: false,
+    // storageKey: 'AppAcl'
+  };
+  AclServiceProvider.config(myConfig);
+}])
 .config(['$translateProvider', function ($translateProvider) {
 
     // Register a loader for the static files
@@ -203,7 +273,7 @@ var app = angular.module('app', [
   //$httpProvider.defaults.headers.post['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();  
 
   uiGmapGoogleMapApiProvider.configure({
-    //    key: 'your api key',
+    key: 'AIzaSyCUYhP4I6btgvDhBpsrm1KkKl4H7znlY7Q',
     v: '3.20', //defaults to latest 3.X anyhow
     libraries: 'weather,geometry,visualization'
   });

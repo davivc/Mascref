@@ -31,10 +31,15 @@ class UserList(generics.ListAPIView):
 
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer    
+    serializer_class = UserSerializer
     permission_classes = (
         UserPermissionsObj,
     )
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        queryset = queryset.filter(userprofile__account=self.request.account)
+        return queryset
 
 
 # API models

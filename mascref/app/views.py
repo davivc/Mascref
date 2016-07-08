@@ -8,6 +8,7 @@ from mascref.permissions import UserFromAccount
 from mascref.permissions import ObjectFromAccount
 from rest_framework_tracking.mixins import LoggingMixin
 
+from django.contrib.auth.models import Group
 from models import Account
 from models import UserProfile
 from models import Country
@@ -21,6 +22,7 @@ from reefcheck.models import Transect
 from objects import Stats
 
 # from mascref.serializers import UserSerializer
+from serializers import GroupACLSerializer
 from serializers import AccountSerializer
 from serializers import UserProfileSerializer
 from serializers import CountrySerializer
@@ -31,6 +33,14 @@ from serializers import ProjectSerializer
 from serializers import SurveySerializer
 from serializers import ResearcherSerializer
 from serializers import StatsSerializer
+
+
+class GroupACLViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupACLSerializer
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
 
 
 class AccountViewSet(viewsets.ModelViewSet):

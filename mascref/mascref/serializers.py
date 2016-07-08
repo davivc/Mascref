@@ -28,13 +28,13 @@ class ActivitySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    user_profile = UserProfileSerializer(read_only=True)
+    userprofile = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = User
         fields = (
             'id', 'url', 'username', 'email', 'first_name',
-            'last_name', 'is_staff', 'user_profile', 'date_joined'
+            'last_name', 'is_staff', 'userprofile', 'date_joined',
         )
 
 

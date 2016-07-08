@@ -5,6 +5,16 @@
 
 // Demonstrate how to register services
 angular.module('app.services')
+  .service('ACL', function ACL(Rest) {
+    var service = {
+      'url': "/groups_acl/",
+      'list': function () {
+        return Rest.get(this.url);
+      },
+    }
+
+    return service;
+  })
   .service('Country', function Country(Rest) {
     var service = {
       'url': "/countries/",

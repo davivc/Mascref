@@ -3,10 +3,12 @@
 /* Dashboard Controllers */
 
 angular.module('app.controllers')
-  .controller('DashboardCtrl', ['$scope', '$rootScope', '$translate', '$state', 'User', function ($scope, $rootScope, $translate, $state, User) {
+  .controller('DashboardCtrl', ['$scope', '$rootScope', '$translate', '$state', 'User', 'AclService', function ($scope, $rootScope, $translate, $state, User, AclService) {
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
+
+    // console.log(AclService.getRoles())
 
     $scope.$watch('userProfile', function(newValue, oldValue) {
       //update the DOM with newValue

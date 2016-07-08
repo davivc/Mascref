@@ -119,12 +119,12 @@ INSTALLED_APPS = (
     'app',
     'reefcheck',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'rest_framework_swagger',
+    'rest_framework_swagger',
     'rest_framework_bulk',
     'rest_auth',
     'corsheaders',

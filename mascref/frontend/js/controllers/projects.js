@@ -3,11 +3,13 @@
 /* Projects Controllers */
 
 angular.module('app.controllers')
-  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', '$timeout', '$uibModal', '$log', 'Projects', 'Researchers', function ($scope, $translate, $state, $timeout, $uibModal, $log, Projects, Researchers) {
+  .controller('ProjectsCtrl', ['$scope', '$translate', '$state', '$timeout', '$uibModal', '$log', 'Projects', 'Researchers', 'AclService', function ($scope, $translate, $state, $timeout, $uibModal, $log, Projects, Researchers, AclService) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
+
+    console.log(AclService.getRoles());
 
     // Projects List Init
     $scope.breadcrumbs = [];

@@ -25,6 +25,13 @@ class UserProfile(models.Model):
     )
     account = models.ForeignKey(Account)
 
+    @property
+    def roles(self):
+        roles = []
+        for group in self.user.groups.all():
+                roles.append(group.name)
+        return roles
+
 
 class Config(models.Model):
     account = models.ForeignKey(Account)
