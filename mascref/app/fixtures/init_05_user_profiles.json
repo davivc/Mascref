@@ -1,0 +1,23 @@
+[
+{
+  "fields": {
+    "account": 1,
+    "user": 2
+  },
+  "model": "app.userprofile"
+},
+{
+  "fields": {
+    "account": 2,
+    "user": 10
+  },
+  "model": "app.userprofile"
+},
+{
+  "fields": {
+    "account": 3,
+    "user": 100
+  },
+  "model": "app.userprofile"
+}
+]

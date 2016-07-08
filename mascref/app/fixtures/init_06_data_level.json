@@ -1,0 +1,18 @@
+[
+{
+  "fields": {
+    "name": "High Confidence",
+    "description": "Data collected by professionals, researchers or others with a certain degree of experience and/or training."
+  },
+  "model": "app.datacollectedconfidence",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Low Confidence",
+    "description": "Data collected by students, volunteers or others mainly for training purposes."
+  },
+  "model": "app.datacollectedconfidence",
+  "pk": 2
+}
+]

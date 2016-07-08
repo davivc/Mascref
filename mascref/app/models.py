@@ -194,8 +194,14 @@ class ProjectConfig(models.Model):
     value = models.CharField(max_length=100)
 
 
+class DataCollectedConfidence(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+
 class Survey(models.Model):
     project = models.ForeignKey(Project, related_name='surveys')
+    data_level = models.ForeignKey(DataCollectedConfidence)
     name = models.CharField(max_length=150)
     date_start = models.DateField()
     date_end = models.DateField(blank=True, null=True)

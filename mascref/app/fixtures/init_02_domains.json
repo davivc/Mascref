@@ -1,0 +1,34 @@
+[
+{
+  "fields": {
+    "domain": "mascref.info",
+    "name": "mascref.info"
+  },
+  "model": "sites.site",
+  "pk": 1
+},
+{
+  "fields": {
+    "domain": "labar.mascref.info",
+    "name": "labar.mascref.info"
+  },
+  "model": "sites.site",
+  "pk": 2
+},
+{
+  "fields": {
+    "domain": "usp.mascref.info",
+    "name": "usp.mascref.info"
+  },
+  "model": "sites.site",
+  "pk": 3
+},
+{
+  "fields": {
+    "domain": "demo.mascref.info",
+    "name": "demo.mascref.info"
+  },
+  "model": "sites.site",
+  "pk": 4
+}
+]

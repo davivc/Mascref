@@ -6,9 +6,10 @@
     "date_end": "2015-12-31",
     "date_start": "2015-01-01",
     "updated_at": "2015-12-19T09:11:29Z",
-    "created_by": 1,
+    "created_by": 10,
     "project": 100,
     "owner": 1,
+    "data_level": 1,
     "public": false
   },
   "model": "app.survey",
@@ -21,9 +22,10 @@
     "date_end": "2016-12-31",
     "date_start": "2016-01-01",
     "updated_at": "2015-12-19T09:11:29Z",
-    "created_by": 1,
+    "created_by": 10,
     "project": 100,
     "owner": 1,
+    "data_level": 1,
     "public": false
   },
   "model": "app.survey",
