@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from rest_framework_bulk import BulkListSerializer
-from rest_framework_bulk import BulkSerializerMixin
+from rest_framework_bulk.serializers import BulkListSerializer
+from rest_framework_bulk.serializers import BulkSerializerMixin
 from mascref.serializers import RecursiveField
 
 from models import TransectType

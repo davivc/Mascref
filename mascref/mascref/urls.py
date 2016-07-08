@@ -3,7 +3,7 @@ Definition of urls for mascref.
 """
 
 from datetime import datetime
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url, include
 # from app.forms import BootstrapAuthenticationForm
 
 # Uncomment the next lines to enable the admin:
@@ -22,7 +22,8 @@ router = routers.DefaultRouter()
 router.register(r'api/config', ConfigViewSet)
 router.register(r'api/activity', ActivityViewSet)
 
-urlpatterns = patterns('',
+urlpatterns = [
+   # '',
    # Pages
    # url(r'^$', 'app.views.home', name='home'),
 
@@ -40,7 +41,7 @@ urlpatterns = patterns('',
    url(r'^', include(router.urls)),
    # url(r'api/dashboard/stats', 'mascref.views.dashboard_totals', name='dashboard_totals'),
    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-   url(r'^api-docs/', include('rest_framework_swagger.urls')),
+   # url(r'^api-docs/', include('rest_framework_swagger.urls')),
    url(r'^rest-auth/', include('rest_auth.urls')),
    # url(r'^login/$',
    #     'django.contrib.auth.views.login',
@@ -66,4 +67,4 @@ urlpatterns = patterns('',
 
    # Uncomment the next line to enable the admin:
    # url(r'^admin/', include(admin.site.urls)),
-                   )
+                   ]

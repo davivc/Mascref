@@ -1,4 +1,4 @@
-from django.conf.urls import patterns
+# from django.conf.urls import patterns
 from django.conf.urls import url, include
 
 from rest_framework import routers
@@ -28,8 +28,8 @@ bulk = BulkRouter()
 bulk.register(r'transects_infos', TransectInfoViewSet)
 bulk.register(r'segments', SegmentViewSet)
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
+    # '',
     url(r'^', include(router.urls)),
     url(r'^', include(bulk.urls)),
-)
+]

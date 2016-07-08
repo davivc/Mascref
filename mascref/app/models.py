@@ -3,11 +3,11 @@ Definition of models.
 """
 from django.db import models
 from django.contrib.auth.models import User
-# from django.contrib.sites.models import Site
+from django.contrib.sites.models import Site
 
 
 class Account(models.Model):
-    # site = models.ForeignKey(Site)
+    site = models.ForeignKey(Site)
     name = models.CharField(max_length=100)
     domain = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

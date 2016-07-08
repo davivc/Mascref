@@ -3,7 +3,7 @@ Definition of views.
 """
 from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.response import Response
-from rest_framework_bulk import BulkModelViewSet
+from rest_framework_bulk.generics import BulkModelViewSet
 from mascref.permissions import UserPermissionsObj
 from rest_framework_tracking.mixins import LoggingMixin
 

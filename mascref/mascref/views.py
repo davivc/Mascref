@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework_tracking.mixins import LoggingMixin
 
 from mascref.permissions import UserPermissionsObj
+from mascref.permissions import UserFromAccount
 
 # Models
 from django.db.models import Q
@@ -32,7 +33,7 @@ class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer    
     permission_classes = (
-        UserPermissionsObj,
+        UserFromAccount, UserPermissionsObj,
     )
 
 

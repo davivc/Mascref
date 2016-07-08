@@ -43,5 +43,5 @@ class AccountIDMiddleware(object):
         except Account.DoesNotExist:
             return redirect(redirect_path)
         request.account = account
-        print(request)
+        # print(request.account)
         return None

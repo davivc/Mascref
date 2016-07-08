@@ -1,4 +1,4 @@
-from django.conf.urls import patterns
+# from django.conf.urls import patterns
 from django.conf.urls import url, include
 
 from rest_framework import routers
@@ -27,7 +27,7 @@ router.register(r'surveys', SurveyViewSet)
 router.register(r'researchers', ResearcherViewSet)
 router.register(r'stats/app', StatsViewSet, 'stats-app')
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
+    # '',
     url(r'^', include(router.urls)),
-)
+]

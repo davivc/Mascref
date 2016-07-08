@@ -91,8 +91,9 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Custom Middleware
     # 'mascref.middleware.SiteMiddleware'
-    'mascref.middleware.AccountIDMiddleware',
+    # 'mascref.middleware.AccountIDMiddleware',
     # 'mascref.middlewares.ThreadLocal.ThreadLocalMiddleware',    
+    'mascref.middleware_dynamicsite.DynamicSitesMiddleware',    
 )
 
 ROOT_URLCONF = 'mascref.urls'
@@ -112,7 +113,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
@@ -123,7 +124,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_swagger',
+    # 'rest_framework_swagger',
     'rest_framework_bulk',
     'rest_auth',
     'corsheaders',
@@ -162,7 +163,7 @@ LOGGING = {
 }
 
 DEFAULT_SITE_DOMAIN = 'www.mascref.info'
-
+SITES_PACKAGE = 'sites'
 AUTHENTICATION_METHOD = 'EMAIL'
 AUTHENTICATION_BACKENDS = ( 'app.auth_backend.SiteBackend', )
 AUTH_PROFILE_MODULE = "app.UserProfile"
