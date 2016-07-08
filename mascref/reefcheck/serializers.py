@@ -73,7 +73,7 @@ class TransectInfoSerializer (BulkSerializerMixin, serializers.ModelSerializer):
         list_serializer_class = BulkListSerializer
 
 
-class SegmentSerializer (serializers.ModelSerializer):
+class SegmentSerializer (BulkSerializerMixin, serializers.ModelSerializer):
     group_name = serializers.ReadOnlyField(source='group.name', read_only=True)
     parent = serializers.ReadOnlyField(
         source='group.parent.id', read_only=True)
@@ -83,9 +83,12 @@ class SegmentSerializer (serializers.ModelSerializer):
     class Meta:
         model = Segment
         fields = (
-            'token', 'transect', 'type', 'segment', 'group', 'group_name',
+            'id', 'token', 'transect', 'type', 'segment', 'group', 'group_name',
             'parent', 'parent_name', 'value', 'created_at', 'updated_at',
+            # 'id', 'token', 'transect', 'type', 'segment', 'group', 'value', 
         )
+        # only necessary in DRF3
+        list_serializer_class = BulkListSerializer
 
 
 # Non-Models Serializers

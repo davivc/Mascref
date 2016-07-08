@@ -2,7 +2,7 @@
 Definition of models.
 """
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from app.models import Project
 from app.models import Survey
 from app.models import Site
@@ -94,7 +94,9 @@ class TransectMembers(models.Model):
 
 
 class Segment(models.Model):
-    token = models.CharField(primary_key=True, max_length=100)
+    # id = models.IntegerField()
+    # token = models.CharField(primary_key=True, max_length=100)
+    token = models.CharField(db_index=True, max_length=100)
     type = models.ForeignKey(TransectType)
     transect = models.ForeignKey(Transect)
     group = models.ForeignKey(Group, blank=True, null=True)

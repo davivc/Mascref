@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0019_auto_20160224_1500'),
+        ('app', '0001_initial'),
     ]
 
     operations = [
@@ -27,6 +27,10 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('description', models.TextField(null=True, blank=True)),
             ],
+            options={
+                'ordering': ('name',),
+                'verbose_name_plural': 'group categories',
+            },
         ),
         migrations.CreateModel(
             name='GroupSet',
@@ -38,7 +42,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Segment',
             fields=[
-                ('token', models.CharField(max_length=100, serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('token', models.CharField(max_length=100, db_index=True)),
                 ('segment', models.IntegerField()),
                 ('value', models.IntegerField(null=True, blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
@@ -54,9 +59,9 @@ class Migration(migrations.Migration):
                 ('depth', models.FloatField()),
                 ('date', models.DateField(null=True, blank=True)),
                 ('time_start', models.TimeField(null=True, blank=True)),
+                ('time_end', models.TimeField(null=True, blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('members', models.ManyToManyField(related_name='members', to='app.Researcher')),
                 ('site', models.ForeignKey(related_name='transects', to='app.Site')),
                 ('survey', models.ForeignKey(related_name='transects', to='app.Survey')),
                 ('team_leader', models.ForeignKey(blank=True, to='app.Researcher', null=True)),
@@ -75,11 +80,30 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='TransectMemberRole',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='TransectMembers',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('researcher', models.ForeignKey(to='app.Researcher')),
+                ('role', models.ForeignKey(to='reefcheck.TransectMemberRole')),
+                ('transect', models.ForeignKey(to='reefcheck.Transect')),
+            ],
+        ),
+        migrations.CreateModel(
             name='TransectType',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
             ],
+            options={
+                'ordering': ('name',),
+            },
         ),
         migrations.AddField(
             model_name='segment',
@@ -94,7 +118,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='groupcategory',
             name='type',
-            field=models.ForeignKey(default=1, to='reefcheck.TransectType'),
+            field=models.ForeignKey(to='reefcheck.TransectType'),
         ),
         migrations.AddField(
             model_name='group',

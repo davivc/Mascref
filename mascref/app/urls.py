@@ -3,6 +3,8 @@ from django.conf.urls import url, include
 
 from rest_framework import routers
 
+from views import AccountViewSet
+from views import UserProfileViewSet
 from views import CountryViewSet
 from views import ProvinceViewSet
 from views import TownViewSet
@@ -14,6 +16,8 @@ from views import StatsViewSet
 
 
 router = routers.DefaultRouter()
+router.register(r'accounts', AccountViewSet)
+router.register(r'user_profile', UserProfileViewSet)
 router.register(r'countries', CountryViewSet)
 router.register(r'provinces', ProvinceViewSet)
 router.register(r'towns', TownViewSet)

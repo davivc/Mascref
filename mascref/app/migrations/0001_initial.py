@@ -2,20 +2,33 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
+        migrations.CreateModel(
+            name='Account',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100)),
+                ('domain', models.CharField(max_length=100, null=True, blank=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+            ],
+        ),
         migrations.CreateModel(
             name='Config',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('value', models.CharField(max_length=100)),
+                ('account', models.ForeignKey(to='app.Account')),
             ],
         ),
         migrations.CreateModel(
@@ -26,23 +39,8 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': ('name',),
+                'verbose_name_plural': 'countries',
             },
-        ),
-        migrations.CreateModel(
-            name='Group',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
-                ('description', models.TextField(null=True, blank=True)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Group_Category',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
-                ('description', models.TextField(null=True, blank=True)),
-            ],
         ),
         migrations.CreateModel(
             name='Project',
@@ -50,7 +48,22 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=150)),
                 ('description', models.TextField(null=True, blank=True)),
-                ('parent', models.ForeignKey(blank=True, to='app.Project', null=True)),
+                ('public', models.BooleanField(default=False)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('account', models.ForeignKey(to='app.Account')),
+            ],
+            options={
+                'ordering': ('name',),
+            },
+        ),
+        migrations.CreateModel(
+            name='ProjectConfig',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100)),
+                ('value', models.CharField(max_length=100)),
+                ('project', models.ForeignKey(related_name='configs', to='app.Project')),
             ],
         ),
         migrations.CreateModel(
@@ -58,7 +71,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=150)),
-                ('country', models.ForeignKey(to='app.Country')),
+                ('country', models.ForeignKey(related_name='provinces', to='app.Country')),
             ],
             options={
                 'ordering': ('name',),
@@ -69,15 +82,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Segment',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('segment', models.IntegerField()),
-                ('value', models.IntegerField()),
-                ('group', models.ForeignKey(blank=True, to='app.Group', null=True)),
+                ('eco_diver', models.CharField(max_length=100, null=True, blank=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('account', models.ForeignKey(to='app.Account')),
             ],
         ),
         migrations.CreateModel(
@@ -85,17 +93,37 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=150)),
-                ('lat', models.IntegerField()),
-                ('long', models.IntegerField()),
+                ('lat', models.FloatField()),
+                ('long', models.FloatField()),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
             ],
+            options={
+                'ordering': ('name',),
+            },
         ),
         migrations.CreateModel(
             name='Survey',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=150)),
                 ('date_start', models.DateField()),
                 ('date_end', models.DateField(null=True, blank=True)),
-                ('project', models.ForeignKey(to='app.Project')),
+                ('public', models.BooleanField(default=False)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+            ],
+            options={
+                'ordering': ('name',),
+            },
+        ),
+        migrations.CreateModel(
+            name='SurveyConfig',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100)),
+                ('value', models.CharField(max_length=100)),
+                ('survey', models.ForeignKey(related_name='configs', to='app.Survey')),
             ],
         ),
         migrations.CreateModel(
@@ -103,69 +131,58 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=150)),
-                ('country', models.ForeignKey(to='app.Country')),
-                ('province', models.ForeignKey(blank=True, to='app.Province', null=True)),
+                ('country', models.ForeignKey(related_name='towns', to='app.Country')),
+                ('province', models.ForeignKey(related_name='towns', blank=True, to='app.Province', null=True)),
             ],
             options={
                 'ordering': ('name',),
             },
         ),
         migrations.CreateModel(
-            name='Transect',
+            name='UserProfile',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=150)),
-                ('depth', models.IntegerField()),
-                ('date', models.DateField(null=True, blank=True)),
-                ('time_start', models.TimeField(null=True, blank=True)),
-                ('site', models.ForeignKey(to='app.Site')),
-                ('survey', models.ForeignKey(to='app.Survey')),
-                ('team_leader', models.ForeignKey(blank=True, to='app.Researcher', null=True)),
+                ('user', models.OneToOneField(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
+                ('account', models.ForeignKey(to='app.Account')),
             ],
         ),
-        migrations.CreateModel(
-            name='Transect_Researchers',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('researcher', models.ForeignKey(to='app.Researcher')),
-                ('transect', models.ForeignKey(to='app.Transect')),
-            ],
+        migrations.AddField(
+            model_name='survey',
+            name='created_by',
+            field=models.ForeignKey(blank=True, to='app.UserProfile', null=True),
         ),
-        migrations.CreateModel(
-            name='Transect_Type',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
-            ],
+        migrations.AddField(
+            model_name='survey',
+            name='owner',
+            field=models.ForeignKey(blank=True, to='app.Researcher', null=True),
+        ),
+        migrations.AddField(
+            model_name='survey',
+            name='project',
+            field=models.ForeignKey(related_name='surveys', to='app.Project'),
         ),
         migrations.AddField(
             model_name='site',
             name='town',
-            field=models.ForeignKey(blank=True, to='app.Town', null=True),
+            field=models.ForeignKey(related_name='sites', blank=True, to='app.Town', null=True),
         ),
         migrations.AddField(
-            model_name='segment',
-            name='transect',
-            field=models.ForeignKey(to='app.Transect'),
+            model_name='researcher',
+            name='user',
+            field=models.ForeignKey(blank=True, to='app.UserProfile', null=True),
         ),
         migrations.AddField(
-            model_name='segment',
-            name='type',
-            field=models.ForeignKey(to='app.Transect_Type'),
+            model_name='project',
+            name='created_by',
+            field=models.ForeignKey(blank=True, to='app.UserProfile', null=True),
         ),
         migrations.AddField(
-            model_name='group',
-            name='category',
-            field=models.ForeignKey(blank=True, to='app.Group_Category', null=True),
+            model_name='project',
+            name='owner',
+            field=models.ForeignKey(blank=True, to='app.Researcher', null=True),
         ),
         migrations.AddField(
-            model_name='group',
+            model_name='project',
             name='parent',
-            field=models.ForeignKey(blank=True, to='app.Group', null=True),
-        ),
-        migrations.AddField(
-            model_name='group',
-            name='type',
-            field=models.ForeignKey(to='app.Transect_Type'),
+            field=models.ForeignKey(blank=True, to='app.Project', null=True),
         ),
     ]

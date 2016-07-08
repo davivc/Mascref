@@ -21,7 +21,13 @@ angular.module('app.services')
       if (data.created_at) return Rest.patch(this.url + data.token + "/", data);
       else return Rest.post(this.url, data);
       //return Rest.put(this.url + data.token + "/", data);
-    }
+    },
+    'createMultiple': function (pData) {      
+      return Rest.post(this.url, pData);
+    },
+    'updateMultiple': function (pData) {      
+      return Rest.patch(this.url, pData);
+    },
   }
 
   return service;

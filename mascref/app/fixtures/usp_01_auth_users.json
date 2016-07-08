@@ -1,0 +1,28 @@
+[
+{
+  "fields": {
+    "username": "ldutra",
+    "first_name": "Leo",
+    "last_name": "Dutra",
+    "is_active": true,
+    "is_superuser": false,
+    "is_staff": true,
+    "last_login": "2016-02-15T00:01:38Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$20000$fsR4yPrxW7lk$ffpEYaICAmY5TrbrydMfTmIOrsRC0f5h8BN1Md+/Z54=",
+    "email": "admin@gmail.com",
+    "date_joined": "2015-09-22T01:43:53Z"
+  },
+  "model": "auth.user",
+  "pk": 100
+},
+{
+  "fields": {
+    "user": 100,
+    "created": "2016-02-04T02:34:51Z"
+  },
+  "model": "authtoken.token",
+  "pk": "e3864bdb95da789dd81bca4a59e278bcedb3578a"
+}
+]

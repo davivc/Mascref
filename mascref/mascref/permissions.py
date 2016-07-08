@@ -11,3 +11,15 @@ class UserPermissionsObj(permissions.BasePermission):
             return True
 
         return obj == request.user
+
+
+class UserFromAccount(permissions.BasePermission):
+    """
+    User from account can do anything.
+    """
+
+    def has_account_permission(self, request, view, obj):
+        # print request
+        return true
+
+

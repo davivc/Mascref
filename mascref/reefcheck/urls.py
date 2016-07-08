@@ -21,11 +21,12 @@ router.register(r'groups_sets', GroupSetViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'transects', TransectViewSet)
 # router.register(r'transects_infos', TransectInfoViewSet)
-router.register(r'segments', SegmentViewSet)
+# router.register(r'segments', SegmentViewSet)
 router.register(r'stats/reefcheck', StatsViewSet, 'stats-reefcheck')
 
 bulk = BulkRouter()
 bulk.register(r'transects_infos', TransectInfoViewSet)
+bulk.register(r'segments', SegmentViewSet)
 
 urlpatterns = patterns(
     '',

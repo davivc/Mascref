@@ -3,17 +3,40 @@ Definition of models.
 """
 from django.db import models
 from django.contrib.auth.models import User
+# from django.contrib.sites.models import Site
+
+
+class Account(models.Model):
+    # site = models.ForeignKey(Site)
+    name = models.CharField(max_length=100)
+    domain = models.CharField(max_length=100, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return '%s' % (self.name)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    account = models.ForeignKey(Account)
 
 
 class Config(models.Model):
+    account = models.ForeignKey(Account)
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
 
 
 class Researcher(models.Model):
+    account = models.ForeignKey(Account)
     name = models.CharField(max_length=100)
     eco_diver = models.CharField(max_length=100, blank=True, null=True)
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(UserProfile, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -108,7 +131,6 @@ class Town(models.Model):
     class Meta:
         ordering = ('name',)
 
-
     @property
     def surveys(self):
         surveys = []
@@ -149,12 +171,13 @@ class Site(models.Model):
 
 
 class Project(models.Model):
+    account = models.ForeignKey(Account)
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True, null=True)
     parent = models.ForeignKey('self', blank=True, null=True)
     public = models.BooleanField(default=False)
     owner = models.ForeignKey(Researcher, blank=True, null=True)
-    created_by = models.ForeignKey(User, blank=True, null=True)
+    created_by = models.ForeignKey(UserProfile, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -178,7 +201,7 @@ class Survey(models.Model):
     date_end = models.DateField(blank=True, null=True)
     public = models.BooleanField(default=False)
     owner = models.ForeignKey(Researcher, blank=True, null=True)
-    created_by = models.ForeignKey(User, blank=True, null=True)
+    created_by = models.ForeignKey(UserProfile, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -203,8 +226,8 @@ class Survey(models.Model):
 #     survey = models.ForeignKey(Survey, related_name='sites')
 #     site = models.ForeignKey(Site, related_name='sites')
 
+
 class SurveyConfig(models.Model):
     survey = models.ForeignKey(Survey, related_name='configs')
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
-

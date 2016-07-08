@@ -20,7 +20,8 @@ TIME_ZONE = 'Australia/Sydney'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
+# SITE_ID = 1
+DEFAULT_SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -88,7 +89,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    # Custom Middleware
+    # 'mascref.middleware.SiteMiddleware'
+    'mascref.middleware.AccountIDMiddleware',
+    # 'mascref.middlewares.ThreadLocal.ThreadLocalMiddleware',    
 )
 
 ROOT_URLCONF = 'mascref.urls'
@@ -108,7 +112,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
@@ -157,9 +161,20 @@ LOGGING = {
     }
 }
 
+DEFAULT_SITE_DOMAIN = 'www.mascref.info'
+
 AUTHENTICATION_METHOD = 'EMAIL'
+AUTHENTICATION_BACKENDS = ( 'app.auth_backend.SiteBackend', )
+AUTH_PROFILE_MODULE = "app.UserProfile"
+
+# config session to work through subdomains
+# SESSION_COOKIE_DOMAIN = '.mascref.info'
 
 from settings_local import * 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+}
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'mascref.serializers.UserSerializer',

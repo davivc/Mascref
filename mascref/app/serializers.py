@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from models import Account
+from models import UserProfile
 from models import Country
 from models import Province
 from models import Town
@@ -7,6 +9,25 @@ from models import Site
 from models import Project
 from models import Survey
 from models import Researcher
+
+
+class AccountSerializer(serializers.ModelSerializer):
+    # site = AccountSerializer(read_only=True)
+    class Meta:
+        model = Account
+        fields = (
+            'name', 'site'
+        )
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    account = AccountSerializer(read_only=True)
+    class Meta:
+        model = UserProfile
+        fields = (
+            'account',
+        )
+
 
 class CountrySerializer (serializers.ModelSerializer):
     class Meta:

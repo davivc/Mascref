@@ -1,7 +1,7 @@
 ﻿<div ng-controller="TransectSiteFormCtrl">
   <div class="form-group pull-in clearfix">
     <div class="col-sm-9 text-left">
-      <uib-alert ng-if="alert.type" type="{{alert.type}}" close="closeAlert($index)"><i ng-if="alert.type == 'danger'" class="fa fa-spinner fa-spin"></i> {{alert.msg}}</uib-alert>
+      <uib-alert ng-if="alert.type" type="{{alert.type}}" close="closeAlert($index)"><i ng-if="alert.type == 'info'" class="fa fa-spinner fa-spin"></i> {{alert.msg}}</uib-alert>
     </div>
     <div class="col-sm-3 text-right">
       <button type="submit" class="btn btn-m btn-success" ng-click="saveInfo()">Save Site Info</button>

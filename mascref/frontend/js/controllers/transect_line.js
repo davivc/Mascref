@@ -79,8 +79,19 @@ angular.module('app.controllers')
         }
 
         $scope.saveLine = function() {
+          $scope.alert = { 
+            type: 'info',
+            msg: 'Saving line transect data...'
+          }
+          var create = []
+          var update = []
           angular.forEach($scope.transect.line.data, function (seg, k) {
             angular.forEach(seg, function (point, key) {
+              if (point.group_name) {
+                if (point.group_name.id) point.group = point.group_name.id;
+                else point.group = $filter('filter')($scope.line_groups, { name: point.group_name }, true)[0].id;
+              }
+
               if (!point.token) {
                 var pad = ('00' + (key + 1)).slice(-2);
                 point.token = $scope.transect.info.id + '_' + $scope.type + '_' + (k + 1) + '_' + pad;
@@ -88,14 +99,41 @@ angular.module('app.controllers')
                 point.segment = k + 1;
                 point.type = $scope.type;                
                 point.value = key + 1;
-                if (point.group_name) {
-                  if (point.group_name.id) point.group = point.group_name.id;
-                  else point.group = $filter('filter')($scope.line_groups, { name: point.group_name }, true)[0].id;
-                }
-              }             
-              Segment.save(point).then(function (data) { $scope.transect.line.data[k][key] = data; }, function (error) { });
+                create.push(point)
+              }
+
+              else {
+                // point.pk = point.token
+                delete point.created_at;
+                delete point.updated_at;
+                // delete point.group_name;
+                // delete point.parent;
+                // delete point.parent_name;
+                update.push(point)
+              }
+              $scope.transect.line.data[k][key] = point;
+              // console.log(point)      
+              // Segment.save(point).then(function (data) { $scope.transect.line.data[k][key] = data; }, function (error) { });
             });
           });
+          Segment.createMultiple(create).then(function (data) {  
+            Segment.updateMultiple(update.slice(0, 5)).then(function (data) { 
+              $scope.alert = { 
+                type: 'success',
+                msg: 'Line transect saved successfully!'
+              }
+            }, function (error) {
+              $scope.alert = { 
+                type: 'danger',
+                msg: 'Ops! It appears that an error occurred while updating some data on the line transect'
+              }
+            });
+          }, function (error) {
+            $scope.alert = { 
+              type: 'danger',
+              msg: 'Ops! It appears that an error occurred while saving some data on the line transect'
+            }
+          });      
         }
 
         $scope.updateLineGraphs = function() {

@@ -2,6 +2,7 @@
 
 # Models
 from django.contrib.auth.models import User
+from app.serializers import UserProfileSerializer
 from rest_framework_tracking.models import APIRequestLog
 from app.models import Config
 
@@ -27,15 +28,13 @@ class ActivitySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    is_admin = serializers.ReadOnlyField(
-        source='is_superuser', read_only=True
-    )
+    user_profile = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = User
         fields = (
             'id', 'url', 'username', 'email', 'first_name',
-            'last_name', 'is_staff', 'is_admin', 'date_joined'
+            'last_name', 'is_staff', 'user_profile', 'date_joined'
         )
 
 

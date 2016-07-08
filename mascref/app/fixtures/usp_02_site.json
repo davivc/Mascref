@@ -1,0 +1,10 @@
+[
+{
+  "fields": {
+    "domain": "usp.mascref.info",
+    "name": "usp.mascref.info"
+  },
+  "model": "sites.site",
+  "pk": 2
+}
+]

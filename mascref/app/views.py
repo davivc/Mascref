@@ -3,9 +3,12 @@ Definition of views.
 """
 from rest_framework import viewsets, permissions, filters
 from rest_framework.response import Response
-# from mascref.permissions import UserPermissionsObj
+from mascref.permissions import UserPermissionsObj
+from mascref.permissions import UserFromAccount
 from rest_framework_tracking.mixins import LoggingMixin
 
+from models import Account
+from models import UserProfile
 from models import Country
 from models import Province
 from models import Town
@@ -16,6 +19,8 @@ from models import Researcher
 from objects import Stats
 
 # from mascref.serializers import UserSerializer
+from serializers import AccountSerializer
+from serializers import UserProfileSerializer
 from serializers import CountrySerializer
 from serializers import ProvinceSerializer
 from serializers import TownSerializer
@@ -24,6 +29,22 @@ from serializers import ProjectSerializer
 from serializers import SurveySerializer
 from serializers import ResearcherSerializer
 from serializers import StatsSerializer
+
+
+class AccountViewSet(viewsets.ModelViewSet):
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = (
+        permissions.IsAuthenticated, 
+    )
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (
+        UserFromAccount,
+    )
 
 
 class CountryViewSet(LoggingMixin, viewsets.ModelViewSet):

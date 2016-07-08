@@ -61,7 +61,7 @@ class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     ordering = ('name',)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('category', 'type','set',)
+    filter_fields = ('category', 'type', 'set', )
     permission_classes = (
         permissions.IsAuthenticated,
     )
@@ -81,7 +81,7 @@ class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = TransectSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('survey',)
-    ordering = ('name','date',)
+    ordering = ('name', 'date', )
     permission_classes = (
         permissions.IsAuthenticated,
     )
@@ -92,18 +92,18 @@ class TransectInfoViewSet(LoggingMixin, BulkModelViewSet):
     serializer_class = TransectInfoSerializer
     ordering = ('name',)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('transect','name',)
+    filter_fields = ('transect', 'name',)
     permission_classes = (
         permissions.IsAuthenticated,
     )
 
 
-class SegmentViewSet(LoggingMixin, viewsets.ModelViewSet):
+class SegmentViewSet(LoggingMixin, BulkModelViewSet):
     queryset = Segment.objects.all()
     serializer_class = SegmentSerializer
     ordering = ('token',)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('transect','segment','group','token','type',)
+    filter_fields = ('transect', 'segment', 'group', 'token', 'type',)
     permission_classes = (
         permissions.IsAuthenticated,
     )
