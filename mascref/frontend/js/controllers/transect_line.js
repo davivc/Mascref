@@ -12,6 +12,7 @@ angular.module('app.controllers')
       '$filter',
       'Group',
       'Segment',
+      'TransectFact',
       function (
           $scope, 
           $translate, 
@@ -19,7 +20,8 @@ angular.module('app.controllers')
           $stateParams,
           $filter,
           Group,
-          Segment
+          Segment,
+          TransectFact
       ) {
 
         $scope.type = $scope.config.reefcheck.transect_line_id;
@@ -34,19 +36,11 @@ angular.module('app.controllers')
           }
         }, true);
 
+        $scope.line_graphs_data = TransectFact.line_graph_data;
+
         $scope.$watch('line_groups',function(oldVal,newVal) {
-          $scope.line_graphs_data = [{
-            x: [0],
-            y: [0],
-            error_y: {
-              type: 'data',
-              array: [0],
-              visible: true
-            },
-            type: 'bar'
-          }];
+          // $scope.line_graphs_data = ;
           $scope.updateLineGraphs();
-          console.log($scope.line_graphs)
         }, true);
 
         $scope.$watch('transect.line.data',function(oldVal,newVal) { 
@@ -164,6 +158,8 @@ angular.module('app.controllers')
           $scope.line_graphs_data[0].y = y;
           $scope.line_graphs_data[0].error_y.array = error_y;
           // $scope.$apply();
+          // TransectFact.line_graph_data = $scope.line_graphs_data;
+          // console.log(TransectFact.line_graph_data);
           // console.log($scope.line_graphs_data);
         }
 
@@ -176,13 +172,26 @@ angular.module('app.controllers')
       '$scope', 
       '$translate',
       '$state', 
-      '$stateParams', 
+      '$stateParams',
+      'TransectFact',
       function (
           $scope, 
           $translate, 
           $state, 
-          $stateParams
+          $stateParams,
+          TransectFact
       ) {
+
+        $scope.graph_data = TransectFact.line_graph_data;
+        $scope.graph_layout = {
+          height: 600, 
+          width: 1000, 
+          title: 'Mean Percent of Substrate Cover with SE bars'
+        };
+        $scope.plot_options = { 
+          showLink: true, 
+          displayLogo: false 
+        };
       }
     ]
   );

@@ -17,6 +17,7 @@ var app = angular.module('app', [
     'app.filters',
     'app.services',
     'app.directives',
+    'app.factories',
     'app.controllers',
     'reefcheck',
     'maps.controllers',
