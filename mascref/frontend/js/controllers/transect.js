@@ -16,6 +16,7 @@ angular.module('app.controllers')
       'Country', 
       'Province',
       'Town',
+      'Group',
       'uiGmapGoogleMapApi', 
       'uiGmapIsReady', 
       'coordinateFilterFilter', 
@@ -32,6 +33,7 @@ angular.module('app.controllers')
           Country, 
           Province, 
           Town,
+          Group,
           uiGmapGoogleMapApi, 
           uiGmapIsReady, 
           coordinateFilterFilter, 
@@ -58,7 +60,9 @@ angular.module('app.controllers')
         segments_length: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_LENGTH,
         segments_space: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_SPACE,
         transect_line_id: $scope.MASCREF_CONF.TRANSECT_TYPE.LINE,
-        group_set: $scope.MASCREF_CONF.REEFCHECK_GROUP_SET_DEFAULT
+        transect_belt_id: $scope.MASCREF_CONF.TRANSECT_TYPE.BELT,
+        group_set_line: $scope.MASCREF_CONF.REEFCHECK_GROUP_SET_LINE,
+        group_set_belt: $scope.MASCREF_CONF.REEFCHECK_GROUP_SET_BELT
       }
     }
 

@@ -48,7 +48,7 @@ angular.module('app.controllers')
         }, true);
 
         $scope.getGroups = function (model, parent, type, category) {
-          Group.list(parent, type, category, $scope.config.reefcheck.group_set)
+          Group.list(parent, type, category, $scope.config.reefcheck.group_set_line)
           .then(function (data) {
             if (category) $scope[model][category] = data;
             else $scope[model] = data;

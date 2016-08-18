@@ -310,6 +310,7 @@ var app = angular.module('app', [
   TRANSECT_SEGMENTS_TOTAL: 3, // Number of segments per transect
   REEFCHECK_LINE: true, // Activate line transect
   REEFCHECK_BELT: true, // Activate belt transect
-  REEFCHECK_GROUP_SET_DEFAULT: 10, // Number of segments per transect
+  REEFCHECK_GROUP_SET_DEFAULT_LINE: 10,
+  REEFCHECK_GROUP_SET_DEFAULT_BELT: 1,
   TRANSECT_TYPE: { BELT: 1, LINE: 2 },
 });
