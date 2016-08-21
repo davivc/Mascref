@@ -9,4 +9,4 @@ PyYAML==3.11
 six==1.10.0
 django-crispy-forms==1.5.2
 django-filter==0.11.0
-drf-tracking==0.2.3
+drf-tracking==0.2.5

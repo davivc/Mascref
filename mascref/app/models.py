@@ -9,7 +9,7 @@ from django.contrib.sites.models import Site
 class Account(models.Model):
     site = models.ForeignKey(Site)
     name = models.CharField(max_length=100)
-    domain = models.CharField(max_length=50, unique=True)
+    subdomain = models.CharField(max_length=30, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

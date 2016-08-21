@@ -128,7 +128,7 @@ INSTALLED_APPS = (
     'rest_framework_bulk',
     'rest_auth',
     'corsheaders',
-    'rest_framework_tracking',
+    # 'rest_framework_tracking',
     'rest_assured',
     # 'factory',
 )

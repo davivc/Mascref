@@ -12,7 +12,7 @@ angular.module('app.controllers')
 
     $scope.$watch('userProfile', function(newValue, oldValue) {
       //update the DOM with newValue
-      console.log(newValue, oldValue)
+      // console.log(newValue, oldValue)
     });
   }])
   .controller('DashboardStatsCtrl', ['$scope', '$rootScope', '$translate', '$filter', 'Dashboard', function ($scope, $rootScope, $translate, $filter, Dashboard) {
@@ -24,7 +24,7 @@ angular.module('app.controllers')
       'surveys': 0,
       'transects': 0
     }
-    // console.log($rootScope.userProfile)
+    
     $scope.researchers = []
     $scope.totalAdmin = 0;
     $scope.totalMembers = 0;
@@ -33,7 +33,6 @@ angular.module('app.controllers')
     $scope.getStats = function () {
       Dashboard.stats()
       .then(function (data) {
-        console.log(data)
         $scope.stats = data;
       }, function (error) {
         console.error('Dash Stats: ' + error);
@@ -73,5 +72,5 @@ angular.module('app.controllers')
       });
     }
 
-    $scope.getActivities();
+    // $scope.getActivities();
   }]);

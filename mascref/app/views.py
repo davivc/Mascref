@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from mascref.permissions import UserPermissionsObj
 from mascref.permissions import UserFromAccount
 from mascref.permissions import ObjectFromAccount
-from rest_framework_tracking.mixins import LoggingMixin
+# from rest_framework_tracking.mixins import LoggingMixin
 
 from django.contrib.auth.models import Group
 from models import Account
@@ -59,7 +59,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     )
 
 
-class CountryViewSet(LoggingMixin, viewsets.ModelViewSet):
+class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
     ordering = ('name',)
@@ -70,7 +70,7 @@ class CountryViewSet(LoggingMixin, viewsets.ModelViewSet):
     )
 
 
-class ProvinceViewSet(LoggingMixin, viewsets.ModelViewSet):
+class ProvinceViewSet(viewsets.ModelViewSet):
     queryset = Province.objects.all()
     serializer_class = ProvinceSerializer
     ordering = ('name',)
@@ -82,7 +82,7 @@ class ProvinceViewSet(LoggingMixin, viewsets.ModelViewSet):
     )
 
 
-class TownViewSet(LoggingMixin, viewsets.ModelViewSet):
+class TownViewSet(viewsets.ModelViewSet):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
     ordering = ('name',)
@@ -94,7 +94,7 @@ class TownViewSet(LoggingMixin, viewsets.ModelViewSet):
     )
 
 
-class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):
+class SiteViewSet(viewsets.ModelViewSet):
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
     ordering = ('name',)
@@ -105,7 +105,7 @@ class SiteViewSet(LoggingMixin, viewsets.ModelViewSet):
     )
 
 
-class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
+class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     ordering = ('name',)
@@ -128,7 +128,7 @@ class ProjectViewSet(LoggingMixin, viewsets.ModelViewSet):
         return queryset
 
 
-class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
+class SurveyViewSet(viewsets.ModelViewSet):
     queryset = Survey.objects.all()
     serializer_class = SurveySerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -146,7 +146,7 @@ class SurveyViewSet(LoggingMixin, viewsets.ModelViewSet):
         serializer.save(created_by=self.request.user)
 
 
-class ResearcherViewSet(LoggingMixin, viewsets.ModelViewSet):
+class ResearcherViewSet(viewsets.ModelViewSet):
     queryset = Researcher.objects.all()
     serializer_class = ResearcherSerializer
     ordering = ('name',)

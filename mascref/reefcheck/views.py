@@ -5,7 +5,7 @@ from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.response import Response
 from rest_framework_bulk.generics import BulkModelViewSet
 from mascref.permissions import UserPermissionsObj
-from rest_framework_tracking.mixins import LoggingMixin
+# from rest_framework_tracking.mixins import LoggingMixin
 
 from models import TransectType
 from models import GroupCategory
@@ -35,7 +35,7 @@ class TransectTypeViewSet(viewsets.ModelViewSet):
     )
 
 
-class GroupCategoryViewSet(LoggingMixin, viewsets.ModelViewSet):
+class GroupCategoryViewSet(viewsets.ModelViewSet):
     queryset = GroupCategory.objects.all()
     serializer_class = GroupCategorySerializer
     ordering = ('name',)
@@ -56,7 +56,7 @@ class GroupSetViewSet(viewsets.ModelViewSet):
     )
 
 
-class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     ordering = ('name',)
@@ -76,7 +76,7 @@ class GroupViewSet(LoggingMixin, viewsets.ModelViewSet):
         return queryset
 
 
-class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
+class TransectViewSet(viewsets.ModelViewSet):
     queryset = Transect.objects.all()
     serializer_class = TransectSerializer
     filter_backends = (filters.DjangoFilterBackend,)
@@ -92,7 +92,7 @@ class TransectViewSet(LoggingMixin, viewsets.ModelViewSet):
         return queryset
 
 
-class TransectInfoViewSet(LoggingMixin, BulkModelViewSet):
+class TransectInfoViewSet(BulkModelViewSet):
     queryset = TransectInfo.objects.all()
     serializer_class = TransectInfoSerializer
     ordering = ('name',)
@@ -103,7 +103,7 @@ class TransectInfoViewSet(LoggingMixin, BulkModelViewSet):
     )
 
 
-class SegmentViewSet(LoggingMixin, BulkModelViewSet):
+class SegmentViewSet(BulkModelViewSet):
     queryset = Segment.objects.all()
     serializer_class = SegmentSerializer
     ordering = ('token',)

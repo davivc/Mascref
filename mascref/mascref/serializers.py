@@ -3,7 +3,7 @@
 # Models
 from django.contrib.auth.models import User
 from app.serializers import UserProfileSerializer
-from rest_framework_tracking.models import APIRequestLog
+# from rest_framework_tracking.models import APIRequestLog
 from app.models import Config
 
 
@@ -14,17 +14,17 @@ class RecursiveField(serializers.Serializer):
 
 
 # Serializers define the API representation.
-class ActivitySerializer(serializers.ModelSerializer):
-    firstname = serializers.ReadOnlyField(
-        source='user.first_name', read_only=True
-    )
+# class ActivitySerializer(serializers.ModelSerializer):
+#     firstname = serializers.ReadOnlyField(
+#         source='user.first_name', read_only=True
+#     )
 
-    class Meta:
-        model = APIRequestLog
-        fields = (
-            'id', 'requested_at', 'path', 'method',
-            'data', 'response', 'user', 'firstname',
-        )
+#     class Meta:
+#         model = APIRequestLog
+#         fields = (
+#             'id', 'requested_at', 'path', 'method',
+#             'data', 'response', 'user', 'firstname',
+#         )
 
 
 class UserSerializer(serializers.ModelSerializer):

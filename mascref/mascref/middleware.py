@@ -39,7 +39,7 @@ class AccountIDMiddleware(object):
         #     except Resolver404:
         #         return redirect(redirect_path)
         try:
-            account = Account.objects.get(domain=pieces[0])
+            account = Account.objects.get(subdomain=pieces[0])
         except Account.DoesNotExist:
             account = None
             # return redirect(redirect_path)

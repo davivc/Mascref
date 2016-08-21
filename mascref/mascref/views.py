@@ -1,7 +1,7 @@
 # Rest imports
 from rest_framework import generics, viewsets, permissions, filters
 from rest_framework.response import Response
-from rest_framework_tracking.mixins import LoggingMixin
+# from rest_framework_tracking.mixins import LoggingMixin
 
 from mascref.permissions import UserPermissionsObj
 from mascref.permissions import UserFromAccount
@@ -10,14 +10,14 @@ from mascref.permissions import UserFromAccount
 from django.db.models import Q
 from django.contrib.auth.models import User
 
-from rest_framework_tracking.models import APIRequestLog
+# from rest_framework_tracking.models import APIRequestLog
 
 from app.models import Config
 
 # Serializers
 from mascref.serializers import ConfigSerializer
 from mascref.serializers import UserSerializer
-from mascref.serializers import ActivitySerializer
+# from mascref.serializers import ActivitySerializer
 
 
 # Rest-Auth
@@ -43,7 +43,7 @@ class UserDetail(generics.RetrieveAPIView):
 
 
 # API models
-class ConfigViewSet(LoggingMixin, viewsets.ModelViewSet):
+class ConfigViewSet(viewsets.ModelViewSet):
     queryset = Config.objects.all()
     serializer_class = ConfigSerializer
     permission_classes = (
@@ -51,10 +51,10 @@ class ConfigViewSet(LoggingMixin, viewsets.ModelViewSet):
     )
 
 
-class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(Q(path__contains='segments') | Q(status_code=400)).order_by('-requested_at')[:10]
-    serializer_class = ActivitySerializer
-    ordering = ('requested_at',)
-    permission_classes = (
-        permissions.IsAuthenticated,
-    )
+# class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
+#     queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(Q(path__contains='segments') | Q(status_code=400)).order_by('-requested_at')[:10]
+#     serializer_class = ActivitySerializer
+#     ordering = ('requested_at',)
+#     permission_classes = (
+#         permissions.IsAuthenticated,
+#     )

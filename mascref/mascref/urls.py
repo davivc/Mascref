@@ -13,14 +13,14 @@ from rest_framework import routers
 from mascref.views import ConfigViewSet
 from mascref.views import UserList
 from mascref.views import UserDetail
-from mascref.views import ActivityViewSet
+# from mascref.views import ActivityViewSet
 
 # admin.autodiscover()
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'api/config', ConfigViewSet)
-router.register(r'api/activity', ActivityViewSet)
+# router.register(r'api/activity', ActivityViewSet)
 
 urlpatterns = [
    # '',
