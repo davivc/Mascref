@@ -7,7 +7,7 @@
       <button type="submit" class="btn btn-m btn-success" ng-click="saveBelt()">Save Belt Transect</button>
     </div>
   </div>
-  <div class="panel panel-default">
+  <!-- <div class="panel panel-default">
     <div class="panel-body">
       <div class="form-group">
         <label class="col-sm-2">Data recorded by</label>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="panel panel-default" ng-repeat="category in belt_categories">
     <div class="panel-heading">
       <strong>{{category.name}}</strong>
@@ -48,8 +48,10 @@
               <td class="text-center" ng-repeat="seg in segments_total | range">
                 <div class="text-center" ng-if="group.sub_groups.length != 0">{{ transect.belt.data[group.id]['sub_groups'] | sum:seg }}</div>
                 <div class="text-center input-group" ng-if="group.sub_groups.length == 0">
-                  <input ng-model="transect.belt.data[group.id][seg]" ng-init="transect.belt.data[group.id][seg] = 0" type="text" class="form-control input-sm text-center" value="0" />
-                  <span ng-if="group.format == 2" class="input-group-addon">%</span>
+                  <input ng-model="transect.belt.data[group.id][seg].value" type="text" class="form-control input-sm text-center" value="0" placeholder="0" />
+                  <span class="input-group-addon">
+                    <span ng-style="group.format != 2 ? {color:'#eee'} : {}">%</span>
+                  </span>
                 </div>
               </td>
               <td class="text-center"><span ng-show="group.format != 2">{{ belt_graphs[category.id][group.id].sum }}</span></td>
@@ -60,7 +62,7 @@
               <td>{{sub.name}}</td>
               <td class="text-center" ng-repeat="seg in segments_total | range">
                 <div class="input-group text-center">
-                  <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg]" ng-init="transect.belt.data[group.id]['sub_groups'][sub.id][seg] = 0" type="text" class="form-control input-sm text-center" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
+                  <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg].value" type="text" class="form-control input-sm text-center"  placeholder="0" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
                   <span ng-if="group.format == 2" class="input-group-addon">%</span>
                 </div>
               </td>
@@ -74,7 +76,7 @@
     </div>
   </div>
   
-  <div class="panel panel-default">
+  <!-- <div class="panel panel-default">
     <div class="panel-body">
       <div class="form-group">
         <label class="col-sm-2 control-label">Comments</label>
@@ -83,7 +85,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="form-group pull-in clearfix">
     <div class="col-sm-9 text-left">

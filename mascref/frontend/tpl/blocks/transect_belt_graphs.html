@@ -1,6 +1,8 @@
-<div class="panel panel-default" ng-repeat="belt_plot in belt_graphs_data">
-  <div class="panel-body">
-    <plotly data="belt_plot.data" layout="belt_plot.layout" options="belt_plot.options"></plotly>
-    <br />
-  </div>
+<div ng-controller="TransectBeltGraphCtrl">
+	<div class="panel panel-default" ng-repeat="belt_plot in belt_graphs_data">
+	  <div class="panel-body">
+	    <plotly data="belt_plot.data" layout="belt_plot.layout" options="belt_plot.options"></plotly>
+	    <br />
+	  </div>
+	</div>
 </div>

@@ -15,5 +15,6 @@ angular.module('app.factories', [])
       },
       type: 'bar'
     }],
+    belt_graph_data: [],
   };
 });
