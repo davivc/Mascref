@@ -44,7 +44,7 @@ angular.module('app.services')
         deferred.resolve(data, status);
       }))
       .error(angular.bind(this, function (data, status, headers, config) {
-        console.log("error syncing with: " + url);
+        // console.log("error syncing with: " + url);
         // Set request status
         if (data) {
           data.status = status;

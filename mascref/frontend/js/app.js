@@ -105,7 +105,20 @@ var app = angular.module('app', [
         }
 
         $urlRouterProvider
-          .otherwise('/access/404');
+          .otherwise('/access/404')
+          .rule(function($injector, $location) {
+            var path = $location.path();
+            var hasTrailingSlash = path[path.length-1] === '/';
+
+            if(hasTrailingSlash) {
+
+              //if last charcter is a slash, return the same url without the slash  
+              var newPath = path.substr(0, path.length - 1); 
+              return newPath; 
+            } 
+
+          });
+          
         $stateProvider
           .state('home', {
               url: '/',
@@ -274,9 +287,9 @@ var app = angular.module('app', [
   //$httpProvider.defaults.headers.post['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();  
 
   uiGmapGoogleMapApiProvider.configure({
-    key: 'AIzaSyCUYhP4I6btgvDhBpsrm1KkKl4H7znlY7Q',
+    key: 'AIzaSyBdQrfr23D7nzfNbU6hPAG1iLkYEfDbevM',
     v: '3.20', //defaults to latest 3.X anyhow
-    libraries: 'weather,geometry,visualization'
+    // libraries: 'weather,geometry,visualization'
   });
 })
 

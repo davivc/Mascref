@@ -47,7 +47,7 @@ urlpatterns = [
    url(r'^', include(router.urls)),
    # url(r'api/dashboard/stats', 'mascref.views.dashboard_totals', name='dashboard_totals'),
    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-   # url(r'^api-docs/', include('rest_framework_swagger.urls')),
+   url(r'^api-docs/', include('rest_framework_swagger.urls')),
    url(r'^rest-auth/', include('rest_auth.urls')),
    # url(r'^login/$',
    #     'django.contrib.auth.views.login',
