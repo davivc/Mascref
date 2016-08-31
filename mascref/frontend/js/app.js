@@ -287,7 +287,7 @@ var app = angular.module('app', [
   //$httpProvider.defaults.headers.post['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();  
 
   uiGmapGoogleMapApiProvider.configure({
-    key: 'AIzaSyBdQrfr23D7nzfNbU6hPAG1iLkYEfDbevM',
+    key: 'AIzaSyARgP4KCpfqdJzKXKiI3zxP0mI9Gh8NpIc',
     v: '3.20', //defaults to latest 3.X anyhow
     // libraries: 'weather,geometry,visualization'
   });
