@@ -17,7 +17,7 @@ angular.module('app.controllers', ['pascalprecht.translate'])
 
     // config
       $scope.admin = {
-          name: 'Mascref',
+          name: 'MapReef',
           version: '1.0.0',
         // for chart colors
           color: {
