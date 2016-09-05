@@ -25,7 +25,13 @@ declare -a array=(
 	"maare_10_2015_line"
 	"maare_12_2016_transects"
 	"maare_13_2016_roles"
-	"maare_14_2016_line"
+	"usp_01_project"
+	"usp_02_surveys"
+	"usp_03_towns"
+	"usp_04_sites"
+	"usp_05_group_set"
+	"usp_06_groups"
+	"usp_07_2015_transects"
 	)
 
 # get length of an array

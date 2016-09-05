@@ -96,5 +96,221 @@
   },
   "model": "app.researcher",
   "pk": 1
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 01",
+    "account": 3,
+    "user": 101
+  },
+  "model": "app.researcher",
+  "pk": 101
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 02",
+    "account": 3,
+    "user": 102
+  },
+  "model": "app.researcher",
+  "pk": 102
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 03",
+    "account": 3,
+    "user": 103
+  },
+  "model": "app.researcher",
+  "pk": 103
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 04",
+    "account": 3,
+    "user": 104
+  },
+  "model": "app.researcher",
+  "pk": 104
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 05",
+    "account": 3,
+    "user": 105
+  },
+  "model": "app.researcher",
+  "pk": 105
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 06",
+    "account": 3,
+    "user": 106
+  },
+  "model": "app.researcher",
+  "pk": 106
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 07",
+    "account": 3,
+    "user": 107
+  },
+  "model": "app.researcher",
+  "pk": 107
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 08",
+    "account": 3,
+    "user": 108
+  },
+  "model": "app.researcher",
+  "pk": 108
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 09",
+    "account": 3,
+    "user": 109
+  },
+  "model": "app.researcher",
+  "pk": 109
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 10",
+    "account": 3,
+    "user": 110
+  },
+  "model": "app.researcher",
+  "pk": 110
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 11",
+    "account": 3,
+    "user": 111
+  },
+  "model": "app.researcher",
+  "pk": 111
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 12",
+    "account": 3,
+    "user": 112
+  },
+  "model": "app.researcher",
+  "pk": 112
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 13",
+    "account": 3,
+    "user": 113
+  },
+  "model": "app.researcher",
+  "pk": 113
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 14",
+    "account": 3,
+    "user": 114
+  },
+  "model": "app.researcher",
+  "pk": 114
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 15",
+    "account": 3,
+    "user": 115
+  },
+  "model": "app.researcher",
+  "pk": 115
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 16",
+    "account": 3,
+    "user": 116
+  },
+  "model": "app.researcher",
+  "pk": 116
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 17",
+    "account": 3,
+    "user": 117
+  },
+  "model": "app.researcher",
+  "pk": 117
+},
+{
+  "fields": {
+    "updated_at": "2015-12-10T14:45:15Z",
+    "created_at": "2015-12-10T14:45:09Z",
+    "eco_diver": null,
+    "name": "Group 18",
+    "account": 3,
+    "user": 118
+  },
+  "model": "app.researcher",
+  "pk": 118
 }
 ]

@@ -1,0 +1,14 @@
+[
+{
+  "fields": {
+    "created_at": "2015-12-14T07:43:50Z",
+    "updated_at": "2015-12-22T05:38:16Z",
+    "name": "Muaivuso",
+    "lat": "-18.14543",
+    "long": "178.35829",
+    "town": 2
+  },
+  "model": "app.site",
+  "pk": 20
+}
+]

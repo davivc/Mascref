@@ -1,0 +1,27 @@
+[
+{
+  "fields": {
+    "name": "Vanua Levu",
+    "country": 67
+  },
+  "model": "app.province",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "Viti Levu",
+    "country": 67
+  },
+  "model": "app.province",
+  "pk": 3
+},
+{
+  "fields": {
+    "name": "Suva",
+    "province": 2,
+    "country": 67
+  },
+  "model": "app.town",
+  "pk": 3
+}
+]

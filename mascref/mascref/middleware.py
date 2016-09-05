@@ -40,6 +40,7 @@ class AccountIDMiddleware(object):
         #         return redirect(redirect_path)
         try:
             account = Account.objects.get(subdomain=pieces[0])
+            print(account)
         except Account.DoesNotExist:
             account = None
             # return redirect(redirect_path)

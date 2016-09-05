@@ -1,32 +1,32 @@
 [
 {
   "fields": {
-    "domain": "mascref.info",
-    "name": "mascref.info"
+    "domain": "mapreef.dev",
+    "name": "mapreef.dev"
   },
   "model": "sites.site",
   "pk": 1
 },
 {
   "fields": {
-    "domain": "labar.mascref.info",
-    "name": "labar.mascref.info"
+    "domain": "labar.mapreef.dev",
+    "name": "labar.mapreef.dev"
   },
   "model": "sites.site",
   "pk": 2
 },
 {
   "fields": {
-    "domain": "usp.mascref.info",
-    "name": "usp.mascref.info"
+    "domain": "usp.mapreef.dev",
+    "name": "usp.mapreef.dev"
   },
   "model": "sites.site",
   "pk": 3
 },
 {
   "fields": {
-    "domain": "demo.mascref.info",
-    "name": "demo.mascref.info"
+    "domain": "demo.mapreef.dev",
+    "name": "demo.mapreef.dev"
   },
   "model": "sites.site",
   "pk": 4

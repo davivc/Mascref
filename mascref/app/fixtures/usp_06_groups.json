@@ -1,0 +1,364 @@
+[{
+  "fields": {
+    "category": null,
+    "name": "RC",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Rock (non-carbonate)"
+  },
+  "model": "reefcheck.group",
+  "pk": 115
+},
+{
+  "fields": {
+    "category": null,
+    "name": "RB",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Rubble"
+  },
+  "model": "reefcheck.group",
+  "pk": 116
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SD",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Sand (<0.5cm)"
+  },
+  "model": "reefcheck.group",
+  "pk": 117
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SC",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Soft Coral"
+  },
+  "model": "reefcheck.group",
+  "pk": 118
+},
+{
+  "fields": {
+    "category": null,
+    "name": "DA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Dead coral with fleshy algae"
+  },
+  "model": "reefcheck.group",
+  "pk": 119
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coralline Algae"
+  },
+  "model": "reefcheck.group",
+  "pk": 120
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ACB",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Acropora branching"
+  },
+  "model": "reefcheck.group",
+  "pk": 121
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ACD",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Acropora digitate"
+  },
+  "model": "reefcheck.group",
+  "pk": 122
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ACT",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Acropora table"
+  },
+  "model": "reefcheck.group",
+  "pk": 123
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ACS",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Acropora submassive"
+  },
+  "model": "reefcheck.group",
+  "pk": 124
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ACE",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Acropora encrusting"
+  },
+  "model": "reefcheck.group",
+  "pk": 125
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CB",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral branching"
+  },
+  "model": "reefcheck.group",
+  "pk": 126
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CE",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral encrusting"
+  },
+  "model": "reefcheck.group",
+  "pk": 127
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CM",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral massive"
+  },
+  "model": "reefcheck.group",
+  "pk": 128
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CS",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral submassive"
+  },
+  "model": "reefcheck.group",
+  "pk": 129
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SI",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Silt"
+  },
+  "model": "reefcheck.group",
+  "pk": 130
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CF",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral foliose"
+  },
+  "model": "reefcheck.group",
+  "pk": 131
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CMR",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral mushroom"
+  },
+  "model": "reefcheck.group",
+  "pk": 132
+},
+{
+  "fields": {
+    "category": null,
+    "name": "CME",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Coral Millepora"
+  },
+  "model": "reefcheck.group",
+  "pk": 133
+},
+{
+  "fields": {
+    "category": null,
+    "name": "SP",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Sponge"
+  },
+  "model": "reefcheck.group",
+  "pk": 134
+},
+{
+  "fields": {
+    "category": null,
+    "name": "ZO",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Zoanthid"
+  },
+  "model": "reefcheck.group",
+  "pk": 135
+},
+{
+  "fields": {
+    "category": null,
+    "name": "OT",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Other"
+  },
+  "model": "reefcheck.group",
+  "pk": 136
+},
+{
+  "fields": {
+    "category": null,
+    "name": "AA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Algal assemblage"
+  },
+  "model": "reefcheck.group",
+  "pk": 137
+},
+{
+  "fields": {
+    "category": null,
+    "name": "HA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Halimeda"
+  },
+  "model": "reefcheck.group",
+  "pk": 138
+},
+{
+  "fields": {
+    "category": null,
+    "name": "MA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Macroalgae"
+  },
+  "model": "reefcheck.group",
+  "pk": 139
+},
+{
+  "fields": {
+    "category": null,
+    "name": "TA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Turf"
+  },
+  "model": "reefcheck.group",
+  "pk": 140
+},
+{
+  "fields": {
+    "category": null,
+    "name": "BL",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Bleached Coral"
+  },
+  "model": "reefcheck.group",
+  "pk": 141
+},
+{
+  "fields": {
+    "category": null,
+    "name": "BLA",
+    "parent": null,
+    "format": 1,
+    "set": 11,
+    "type": 2,
+    "description": "Bleached Acropora"
+  },
+  "model": "reefcheck.group",
+  "pk": 142
+}]

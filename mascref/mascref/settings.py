@@ -162,14 +162,14 @@ LOGGING = {
     }
 }
 
-DEFAULT_SITE_DOMAIN = 'www.mascref.info'
+#DEFAULT_SITE_DOMAIN = 'mapreef.dev'
 SITES_PACKAGE = 'sites'
 AUTHENTICATION_METHOD = 'EMAIL'
 AUTHENTICATION_BACKENDS = ( 'app.auth_backend.SiteBackend', )
 AUTH_PROFILE_MODULE = "app.UserProfile"
 
 # config session to work through subdomains
-# SESSION_COOKIE_DOMAIN = '.mascref.info'
+SESSION_COOKIE_DOMAIN = '.mapreef.dev'
 
 from settings_local import * 
 
