@@ -9,7 +9,7 @@ angular.module('app.controllers')
       $state.go('access.signin');
     }
 
-    console.log(AclService.getRoles());
+    $scope.can = AclService.can;
 
     // Projects List Init
     $scope.breadcrumbs = [];

@@ -144,9 +144,9 @@ var app = angular.module('app', [
                   authenticated: ['djangoAuth', function (djangoAuth) {
                     return djangoAuth.authenticationStatus();
                   }],
-                  // acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                  //   return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
-                  // }]
+                  acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
+                    return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
+                  }]
                 }
             })
             .state('admin.projects', {

@@ -148,12 +148,15 @@ class SurveySerializer (serializers.ModelSerializer):
 
 
 class ResearcherSerializer (serializers.ModelSerializer):
-    is_admin = serializers.ReadOnlyField(source='user.is_superuser')
-    is_staff = serializers.ReadOnlyField(source='user.is_staff')
+    # role = serializers.ReadOnlyField(source='user.userprofile.roles')
+    roles = serializers.SerializerMethodField('get_roles_names')
+
+    def get_roles_names(self, obj):
+        return obj.user.roles
 
     class Meta:
         model = Researcher
-        fields = ('id', 'name', 'is_admin', 'is_staff')
+        fields = ('id', 'name', 'roles')
 
 
 # Non-Models Serializers

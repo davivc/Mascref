@@ -33,6 +33,7 @@ lazr.restfulclient==0.13.3
 lazr.uri==1.0.3
 mod-python==3.3.1
 oauth==1.0.1
+pinax-eventlog==1.1.2
 prettytable==0.7.2
 pyOpenSSL==0.13
 pycrypto==2.6.1

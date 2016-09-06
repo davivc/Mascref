@@ -19,7 +19,7 @@
         Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
       </div>
       <div class="text-muted text-right">
-        <button type="submit" class="btn btn-sm btn-success" ng-click="showNewProject = true">+ New Project</button>
+        <button type="submit" class="btn btn-sm btn-success" ng-click="showNewProject = true" ng-show="can('add_project')">+ New Project</button>
       </div>
       <div ng-if="alerts.length > 0" class="m-b-md">
         <br />
@@ -62,9 +62,9 @@
               <td class="text-center">{{project.created_at | date:'short'}}</td>
               <td class="text-center"><i ng-if="project.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!project.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
               <td class="text-center">
-                <a ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
-                <a ng-if="userProfile.is_admin" ui-sref="admin.projects.edit({projectId:project.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
-                <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs" ng-click="deleteProject(project.id, project.name)">Delete</button></a>
+                <a ng-show="can('view_project')"ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                <a ng-show="can('change_project')" ui-sref="admin.projects.edit({projectId:project.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
+                <a ng-show="can('delete_project')"> <button class="btn btn-danger btn-xs" ng-click="deleteProject(project.id, project.name)">Delete</button></a>
               </td>
           </tr> 
         </tbody>
