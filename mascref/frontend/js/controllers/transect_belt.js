@@ -223,11 +223,13 @@ angular.module('app.controllers')
       '$translate',
       '$state', 
       '$stateParams', 
+      'TransectFact',
       function (
           $scope, 
           $translate, 
           $state, 
-          $stateParams
+          $stateParams,
+          TransectFact
       ) {
         $scope.belt_graphs_data = TransectFact.belt_graph_data;
       }

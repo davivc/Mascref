@@ -54,6 +54,17 @@ angular.module('app.controllers')
         long: $scope.MASCREF_CONF.COORD.LONG,
         zoom: $scope.MASCREF_CONF.COORD.ZOOM
       },
+      marker: {
+        id: 0,
+        coords: {
+          latitude: $scope.MASCREF_CONF.COORD.LAT,
+          longitude: $scope.MASCREF_CONF.COORD.LONG
+        },
+        options: {
+          draggable: false,
+          visible: false
+        }
+      },
       reefcheck: {
         segments_total: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_TOTAL,
         segments_points: $scope.MASCREF_CONF.TRANSECT_SEGMENTS_POINTS,

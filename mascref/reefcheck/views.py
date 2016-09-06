@@ -60,7 +60,8 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     ordering = ('name',)
-    filter_backends = (filters.DjangoFilterBackend,)
+    ordering_fields = ('name','description',)
+    filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
     filter_fields = ('category', 'type', 'set', )
     permission_classes = (
         permissions.IsAuthenticated,

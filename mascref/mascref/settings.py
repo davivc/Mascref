@@ -1,5 +1,5 @@
 ﻿"""
-Django settings for Mascref project.
+Django settings for MapReef project.
 """
 
 from os import path
@@ -162,7 +162,6 @@ LOGGING = {
     }
 }
 
-#DEFAULT_SITE_DOMAIN = 'mapreef.dev'
 SITES_PACKAGE = 'sites'
 AUTHENTICATION_METHOD = 'EMAIL'
 AUTHENTICATION_BACKENDS = ( 'app.auth_backend.SiteBackend', )
