@@ -53,11 +53,10 @@ var app = angular.module('app', [
             });
             aclData[obj.name] = groupPermissions;
           });
-          AclService.setAbilities(aclData);     
-          
-        }, function (error) {
-          
+          // return aclData; 
+          AclService.setAbilities(aclData);
         });
+        
 
         djangoAuth.profile().then(function (data) {
           AclService.attachRole(data.userprofile.roles[0])          
@@ -91,7 +90,7 @@ var app = angular.module('app', [
           AclService.flushRoles();
           return djangoAuth.profile().then(function (data) {
             AclService.attachRole(data.userprofile.roles[0])
-            if(AclService.hasRole(role)){
+            if(AclService.hasRole('Admin') || AclService.can(action)){
               // console.log('run ', AclService.getRoles())
               // Has proper permissions  || AclService.hasRole('Staff')
               return true;
@@ -133,9 +132,6 @@ var app = angular.module('app', [
               resolve: {
                 authenticated: ['djangoAuth', function (djangoAuth) {
                   return djangoAuth.authenticationStatus();
-                }],
-                acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                  return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
                 }]
               }
           })
@@ -148,7 +144,7 @@ var app = angular.module('app', [
                     return djangoAuth.authenticationStatus();
                   }],
                   acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                    return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
+                    return aclVerification(AclService, djangoAuth, $q, '', 'view_admin_dashboard')
                   }]
                 }
             })
@@ -161,7 +157,7 @@ var app = angular.module('app', [
                     return djangoAuth.authenticationStatus();
                   }],
                   acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                    return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
+                    return aclVerification(AclService, djangoAuth, $q, '', 'view_admin_projects') 
                   }]
                 } 
             })

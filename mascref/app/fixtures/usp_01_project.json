@@ -8,6 +8,7 @@
     "updated_at": "2015-12-22T05:38:16Z",
     "created_by": 100,
     "owner": 100,
+    "confidence": 2,
     "public": false,
     "description": ""
   },

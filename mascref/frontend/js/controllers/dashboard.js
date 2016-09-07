@@ -7,13 +7,6 @@ angular.module('app.controllers')
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
-
-    // console.log(AclService.getRoles())
-
-    $scope.$watch('userProfile', function(newValue, oldValue) {
-      //update the DOM with newValue
-      // console.log(newValue, oldValue)
-    });
   }])
   .controller('DashboardStatsCtrl', ['$scope', '$rootScope', '$translate', '$filter', 'Dashboard', function ($scope, $rootScope, $translate, $filter, Dashboard) {
     $scope.stats = {

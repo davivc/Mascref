@@ -38,9 +38,9 @@ from serializers import StatsSerializer
 class GroupACLViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupACLSerializer
-    permission_classes = (
-        permissions.IsAuthenticated,
-    )
+    # permission_classes = (
+    #     permissions.IsAuthenticated,
+    # )
 
 
 class AccountViewSet(viewsets.ModelViewSet):

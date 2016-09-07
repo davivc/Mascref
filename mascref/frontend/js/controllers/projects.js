@@ -205,6 +205,7 @@ angular.module('app.controllers')
         $scope.msgs.settings.loading = false;
         $scope.msgs.settings.type = 'success';
         $scope.msgs.settings.text = 'Project settings saved successfully!';
+        $scope.getProjects();
       }, function (error) {
         console.error('Project create: ' + error);
       });

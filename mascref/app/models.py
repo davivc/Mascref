@@ -177,6 +177,11 @@ class Site(models.Model):
         return sorted(set(surveys))
 
 
+class DataCollectedConfidence(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+
 class Project(models.Model):
     account = models.ForeignKey(Account)
     name = models.CharField(max_length=150)
@@ -184,12 +189,18 @@ class Project(models.Model):
     parent = models.ForeignKey('self', blank=True, null=True)
     public = models.BooleanField(default=False)
     owner = models.ForeignKey(Researcher, blank=True, null=True)
+    confidence = models.ForeignKey(DataCollectedConfidence, blank=True, null=True)
     created_by = models.ForeignKey(UserProfile, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('name',)
+        permissions = (
+            ("view_admin_project", "Can go to admin project"),
+            ("view_project", "Can see available projects"),
+        )
+
 
     def __unicode__(self):
         return '%s' % (self.name)
@@ -199,11 +210,6 @@ class ProjectConfig(models.Model):
     project = models.ForeignKey(Project, related_name='configs')
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
-
-
-class DataCollectedConfidence(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=255, blank=True, null=True)
 
 
 class Survey(models.Model):
@@ -220,6 +226,10 @@ class Survey(models.Model):
 
     class Meta:
         ordering = ('name',)
+        permissions = (
+            ("view_admin_survey", "Can go to admin survey"),
+            ("view_survey", "Can see available surveys"),
+        )
 
     def __unicode__(self):
         return '%s' % (self.name)

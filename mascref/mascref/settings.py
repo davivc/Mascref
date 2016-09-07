@@ -187,7 +187,7 @@ ACTIVITYLOG_AUTOCREATE_DB = False
 # App settings
 
 # Log anonimus actions?
-ACTIVITYLOG_ANONIMOUS = False
+ACTIVITYLOG_ANONIMOUS = True
 
 # Update last activity datetime in user profile. Needs updates for user model.
 ACTIVITYLOG_LAST_ACTIVITY = True
@@ -203,4 +203,4 @@ ACTIVITYLOG_STATUSES = (200, )
 # ACTIVITYLOG_EXCLUDE_STATUSES = (302, )
 
 # URL substrings, which ignores
-# ACTIVITYLOG_EXCLUDE_URLS = ('/admin/activity_log/activitylog', )
+ACTIVITYLOG_EXCLUDE_URLS = ('/api/master/admin', )
