@@ -270,6 +270,14 @@ angular.module('app.controllers')
         // change url path
         $scope.response.type = "success"
         $scope.response.msg = "Transect saved successfully" 
+
+        $state.go("admin.projects.view.survey.transect",
+          { 
+            "projectId": $stateParams.projectId,
+            "surveyId": $stateParams.surveyId,
+            "transectId": data.id
+          }
+        );
       }, function (error) {
         $scope.response = error
       });

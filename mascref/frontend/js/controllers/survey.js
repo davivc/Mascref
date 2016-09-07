@@ -8,7 +8,7 @@ angular.module('app.controllers')
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
-    console.log(AclService.can('view_survey'))
+
     // Survey Init Variables
     $scope.survey = {}
     $scope.transects = []

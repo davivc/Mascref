@@ -87,6 +87,9 @@ class TransectViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated,
     )
 
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user.userprofile)
+
     def get_queryset(self):
         queryset = Transect.objects.all()
         queryset = queryset.filter(survey__project__account=self.request.account)

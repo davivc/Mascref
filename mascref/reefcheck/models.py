@@ -7,6 +7,7 @@ from app.models import Project
 from app.models import Survey
 from app.models import Site
 from app.models import Researcher
+from app.models import UserProfile
 
 
 class TransectType(models.Model):
@@ -67,8 +68,14 @@ class Transect(models.Model):
     # members = models.ManyToManyField(
     #     Researcher, related_name="members"
     # )
+    created_by = models.ForeignKey(UserProfile, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        permissions = (
+            ("view_transect", "Can see available transects"),
+        )
 
     def __unicode__(self):
         return '%s' % (self.name)

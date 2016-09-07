@@ -132,7 +132,7 @@ class ProjectSerializer (serializers.ModelSerializer):
 
 class SurveySerializer (serializers.ModelSerializer):
     sites = SiteSerializer(many=True, read_only=True)
-    created_by = serializers.ReadOnlyField(source='created_by.username')
+    created_by = serializers.ReadOnlyField(source='created_by.user.username')
     transects_count = serializers.ReadOnlyField()
     owner_name = serializers.ReadOnlyField(
         source='owner.name', read_only=True
