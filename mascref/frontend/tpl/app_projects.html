@@ -58,7 +58,7 @@
               <!-- <td class="text-center">{{project.date_end | date:'shortDate'}}</td> -->
               <td class="text-center">{{ project.owner_name ? project.owner_name : '-' }}</td>
               <td class="text-center">{{project.surveys.length ? project.surveys.length : 0}}</td>
-              <td class="text-center">{{project.confidence}}</td>
+              <td class="text-center">{{project.confidence == 1 ? 'High Confidence' : 'Low Confidence'}}</td>
               <td class="text-center">{{project.created_at | date:'short'}}</td>
               <td class="text-center"><i ng-if="project.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!project.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
               <td class="text-center">

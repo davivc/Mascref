@@ -115,7 +115,6 @@ class SiteSerializer (serializers.ModelSerializer):
 class ProjectSerializer (serializers.ModelSerializer):
     created_by = serializers.ReadOnlyField(source='created_by.username')
     owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
-    confidence = serializers.ReadOnlyField(source='confidence.name', read_only=True)
 
     class Meta:
         model = Project

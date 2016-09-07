@@ -203,6 +203,7 @@ angular.module('app.controllers')
       if($scope.formProject.owner) $scope.project.owner = $scope.formProject.owner;
       // if(angular.isObject($scope.description)) $scope.project.description = "";
       // else $scope.project.description = $scope.description;
+      // console.log($scope.project)
       Projects.save($scope.project)
       .then(function (data) {
         $scope.msgs.settings.loading = false;
