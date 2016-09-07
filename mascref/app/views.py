@@ -114,7 +114,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
     )
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save(created_by=self.request.user.userprofile, 
+            account=self.request.account)
 
     def get_queryset(self):
         queryset = Project.objects.all()

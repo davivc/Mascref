@@ -15,7 +15,9 @@ angular.module('app.controllers')
     $scope.projects = {}
     $scope.showNewProject = false;
     $scope.loadingProjects = false;
-    $scope.formProject = {}
+    $scope.formProject = {
+      confidence: 1
+    }
     $scope.msgs = { 
       saving_project: {
         show: false,
@@ -32,6 +34,7 @@ angular.module('app.controllers')
         description: '',
         restricted: false,
         owner: '',
+        confidence: 1,
         errors: {}
       }
     }
