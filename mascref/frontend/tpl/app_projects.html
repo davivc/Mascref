@@ -53,7 +53,7 @@
               <td colspan="6" class="text-center">No projects found in the system</td>
           </tr>        
           <tr ng-repeat="project in projects">
-              <td><a ui-sref="admin.projects.view({projectId:project.id})">{{project.name}}</a></td>
+              <td><a ng-show="can('view_project')" ui-sref="admin.projects.view({projectId:project.id})">{{project.name}}</a><span ng-show="!can('view_project')">{{project.name}}</span></td>
               <!-- <td class="text-center">{{project.date_start | date:'shortDate'}}</td> -->
               <!-- <td class="text-center">{{project.date_end | date:'shortDate'}}</td> -->
               <td class="text-center">{{ project.owner_name ? project.owner_name : '-' }}</td>
@@ -62,7 +62,7 @@
               <td class="text-center">{{project.created_at | date:'short'}}</td>
               <td class="text-center"><i ng-if="project.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!project.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
               <td class="text-center">
-                <a ng-show="can('view_project')"ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                <a ng-show="can('view_project')" ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
                 <a ng-show="can('change_project')" ui-sref="admin.projects.edit({projectId:project.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
                 <a ng-show="can('delete_project')"> <button class="btn btn-danger btn-xs" ng-click="deleteProject(project.id, project.name)">Delete</button></a>
               </td>

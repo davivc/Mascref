@@ -3,12 +3,12 @@
 /* Surveys Controllers */
 
 angular.module('app.controllers')
-  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', 'uiGmapIsReady','MASCREF_CONF', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Transect, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF) {
+  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', 'uiGmapIsReady','MASCREF_CONF', 'AclService', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Transect, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF, AclService) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
-
+    console.log(AclService.can('view_survey'))
     // Survey Init Variables
     $scope.survey = {}
     $scope.transects = []

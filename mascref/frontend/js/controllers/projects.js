@@ -9,8 +9,6 @@ angular.module('app.controllers')
       $state.go('access.signin');
     }
 
-    $scope.can = AclService.can;
-
     // Projects List Init
     $scope.breadcrumbs = [];
     $scope.alerts = [];

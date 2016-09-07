@@ -93,7 +93,8 @@ MIDDLEWARE_CLASSES = (
     # 'mascref.middleware.SiteMiddleware'
     'mascref.middleware.AccountIDMiddleware',
     # 'mascref.middlewares.ThreadLocal.ThreadLocalMiddleware',    
-    'mascref.middleware_dynamicsite.DynamicSitesMiddleware',    
+    'mascref.middleware_dynamicsite.DynamicSitesMiddleware',
+    'activity_log.middleware.ActivityLogMiddleware',   
 )
 
 ROOT_URLCONF = 'mascref.urls'
@@ -130,6 +131,7 @@ INSTALLED_APPS = (
     'corsheaders',
     # 'rest_framework_tracking',
     'rest_assured',
+    'activity_log',
     # 'factory',
 )
 
@@ -179,3 +181,26 @@ REST_FRAMEWORK = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'mascref.serializers.UserSerializer',
 }
+
+ACTIVITYLOG_AUTOCREATE_DB = False
+
+# App settings
+
+# Log anonimus actions?
+ACTIVITYLOG_ANONIMOUS = False
+
+# Update last activity datetime in user profile. Needs updates for user model.
+ACTIVITYLOG_LAST_ACTIVITY = True
+
+# Only this methods will be logged
+# ACTIVITYLOG_METHODS = ('POST', 'GET')
+
+# List of response statuses, which logged. By default - all logged.
+# Don't use with ACTIVITYLOG_EXCLUDE_STATUSES
+ACTIVITYLOG_STATUSES = (200, )
+
+# List of response statuses, which ignores. Don't use with ACTIVITYLOG_STATUSES
+# ACTIVITYLOG_EXCLUDE_STATUSES = (302, )
+
+# URL substrings, which ignores
+# ACTIVITYLOG_EXCLUDE_URLS = ('/admin/activity_log/activitylog', )
