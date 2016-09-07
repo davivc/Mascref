@@ -253,6 +253,7 @@ angular.module('app.controllers')
     $scope.showNewSurvey = false;
     $scope.formSurvey = {
       //date_start: new Date()
+      confidence: 1,
       loadingNewProject: false,
     }
     // Date options for datepickers
@@ -280,6 +281,7 @@ angular.module('app.controllers')
       $scope.formSurvey = {
         project: $stateParams.projectId,
         name: '',
+        confidence: 1,
         date_start: null,
         date_end: null,
         restricted: false,
@@ -343,6 +345,7 @@ angular.module('app.controllers')
       $scope.msgs.saving_survey.text = 'Saving survey settings...';
 
       $scope.formSurvey.errors = {}
+      console.log($scope.formSurvey)
       Surveys.save($scope.formSurvey)
       .then(function (data) {
         $scope.msgs.saving_survey.loading = false;

@@ -145,8 +145,7 @@ class SurveyViewSet(viewsets.ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        self.action_kind = "CREATE"
-        serializer.save(created_by=self.request.user)
+        serializer.save(created_by=self.request.user.userprofile)
 
 
 class ResearcherViewSet(viewsets.ModelViewSet):

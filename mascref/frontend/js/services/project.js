@@ -26,8 +26,8 @@ angular.module('app.services')
         'description': pData.description,
         'parent': pData.parent,
         'public': pData.restricted,
-        'owner': pData.owner.id,
-        'confidence': pData.confidence
+        'owner': pData.owner.id
+        // 'confidence': pData.confidence
       };
       if(pData.id) {
         data.surveys = pData.surveys;

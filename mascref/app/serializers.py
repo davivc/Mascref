@@ -113,7 +113,7 @@ class SiteSerializer (serializers.ModelSerializer):
 
 
 class ProjectSerializer (serializers.ModelSerializer):
-    created_by = serializers.ReadOnlyField(source='created_by.username')
+    created_by = serializers.ReadOnlyField(source='created_by.user.username')
     owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
 
     class Meta:
@@ -121,7 +121,6 @@ class ProjectSerializer (serializers.ModelSerializer):
         fields = (
             'id', 'name', 'description', 'parent', 'public', 'created_at',
             'created_by', 'owner', 'updated_at', 'owner_name', 'surveys',
-            'confidence'
         )
 
     # def create(self, validated_data):
@@ -144,7 +143,7 @@ class SurveySerializer (serializers.ModelSerializer):
         fields = (
             'id', 'project', 'name', 'date_start', 'date_end', 'owner',
             'public', 'created_at', 'created_by', 'owner_name', 'sites',
-            'transects_count'
+            'transects_count', 'data_level'
         )
 
 
