@@ -3,7 +3,7 @@
 /* Surveys Controllers */
 
 angular.module('app.controllers')
-  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', 'uiGmapIsReady','MASCREF_CONF', 'AclService', function ($scope, $translate, $state, $stateParams, $sce, Surveys, Transect, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF, AclService) {
+  .controller('SurveyCtrl', ['$scope', '$translate', '$state', '$stateParams', '$sce', '$uibModal', 'Surveys', 'Transect', 'uiGmapGoogleMapApi', 'uiGmapIsReady','MASCREF_CONF', 'AclService', function ($scope, $translate, $state, $stateParams, $sce, $uibModal, Surveys, Transect, uiGmapGoogleMapApi, uiGmapIsReady, MASCREF_CONF, AclService) {
     // Logged status
     if (!$scope.authenticated) {
       $state.go('access.signin');
@@ -61,6 +61,56 @@ angular.module('app.controllers')
         $state.go('admin.projects.view', { projectId: $stateParams.projectId });
       });
     }
+
+    // Delete transect
+    var ModalInstanceCtrl = function ($scope, $uibModalInstance, transect) {
+      $scope.transect = transect;
+      $scope.title = 'Delete Transect ' + transect.name;
+      $scope.content = 'Warning: By removing your transect \''+transect.name+'\', you will lose all its contents (line and delt data).';
+
+      $scope.ok = function () {
+        $uibModalInstance.close($scope.transect);
+      };
+
+      $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+      };
+    };
+
+    $scope.deleteTransect = function (id, name) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'tpl/blocks/modal.html',
+        controller: ModalInstanceCtrl,
+        resolve: {
+          transect: function () {
+            return { 'id': id, 'name': name };
+          }
+        }
+      });
+
+      modalInstance.result.then(function (transect) {
+        $scope.addAlert('Your transect \''+ transect.name +'\' is being deleted...', 'danger');
+        Transect.delete(transect.id)
+        .then(function (data) {
+          $scope.closeAlert($scope.alerts.length-1);
+          // $log.info('Project ' + itemId + ' deleted at: ' + new Date());
+          $scope.addAlert('Your transect \''+ transect.name +'\' was deleted successfully...', 'success');
+          $scope.getTransects();
+        }, function (error) {
+          $scope.closeAlert();
+        });
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+
+    $scope.addAlert = function(msg, type) {
+      $scope.alerts.push({type: type, msg: msg});
+    };
+
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
 
     $scope.initMarkersSurvey = function() {
       $scope.bounds = new google.maps.LatLngBounds();
