@@ -48,7 +48,7 @@ angular.module('app.controllers')
           var create = []
           angular.forEach($scope.transect.basic, function (v, k) {
             if(v['id']) update.push(v)
-            else create.push({ 'name': k, 'value': v, 'transect': $scope.transect.info.id })
+            else create.push({ 'name': k, 'value': v.value, 'transect': $scope.transect.info.id })
           });
           Transect.createMultipleInfos(create).then(function (data) {  
             Transect.updateMultipleInfos(update).then(function (data) { 
@@ -56,6 +56,7 @@ angular.module('app.controllers')
                 type: 'success',
                 msg: 'Site information saved successfully!'
               }
+              $scope.getInfo($scope.transect.info.id);
             }, function (error) {
               $scope.alert = { 
                 type: 'danger',
