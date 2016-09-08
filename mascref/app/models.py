@@ -6,6 +6,17 @@ from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
 
+class RightsSupport(models.Model):
+    class Meta:
+        managed = False  # No database table creation or deletion operations \
+                         # will be performed for this model. 
+        permissions = ( 
+            ('view_admin_dashboard', 'Can view admin dashboard'),  
+            ('view_admin_maps', 'Can view admin maps'), 
+            ('view_admin_stats', 'Can view admin stats'), 
+            ('view_admin_settings', 'Can view admin settings'), 
+        )
+
 class Account(models.Model):
     site = models.ForeignKey(Site)
     name = models.CharField(max_length=100)

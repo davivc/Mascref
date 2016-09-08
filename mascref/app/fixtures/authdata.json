@@ -1,0 +1,1073 @@
+[
+{
+  "fields": {
+    "codename": "add_permission",
+    "name": "Can add permission",
+    "content_type": 1
+  },
+  "model": "auth.permission",
+  "pk": 1
+},
+{
+  "fields": {
+    "codename": "change_permission",
+    "name": "Can change permission",
+    "content_type": 1
+  },
+  "model": "auth.permission",
+  "pk": 2
+},
+{
+  "fields": {
+    "codename": "delete_permission",
+    "name": "Can delete permission",
+    "content_type": 1
+  },
+  "model": "auth.permission",
+  "pk": 3
+},
+{
+  "fields": {
+    "codename": "add_group",
+    "name": "Can add group",
+    "content_type": 2
+  },
+  "model": "auth.permission",
+  "pk": 4
+},
+{
+  "fields": {
+    "codename": "change_group",
+    "name": "Can change group",
+    "content_type": 2
+  },
+  "model": "auth.permission",
+  "pk": 5
+},
+{
+  "fields": {
+    "codename": "delete_group",
+    "name": "Can delete group",
+    "content_type": 2
+  },
+  "model": "auth.permission",
+  "pk": 6
+},
+{
+  "fields": {
+    "codename": "add_user",
+    "name": "Can add user",
+    "content_type": 3
+  },
+  "model": "auth.permission",
+  "pk": 7
+},
+{
+  "fields": {
+    "codename": "change_user",
+    "name": "Can change user",
+    "content_type": 3
+  },
+  "model": "auth.permission",
+  "pk": 8
+},
+{
+  "fields": {
+    "codename": "delete_user",
+    "name": "Can delete user",
+    "content_type": 3
+  },
+  "model": "auth.permission",
+  "pk": 9
+},
+{
+  "fields": {
+    "codename": "add_contenttype",
+    "name": "Can add content type",
+    "content_type": 4
+  },
+  "model": "auth.permission",
+  "pk": 10
+},
+{
+  "fields": {
+    "codename": "change_contenttype",
+    "name": "Can change content type",
+    "content_type": 4
+  },
+  "model": "auth.permission",
+  "pk": 11
+},
+{
+  "fields": {
+    "codename": "delete_contenttype",
+    "name": "Can delete content type",
+    "content_type": 4
+  },
+  "model": "auth.permission",
+  "pk": 12
+},
+{
+  "fields": {
+    "codename": "add_session",
+    "name": "Can add session",
+    "content_type": 5
+  },
+  "model": "auth.permission",
+  "pk": 13
+},
+{
+  "fields": {
+    "codename": "change_session",
+    "name": "Can change session",
+    "content_type": 5
+  },
+  "model": "auth.permission",
+  "pk": 14
+},
+{
+  "fields": {
+    "codename": "delete_session",
+    "name": "Can delete session",
+    "content_type": 5
+  },
+  "model": "auth.permission",
+  "pk": 15
+},
+{
+  "fields": {
+    "codename": "add_site",
+    "name": "Can add site",
+    "content_type": 6
+  },
+  "model": "auth.permission",
+  "pk": 16
+},
+{
+  "fields": {
+    "codename": "change_site",
+    "name": "Can change site",
+    "content_type": 6
+  },
+  "model": "auth.permission",
+  "pk": 17
+},
+{
+  "fields": {
+    "codename": "delete_site",
+    "name": "Can delete site",
+    "content_type": 6
+  },
+  "model": "auth.permission",
+  "pk": 18
+},
+{
+  "fields": {
+    "codename": "add_account",
+    "name": "Can add account",
+    "content_type": 7
+  },
+  "model": "auth.permission",
+  "pk": 19
+},
+{
+  "fields": {
+    "codename": "change_account",
+    "name": "Can change account",
+    "content_type": 7
+  },
+  "model": "auth.permission",
+  "pk": 20
+},
+{
+  "fields": {
+    "codename": "delete_account",
+    "name": "Can delete account",
+    "content_type": 7
+  },
+  "model": "auth.permission",
+  "pk": 21
+},
+{
+  "fields": {
+    "codename": "add_userprofile",
+    "name": "Can add user profile",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 22
+},
+{
+  "fields": {
+    "codename": "change_userprofile",
+    "name": "Can change user profile",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 23
+},
+{
+  "fields": {
+    "codename": "delete_userprofile",
+    "name": "Can delete user profile",
+    "content_type": 8
+  },
+  "model": "auth.permission",
+  "pk": 24
+},
+{
+  "fields": {
+    "codename": "add_config",
+    "name": "Can add config",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 25
+},
+{
+  "fields": {
+    "codename": "change_config",
+    "name": "Can change config",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 26
+},
+{
+  "fields": {
+    "codename": "delete_config",
+    "name": "Can delete config",
+    "content_type": 9
+  },
+  "model": "auth.permission",
+  "pk": 27
+},
+{
+  "fields": {
+    "codename": "add_researcher",
+    "name": "Can add researcher",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 28
+},
+{
+  "fields": {
+    "codename": "change_researcher",
+    "name": "Can change researcher",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 29
+},
+{
+  "fields": {
+    "codename": "delete_researcher",
+    "name": "Can delete researcher",
+    "content_type": 10
+  },
+  "model": "auth.permission",
+  "pk": 30
+},
+{
+  "fields": {
+    "codename": "add_country",
+    "name": "Can add country",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 31
+},
+{
+  "fields": {
+    "codename": "change_country",
+    "name": "Can change country",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 32
+},
+{
+  "fields": {
+    "codename": "delete_country",
+    "name": "Can delete country",
+    "content_type": 11
+  },
+  "model": "auth.permission",
+  "pk": 33
+},
+{
+  "fields": {
+    "codename": "add_province",
+    "name": "Can add province",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 34
+},
+{
+  "fields": {
+    "codename": "change_province",
+    "name": "Can change province",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 35
+},
+{
+  "fields": {
+    "codename": "delete_province",
+    "name": "Can delete province",
+    "content_type": 12
+  },
+  "model": "auth.permission",
+  "pk": 36
+},
+{
+  "fields": {
+    "codename": "add_town",
+    "name": "Can add town",
+    "content_type": 13
+  },
+  "model": "auth.permission",
+  "pk": 37
+},
+{
+  "fields": {
+    "codename": "change_town",
+    "name": "Can change town",
+    "content_type": 13
+  },
+  "model": "auth.permission",
+  "pk": 38
+},
+{
+  "fields": {
+    "codename": "delete_town",
+    "name": "Can delete town",
+    "content_type": 13
+  },
+  "model": "auth.permission",
+  "pk": 39
+},
+{
+  "fields": {
+    "codename": "add_site",
+    "name": "Can add site",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 40
+},
+{
+  "fields": {
+    "codename": "change_site",
+    "name": "Can change site",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 41
+},
+{
+  "fields": {
+    "codename": "delete_site",
+    "name": "Can delete site",
+    "content_type": 14
+  },
+  "model": "auth.permission",
+  "pk": 42
+},
+{
+  "fields": {
+    "codename": "add_project",
+    "name": "Can add project",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 43
+},
+{
+  "fields": {
+    "codename": "change_project",
+    "name": "Can change project",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 44
+},
+{
+  "fields": {
+    "codename": "delete_project",
+    "name": "Can delete project",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 45
+},
+{
+  "fields": {
+    "codename": "add_projectconfig",
+    "name": "Can add project config",
+    "content_type": 16
+  },
+  "model": "auth.permission",
+  "pk": 46
+},
+{
+  "fields": {
+    "codename": "change_projectconfig",
+    "name": "Can change project config",
+    "content_type": 16
+  },
+  "model": "auth.permission",
+  "pk": 47
+},
+{
+  "fields": {
+    "codename": "delete_projectconfig",
+    "name": "Can delete project config",
+    "content_type": 16
+  },
+  "model": "auth.permission",
+  "pk": 48
+},
+{
+  "fields": {
+    "codename": "add_datacollectedconfidence",
+    "name": "Can add data collected confidence",
+    "content_type": 17
+  },
+  "model": "auth.permission",
+  "pk": 49
+},
+{
+  "fields": {
+    "codename": "change_datacollectedconfidence",
+    "name": "Can change data collected confidence",
+    "content_type": 17
+  },
+  "model": "auth.permission",
+  "pk": 50
+},
+{
+  "fields": {
+    "codename": "delete_datacollectedconfidence",
+    "name": "Can delete data collected confidence",
+    "content_type": 17
+  },
+  "model": "auth.permission",
+  "pk": 51
+},
+{
+  "fields": {
+    "codename": "add_survey",
+    "name": "Can add survey",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 52
+},
+{
+  "fields": {
+    "codename": "change_survey",
+    "name": "Can change survey",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 53
+},
+{
+  "fields": {
+    "codename": "delete_survey",
+    "name": "Can delete survey",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 54
+},
+{
+  "fields": {
+    "codename": "add_surveyconfig",
+    "name": "Can add survey config",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 55
+},
+{
+  "fields": {
+    "codename": "change_surveyconfig",
+    "name": "Can change survey config",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 56
+},
+{
+  "fields": {
+    "codename": "delete_surveyconfig",
+    "name": "Can delete survey config",
+    "content_type": 19
+  },
+  "model": "auth.permission",
+  "pk": 57
+},
+{
+  "fields": {
+    "codename": "add_transecttype",
+    "name": "Can add transect type",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 58
+},
+{
+  "fields": {
+    "codename": "change_transecttype",
+    "name": "Can change transect type",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 59
+},
+{
+  "fields": {
+    "codename": "delete_transecttype",
+    "name": "Can delete transect type",
+    "content_type": 20
+  },
+  "model": "auth.permission",
+  "pk": 60
+},
+{
+  "fields": {
+    "codename": "add_groupcategory",
+    "name": "Can add group category",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 61
+},
+{
+  "fields": {
+    "codename": "change_groupcategory",
+    "name": "Can change group category",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 62
+},
+{
+  "fields": {
+    "codename": "delete_groupcategory",
+    "name": "Can delete group category",
+    "content_type": 21
+  },
+  "model": "auth.permission",
+  "pk": 63
+},
+{
+  "fields": {
+    "codename": "add_groupset",
+    "name": "Can add group set",
+    "content_type": 22
+  },
+  "model": "auth.permission",
+  "pk": 64
+},
+{
+  "fields": {
+    "codename": "change_groupset",
+    "name": "Can change group set",
+    "content_type": 22
+  },
+  "model": "auth.permission",
+  "pk": 65
+},
+{
+  "fields": {
+    "codename": "delete_groupset",
+    "name": "Can delete group set",
+    "content_type": 22
+  },
+  "model": "auth.permission",
+  "pk": 66
+},
+{
+  "fields": {
+    "codename": "add_group",
+    "name": "Can add group",
+    "content_type": 23
+  },
+  "model": "auth.permission",
+  "pk": 67
+},
+{
+  "fields": {
+    "codename": "change_group",
+    "name": "Can change group",
+    "content_type": 23
+  },
+  "model": "auth.permission",
+  "pk": 68
+},
+{
+  "fields": {
+    "codename": "delete_group",
+    "name": "Can delete group",
+    "content_type": 23
+  },
+  "model": "auth.permission",
+  "pk": 69
+},
+{
+  "fields": {
+    "codename": "add_transect",
+    "name": "Can add transect",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 70
+},
+{
+  "fields": {
+    "codename": "change_transect",
+    "name": "Can change transect",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 71
+},
+{
+  "fields": {
+    "codename": "delete_transect",
+    "name": "Can delete transect",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 72
+},
+{
+  "fields": {
+    "codename": "add_transectinfo",
+    "name": "Can add transect info",
+    "content_type": 25
+  },
+  "model": "auth.permission",
+  "pk": 73
+},
+{
+  "fields": {
+    "codename": "change_transectinfo",
+    "name": "Can change transect info",
+    "content_type": 25
+  },
+  "model": "auth.permission",
+  "pk": 74
+},
+{
+  "fields": {
+    "codename": "delete_transectinfo",
+    "name": "Can delete transect info",
+    "content_type": 25
+  },
+  "model": "auth.permission",
+  "pk": 75
+},
+{
+  "fields": {
+    "codename": "add_transectmemberrole",
+    "name": "Can add transect member role",
+    "content_type": 26
+  },
+  "model": "auth.permission",
+  "pk": 76
+},
+{
+  "fields": {
+    "codename": "change_transectmemberrole",
+    "name": "Can change transect member role",
+    "content_type": 26
+  },
+  "model": "auth.permission",
+  "pk": 77
+},
+{
+  "fields": {
+    "codename": "delete_transectmemberrole",
+    "name": "Can delete transect member role",
+    "content_type": 26
+  },
+  "model": "auth.permission",
+  "pk": 78
+},
+{
+  "fields": {
+    "codename": "add_transectmembers",
+    "name": "Can add transect members",
+    "content_type": 27
+  },
+  "model": "auth.permission",
+  "pk": 79
+},
+{
+  "fields": {
+    "codename": "change_transectmembers",
+    "name": "Can change transect members",
+    "content_type": 27
+  },
+  "model": "auth.permission",
+  "pk": 80
+},
+{
+  "fields": {
+    "codename": "delete_transectmembers",
+    "name": "Can delete transect members",
+    "content_type": 27
+  },
+  "model": "auth.permission",
+  "pk": 81
+},
+{
+  "fields": {
+    "codename": "add_segment",
+    "name": "Can add segment",
+    "content_type": 28
+  },
+  "model": "auth.permission",
+  "pk": 82
+},
+{
+  "fields": {
+    "codename": "change_segment",
+    "name": "Can change segment",
+    "content_type": 28
+  },
+  "model": "auth.permission",
+  "pk": 83
+},
+{
+  "fields": {
+    "codename": "delete_segment",
+    "name": "Can delete segment",
+    "content_type": 28
+  },
+  "model": "auth.permission",
+  "pk": 84
+},
+{
+  "fields": {
+    "codename": "add_logentry",
+    "name": "Can add log entry",
+    "content_type": 29
+  },
+  "model": "auth.permission",
+  "pk": 85
+},
+{
+  "fields": {
+    "codename": "change_logentry",
+    "name": "Can change log entry",
+    "content_type": 29
+  },
+  "model": "auth.permission",
+  "pk": 86
+},
+{
+  "fields": {
+    "codename": "delete_logentry",
+    "name": "Can delete log entry",
+    "content_type": 29
+  },
+  "model": "auth.permission",
+  "pk": 87
+},
+{
+  "fields": {
+    "codename": "add_token",
+    "name": "Can add token",
+    "content_type": 30
+  },
+  "model": "auth.permission",
+  "pk": 88
+},
+{
+  "fields": {
+    "codename": "change_token",
+    "name": "Can change token",
+    "content_type": 30
+  },
+  "model": "auth.permission",
+  "pk": 89
+},
+{
+  "fields": {
+    "codename": "delete_token",
+    "name": "Can delete token",
+    "content_type": 30
+  },
+  "model": "auth.permission",
+  "pk": 90
+},
+{
+  "fields": {
+    "codename": "add_corsmodel",
+    "name": "Can add cors model",
+    "content_type": 31
+  },
+  "model": "auth.permission",
+  "pk": 91
+},
+{
+  "fields": {
+    "codename": "change_corsmodel",
+    "name": "Can change cors model",
+    "content_type": 31
+  },
+  "model": "auth.permission",
+  "pk": 92
+},
+{
+  "fields": {
+    "codename": "delete_corsmodel",
+    "name": "Can delete cors model",
+    "content_type": 31
+  },
+  "model": "auth.permission",
+  "pk": 93
+},
+{
+  "fields": {
+    "codename": "view_project",
+    "name": "Can view project",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 94
+},
+{
+  "fields": {
+    "codename": "add_log",
+    "name": "Can add log",
+    "content_type": 32
+  },
+  "model": "auth.permission",
+  "pk": 95
+},
+{
+  "fields": {
+    "codename": "change_log",
+    "name": "Can change log",
+    "content_type": 32
+  },
+  "model": "auth.permission",
+  "pk": 96
+},
+{
+  "fields": {
+    "codename": "delete_log",
+    "name": "Can delete log",
+    "content_type": 32
+  },
+  "model": "auth.permission",
+  "pk": 97
+},
+{
+  "fields": {
+    "codename": "add_activitylog",
+    "name": "Can add activity log",
+    "content_type": 33
+  },
+  "model": "auth.permission",
+  "pk": 98
+},
+{
+  "fields": {
+    "codename": "change_activitylog",
+    "name": "Can change activity log",
+    "content_type": 33
+  },
+  "model": "auth.permission",
+  "pk": 99
+},
+{
+  "fields": {
+    "codename": "delete_activitylog",
+    "name": "Can delete activity log",
+    "content_type": 33
+  },
+  "model": "auth.permission",
+  "pk": 100
+},
+{
+  "fields": {
+    "codename": "view_admin_project",
+    "name": "Can go to admin project",
+    "content_type": 15
+  },
+  "model": "auth.permission",
+  "pk": 101
+},
+{
+  "fields": {
+    "codename": "view_admin_survey",
+    "name": "Can go to admin survey",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 102
+},
+{
+  "fields": {
+    "codename": "view_survey",
+    "name": "Can see available surveys",
+    "content_type": 18
+  },
+  "model": "auth.permission",
+  "pk": 103
+},
+{
+  "fields": {
+    "codename": "view_transect",
+    "name": "Can see available transects",
+    "content_type": 24
+  },
+  "model": "auth.permission",
+  "pk": 104
+},
+{
+  "fields": {
+    "name": "Admin",
+    "permissions": [
+      25,
+      26,
+      27,
+      31,
+      32,
+      33,
+      49,
+      50,
+      51,
+      43,
+      44,
+      45,
+      101,
+      94,
+      46,
+      47,
+      48,
+      34,
+      35,
+      36,
+      28,
+      29,
+      30,
+      40,
+      41,
+      42,
+      52,
+      53,
+      54,
+      102,
+      103,
+      55,
+      56,
+      57,
+      37,
+      38,
+      39,
+      22,
+      23,
+      24,
+      4,
+      5,
+      6,
+      1,
+      2,
+      3,
+      7,
+      8,
+      9,
+      88,
+      89,
+      90,
+      10,
+      11,
+      12,
+      91,
+      92,
+      93,
+      67,
+      68,
+      69,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      82,
+      83,
+      84,
+      70,
+      71,
+      72,
+      104,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      58,
+      59,
+      60,
+      13,
+      14,
+      15
+    ]
+  },
+  "model": "auth.group",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "Member",
+    "permissions": [
+      101,
+      94,
+      34,
+      102,
+      103,
+      82,
+      83,
+      84,
+      70,
+      71,
+      104,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81
+    ]
+  },
+  "model": "auth.group",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "Staff",
+    "permissions": []
+  },
+  "model": "auth.group",
+  "pk": 3
+}
+]

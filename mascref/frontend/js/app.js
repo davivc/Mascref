@@ -157,7 +157,7 @@ var app = angular.module('app', [
                     return djangoAuth.authenticationStatus();
                   }],
                   acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                    return aclVerification(AclService, djangoAuth, $q, '', 'view_admin_projects') 
+                    return aclVerification(AclService, djangoAuth, $q, '', 'view_admin_project') 
                   }]
                 } 
             })

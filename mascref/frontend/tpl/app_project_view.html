@@ -173,7 +173,7 @@
                     <td class="text-center"><i ng-if="survey.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!survey.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
                     <td class="text-center">
                       <a ng-show="can('view_survey')" ui-sref="admin.projects.view.survey({surveyId:survey.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
-                      <a ng-show="can('change_survey')" ui-sref="admin.projects.view.survey.edit({surveyId:survey.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
+                      <!-- <a ng-show="can('change_survey')" ui-sref="admin.projects.view.survey.edit({surveyId:survey.id})"> <button class="btn btn-primary btn-xs">Settings</button></a> -->
                       <a ng-show="can('delete_survey')"> <button class="btn btn-danger btn-xs" ng-click="deleteSurvey(survey.id, survey.name)">Delete</button></a>
                     </td>
                 </tr>       
