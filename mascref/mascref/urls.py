@@ -13,14 +13,14 @@ from rest_framework import routers
 from mascref.views import ConfigViewSet
 from mascref.views import UserList
 from mascref.views import UserDetail
-# from mascref.views import ActivityViewSet
+from mascref.views import ActivityViewSet
 
 # admin.autodiscover()
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 # router.register(r'config', ConfigViewSet)
-# router.register(r'activity', ActivityViewSet)
+router.register(r'activity', ActivityViewSet)
 
 urlpatterns = [
 #    # '',
@@ -44,7 +44,7 @@ urlpatterns = [
       UserDetail.as_view(), name='user-detail'),
 
 #    # Router
-#    #url(r'^', include(router.urls)),
+   url(r'^', include(router.urls)),
 #    # url(r'api/dashboard/stats', 'mascref.views.dashboard_totals', name='dashboard_totals'),
 #    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
    url(r'^docs/', include('rest_framework_swagger.urls')),

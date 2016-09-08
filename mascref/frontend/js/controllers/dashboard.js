@@ -67,5 +67,5 @@ angular.module('app.controllers')
       });
     }
 
-    // $scope.getActivities();
+    $scope.getActivities();
   }]);

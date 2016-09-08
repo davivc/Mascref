@@ -31,6 +31,8 @@ angular.module('app.filters', [])
     text = text[1];
     text = text.slice(0, -1);
     if(text.indexOf('countrie') >= 0) text = 'country';
+    if(text.indexOf('transects_info') >= 0) text = 'transect info';
+    if(text.indexOf('segment') >= 0) text = 'transect data';
     return text;
   }
 })

@@ -203,4 +203,7 @@ ACTIVITYLOG_METHODS = ('POST', 'PATCH','DELETE')
 # ACTIVITYLOG_EXCLUDE_STATUSES = (302, )
 
 # URL substrings, which ignores
-ACTIVITYLOG_EXCLUDE_URLS = ('/api/master/admin', )
+ACTIVITYLOG_EXCLUDE_URLS = (
+    '/api/master/admin', 
+    '/api/rest-auth', 
+)

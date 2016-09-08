@@ -90,7 +90,7 @@ var app = angular.module('app', [
           AclService.flushRoles();
           return djangoAuth.profile().then(function (data) {
             AclService.attachRole(data.userprofile.roles[0])
-            if(AclService.hasRole('Admin') || AclService.can(action)){
+            if(AclService.hasRole('Admin') || AclService.hasRole('Member') || AclService.hasRole('Staff')){
               // console.log('run ', AclService.getRoles())
               // Has proper permissions  || AclService.hasRole('Staff')
               return true;
@@ -144,7 +144,7 @@ var app = angular.module('app', [
                     return djangoAuth.authenticationStatus();
                   }],
                   acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                    return aclVerification(AclService, djangoAuth, $q, '', 'view_admin_dashboard')
+                    return aclVerification(AclService, djangoAuth, $q, '', '')
                   }]
                 }
             })
@@ -157,7 +157,7 @@ var app = angular.module('app', [
                     return djangoAuth.authenticationStatus();
                   }],
                   acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                    return aclVerification(AclService, djangoAuth, $q, '', 'view_admin_project') 
+                    return aclVerification(AclService, djangoAuth, $q, '', '') 
                   }]
                 } 
             })
