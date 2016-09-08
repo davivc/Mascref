@@ -111,7 +111,8 @@ angular.module('app.controllers')
             });
           });
           Segment.createMultiple(create).then(function (data) {  
-            Segment.updateMultiple(update.slice(0, 5)).then(function (data) { 
+            // Segment.updateMultiple(update.slice(0, 5)).then(function (data) { 
+            Segment.updateMultiple(update).then(function (data) { 
               $scope.alert = { 
                 type: 'success',
                 msg: 'Line transect saved successfully!'

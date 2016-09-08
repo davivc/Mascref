@@ -44,6 +44,20 @@ angular.module('app.filters', [])
     return $filter('number')(input * 100, decimals) + '%';
   };
 }])
+.filter('segment', function () {
+  return function (data, key) {    
+    if (angular.isUndefined(data) || data.length == 0)
+      return 0;
+    var segmentValues = [];
+    angular.forEach(data, function (v, k) {
+      var val = 0;
+      if (key !== "" && key !== null && key !== undefined) {
+        segmentValues.push(v[key]);
+      }
+    });
+    return segmentValues;
+  }
+})
 .filter('sum', function () {
   return function (data, key) {    
     if (angular.isUndefined(data) || data.length == 0)

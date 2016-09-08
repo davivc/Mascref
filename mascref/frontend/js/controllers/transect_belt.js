@@ -38,21 +38,29 @@ angular.module('app.controllers')
         
         $scope.$watch('transect.info.id',function(newVal,oldVal) { 
           if(angular.isNumber(newVal)) {
-            $scope.getDataBelt($scope.transect.info.id)
+            // $scope.getDataBelt($scope.transect.info.id)
           }
         }, true);
 
-        $scope.$watch('belt_groups',function(oldVal,newVal) { $scope.initBeltGraphs(); }, true);
-        $scope.$watch('transect.belt.data',function(oldVal,newVal) { $scope.updateBeltGraphs(); }, true)
+        // $scope.$watch('belt_groups',function(oldVal,newVal) { 
+        //   $scope.initBeltGraphs();
+        // }, true);
+        $scope.$watch('transect.belt.data',function(oldVal,newVal) { 
+          $scope.updateBeltGraphs(); 
+        }, true)
         $scope.$watch('belt_graphs',function(newVal,oldVal) { $scope.updateBeltGraphsData(); }, true)
 
         $scope.getBeltCategories = function () {
           Group.getCategories($scope.type, $scope.config.reefcheck.group_set_belt)
           .then(function (data) {
             $scope.belt_categories = data;
+            // angular.forEach(data, function (v, k) {
+            //   $scope.getGroups('belt_groups', 'null', $scope.type, v['id']);
+            // });
             angular.forEach(data, function (v, k) {
-              $scope.getGroups('belt_groups', 'null', $scope.type, v['id']);
+              $scope.belt_groups[v.id] = []
             });
+            $scope.getGroups('belt_groups', 'null', $scope.type);
           }, function (error) {
 
           });
@@ -61,11 +69,41 @@ angular.module('app.controllers')
         $scope.getGroups = function (model, parent, type, category) {
           Group.list(parent, type, category, $scope.config.reefcheck.group_set)
           .then(function (data) {
-            if (category) $scope[model][category] = data;
-            else $scope[model] = data;
+            angular.forEach(data, function (v, k) {
+              if(v['category']) {
+                $scope[model][v['category']].push(v);
+              }
+            });
+            $scope.initBeltData();
+            $scope.initBeltGraphs();
           }, function (error) {
 
           });    
+        }
+
+        $scope.initBeltData = function() {
+          angular.forEach($scope.belt_categories, function (category) {
+            angular.forEach($scope.belt_groups[category.id], function (item) {
+              // console.log(item)
+              $scope.transect.belt.data[item.id] = [];
+              if(item.sub_groups.length > 0) {
+                $scope.transect.belt.data[item.id]['sub_groups'] = [];
+                angular.forEach(item.sub_groups, function (sub) {
+                  $scope.transect.belt.data[item.id]['sub_groups'][sub.id] = [];
+                  for (var i = 0 ; i < $scope.segments_total ; ++i){
+                    $scope.transect.belt.data[item.id]['sub_groups'][sub.id][i] = { value: 0 }; 
+                  }
+                });
+              }
+              else {
+                for (var i = 0 ; i < $scope.segments_total ; ++i){
+                  $scope.transect.belt.data[item.id][i] = { value: 0 };
+                }
+              }
+            });
+          });
+          // console.log($scope.transect.belt.data)
+          $scope.getDataBelt($scope.transect.info.id)
         }
 
         $scope.getDataBelt = function (transect) {
@@ -87,7 +125,7 @@ angular.module('app.controllers')
                   $scope.transect.belt.data[dV['group']][i] = dV;              
                 }
               });
-              console.log($scope.transect.belt.data)
+              // console.log($scope.transect.belt.data)
             }, function (error) {
 
             });
@@ -95,10 +133,10 @@ angular.module('app.controllers')
           // }
         }
 
-        $scope.extractSegmentsValues = function(groups, points_create) {
+        $scope.extractSegmentsValues = function(groups, points_create, points_update) {
           angular.forEach(groups, function (group_data, group_id) {
             if(angular.isDefined(group_data.sub_groups)) {
-              $scope.extractSegmentsValues(group_data.sub_groups, points_create);
+              $scope.extractSegmentsValues(group_data.sub_groups, points_create, points_update);
             }
             else {
               angular.forEach(group_data, function (value, segment_id) {
@@ -108,9 +146,10 @@ angular.module('app.controllers')
                 point.transect = $scope.transect.info.id;
                 point.segment = segment_id + 1;
                 point.type = $scope.type;                
-                point.value = value;
+                point.value = value.value;
                 point.group = group_id;
-                points_create.push(point)
+                if(point.id) points_update.push(point)
+                else points_create.push(point)
               });              
             }
           });  
@@ -122,7 +161,8 @@ angular.module('app.controllers')
             var y = [];
             var error_y = [];
             $scope.belt_graphs[category.id] = []
-            angular.forEach($scope.belt_groups[category.id], function (item) {
+            var orderedGroups = $filter('orderBy')($scope.belt_groups[category.id],'id');
+            angular.forEach(orderedGroups, function (item) {
               $scope.belt_graphs[category.id][item.id] = { id: item.id, sum: 0, mean: 0, sd: 0, se: 0 };
               if(item.sub_groups.length > 0) {
                 $scope.belt_graphs[category.id][item.id].sub_groups = []
@@ -140,34 +180,45 @@ angular.module('app.controllers')
               'options': { showLink: true, displayLogo: false },
             }
           });
-          // console.log($scope.belt_graphs)
+          
         }
 
         $scope.updateBeltGraphs = function() {
+          
           angular.forEach($scope.belt_categories, function (category) {
             angular.forEach($scope.belt_groups[category.id], function (item) {
               $scope.belt_graphs[category.id][item.id].id = item.id;
+
               if(item.sub_groups.length > 0) {
-                var sum = 0;
+                var sum = [];
+                for(var i = 0; i < $scope.segments_total ; ++i) {
+                  sum[i] = $filter('sum')($filter('segment')($scope.transect.belt.data[item.id]['sub_groups'],i),'value');
+                }
+
                 angular.forEach(item.sub_groups, function (sub) {
                   $scope.belt_graphs[category.id][item.id].sub_groups[sub.id] = { 
                     id: sub.id, 
-                    sum: $filter('sum')($scope.transect.belt.data[item.id]['sub_groups'][sub.id]), 
-                    mean: $filter('mean')($scope.transect.belt.data[item.id]['sub_groups'][sub.id]), 
-                    sd: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id]), 
-                    se: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id])/Math.sqrt($scope.segments_total)
+                    sum: $filter('sum')($scope.transect.belt.data[item.id]['sub_groups'][sub.id],'value'),
+                    mean: $filter('mean')($scope.transect.belt.data[item.id]['sub_groups'][sub.id],'value'), 
+                    sd: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id],'value'),
+                    se: $filter('sd')($scope.transect.belt.data[item.id]['sub_groups'][sub.id],'value')/Math.sqrt($scope.segments_total)
                   };
-                  sum += $scope.belt_graphs[category.id][item.id].sub_groups[sub.id].sum;
                 });
-                // console.log($scope.transect.belt.data)
-                  
+                
+                $scope.belt_graphs[category.id][item.id].sum = $filter('sum')(sum);
+                $scope.belt_graphs[category.id][item.id].mean = $filter('mean')(sum);
+                $scope.belt_graphs[category.id][item.id].sd = $filter('sd')(sum);
+                $scope.belt_graphs[category.id][item.id].se = $filter('sd')(sum)/Math.sqrt($scope.segments_total);
               }
-              $scope.belt_graphs[category.id][item.id].sum = $filter('sum')($scope.transect.belt.data[item.id]);
-              $scope.belt_graphs[category.id][item.id].mean = $filter('mean')($scope.transect.belt.data[item.id]);
-              $scope.belt_graphs[category.id][item.id].sd = $filter('sd')($scope.transect.belt.data[item.id]);
-              $scope.belt_graphs[category.id][item.id].se = $filter('sd')($scope.transect.belt.data[item.id])/Math.sqrt($scope.segments_total);
+              else {
+                $scope.belt_graphs[category.id][item.id].sum = $filter('sum')($scope.transect.belt.data[item.id],'value');
+                $scope.belt_graphs[category.id][item.id].mean = $filter('mean')($scope.transect.belt.data[item.id],'value');
+                $scope.belt_graphs[category.id][item.id].sd = $filter('sd')($scope.transect.belt.data[item.id], 'value');
+                $scope.belt_graphs[category.id][item.id].se = $filter('sd')($scope.transect.belt.data[item.id], 'value')/Math.sqrt($scope.segments_total);
+              }
             });
           });
+          // console.log($scope.belt_graphs);
         }
 
         $scope.updateBeltGraphsData = function() {
@@ -198,19 +249,28 @@ angular.module('app.controllers')
             msg: 'Saving belt transect data...'
           }
           var create = []
-          
-          $scope.extractSegmentsValues($scope.transect.belt.data, create);
-          Segment.createMultiple(create).then(function (data) {
-            $scope.alert = {
-              type: 'success',
-              msg: 'Belt transect saved successfully!'
-            }
+          var update = []
+          $scope.extractSegmentsValues($scope.transect.belt.data,create,update);
+          // console.log(create) 
+          // console.log(update) 
+          Segment.createMultiple(create).then(function (data) {  
+            Segment.updateMultiple(update).then(function (data) { 
+              $scope.alert = { 
+                type: 'success',
+                msg: 'Belt transect saved successfully!'
+              }
+            }, function (error) {
+              $scope.alert = { 
+                type: 'danger',
+                msg: 'Ops! It appears that an error occurred while updating some data on the belt transect'
+              }
+            });
           }, function (error) {
             $scope.alert = { 
               type: 'danger',
               msg: 'Ops! It appears that an error occurred while saving some data on the belt transect'
             }
-          });      
+          });
         }
 
         $scope.getBeltCategories();
