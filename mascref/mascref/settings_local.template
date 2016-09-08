@@ -3,6 +3,9 @@ TEMPLATE_DEBUG = DEBUG
 
 DEFAULT_SITE_DOMAIN = 'mapreef.dev'
 
+# config session to work through subdomains
+SESSION_COOKIE_DOMAIN = '.mapreef.dev'
+
 ALLOWED_HOSTS = (
     'localhost',
     'mascref',

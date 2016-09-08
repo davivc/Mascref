@@ -169,9 +169,6 @@ AUTHENTICATION_METHOD = 'EMAIL'
 AUTHENTICATION_BACKENDS = ( 'app.auth_backend.SiteBackend', )
 AUTH_PROFILE_MODULE = "app.UserProfile"
 
-# config session to work through subdomains
-SESSION_COOKIE_DOMAIN = '.mapreef.dev'
-
 from settings_local import * 
 
 REST_FRAMEWORK = {
