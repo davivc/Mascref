@@ -11,13 +11,14 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 
 # from rest_framework_tracking.models import APIRequestLog
+from activity_log.models import ActivityLog
 
 from app.models import Config
 
 # Serializers
 from mascref.serializers import ConfigSerializer
 from mascref.serializers import UserSerializer
-# from mascref.serializers import ActivitySerializer
+from mascref.serializers import ActivitySerializer
 
 
 # Rest-Auth
@@ -51,10 +52,10 @@ class ConfigViewSet(viewsets.ModelViewSet):
     )
 
 
-# class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
-#     queryset = APIRequestLog.objects.filter(Q(method='POST') | Q(method='PATCH')).exclude(Q(path__contains='segments') | Q(status_code=400)).order_by('-requested_at')[:10]
-#     serializer_class = ActivitySerializer
-#     ordering = ('requested_at',)
-#     permission_classes = (
-#         permissions.IsAuthenticated,
-#     )
+class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ActivityLog.objects.filter(Q(request_method='POST') | Q(request_method='PATCH')).exclude(Q(response_code=400)).order_by('-datetime')[:25]
+    serializer_class = ActivitySerializer
+    ordering = ('datetime',)
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )

@@ -32,6 +32,7 @@ declare -a array=(
 	"usp_05_group_set"
 	"usp_06_groups"
 	"usp_07_2015_transects"
+	"authdata"
 	)
 
 # get length of an array

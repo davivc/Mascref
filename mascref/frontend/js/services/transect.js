@@ -53,6 +53,9 @@ angular.module('app.services')
     'updateMultipleInfos': function (pData) {      
       return Rest.patch(this.url_infos, pData);
     },
+    'delete': function (pk) {
+      return Rest.delete(this.url, pk);
+    }
   }
 
   return service;

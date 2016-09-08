@@ -20,6 +20,7 @@ django-filter==0.11.0
 django-rest-assured==0.2.0
 django-rest-auth==0.6.0
 django-rest-swagger==0.3.4
+django-user-activity-log==0.0.15
 djangorestframework==3.3.0
 djangorestframework-bulk==0.2.1
 drf-tracking==0.2.5
@@ -33,6 +34,7 @@ lazr.restfulclient==0.13.3
 lazr.uri==1.0.3
 mod-python==3.3.1
 oauth==1.0.1
+pinax-eventlog==1.1.2
 prettytable==0.7.2
 pyOpenSSL==0.13
 pycrypto==2.6.1

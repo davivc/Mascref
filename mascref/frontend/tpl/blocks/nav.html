@@ -2,35 +2,35 @@
   <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
     <span translate="aside.nav.HEADER">Navigation</span>
   </li>
-  <li>
+  <li ng-show="can('view_admin_dashboard')">
     <a ui-sref="admin.dashboard">
       <i class="glyphicon glyphicon-align-left icon text-primary-dker"></i>
       <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
     </a>
   </li>
-  <li>
+  <li ng-show="can('view_admin_project')">
     <a ui-sref="admin.projects">
       <i class="glyphicon glyphicon-folder-open icon text-info-dker"></i>
       <span class="font-bold" translate="aside.nav.PROJECTS">Projects</span>
     </a>
   </li>
-<!--   <li>
+  <li ng-show="can('view_admin_maps')">
     <a ui-sref="admin.maps">
       <i class="glyphicon glyphicon-globe icon text-info-lter"></i>
       <span class="font-bold" translate="aside.nav.MAPS">Maps</span>
     </a>
-  </li> -->
- <!--  <li>
+  </li>
+  <li ng-show="can('view_admin_stats')">
     <a ui-sref="admin.stats">
       <i class="glyphicon glyphicon-stats icon text-success"></i>
       <span class="font-bold" translate="aside.nav.STATS">Stats</span>
     </a>
-  </li> -->
-<!--   <li>
+  </li>
+  <li  ng-show="can('view_admin_settings')">
     <a ui-sref="admin.settings">
       <i class="glyphicon glyphicon-cog icon text-danger"></i>
       <span class="font-bold" translate="aside.nav.SETTINGS">Settings</span>
     </a>
-  </li> -->
+  </li>
   <li class="line dk"></li>
 </ul>

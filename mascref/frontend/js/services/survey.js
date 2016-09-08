@@ -27,6 +27,7 @@ angular.module('app.services')
           'date_start': pData.date_start,
           'date_end': pData.date_end,
           'public': pData.restricted,
+          'data_level': pData.confidence,
           'owner': pData.owner.id
       };
       if(pData.id) {

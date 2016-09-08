@@ -37,6 +37,7 @@
               <th class="text-center" style="width:75px;">Total</th>
               <th class="text-center" style="width:75px;">Mean</th>                           
               <th class="text-center" style="width:75px;">SD</th>          
+              <th class="text-center" style="width:75px;">SE</th>          
             </tr>
           </thead>
           <tbody ng-if="belt_groups[category.id].length == 0">
@@ -46,7 +47,7 @@
             <tr>
               <td>{{group.name}}</td>
               <td class="text-center" ng-repeat="seg in segments_total | range">
-                <div class="text-center" ng-if="group.sub_groups.length != 0">{{ transect.belt.data[group.id]['sub_groups'] | sum:seg }}</div>
+                <div class="text-center" ng-if="group.sub_groups.length != 0">{{ transect.belt.data[group.id]['sub_groups'] | segment:seg | sum:'value' }}</div>
                 <div class="text-center input-group" ng-if="group.sub_groups.length == 0">
                   <input ng-model="transect.belt.data[group.id][seg].value" type="text" class="form-control input-sm text-center" value="0" placeholder="0" />
                   <span class="input-group-addon">
@@ -57,18 +58,23 @@
               <td class="text-center"><span ng-show="group.format != 2">{{ belt_graphs[category.id][group.id].sum }}</span></td>
               <td class="text-center">{{ belt_graphs[category.id][group.id].mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
               <td class="text-center">{{ belt_graphs[category.id][group.id].sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS+1 }}</td>
+              <td class="text-center">{{ belt_graphs[category.id][group.id].se | number : MASCREF_CONF.SIGNIFICANT_DIGITS+1 }}</td>
             </tr>
             <tr ng-if="group.sub_groups.length != 0" ng-repeat="sub in group.sub_groups">
               <td>{{sub.name}}</td>
               <td class="text-center" ng-repeat="seg in segments_total | range">
                 <div class="input-group text-center">
-                  <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg].value" type="text" class="form-control input-sm text-center"  placeholder="0" value="0" ng-keyup="transect.belt.data[group.id][seg] = sum(transect.belt.data[group.id]['sub_groups'],seg)"/>
+                  <input ng-model="transect.belt.data[group.id]['sub_groups'][sub.id][seg].value" type="text" class="form-control input-sm text-center"  placeholder="0" value="0" ng-blur="updateBeltGraphs()"/>
                   <span ng-if="group.format == 2" class="input-group-addon">%</span>
                 </div>
               </td>
-              <td class="text-center"><span ng-show="group.format != 2">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | sum)/(group.format == 2 ? 100 : 1) }}</span></td>
+              <td class="text-center"><span ng-show="group.format != 2">{{ belt_graphs[category.id][group.id]['sub_groups'][sub.id].sum }}</span></td>
+              <td class="text-center">{{ belt_graphs[category.id][group.id]['sub_groups'][sub.id].mean | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+              <td class="text-center">{{ belt_graphs[category.id][group.id]['sub_groups'][sub.id].sd | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+              <td class="text-center">{{ belt_graphs[category.id][group.id]['sub_groups'][sub.id].se | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+              <!-- <td class="text-center"><span ng-show="group.format != 2">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | sum)/(group.format == 2 ? 100 : 1) }}</span></td>
               <td class="text-center">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | mean)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
-              <td class="text-center">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | sd)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td>
+              <td class="text-center">{{ (transect.belt.data[group.id]['sub_groups'][sub.id] | sd)/(group.format == 2 ? 100 : 1) | number : MASCREF_CONF.SIGNIFICANT_DIGITS }}</td> -->
             </tr>
           </tbody>
         </table>

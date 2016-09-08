@@ -7,13 +7,6 @@ angular.module('app.controllers')
     if (!$scope.authenticated) {
       $state.go('access.signin');
     }
-
-    // console.log(AclService.getRoles())
-
-    $scope.$watch('userProfile', function(newValue, oldValue) {
-      //update the DOM with newValue
-      // console.log(newValue, oldValue)
-    });
   }])
   .controller('DashboardStatsCtrl', ['$scope', '$rootScope', '$translate', '$filter', 'Dashboard', function ($scope, $rootScope, $translate, $filter, Dashboard) {
     $scope.stats = {
@@ -43,6 +36,7 @@ angular.module('app.controllers')
     $scope.getResearchers = function () {
       Dashboard.researchers()
       .then(function (data) {
+        console.log(data)
         $scope.researchers = data;
       }, function (error) {
         console.error('Dash Stats: ' + error);
@@ -51,9 +45,10 @@ angular.module('app.controllers')
     }
 
     $scope.$watch('researchers', function (data) {
-      $scope.totalAdmin = $filter('filter')($scope.researchers, { is_admin: true }, true).length;
-      $scope.totalMembers = $filter('filter')($scope.researchers, { is_staff: true, is_admin: false }, true).length;
-      $scope.totalResearchers = $scope.researchers.length - $scope.totalAdmin - $scope.totalMembers;
+      $scope.totalAdmin = $filter('filter')($scope.researchers, { roles: "Admin" }, true).length;
+      $scope.totalStaff = $filter('filter')($scope.researchers, { roles: "Staff" }, true).length;
+      $scope.totalMembers = $filter('filter')($scope.researchers, { roles: "Member" }, true).length;
+      $scope.totalResearchers = $scope.researchers.length - $scope.totalAdmin - $scope.totalStaff - $scope.totalMembers;
     });
 
     $scope.getStats();
@@ -72,5 +67,5 @@ angular.module('app.controllers')
       });
     }
 
-    // $scope.getActivities();
+    $scope.getActivities();
   }]);

@@ -13,42 +13,42 @@ from rest_framework import routers
 from mascref.views import ConfigViewSet
 from mascref.views import UserList
 from mascref.views import UserDetail
-# from mascref.views import ActivityViewSet
+from mascref.views import ActivityViewSet
 
 # admin.autodiscover()
 
 # Routers provide an easy way of automatically determining the URL conf.
-# router = routers.DefaultRouter()
+router = routers.DefaultRouter()
 # router.register(r'config', ConfigViewSet)
-# router.register(r'activity', ActivityViewSet)
+router.register(r'activity', ActivityViewSet)
 
 urlpatterns = [
 #    # '',
 #    # Uncomment the admin/doc line below to enable admin documentation:
-#    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+   # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
 #    # Uncomment the next line to enable the admin:
-   # url(r'^master/admin/', include(admin.site.urls)),
+   url(r'^master/admin/', include(admin.site.urls)),
    
 #    # Pages
 #    # url(r'^$', 'app.views.home', name='home'),
 
 #    # Modules Views
-   # url(r'^', include('app.urls')),
-   # url(r'^', include('reefcheck.urls')),
+   url(r'^', include('app.urls')),
+   url(r'^', include('reefcheck.urls')),
 
 #    # Custom Views
-#    #url(r'^api/users/$', UserList.as_view(),
-#    #    name='user-list'),
-#    #url(r'^api/users/(?P<pk>[0-9]+)/$',
-#    #    UserDetail.as_view(), name='user-detail'),
+   url(r'^users/$', UserList.as_view(),
+      name='user-list'),
+   url(r'^users/(?P<pk>[0-9]+)/$',
+      UserDetail.as_view(), name='user-detail'),
 
 #    # Router
-#    #url(r'^', include(router.urls)),
+   url(r'^', include(router.urls)),
 #    # url(r'api/dashboard/stats', 'mascref.views.dashboard_totals', name='dashboard_totals'),
 #    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-#    #url(r'^api-docs/', include('rest_framework_swagger.urls')),
-#    #url(r'^rest-auth/', include('rest_auth.urls')),
+   url(r'^docs/', include('rest_framework_swagger.urls')),
+   url(r'^rest-auth/', include('rest_auth.urls')),
 #    # url(r'^login/$',
 #    #     'django.contrib.auth.views.login',
 #    #     {

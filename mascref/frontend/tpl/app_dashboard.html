@@ -16,39 +16,39 @@
     <div class="wrapper-md" ng-controller="DashboardStatsCtrl">
       <!-- stats -->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-2">
           <div class="row row-sm text-center">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <a href class="block panel padder-v bg-info item">
                 <div class="h1 text-white font-thin h1 block">{{stats.projects}}</div>
                 <span class="text-muted text-xs" translate="admin.dashboard.PROJECTS">Projects</span>
               </a>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <a href class="block panel padder-v bg-primary item">
                 <span class="text-white font-thin h1 block">{{stats.surveys}}</span>
                 <span class="text-muted text-xs" translate="admin.dashboard.SURVEYS">Surveys</span>
               </a>
             </div>
-            <div class="col-xs-6">
-              <a href class="block panel padder-v bg-primary item">
+            <div class="col-xs-12">
+              <a href class="block panel padder-v bg-info item">
                 <span class="text-white font-thin h1 block">{{stats.sites}}</span>
                 <span class="text-muted text-xs" translate="admin.dashboard.SITES">Sites</span>
               </a>
             </div>
-            <div class="col-xs-6">
-              <a href class="block panel padder-v bg-info item">
+            <div class="col-xs-12">
+              <a href class="block panel padder-v bg-primary item">
                 <div class="font-thin h1">{{stats.transects}}</div>
                 <span class="text-muted text-xs" translate="admin.dashboard.TRANSECTS">Transects</span>
               </a>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <a href class="block panel padder-v bg-info item">
                 <span class="text-white font-thin h1 block">{{stats.countries}}</span>
                 <span class="text-muted text-xs" translate="admin.dashboard.COUNTRIES">Countries</span>
               </a>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <a href class="block panel padder-v bg-primary item">
                 <div class="font-thin h1">{{stats.towns}}</div>
                 <span class="text-muted text-xs" translate="admin.dashboard.TOWNS">Towns</span>
@@ -56,13 +56,14 @@
             </div>
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-10">
             <div class="panel no-border">
                 <div class="panel-heading wrapper b-b b-light">
                   <span class="text-xs text-muted pull-right">
                     <i popover="Admins" class="fa fa-circle text-danger m-r-xs"></i> {{totalAdmin}}
+                    <i popover="Staff" class="fa fa-circle text-primary m-r-xs m-l-sm"></i> {{totalStaff}}
                     <i popover="Members" class="fa fa-circle text-dark m-r-xs m-l-sm"></i> {{totalMembers}}
-                    <i popover="Researchers" class="fa fa-circle text-warning m-r-xs m-l-sm"></i> {{totalResearchers}}
+                    <i popover="Researchers" class="fa fa-circle text-info m-r-xs m-l-sm"></i> {{totalResearchers}}
                   </span>
                   <h4 class="font-thin m-t-none m-b-none text-muted" translate="admin.dashboard.RESEARCHERS">Researchers</h4>              
                 </div>
@@ -72,9 +73,10 @@
                       <img src="img/a1.jpg" class="r r-2x">
                     </a>
                     <span>
-                      <span ng-show="researcher.is_staff && researcher.is_admin" class="ng-hide pull-right label bg-danger inline m-t-sm" translate="admin.dashboard.ADMIN">Admin</span>
-                      <span ng-show="researcher.is_staff && !researcher.is_admin" class="ng-hide pull-right label bg-dark inline m-t-sm" translate="admin.dashboard.MEMBER">Member</span>
-                      <span ng-show="!researcher.is_staff && !researcher.is_admin" class="ng-hide pull-right label bg-warning inline m-t-sm" translate="admin.dashboard.RESEARCHER">Researcher</span>
+                      <span ng-show="researcher.roles.indexOf('Admin') > -1" class="ng-hide pull-right label bg-danger inline m-t-sm" translate="admin.dashboard.ADMIN">Admin</span>
+                      <span ng-show="researcher.roles.indexOf('Staff') > -1" class="ng-hide pull-right label bg-dark inline m-t-sm" translate="admin.dashboard.MEMBER">Staff</span>
+                      <span ng-show="researcher.roles.indexOf('Member') > -1" class="ng-hide pull-right label bg-dark inline m-t-sm" translate="admin.dashboard.MEMBER">Member</span>
+                      <span ng-show="researcher.roles == []" class="ng-hide pull-right label bg-info inline m-t-sm" translate="admin.dashboard.RESEARCHER">Researcher</span>
                     </span>
                     <a href>{{researcher.name}}</a>
                   </li>
@@ -98,10 +100,10 @@
       <div class="m-b text-md" translate="admin.dashboard.RECENT">Recent Activity</div>
       <div class="" ng-if="activity.length == 0">No recent activity</div>
       <div class="streamline b-l" ng-hide="activity.length == 0">
-        <div class="sl-item b-l" ng-repeat="item in activity" ng-class="{ 'b-info': (item.method == 'PATCH') , 'b-success': (item.method == 'POST')}">
+        <div class="sl-item b-l" ng-repeat="item in activity" ng-class="{ 'b-info': (item.request_method == 'PATCH') , 'b-success': (item.request_method == 'POST')}">
           <div class="m-l">
-            <div class="text-muted"><time am-time-ago="item.requested_at"></time></div>
-            <p><a href class="text-info">{{item.firstname}}</a> <span class="ng-hide" ng-show="item.method == 'PATCH'">edited</span><span class="ng-hide" ng-show="item.method == 'POST'">created</span> a {{item.path | toActivity}} </p>
+            <div class="text-muted"><time am-time-ago="item.datetime"></time></div>
+            <p><a href class="text-info">{{item.user}}</a> <span class="ng-hide" ng-show="item.request_method == 'PATCH'">edited</span><span class="ng-hide" ng-show="item.request_method == 'POST'">created</span> a {{item.request_url | toActivity}} </p>
           </div>
         </div>        
       </div>

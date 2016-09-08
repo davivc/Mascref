@@ -17,7 +17,6 @@ import os
 import sys
 
 sys.path = ['/vagrant/mascref/mascref/'] + sys.path
-# sys.path = ['D:/projects/mascref/backend/'] + sys.path
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mascref.settings")
 
 # This application object is used by any WSGI server configured to use this

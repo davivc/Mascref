@@ -17,7 +17,7 @@
               <div class="line line-lg b-b b-light"></div>
               <div class="text-muted">
                 <span ng-show="project.owner_name"><i class="fa fa-group text-muted"></i> survey leader <a href class="m-r-sm">{{survey.owner_name | ucFirst }}</a></span>
-                <i class="fa fa-user text-muted"></i> created by <a href class="m-r-sm">{{survey.created_by | ucFirst }}</a>
+                <i class="fa fa-user text-muted"></i> created by <a href class="m-r-sm">{{survey.created_by}}</a>
                 <i class="fa fa-clock-o text-muted"></i> {{survey.created_at | date:'medium'}}
               </div>
             </div>
@@ -34,7 +34,7 @@
                 Search: <input id="filter_surveys" type="text" class="form-control input-sm w-sm inline m-r"/>
               </div>
               <div class="text-muted text-right">
-                <button type="submit" class="btn btn-sm btn-success" ng-click="goToTransect('')">+ New Transect</button>
+                <button type="submit" ng-show="can('add_transect')" class="btn btn-sm btn-success" ng-click="goToTransect('')">+ New Transect</button>
               </div>
               <div ng-if="alerts.length > 0" class="m-b-md">
                 <br />
@@ -50,7 +50,7 @@
                     <th class="text-center">Depth (m)</th>
                     <th class="text-center">Date</th>
                     <!-- <th class="text-center">Time Start</th> -->
-                    <th class="text-center">Leader</th>
+                    <!-- <th class="text-center">Leader</th> -->
                     <th class="text-center">Actions</th>
                   </tr>
                 </thead>
@@ -59,15 +59,15 @@
                       <td class="text-center" colspan="7">No transects found for this project.</td>
                   </tr>        
                   <tr ng-repeat="transect in transects">
-                      <td><a ui-sref="admin.projects.view.survey.transect({transectId:transect.id})">{{transect.name}}</a></td>
+                      <td><a>{{transect.name}}</a></td>
                       <td class="text-center">{{transect.site_name}} ({{transect.town_name}})</td>
                       <td class="text-center">{{transect.depth | number : 2 }}</td>
                       <td class="text-center">{{transect.date | date:'shortDate'}}</td>
                       <!-- <td class="text-center">{{transect.time_start}}</td> -->
-                      <td class="text-center">{{transect.team_leader_name ? transect.team_leader_name : '-'}}</td>
+                      <!-- <td class="text-center">{{transect.team_leader_name ? transect.team_leader_name : '-'}}</td> -->
                       <td class="text-center">
-                        <a ui-sref="admin.projects.view.survey.transect({transectId:transect.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
-                        <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs" ng-click="deleteTransect(transect.id, transect.name)">Delete</button></a>
+                        <a ng-show="can('view_transect')" ui-sref="admin.projects.view.survey.transect({transectId:transect.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                        <a ng-show="can('delete_transect')"> <button class="btn btn-danger btn-xs" ng-click="deleteTransect(transect.id, transect.name)">Delete</button></a>
                     </td>
                   </tr>       
                 </tbody>

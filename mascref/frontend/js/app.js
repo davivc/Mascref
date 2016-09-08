@@ -53,11 +53,10 @@ var app = angular.module('app', [
             });
             aclData[obj.name] = groupPermissions;
           });
-          AclService.setAbilities(aclData);     
-          
-        }, function (error) {
-          
+          // return aclData; 
+          AclService.setAbilities(aclData);
         });
+        
 
         djangoAuth.profile().then(function (data) {
           AclService.attachRole(data.userprofile.roles[0])          
@@ -91,7 +90,7 @@ var app = angular.module('app', [
           AclService.flushRoles();
           return djangoAuth.profile().then(function (data) {
             AclService.attachRole(data.userprofile.roles[0])
-            if(AclService.hasRole(role)){
+            if(AclService.hasRole('Admin') || AclService.hasRole('Member') || AclService.hasRole('Staff')){
               // console.log('run ', AclService.getRoles())
               // Has proper permissions  || AclService.hasRole('Staff')
               return true;
@@ -106,18 +105,18 @@ var app = angular.module('app', [
 
         $urlRouterProvider
           .otherwise('/access/404')
-          .rule(function($injector, $location) {
-            var path = $location.path();
-            var hasTrailingSlash = path[path.length-1] === '/';
+          // .rule(function($injector, $location) {
+          //   var path = $location.path();
+          //   var hasTrailingSlash = path[path.length-1] === '/';
 
-            if(hasTrailingSlash) {
+          //   if(hasTrailingSlash) {
 
-              //if last charcter is a slash, return the same url without the slash  
-              var newPath = path.substr(0, path.length - 1); 
-              return newPath; 
-            } 
+          //     //if last charcter is a slash, return the same url without the slash  
+          //     var newPath = path.substr(0, path.length - 1); 
+          //     return newPath; 
+          //   } 
 
-          });
+          // });
           
         $stateProvider
           .state('home', {
@@ -133,7 +132,7 @@ var app = angular.module('app', [
               resolve: {
                 authenticated: ['djangoAuth', function (djangoAuth) {
                   return djangoAuth.authenticationStatus();
-                }],
+                }]
               }
           })
             .state('admin.dashboard', {
@@ -144,9 +143,9 @@ var app = angular.module('app', [
                   authenticated: ['djangoAuth', function (djangoAuth) {
                     return djangoAuth.authenticationStatus();
                   }],
-                  // acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
-                  //   return aclVerification(AclService, djangoAuth, $q, 'Admin')                                       
-                  // }]
+                  acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
+                    return aclVerification(AclService, djangoAuth, $q, '', '')
+                  }]
                 }
             })
             .state('admin.projects', {
@@ -157,6 +156,9 @@ var app = angular.module('app', [
                   authenticated: ['djangoAuth', function (djangoAuth) {
                     return djangoAuth.authenticationStatus();
                   }],
+                  acl: ['$q', 'AclService','djangoAuth', function($q, AclService, djangoAuth){
+                    return aclVerification(AclService, djangoAuth, $q, '', '') 
+                  }]
                 } 
             })
               .state('admin.projects.view', {
@@ -315,15 +317,15 @@ var app = angular.module('app', [
   ],
 })
 .value('MASCREF_CONF', {
-  COORD: { LAT: -18.15, LONG: 178.4, ZOOM: 12 },
+  COORD: { LAT: -18.15, LONG: 178.4, ZOOM: 10 },
   SIGNIFICANT_DIGITS: 2,
   TRANSECT_SEGMENTS_LENGTH: 20, // Length of segment
   TRANSECT_SEGMENTS_POINTS: 40, // Number of points per segment 
   TRANSECT_SEGMENTS_SPACE: 5, // Space between segments
-  TRANSECT_SEGMENTS_TOTAL: 3, // Number of segments per transect
+  TRANSECT_SEGMENTS_TOTAL: 4, // Number of segments per transect
   REEFCHECK_LINE: true, // Activate line transect
   REEFCHECK_BELT: true, // Activate belt transect
-  REEFCHECK_GROUP_SET_DEFAULT_LINE: 10,
-  REEFCHECK_GROUP_SET_DEFAULT_BELT: 1,
+  REEFCHECK_GROUP_SET_LINE: 11,
+  REEFCHECK_GROUP_SET_BELT: 1,
   TRANSECT_TYPE: { BELT: 1, LINE: 2 },
 });

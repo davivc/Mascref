@@ -41,11 +41,20 @@
               <!-- <input type="hidden" ng-model="project.public"> -->
               <div class="col-sm-10">
                 <label class="i-switch m-t-xs m-r">
-                  <input type="checkbox" checked="{{project.public}}" ng-click="project.public = !project.public">
-                  <i></i>              
+                  <input type="checkbox" ng-checked="project.public" ng-click="project.public = !project.public">
+                  <i></i>
                 </label>
               </div>
             </div>
+            <!-- <div class="form-group">
+              <label class="col-sm-2 control-label">Data Confidence</label>
+              <div class="col-sm-10">
+                <div class="btn-group m-r">
+                  <label class="btn btn-default" ng-model="project.confidence" btn-radio="1" uncheckable>High Confidence</label>
+                  <label class="btn btn-default" ng-model="project.confidence" btn-radio="2" uncheckable>Low Confidence</label>
+                </div>
+              </div>
+            </div> -->
             <div class="line line-dashed b-b line-lg pull-in"></div>
             <div class="form-group">
               <label class="col-sm-2 control-label"></label>
@@ -76,5 +85,5 @@
           </div>
           <div class="line line-lg b-b b-light"></div>
         </div>
-      </div> 
+      </div>
 </div>

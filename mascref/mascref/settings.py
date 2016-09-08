@@ -1,5 +1,5 @@
 ﻿"""
-Django settings for Mascref project.
+Django settings for MapReef project.
 """
 
 from os import path
@@ -93,7 +93,8 @@ MIDDLEWARE_CLASSES = (
     # 'mascref.middleware.SiteMiddleware'
     'mascref.middleware.AccountIDMiddleware',
     # 'mascref.middlewares.ThreadLocal.ThreadLocalMiddleware',    
-    'mascref.middleware_dynamicsite.DynamicSitesMiddleware',    
+    'mascref.middleware_dynamicsite.DynamicSitesMiddleware',
+    'activity_log.middleware.ActivityLogMiddleware',   
 )
 
 ROOT_URLCONF = 'mascref.urls'
@@ -130,6 +131,7 @@ INSTALLED_APPS = (
     'corsheaders',
     # 'rest_framework_tracking',
     'rest_assured',
+    'activity_log',
     # 'factory',
 )
 
@@ -162,7 +164,6 @@ LOGGING = {
     }
 }
 
-#DEFAULT_SITE_DOMAIN = 'mapreef.dev'
 SITES_PACKAGE = 'sites'
 AUTHENTICATION_METHOD = 'EMAIL'
 AUTHENTICATION_BACKENDS = ( 'app.auth_backend.SiteBackend', )
@@ -180,3 +181,29 @@ REST_FRAMEWORK = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'mascref.serializers.UserSerializer',
 }
+
+ACTIVITYLOG_AUTOCREATE_DB = False
+
+# App settings
+
+# Log anonimus actions?
+ACTIVITYLOG_ANONIMOUS = True
+
+# Update last activity datetime in user profile. Needs updates for user model.
+ACTIVITYLOG_LAST_ACTIVITY = True
+
+# Only this methods will be logged
+ACTIVITYLOG_METHODS = ('POST', 'PATCH','DELETE')
+
+# List of response statuses, which logged. By default - all logged.
+# Don't use with ACTIVITYLOG_EXCLUDE_STATUSES
+# ACTIVITYLOG_STATUSES = (200, )
+
+# List of response statuses, which ignores. Don't use with ACTIVITYLOG_STATUSES
+# ACTIVITYLOG_EXCLUDE_STATUSES = (302, )
+
+# URL substrings, which ignores
+ACTIVITYLOG_EXCLUDE_URLS = (
+    '/api/master/admin', 
+    '/api/rest-auth', 
+)

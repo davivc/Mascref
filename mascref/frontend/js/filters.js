@@ -31,6 +31,8 @@ angular.module('app.filters', [])
     text = text[1];
     text = text.slice(0, -1);
     if(text.indexOf('countrie') >= 0) text = 'country';
+    if(text.indexOf('transects_info') >= 0) text = 'transect info';
+    if(text.indexOf('segment') >= 0) text = 'transect data';
     return text;
   }
 })
@@ -44,6 +46,20 @@ angular.module('app.filters', [])
     return $filter('number')(input * 100, decimals) + '%';
   };
 }])
+.filter('segment', function () {
+  return function (data, key) {    
+    if (angular.isUndefined(data) || data.length == 0)
+      return 0;
+    var segmentValues = [];
+    angular.forEach(data, function (v, k) {
+      var val = 0;
+      if (key !== "" && key !== null && key !== undefined) {
+        segmentValues.push(v[key]);
+      }
+    });
+    return segmentValues;
+  }
+})
 .filter('sum', function () {
   return function (data, key) {    
     if (angular.isUndefined(data) || data.length == 0)

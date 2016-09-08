@@ -19,7 +19,7 @@
         Search: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r"/>
       </div>
       <div class="text-muted text-right">
-        <button type="submit" class="btn btn-sm btn-success" ng-click="showNewProject = true">+ New Project</button>
+        <button type="submit" class="btn btn-sm btn-success" ng-click="showNewProject = true" ng-show="can('add_project')">+ New Project</button>
       </div>
       <div ng-if="alerts.length > 0" class="m-b-md">
         <br />
@@ -35,7 +35,7 @@
               <!-- <th class="text-center">Date End</th> -->
               <th class="text-center">Project Leader</th>
               <th class="text-center">Surveys</th>
-              <th class="text-center">Transects</th>
+              <!-- <th class="text-center">Data Confidence</th> -->
               <th class="text-center">Date Created</th>
               <th class="text-center">Public</th>
               <th class="text-center">Actions</th>
@@ -53,18 +53,18 @@
               <td colspan="6" class="text-center">No projects found in the system</td>
           </tr>        
           <tr ng-repeat="project in projects">
-              <td><a ui-sref="admin.projects.view({projectId:project.id})">{{project.name}}</a></td>
+              <td><a ng-show="can('view_project')" ui-sref="admin.projects.view({projectId:project.id})">{{project.name}}</a><span ng-show="!can('view_project')">{{project.name}}</span></td>
               <!-- <td class="text-center">{{project.date_start | date:'shortDate'}}</td> -->
               <!-- <td class="text-center">{{project.date_end | date:'shortDate'}}</td> -->
               <td class="text-center">{{ project.owner_name ? project.owner_name : '-' }}</td>
-              <td class="text-center">{{project.surveys.length}}</td>
-              <td class="text-center">{{project.transects.length ? project.transects.length : 0}}</td>
+              <td class="text-center">{{project.surveys.length ? project.surveys.length : 0}}</td>
+             <!--  <td class="text-center">{{project.confidence == 1 ? 'High Confidence' : 'Low Confidence'}}</td> -->
               <td class="text-center">{{project.created_at | date:'short'}}</td>
               <td class="text-center"><i ng-if="project.public" class="glyphicon glyphicon-ok-circle text-success"></i><i ng-if="!project.public" class="glyphicon glyphicon-ban-circle text-danger"></i></td>
               <td class="text-center">
-                <a ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
-                <a ng-if="userProfile.is_admin" ui-sref="admin.projects.edit({projectId:project.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
-                <a ng-if="userProfile.is_admin"> <button class="btn btn-danger btn-xs" ng-click="deleteProject(project.id, project.name)">Delete</button></a>
+                <a ng-show="can('view_project')" ui-sref="admin.projects.view({projectId:project.id})"><button class="btn btn-info btn-xs text-info">View</button></a>
+                <a ng-show="can('change_project')" ui-sref="admin.projects.edit({projectId:project.id})"> <button class="btn btn-primary btn-xs">Settings</button></a>
+                <a ng-show="can('delete_project')"> <button class="btn btn-danger btn-xs" ng-click="deleteProject(project.id, project.name)">Delete</button></a>
               </td>
           </tr> 
         </tbody>
@@ -124,6 +124,15 @@
             </label>
           </div>
         </div>
+        <!-- <div class="form-group">
+          <label class="col-sm-2 control-label">Data Confidence</label>
+          <div class="col-sm-10">
+            <div class="btn-group m-r">
+              <label class="btn btn-default" ng-model="formProject.confidence" btn-radio="1" uncheckable>High Confidence</label>
+              <label class="btn btn-default" ng-model="formProject.confidence" btn-radio="2" uncheckable>Low Confidence</label>
+            </div>
+          </div>
+        </div> -->
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <label class="col-sm-2 control-label"></label>

@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from mascref.permissions import UserPermissionsObj
 from mascref.permissions import UserFromAccount
 from mascref.permissions import ObjectFromAccount
-# from rest_framework_tracking.mixins import LoggingMixin
 
 from django.contrib.auth.models import Group
+from activity_log.models import UserMixin
 from models import Account
 from models import UserProfile
 from models import Country
@@ -38,9 +38,9 @@ from serializers import StatsSerializer
 class GroupACLViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupACLSerializer
-    permission_classes = (
-        permissions.IsAuthenticated,
-    )
+    # permission_classes = (
+    #     permissions.IsAuthenticated,
+    # )
 
 
 class AccountViewSet(viewsets.ModelViewSet):
@@ -51,7 +51,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     )
 
 
-class UserProfileViewSet(viewsets.ModelViewSet):
+class UserProfileViewSet(viewsets.ModelViewSet, UserMixin):
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = (
@@ -114,7 +114,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
     )
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save(created_by=self.request.user.userprofile, 
+            account=self.request.account)
 
     def get_queryset(self):
         queryset = Project.objects.all()
@@ -137,13 +138,14 @@ class SurveyViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated, UserFromAccount, 
     )
 
+
     def get_queryset(self):
         queryset = Survey.objects.all()
         queryset = queryset.filter(project__account=self.request.account)
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
+        serializer.save(created_by=self.request.user.userprofile)
 
 
 class ResearcherViewSet(viewsets.ModelViewSet):

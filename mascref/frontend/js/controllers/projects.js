@@ -9,15 +9,15 @@ angular.module('app.controllers')
       $state.go('access.signin');
     }
 
-    console.log(AclService.getRoles());
-
     // Projects List Init
     $scope.breadcrumbs = [];
     $scope.alerts = [];
     $scope.projects = {}
     $scope.showNewProject = false;
     $scope.loadingProjects = false;
-    $scope.formProject = {}
+    $scope.formProject = {
+      confidence: 1
+    }
     $scope.msgs = { 
       saving_project: {
         show: false,
@@ -34,6 +34,7 @@ angular.module('app.controllers')
         description: '',
         restricted: false,
         owner: '',
+        confidence: 1,
         errors: {}
       }
     }
@@ -202,11 +203,13 @@ angular.module('app.controllers')
       if($scope.formProject.owner) $scope.project.owner = $scope.formProject.owner;
       // if(angular.isObject($scope.description)) $scope.project.description = "";
       // else $scope.project.description = $scope.description;
+      // console.log($scope.project)
       Projects.save($scope.project)
       .then(function (data) {
         $scope.msgs.settings.loading = false;
         $scope.msgs.settings.type = 'success';
         $scope.msgs.settings.text = 'Project settings saved successfully!';
+        $scope.getProjects();
       }, function (error) {
         console.error('Project create: ' + error);
       });
@@ -250,6 +253,7 @@ angular.module('app.controllers')
     $scope.showNewSurvey = false;
     $scope.formSurvey = {
       //date_start: new Date()
+      confidence: 1,
       loadingNewProject: false,
     }
     // Date options for datepickers
@@ -277,6 +281,7 @@ angular.module('app.controllers')
       $scope.formSurvey = {
         project: $stateParams.projectId,
         name: '',
+        confidence: 1,
         date_start: null,
         date_end: null,
         restricted: false,
@@ -340,6 +345,7 @@ angular.module('app.controllers')
       $scope.msgs.saving_survey.text = 'Saving survey settings...';
 
       $scope.formSurvey.errors = {}
+      console.log($scope.formSurvey)
       Surveys.save($scope.formSurvey)
       .then(function (data) {
         $scope.msgs.saving_survey.loading = false;

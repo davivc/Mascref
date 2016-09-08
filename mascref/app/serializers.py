@@ -113,7 +113,7 @@ class SiteSerializer (serializers.ModelSerializer):
 
 
 class ProjectSerializer (serializers.ModelSerializer):
-    created_by = serializers.ReadOnlyField(source='created_by.username')
+    created_by = serializers.ReadOnlyField(source='created_by.user.username')
     owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)
 
     class Meta:
@@ -132,7 +132,7 @@ class ProjectSerializer (serializers.ModelSerializer):
 
 class SurveySerializer (serializers.ModelSerializer):
     sites = SiteSerializer(many=True, read_only=True)
-    created_by = serializers.ReadOnlyField(source='created_by.username')
+    created_by = serializers.ReadOnlyField(source='created_by.user.username')
     transects_count = serializers.ReadOnlyField()
     owner_name = serializers.ReadOnlyField(
         source='owner.name', read_only=True
@@ -143,17 +143,20 @@ class SurveySerializer (serializers.ModelSerializer):
         fields = (
             'id', 'project', 'name', 'date_start', 'date_end', 'owner',
             'public', 'created_at', 'created_by', 'owner_name', 'sites',
-            'transects_count'
+            'transects_count', 'data_level'
         )
 
 
 class ResearcherSerializer (serializers.ModelSerializer):
-    is_admin = serializers.ReadOnlyField(source='user.is_superuser')
-    is_staff = serializers.ReadOnlyField(source='user.is_staff')
+    # role = serializers.ReadOnlyField(source='user.userprofile.roles')
+    roles = serializers.SerializerMethodField('get_roles_names')
+
+    def get_roles_names(self, obj):
+        return obj.user.roles
 
     class Meta:
         model = Researcher
-        fields = ('id', 'name', 'is_admin', 'is_staff')
+        fields = ('id', 'name', 'roles')
 
 
 # Non-Models Serializers

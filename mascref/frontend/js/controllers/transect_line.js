@@ -43,12 +43,12 @@ angular.module('app.controllers')
           $scope.updateLineGraphs();
         }, true);
 
-        $scope.$watch('transect.line.data',function(oldVal,newVal) { 
+        $scope.$watch('transect.line.data',function(oldVal,newVal) {
           $scope.updateLineGraphs(); 
         }, true);
 
         $scope.getGroups = function (model, parent, type, category) {
-          Group.list(parent, type, category, $scope.config.reefcheck.group_set_line)
+          Group.list(parent, type, category, $scope.config.reefcheck.group_set_line, 'name')
           .then(function (data) {
             if (category) $scope[model][category] = data;
             else $scope[model] = data;
@@ -111,7 +111,8 @@ angular.module('app.controllers')
             });
           });
           Segment.createMultiple(create).then(function (data) {  
-            Segment.updateMultiple(update.slice(0, 5)).then(function (data) { 
+            // Segment.updateMultiple(update.slice(0, 5)).then(function (data) { 
+            Segment.updateMultiple(update).then(function (data) { 
               $scope.alert = { 
                 type: 'success',
                 msg: 'Line transect saved successfully!'
@@ -137,7 +138,7 @@ angular.module('app.controllers')
           angular.forEach($scope.line_groups, function (groups_val, groups_key) {
             $scope.line_graphs[groups_val.name] = { 'segs': [], 'sum': 0, 'mean': 0, 'sd': 0, 'se': 0, 'percent_segs': [], 'percent_sum': 0, 'percent_mean': 0, 'percent_sd': 0, 'percent_se': 0 }
             for (var i = 0 ; i < $scope.segments_total ; ++i){
-              $scope.line_graphs[groups_val.name]['segs'][i] = $filter('filter')($scope.transect.line.data[i],groups_val.name).length;
+              $scope.line_graphs[groups_val.name]['segs'][i] = $filter('filter')($scope.transect.line.data[i],{$: groups_val.name},true).length;
               $scope.line_graphs[groups_val.name]['percent_segs'][i] = $scope.line_graphs[groups_val.name]['segs'][i]/$scope.segments_points*100;
             }
             $scope.line_graphs[groups_val.name].sum = $filter('sum')($scope.line_graphs[groups_val.name]['segs']);
