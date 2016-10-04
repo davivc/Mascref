@@ -32,7 +32,7 @@ declare -a array=(
 	"usp_05_group_set"
 	"usp_06_groups"
 	"usp_07_2015_transects"
-	"authdata"
+	# "authdata"
 	)
 
 # get length of an array
@@ -41,6 +41,6 @@ arraylength=${#array[@]}
 # use for loop to read all values and indexes
 for (( i=1; i<${arraylength}+1; i++ ));
 do
-	/usr/bin/python ../../manage.py loaddata ${array[$i-1]}
+	/usr/bin/python /var/www/mascref/mascref/manage.py loaddata ${array[$i-1]}
 	echo $i " / " ${arraylength} " : " ${array[$i-1]}
 done
