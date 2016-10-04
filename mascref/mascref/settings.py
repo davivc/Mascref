@@ -190,7 +190,7 @@ ACTIVITYLOG_ANONIMOUS = True
 ACTIVITYLOG_LAST_ACTIVITY = True
 
 # Only this methods will be logged
-ACTIVITYLOG_METHODS = ('POST', 'PATCH','DELETE')
+ACTIVITYLOG_METHODS = ('GET', 'POST', 'PATCH','DELETE')
 
 # List of response statuses, which logged. By default - all logged.
 # Don't use with ACTIVITYLOG_EXCLUDE_STATUSES

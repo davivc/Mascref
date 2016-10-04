@@ -16,7 +16,9 @@ framework.
 import os
 import sys
 
-sys.path = ['/home/ubuntu/mascref/mascref/'] + sys.path
+sys.path.append('/usr/local/lib/python2.7/dist-packages')
+sys.path.append(os.environ['WSGI_DIR'])
+# sys.path = [os.environ['WSGI_DIR']] + sys.path
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mascref.settings")
 
 # This application object is used by any WSGI server configured to use this
