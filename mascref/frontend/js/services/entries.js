@@ -95,6 +95,7 @@ angular.module('app.services')
           'lat': pData.lat,
           'long': pData.long,
           'town': pData.town,
+          'transects': [],
         }
         return Rest.post(this.url, data);
       }
