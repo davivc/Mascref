@@ -13,11 +13,6 @@ sudo mysql_install_db
 sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
 apt-get -y install phpmyadmin
 
-
-
-
-
-
 sudo apt-get install libmysqlclient-dev python-dev
 
 mysql -u root -p
