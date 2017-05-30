@@ -45,7 +45,8 @@ angular.module('app.services')
       'save': function (pData) {
         var data = {
           'name': pData.name,
-          'country': pData.country
+          'country': pData.country,
+          'towns': []
         }
         return Rest.post(this.url, data);
       }

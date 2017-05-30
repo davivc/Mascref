@@ -290,7 +290,7 @@ var app = angular.module('app', [
 
   uiGmapGoogleMapApiProvider.configure({
     key: 'AIzaSyARgP4KCpfqdJzKXKiI3zxP0mI9Gh8NpIc',
-    v: '3.20', //defaults to latest 3.X anyhow
+    v: '3.25', //defaults to latest 3.X anyhow
     // libraries: 'weather,geometry,visualization'
   });
 })

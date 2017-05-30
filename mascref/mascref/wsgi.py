@@ -17,8 +17,13 @@ import os
 import sys
 
 sys.path.append('/usr/local/lib/python2.7/dist-packages')
-sys.path.append(os.environ['WSGI_DIR'])
+# sys.path.append('/vagrant/mascref/mascref/mascref')
+# sys.path.append(os.environ['WSGI_DIR'])
 # sys.path = [os.environ['WSGI_DIR']] + sys.path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(BASE_DIR, '..'))
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mascref.settings")
 
 # This application object is used by any WSGI server configured to use this

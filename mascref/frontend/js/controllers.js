@@ -96,18 +96,6 @@ angular.module('app.controllers', ['pascalprecht.translate'])
       // $scope.$watch('userProfile',function(oldVal,newVal) { console.log(oldVal,newVal) }, true);
 
   }) 
-  // Maps Controllers
-  .controller("MapsCtrl", function($scope, uiGmapGoogleMapApi) {
-    // Do stuff with your $scope.
-    // Note: Some of the directives require at least something to be defined originally!
-    $scope.map = { center: { latitude: -18.20, longitude: 179 }, zoom: 7, options: { panControl: false, streetViewControl: false } };
-
-    // uiGmapGoogleMapApi is a promise.
-    // The "then" callback function provides the google.maps object.
-    uiGmapGoogleMapApi.then(function(maps) {
-
-    });
-  })
   // Signin
   .controller('AccessSigninCtrl', ['$scope', '$translate', '$state', 'djangoAuth', 'Validate', function ($scope, $translate, $state, djangoAuth, Validate) {
     $scope.model = { 'username': '', 'password': '' };

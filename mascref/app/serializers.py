@@ -152,7 +152,10 @@ class ResearcherSerializer (serializers.ModelSerializer):
     roles = serializers.SerializerMethodField('get_roles_names')
 
     def get_roles_names(self, obj):
-        return obj.user.roles
+        if obj.user:
+            return obj.user.roles
+        else:
+            return []
 
     class Meta:
         model = Researcher

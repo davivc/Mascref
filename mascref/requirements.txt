@@ -31,7 +31,7 @@ jsonpointer==1.0
 keyring==3.5
 launchpadlib==1.10.2
 lazr.uri==1.0.3
-mod-python==3.3.1
+#mod-python==3.3.1
 oauth==1.0.1
 pinax-eventlog==1.1.2
 prettytable==0.7.2

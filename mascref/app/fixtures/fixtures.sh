@@ -41,6 +41,6 @@ arraylength=${#array[@]}
 # use for loop to read all values and indexes
 for (( i=1; i<${arraylength}+1; i++ ));
 do
-	/usr/bin/python /var/www/mascref/mascref/manage.py loaddata ${array[$i-1]}
+	/usr/bin/python /vagrant/mascref/mascref/manage.py loaddata ${array[$i-1]}
 	echo $i " / " ${arraylength} " : " ${array[$i-1]}
 done
