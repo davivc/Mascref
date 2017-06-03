@@ -191,7 +191,15 @@ var app = angular.module('app', [
             })
             .state('admin.stats', {
                 url: '/stats',
-                templateUrl: 'tpl/app_stats.html'
+                template: '<div ui-view></div>'
+            })
+            .state('admin.stats.data_line', {
+                url: '/data-line',
+                templateUrl: 'tpl/app_stats_data_line.html'
+            })
+            .state('admin.stats.graphs_line', {
+                url: '/graphs-line',
+                templateUrl: 'tpl/app_stats_graphs_line.html'
             })
             .state('admin.settings', {
                 url: '/settings',

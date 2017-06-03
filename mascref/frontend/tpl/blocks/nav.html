@@ -21,10 +21,41 @@
     </a>
   </li>
   <li ng-show="can('view_admin_stats')">
-    <a ui-sref="admin.stats">
+    <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
       <i class="glyphicon glyphicon-stats icon text-success"></i>
       <span class="font-bold" translate="aside.nav.STATS">Stats</span>
     </a>
+    <ul class="nav nav-sub dk">
+      <li class="nav-sub-header">
+        <a href>
+          <span class="font-bold" translate="aside.nav.STATS">Stats</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="admin.stats.data_line">
+          <span translate="aside.nav.LINE_DATA">Line Transect Data</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="admin.stats.graphs_line">
+          <span translate="aside.nav.LINE_GRAPHS">Line Transect Graphs</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="admin.stats.data_line">
+          <span translate="aside.nav.BELT_DATA">Belt Transect Data</span>
+        </a>
+      </li>
+      <li>
+        <a ui-sref="admin.stats.graphs_line">
+          <span translate="aside.nav.BELT_GRAPHS">Belt Transect Graphs</span>
+        </a>
+      </li>
+    </ul>
   </li>
   <li  ng-show="can('view_admin_settings')">
     <a ui-sref="admin.settings">

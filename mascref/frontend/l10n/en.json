@@ -20,6 +20,10 @@
       "PROJECTS": "Projects",
       "MAPS": "Maps",
       "STATS": "Stats",
+      "LINE_DATA": "Line transect data",
+      "LINE_GRAPHS": "Line transect graphs",
+      "BELT_DATA": "Belt transect data",
+      "BELT_GRAPHS": "Belt transect graphs",
       "SETTINGS": "Settings"
     }
   },

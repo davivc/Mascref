@@ -1,0 +1,109 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Line Transect</h1>
+</div>
+<div class="wrapper-md" ng-controller="StatsLineCtrl">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Filters
+    </div>
+    <div class="panel-body">
+      <div class="form-group col-sm-12">
+        <div class="form-group col-sm-2">
+          <label>Projects</label>
+          <select ng-model="filters.project" class="form-control m-b" ng-options="obj.project_id as obj.project_name for obj in projects">
+            <option value="">All</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>Surveys</label>
+          <select ng-model="filters.survey" class="form-control m-b" ng-options="obj.survey_id as obj.survey_name for obj in surveys">>
+            <option value="">All</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>Year</label>
+          <select ng-model="filters.year" class="form-control m-b" ng-options="obj.year as obj.year for obj in years">>
+            <option value="">All</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>Country</label>
+          <select ng-model="filters.country" class="form-control m-b" ng-options="obj.country_id as obj.country for obj in countries">>
+            <option value="">All</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>Site</label>
+          <select ng-model="filters.site" class="form-control m-b" ng-options="obj.site_id as obj.site_name for obj in sites">>
+            <option value="">All</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-2">
+          <label>&nbsp;</label>
+          <button class="btn btn-success form-control m-b" type="button" ng-click="filter('json','transect')">Filter!</button>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-12">
+        <div class="form-group col-sm-6">
+          <button class="btn btn-info form-control m-b" ng-show="collectedData" type="button" ng-click="filter('csv','')">Export .csv file with all points intercept data</button>
+        </div>
+        <div class="form-group col-sm-6">
+          <button class="btn btn-info form-control m-b" ng-show="collectedData" type="button" ng-click="filter('csv','transect')">Export .csv file with counts summarised per transect</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Data results
+    </div>
+    <div>
+      <table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="10">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Survey</th>
+            <th>Country</th>
+            <th>Site</th>
+            <th>Year</th>
+            <th>Transect</th>
+            <th>Depth</th>
+            <th>Group Name</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-show="loadingProjects">
+            <td colspan="9" class="text-center">
+              <div>
+                <i class="fa fa-spinner fa-spin"></i> Loading transect data list
+              </div>
+            </td>
+          </tr>
+          <tr ng-if="data.length == 0" ng-hide="loadingProjects">
+              <td colspan="9" class="text-center">No data found in the system</td>
+          </tr> 
+          <tr ng-repeat="dt in data" ng-hide="loadingProjects">
+            <td>{{dt.project_name}}</td>
+            <td>{{dt.survey_name}}</td>
+            <td>{{dt.country}}</td>
+            <td>{{dt.site_name}}</td>
+            <td>{{dt.year}}</td>
+            <td>{{dt.transect_identifier}}</td>
+            <td>{{dt.depth}}</td>
+            <td>{{dt.group_name}}</td>
+            <td>{{dt.count}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+              <td colspan="9" class="text-center">
+                  <ul class="pagination"></ul>
+              </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

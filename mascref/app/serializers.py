@@ -112,6 +112,23 @@ class SiteSerializer (serializers.ModelSerializer):
                   'transects', 'town_name', 'province_name', 'country_name')
 
 
+class SiteSurveySerializer (serializers.ModelSerializer):
+    town_name = serializers.ReadOnlyField(
+        source='town.name', read_only=True
+    )
+    province_name = serializers.ReadOnlyField(
+        source='town.province.name', read_only=True
+    )
+    country_name = serializers.ReadOnlyField(
+        source='town.country.name', read_only=True
+    )
+
+    class Meta:
+        model = Site
+        fields = ('id', 'name', 'lat', 'long', 'town', 'surveys',
+                  'transects', 'town_name', 'province_name', 'country_name')
+
+
 class ProjectSerializer (serializers.ModelSerializer):
     created_by = serializers.ReadOnlyField(source='created_by.user.username')
     owner_name = serializers.ReadOnlyField(source='owner.name', read_only=True)

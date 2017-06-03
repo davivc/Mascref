@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 /* Transect Controllers */
 
@@ -90,22 +90,21 @@ angular.module('app.controllers')
         angular.forEach(survey.sites, function (site) {
           var marker = {
             id: site.id,
-            coords: {
-              latitude: site.lat,
-              longitude: site.long 
-            },
+            //coords: {
+            latitude: site.lat,
+            longitude: site.long,
+            //},
             options: {
               draggable: false,
               show: true,
               title: site.name
-            },
-            show: false,
-            content: 'davi legal'
+            }
+            //show: false
           }
-          marker.click = function() {
-            marker.show = !marker.show;
-            marker.content = 'issaaaaaaaaaaaaaa';
-          };
+          // marker.click = function() {
+          //   marker.show = !marker.show;
+          //   marker.content = 'issaaaaaaaaaaaaaa';
+          // };
 
           $scope.markers.push(marker)
         });  
@@ -113,11 +112,35 @@ angular.module('app.controllers')
 
       $scope.bounds = new google.maps.LatLngBounds();
       angular.forEach($scope.markers, function (value, key) {
-        var myLatLng = new google.maps.LatLng($scope.markers[key].coords.latitude, $scope.markers[key].coords.longitude);
+        // var myLatLng = new google.maps.LatLng($scope.markers[key].coords.latitude, $scope.markers[key].coords.longitude);
+        var myLatLng = new google.maps.LatLng($scope.markers[key].latitude, $scope.markers[key].longitude);
         $scope.bounds.extend(myLatLng);
       });
       $scope.map = { center: { latitude: $scope.bounds.getCenter().lat(), longitude: $scope.bounds.getCenter().lng() } };
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
+      $scope.map.window = {
+        marker: {},
+        show: false,
+        closeClick: function() {
+          this.show = false;
+        },
+        options: {
+          pixelOffset : {
+              height: -25,
+              width: 0
+          }
+        } 
+      };
+      $scope.map.markersEvents = {
+        click: function(marker, eventName, model) {
+
+          console.log(model)
+          $scope.map.window.model = model;
+          $scope.map.window.show = true;
+        }
+      };
+      
+
 
       $scope.control.getGMap().fitBounds($scope.bounds);
       var zoom = $scope.control.getGMap().getZoom()
@@ -136,6 +159,10 @@ angular.module('app.controllers')
       $scope.map.options = { MapTypeId: google.maps.MapTypeId.SATELLITE };
       $scope.getSurveys();
     });
+
+    $scope.getSurveysFiltered = function(idSite) {
+
+    }
 
     // Retrieve the list of Surveys children of this project
     $scope.getSurveys = function () {

@@ -45,6 +45,52 @@ angular.module('app.directives', ['ui.load'])
     }
   };
 })
+.directive('uiNav', ['$timeout', function($timeout) {
+  return {
+    restrict: 'AC',
+    replace: true,
+    link: function(scope, el, attr) {
+      var _window = $(window);
+      var _mb = 768;
+      // unfolded
+      $(el).on('click', 'a', function(e) {
+        var _this = $(this);
+        _this.parent().siblings( ".active" ).toggleClass('active');
+        _this.parent().toggleClass('active');
+        _this.next().is('ul') && e.preventDefault();
+        _this.next().is('ul') || ( ( _window.width() < _mb ) && $('.app-aside').toggleClass('show') );
+      });
+
+      // folded
+      var wrap = $('.app-aside'), next;
+      $(el).on('mouseenter', 'a', function(e){
+        if ( !$('.app-aside-fixed.app-aside-folded').length || ( _window.width() < _mb )) return;
+        var _this = $(this);
+
+        next && next.trigger('mouseleave.nav');
+
+        if( _this.next().is('ul') ){
+           next = _this.next();
+        }else{
+          return;
+        }
+        
+        next.appendTo(wrap).css('top', _this.offset().top - _this.height());
+        next.on('mouseleave.nav', function(e){
+          next.appendTo(_this.parent());
+          next.off('mouseleave.nav');
+          _this.parent().removeClass('active');
+        });
+        _this.parent().addClass('active');
+        
+      });
+
+      wrap.on('mouseleave', function(e){
+        next && next.trigger('mouseleave.nav');
+      });
+    }
+  };
+}])
 // https://github.com/alonho/angular-plotly/blob/master/src/angular-plotly.js
 .directive('plotly', function($window) {
   return {

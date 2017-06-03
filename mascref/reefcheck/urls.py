@@ -11,6 +11,7 @@ from views import GroupViewSet
 from views import TransectViewSet
 from views import TransectInfoViewSet
 from views import SegmentViewSet
+from views import SubstrateViewSet
 from views import StatsViewSet
 
 
@@ -32,4 +33,6 @@ urlpatterns = [
     # '',
     url(r'^', include(router.urls)),
     url(r'^', include(bulk.urls)),
+    url(r'^data_substrate', SubstrateViewSet.as_view()),
 ]
+

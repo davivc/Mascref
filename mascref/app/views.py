@@ -106,6 +106,18 @@ class SiteViewSet(viewsets.ModelViewSet):
     )
 
 
+class SiteSurveyViewSet(viewsets.ModelViewSet):
+    queryset = Site.objects.all()
+    serializer_class = SiteSerializer
+    ordering = ('name',)
+    filter_backends = (filters.SearchFilter,filters.DjangoFilterBackend)
+    search_fields = ('name',)
+    filter_fields = ('name', 'lat', 'long', 'town', )
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
+
+
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer

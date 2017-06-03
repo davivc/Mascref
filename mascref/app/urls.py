@@ -10,6 +10,7 @@ from views import CountryViewSet
 from views import ProvinceViewSet
 from views import TownViewSet
 from views import SiteViewSet
+from views import SiteSurveyViewSet
 from views import ProjectViewSet
 from views import SurveyViewSet
 from views import ResearcherViewSet
@@ -24,6 +25,7 @@ router.register(r'countries', CountryViewSet)
 router.register(r'provinces', ProvinceViewSet)
 router.register(r'towns', TownViewSet)
 router.register(r'sites', SiteViewSet)
+router.register(r'site_surveys', SiteSurveyViewSet)
 router.register(r'projects', ProjectViewSet)
 router.register(r'surveys', SurveyViewSet)
 router.register(r'researchers', ResearcherViewSet)

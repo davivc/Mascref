@@ -128,6 +128,8 @@ INSTALLED_APPS = (
     'rest_framework_swagger',
     'rest_framework_bulk',
     'rest_auth',
+    'django_filters',
+    'rest_pandas',
     'corsheaders',
     # 'rest_framework_tracking',
     'rest_assured',
