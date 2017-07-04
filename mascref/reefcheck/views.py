@@ -315,8 +315,8 @@ class BeltViewSet(PandasSimpleView):
                         LEFT JOIN app_country c ON c.id = town.country_id 
                         LEFT JOIN app_survey su ON su.id = t.survey_id 
                         LEFT JOIN app_project p ON p.id = su.project_id
-                        WHERE g.type_id = 1
-                    """
+                        WHERE p.account_id = %s AND g.type_id = 1
+                    """ % (self.request.account.id)
             filters = []
             if request.GET.get('project',''):
                 filters.append("p.id = '%s'" % request.GET.get('project',''))
