@@ -92,35 +92,22 @@ class SegmentSerializer (BulkSerializerMixin, serializers.ModelSerializer):
 
 
 class SubstrateSerializer (serializers.ModelSerializer):
-    # survey_id = serializers.ReadOnlyField(
-    #     source='transect.survey.id', read_only=True)
-    # survey_name = serializers.ReadOnlyField(
-    #     source='transect.survey.name', read_only=True)
-    # transect_id = serializers.ReadOnlyField(
-    #     source='transect.id', read_only=True)
-    # transect_identifier = serializers.ReadOnlyField(
-    #     source='transect.name', read_only=True)
-    # site_id = serializers.ReadOnlyField(
-    #     source='transect.site.id', read_only=True)
-    # site_name = serializers.ReadOnlyField(
-    #     source='transect.site.name', read_only=True)
-    # depth = serializers.ReadOnlyField(
-    #     source='transect.depth', read_only=True)
-    # date = serializers.ReadOnlyField(
-    #     source='transect.date', read_only=True)
-    # country = serializers.ReadOnlyField(
-    #     source='transect.site.town.country.name', read_only=True)
-    # point_intercept = serializers.ReadOnlyField(source='value', read_only=True)
-    # group = serializers.ReadOnlyField(source='group.name', read_only=True)
-    # group_name = serializers.ReadOnlyField(source='group.description', read_only=True)
-
-
     class Meta:
         model = Segment
         fields = (
             'project_name', 'project_id', 'survey_id', 'survey_name', 'site_id', 'site_name', 'transect_id', 'transect_identifier',
             'date', 'depth', 'country', 'country_id', 'segment', 'point_intercept', 'group', 'group_name',
-            # 'id', 'token', 'transect', 'type', 'segment', 'group', 'value', 
+        )
+        # only necessary in DRF3
+        list_serializer_class = BulkListSerializer
+
+
+class BeltSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Segment
+        fields = (
+            'project_name', 'project_id', 'survey_id', 'survey_name', 'site_id', 'site_name', 'transect_id', 'transect_identifier',
+            'date', 'depth', 'country', 'country_id', 'segment', 'point_intercept', 'group', 'group_name',
         )
         # only necessary in DRF3
         list_serializer_class = BulkListSerializer
