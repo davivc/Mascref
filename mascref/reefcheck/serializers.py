@@ -54,7 +54,7 @@ class TransectSerializer (serializers.ModelSerializer):
     class Meta:
         model = Transect
         fields = (
-            'id', 'survey', 'site', 'name', 'depth', 'date', 'year', 'time_start',
+            'id', 'survey', 'site', 'name', 'depth', 'date', 'time_start',
             'team_leader', 'team_leader_name', 'site_name', 'town_name'
         )
 

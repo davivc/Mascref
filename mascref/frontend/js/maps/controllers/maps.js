@@ -14,6 +14,7 @@ angular.module('app.controllers')
       'uiGmapIsReady', 
       'MASCREF_CONF',
       'Surveys',
+      'Data',
       function (
           $scope, 
           $rootScope, 
@@ -23,7 +24,8 @@ angular.module('app.controllers')
           uiGmapGoogleMapApi, 
           uiGmapIsReady, 
           MASCREF_CONF,
-          Surveys
+          Surveys,
+          Data
       ) {
     // Logged status
     if (!$scope.authenticated) {
@@ -58,6 +60,13 @@ angular.module('app.controllers')
       $scope.config = $rootScope.config;
     }
 
+    $scope.filterProjects = [];
+    $scope.filterSurveys = [];
+    $scope.filterYears = [];
+    $scope.filterCountries = [];
+    $scope.filterSites = [];
+        
+
     $scope.surveys = []
     $scope.markers = []
     $scope.activeMarker = undefined;
@@ -82,6 +91,52 @@ angular.module('app.controllers')
     //     visible: false
     //   }
     // }
+
+
+    $scope.getFilterProjects = function() {
+      Data.getSubstrate('json','project')
+      .then(function (data) {
+        $scope.filterProjects = data;
+      }, function (error) {
+        
+      });
+    }
+
+    $scope.getFilterSurveys = function() {
+      Data.getSubstrate('json','survey')
+      .then(function (data) {
+        $scope.filterSurveys = data;
+      }, function (error) {
+        
+      });
+    }
+
+    $scope.getFilterYears = function() {
+      Data.getSubstrate('json','year')
+      .then(function (data) {
+        $scope.filterYears = data;
+      }, function (error) {
+        
+      });
+    }
+
+    $scope.getFilterCountries = function() {
+      Data.getSubstrate('json','country')
+      .then(function (data) {
+        $scope.countries = data;
+      }, function (error) {
+        
+      });
+    }
+
+    $scope.getFilterSites = function() {
+      Data.getSubstrate('json','site')
+      .then(function (data) {
+        $scope.filterSites = data;
+      }, function (error) {
+        
+      });
+    }
 
     $scope.initMarkers = function() {
       
@@ -133,10 +188,9 @@ angular.module('app.controllers')
       };
       $scope.map.markersEvents = {
         click: function(marker, eventName, model) {
-
-          console.log(model)
-          $scope.map.window.model = model;
-          $scope.map.window.show = true;
+          //console.log(model)
+          //$scope.map.window.model = model;
+          //$scope.map.window.show = true;
         }
       };
       
@@ -151,7 +205,8 @@ angular.module('app.controllers')
     // uiGmapGoogleMapApi is a promise.
     // The "then" callback function provides the google.maps object.
     uiGmapGoogleMapApi.then(function (maps) {
-      $('.angular-google-map-container').css('height', '80vh');
+      $('.angular-google-map-container').css('height', '94vh');
+      $('.app-content-body').css('padding-bottom', '0px');
     });
 
 
@@ -175,4 +230,10 @@ angular.module('app.controllers')
         //$scope.stats.error = error;
       });
     }
+
+    $scope.getFilterProjects();
+    $scope.getFilterSurveys();
+    $scope.getFilterYears();
+    $scope.getFilterCountries();
+    $scope.getFilterSites();
   }]);

@@ -1,5 +1,49 @@
 <div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="MapsCtrl">
-
+    <!--
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          Filters
+        </div>
+        <div class="panel-body">
+          <div class="form-group col-sm-12">
+            <div class="form-group col-sm-2">
+              <label>Projects</label>
+              <select ng-model="filters.project" class="form-control m-b" ng-options="obj.project_id as obj.project_name for obj in filterProjects">
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label>Surveys</label>
+              <select ng-model="filters.survey" class="form-control m-b" ng-options="obj.survey_id as obj.survey_name for obj in filterSurveys">>
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label>Year</label>
+              <select ng-model="filters.year" class="form-control m-b" ng-options="obj.year as obj.year for obj in filterYears">>
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label>Country</label>
+              <select ng-model="filters.country" class="form-control m-b" ng-options="obj.country_id as obj.country for obj in filterCountries">>
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label>Site</label>
+              <select ng-model="filters.site" class="form-control m-b" ng-options="obj.site_id as obj.site_name for obj in filterSites">>
+                <option value="">All</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-2">
+              <label>&nbsp;</label>
+              <button class="btn btn-success form-control m-b" type="button" ng-click="filter('json','transect')">Filter!</button>
+            </div>
+          </div>
+        </div>
+  </div>
+  -->
 	<!-- main -->
     <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' control='control'>
         <ui-gmap-window 
