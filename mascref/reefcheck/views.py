@@ -190,7 +190,6 @@ class SubstrateViewSet(PandasSimpleView):
         else:
             return Response(serializer.data)
 
-
     def get_data(self, request, *args, **kwargs):
         rows = []
         with connections['default'].cursor() as cursor:
@@ -206,8 +205,8 @@ class SubstrateViewSet(PandasSimpleView):
                         LEFT JOIN app_country c ON c.id = town.country_id 
                         LEFT JOIN app_survey su ON su.id = t.survey_id 
                         LEFT JOIN app_project p ON p.id = su.project_id
-                        WHERE g.type_id = 2
-                    """
+                        WHERE su.account_id = %(s) AND g.type_id = 2
+                    """ % self.request.account.id
             filters = []
             if request.GET.get('project',''):
                 filters.append("p.id = '%s'" % request.GET.get('project',''))
