@@ -17,8 +17,7 @@ import os
 import sys
 
 sys.path.append('/usr/local/lib/python2.7/dist-packages')
-# sys.path.append('/vagrant/mascref/mascref/mascref')
-# sys.path.append(os.environ['WSGI_DIR'])
+sys.path.append('/home/ubuntu/mascref/mascref')
 # sys.path = [os.environ['WSGI_DIR']] + sys.path
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
