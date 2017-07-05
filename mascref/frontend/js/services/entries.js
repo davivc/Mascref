@@ -71,7 +71,8 @@ angular.module('app.services')
         var data = {
           'name': pData.name,
           'country': pData.country,
-          'province': pData.province
+          'province': pData.province,
+          'sites': []
         }
         return Rest.post(this.url, data);
       }

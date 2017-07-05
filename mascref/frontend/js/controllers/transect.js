@@ -224,11 +224,20 @@ angular.module('app.controllers')
       }
       if($scope.transect.info.site && !$scope.transect.info.site.id) {
         // 1 - Check if country has id, otherwise create
-        if($scope.transect.info.country && !$scope.transect.info.country.id) $scope.saveCountry();
+        if($scope.transect.info.country && !$scope.transect.info.country.id) {
+          $scope.saveCountry();
+          return false;
+        }
         // 2 - Check if province is not null and has an id, otherwise create
-        else if($scope.transect.info.province && !$scope.transect.info.province.id) $scope.saveProvince();
+        else if($scope.transect.info.province && !$scope.transect.info.province.id) {
+          $scope.saveProvince();
+          return false;
+        }
         // 3 - Check if town has id, otherwise create
-        else if($scope.transect.info.town && !$scope.transect.info.town.id) $scope.saveTown();
+        else if($scope.transect.info.town && !$scope.transect.info.town.id) {
+          $scope.saveTown();
+          return false;
+        }
         // 4 - Finally create the site
         else {
           if(!$scope.transect.info.country.id) {
